@@ -1,0 +1,28 @@
+
+
+Gestion de documentos -> crear modifica ...
+
+Titulo y contenido asociado a un autor 
+
+Tener en cuenta con identificar un libro -> con un id hash 
+
+Buen diseño 
+
+Especificacion:
+
+ -cargar fichero/os , filtros activos
+    - individual 
+    - conjunto : llamar individual
+    - poder guardar el estado cuando se sale de la aplicación (Hacer descisiones )
+
+ - Gestion de documentos: 
+    - Libros activos o inactivos para las busquedas
+    
+ - Consultas :
+    - Manejar referencias a objetos
+    - Regex
+    
+
+ - Similitud :
+    - Angulos para la Similitud
+    - Tf idf 
