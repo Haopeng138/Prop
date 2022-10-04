@@ -1,0 +1,11 @@
+Decisiones:
+
+1-Alta de documento/s , son los ficheros por los que se pueden buscar por expresiones y comparaciones (Por defecto)
+
+2-Baja de documento/s , no se pueden buscar por expresiones y comparaciones
+
+3-Buscar por prefijos : cada vez que se da un enter 
+
+4-Buscar por expresiones : Alta de expresiones explicita
+
+5-Dos alias diferentes pueden tener la misma expresion

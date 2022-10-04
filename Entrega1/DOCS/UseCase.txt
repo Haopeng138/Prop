@@ -1,0 +1,28 @@
+
+Alta documento
+Actor:Usuario
+Comportamiento:
+-1 El usuario da de alta a un documento con un id único (definido por el sistema)
+
+Baja documento
+Actor:Usuario
+-1 El usuario da de baja a un documento 
+
+
+Modificar documento
+Actor:Usuario
+Comportamiento:
+1-El usuario modifica el documento 
+Error:
+1a)-No se ha guardado el documento y se ha cerrado el programa 
+
+
+
+Búsqueda por autor 
+Actor:Usuario
+Comportamiento:
+1-El usuario introduce el nombre de un autor 
+2 - El sistema devuelve una lista de títulos 
+Error:
+1a) El autor no existe 
+2a) El autor no tiene títulos
