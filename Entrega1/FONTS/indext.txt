@@ -1,1 +1,15 @@
 Codigo fuente del proyecto
+
+
+-Src
+	-- Controladores
+	
+	-- Dominio
+		Autor
+		Autores
+		Titulo 
+		Documento
+		Documentos
+		Expresion
+		Expresiones
+		ControladorDominio
