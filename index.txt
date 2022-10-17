@@ -8,10 +8,10 @@ Habrá un subdirectorio por cada clase a probar, con los ejecutables necesarios,
 los datos del juego de ensayo y su descripción (ver el apartado de descripción de los juegos de pruebas)
 
 
-Además aqui vamos a poner las reglas:
+Además, aquí vamos a poner las reglas:
 
 -Todo directorio debe tener un fichero como este con la descripción de los contenidos
--No accentuar los nombres de los ficheros 
+-No accentual los nombres de los ficheros
 -No rutas absolutas
 
 
