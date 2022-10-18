@@ -1,4 +1,4 @@
-package Dominio;
+package Dominio.Estructura;
 
 public class Autor {
     private String name;

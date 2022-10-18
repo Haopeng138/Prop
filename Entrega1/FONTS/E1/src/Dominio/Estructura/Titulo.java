@@ -1,4 +1,4 @@
-package Dominio;
+package Dominio.Estructura;
 
 public class Titulo {
     private String name;

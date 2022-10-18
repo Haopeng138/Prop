@@ -1,4 +1,6 @@
-package Dominio;
+package Dominio.Estructura;
+
+import Dominio.Estructura.Autor;
 
 import java.util.ArrayList;
 

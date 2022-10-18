@@ -1,5 +1,7 @@
 package Dominio;
-import  Dominio.*;
+import Dominio.Estructura.Autor;
+import Dominio.Estructura.Autores;
+
 public class ControladorDominio {
     public static void main(String[] args) {
          Autor a = new Autor("Joan");
@@ -8,6 +10,4 @@ public class ControladorDominio {
          b.Add(a);
 
     }
-
-
 }

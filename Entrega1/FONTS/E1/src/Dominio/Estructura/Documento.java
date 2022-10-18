@@ -1,6 +1,5 @@
-package Dominio;
-import Dominio.Autor;
-import Dominio.Titulo;
+package Dominio.Estructura;
+
 public class Documento {
     private String contenido;
     private Autor autor;
