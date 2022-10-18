@@ -1,8 +1,11 @@
+Descripción caso de uso
+########################
 
-Alta documento
-Actor:Usuario
-Comportamiento:
--1 El usuario da de alta a un documento con un id único (definido por el sistema)
+
+NOMBRE:Alta documento
+ACTOR:Usuario
+COMPORTAMIENTO:
+    -1 El usuario da de alta a un documento con un id único (definido por el sistema)
 
 Baja documento
 Actor:Usuario

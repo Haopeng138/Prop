@@ -6,7 +6,7 @@ public class ControladorDominio {
          System.out.println(a.getName());
          Autores b = new Autores();
          b.Add(a);
-         System.out.println(b.getAutores());
+
     }
 
 
