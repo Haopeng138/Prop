@@ -86,7 +86,6 @@
 ### Errores:
     1a. No existe el autor
     1b. No existe el título
-    1c. Existe autor y título pero no hay contenido
 ### Cursos alternativos:
     1. El sistema informa del error
 ---
@@ -116,7 +115,7 @@
 ## Alta expresión
 ### Autor: Usuario
 ### Comportamiento:
-    1. El usuario informa de la expresión booleana
+    1. El usuario informa de la expresión booleana y le asigna una alia
     2. El sistema valida los valores y dar de alta la expresión booleana indicada el usuario
 ### Errores:
     2a. La expresión está sintácticamente incorrecta
@@ -136,14 +135,11 @@
 ## Modificación expresión
 ### Actor: Usuario
 ### Comportamiento:
-    1. El usuario informa de la expresión booleana que quiere modificar
-    2. EL sistema valida los valores y encuenttra la expresión a modificar
+    1. El usuario informa de la alia de la expresión booleana que quiere modificar 
+    2. EL sistema encuentra la expresión a modificar
     3. El usuario introduce la expresión modificada
     4. El sistema valida los valore modificados y guarda la expresión
 ### Errores:
-    2a. La expresión está sintácticamente incorrecta
-    2b. No existe la expresión
-    4a. La expresión está sintácticamente incorrecta
-    4b. La expresión ya existe
+    4. La expresión está sintácticamente incorrecta
 ### Cursos alternativos:
-    2a , 2b , 4a, 4b. El sistema informa del error 
+    4 El sistema informa del error 
