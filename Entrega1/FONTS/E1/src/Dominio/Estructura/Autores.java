@@ -10,11 +10,11 @@ public class Autores {
         this.Autores = new ArrayList<Autor>();
     }
 
-    public void Add(Autor a){
+    public void add(Autor a){
         this.Autores.add(a);
     }
 
-    public void Remove(Autor a){
+    public void remove(Autor a){
         this.Autores.remove(a);
     }
     public ArrayList<Autor> getAutores(){

@@ -15,7 +15,6 @@ public class Documento {
     public void modificarTitulo(String titulo){
         this.titulo.setName(titulo);
     }
-
     public void modificarContenido(String contenido){
         this.contenido = contenido;
     }

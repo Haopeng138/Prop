@@ -9,7 +9,7 @@ public class ControladorDominio {
          Autor a = new Autor("Joan");
 
          Autores b = new Autores();
-         b.Add(a);
+         b.add(a);
          ArrayList<Autor> ab = b.getAutores();
 
 
