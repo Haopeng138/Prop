@@ -14,8 +14,11 @@ public class Autores {
         this.Autores.add(a);
     }
 
+    public void Remove(Autor a){
+        this.Autores.remove(a);
+    }
     public ArrayList<Autor> getAutores(){
-        return this.Autores;
+        return Autores;
     }
 
 }
