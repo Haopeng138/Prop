@@ -19,4 +19,15 @@ public class Documento {
         this.contenido = contenido;
     }
 
+    public String getAutor() {
+        return autor.getName();
+    }
+
+    public String getContenido() {
+        return contenido;
+    }
+
+    public String getTitulo() {
+        return titulo.getName();
+    }
 }

@@ -6,7 +6,7 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 public class Autores {
-    SortedMap<Autor, ArrayList<Titulo>> autores;
+    private SortedMap<Autor, ArrayList<Titulo>> autores;
 
     public Autores() {
         this.autores = new TreeMap<>();
@@ -20,11 +20,19 @@ public class Autores {
         this.autores.put(a, new ArrayList<Titulo>());
     }
 
+    public int getNumAutor(){
+        return autores.size();
+    }
     public void addTitleToAutor(Titulo t, Autor a) {
         ArrayList<Titulo> titulos = autores.get(a);
         titulos.add(t);
         autores.replace(a, titulos);
     }
+
+    public ArrayList<Titulo> getTitles(Autor a ){
+        return autores.get(a);
+    }
+
 
     public void remove(Autor a) {
         this.autores.remove(a);
@@ -36,9 +44,6 @@ public class Autores {
 
     public TreeSet<Autor> getOrderedAutores() {
         return (TreeSet<Autor>) autores.keySet();
-    }
-    public ArrayList<Titulo> getTitles(Autor a ){
-        return new ArrayList<Titulo>();
     }
 
 }
