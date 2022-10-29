@@ -9,13 +9,13 @@ public class Documento {
         this.titulo = new Titulo(titulo);
         this.contenido = contenido;
     }
-    public void modificarAutor(String autor){
+    public void setAutor(String autor){
         this.autor.setName(autor);
     }
-    public void modificarTitulo(String titulo){
+    public void setTitulo(String titulo){
         this.titulo.setName(titulo);
     }
-    public void modificarContenido(String contenido){
+    public void setContenido(String contenido){
         this.contenido = contenido;
     }
 

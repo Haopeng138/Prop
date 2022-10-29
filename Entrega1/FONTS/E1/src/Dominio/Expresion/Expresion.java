@@ -5,28 +5,27 @@ import java.util.Deque;
 
 public class Expresion {
 
-    private String alias;
     private String expresion;
 
-    public Expresion(String expresion,String alias) {
-        this.expresion = expresion;
-        this.alias = alias;
-    }
+    public Expresion(String expresion)  {
+        // if (isValid)
+        // else maybe create a new type of Exception and throw that. Invalid Expresion
+        // exception.
+        if (areBracketsBalanced(expresion)){
+            this.expresion = expresion;
+        }
 
-    public String getAlias() {
-        return alias;
+
     }
 
     public String getExpresion() {
         return expresion;
     }
 
-    public void setAlias(String alias) {
-        this.alias = alias;
-    }
-
     public void setExpresion(String expresion) {
-        this.expresion = expresion;
+        if (areBracketsBalanced(expresion)){
+            this.expresion = expresion;
+        }
     }
 
     /**
@@ -52,7 +51,7 @@ public class Expresion {
             // If current character is not opening
             // bracket, then it must be closing. So stack
             // cannot be empty at this point.
-            if (stack.isEmpty()) return false;
+
             char check;
             switch (x) {
                 case ')':
