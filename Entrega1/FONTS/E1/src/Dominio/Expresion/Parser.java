@@ -1,7 +1,10 @@
 package Dominio.Expresion;
 
+import Dominio.Expresion.NodeVal.OPERATOR;
+import Dominio.Expresion.NodeVal.NODE_TYPE;
+
 public class Parser {
-    public BinaryTree parse(String expr) {
+    public static BinaryTree parse(String expr) {
         int ptr = 0;
         BinaryTree root = new BinaryTree();
         BinaryTree currNode = root;
@@ -10,61 +13,72 @@ public class Parser {
             switch (c) {
                 case '|': {
                     BinaryTree newRoot = new BinaryTree();
-                    newRoot.val = new NodeVal("OPERATOR", OPERATOR.AND);
+                    newRoot.val = new NodeVal(NODE_TYPE.OPERATOR, OPERATOR.OR);
                     newRoot.left = root;
                     newRoot.right = parse(expr.substring(ptr + 1));
                     return newRoot;
                 }
                 case '&': {
                     BinaryTree newRoot = new BinaryTree();
-                    newRoot.val = new NodeVal("OPERATOR", OPERATOR.OR);
+                    newRoot.val = new NodeVal(NODE_TYPE.OPERATOR, OPERATOR.AND);
                     newRoot.left = root;
                     newRoot.right = parse(expr.substring(ptr + 1));
                     return newRoot;
                 }
                 case '!': {
-                    currNode.val = new NodeVal("OPERATOR", OPERATOR.NOT);
+                    currNode.val = new NodeVal(NODE_TYPE.OPERATOR, OPERATOR.NOT);
                     currNode.right = null;
                     currNode.left = new BinaryTree();
                     currNode = currNode.left;
                     break;
                 }
                 case '(': {
-                    int nextPtr = findNext(expr, ')');
-                    currNode = parse(expr.substring(ptr + 1, nextPtr));
+                    int nextPtr = ptr + 1 + findNext(expr.substring(ptr + 1), ')');
+                    BinaryTree toCopyBecauseJavaSucks = parse(expr.substring(ptr + 1, nextPtr));
+                    currNode.val = toCopyBecauseJavaSucks.val;
+                    currNode.left = toCopyBecauseJavaSucks.left;
+                    currNode.right = toCopyBecauseJavaSucks.right;
                     ptr = nextPtr;
                     break;
                 }
                 case '{': {
-                    int nextPtr = findNext(expr, '}');
-                    currNode.val = new NodeVal("CONTAIN", getWords(expr.substring(ptr + 1, nextPtr)));
+                    int nextPtr = ptr + 1 + findNext(expr.substring(ptr + 1), '}');
+                    currNode.val = new NodeVal(NODE_TYPE.CONTAIN, getWords(expr.substring(ptr + 1, nextPtr)));
                     currNode.left = null;
                     currNode.right = null;
                     ptr = nextPtr;
                     break;
                 }
-                case '"': {
-                    int nextPtr = findNext(expr, '"');
-                    currNode.val = new NodeVal("MATCH", expr.substring(ptr + 1, nextPtr));
+                case '“': {
+                    int nextPtr = ptr + 1 + findNext(expr.substring(ptr + 1), '”');
+                    currNode.val = new NodeVal(NODE_TYPE.MATCH, expr.substring(ptr + 1, nextPtr));
                     currNode.left = null;
                     currNode.right = null;
                     ptr = nextPtr;
+                    break;
+                }
+                case ' ': {
                     break;
                 }
                 default: {
+                    int nextPtr = ptr + 1 + findNextOrEnd(expr.substring(ptr + 1), ' ');
+                    currNode.val = new NodeVal(NODE_TYPE.CONTAIN, getWords(expr.substring(ptr, nextPtr)));
+                    currNode.left = null;
+                    currNode.right = null;
+                    ptr = nextPtr;
                     break;
                 }
             }
             ptr++;
         }
-        return null;
+        return root;
     }
 
-    private String[] getWords(String substring) {
-        return substring.split(" ");
+    private static String[] getWords(String words) {
+        return words.split(" ");
     }
 
-    private int findNext(String expr, char c) {
+    private static int findNext(String expr, char c) {
         int nextPtr = 0;
         while (expr.charAt(nextPtr) != c) {
             nextPtr++;
@@ -72,31 +86,12 @@ public class Parser {
         return nextPtr;
     }
 
-    // The answer must be sth like AND[contain: [words], match: ["strings"], OR
-    // [contain:[]]];
-    // -> We could build a tree!!! -> (AND)
-    // (contain: [....], match: ["strings"])(OR)
-    // (contain:[])
-
-    private class NodeVal {
-        NodeVal(String label, Object val) {
-            this.label = label;
-            this.val = val;
+    private static int findNextOrEnd(String expr, char c) {
+        try {
+            int nextPtr = findNext(expr, c);
+            return nextPtr;
+        } catch (StringIndexOutOfBoundsException e) {
+            return expr.length();
         }
-
-        String label;
-        Object val;
-    }
-
-    private class BinaryTree {
-        BinaryTree left;
-        BinaryTree right;
-        NodeVal val;
-    }
-
-    enum OPERATOR {
-        AND,
-        OR,
-        NOT
     }
 }
