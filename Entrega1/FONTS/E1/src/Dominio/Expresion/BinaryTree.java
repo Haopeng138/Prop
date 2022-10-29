@@ -1,14 +1,14 @@
 package Dominio.Expresion;
 
-public class BinaryTree {
-    BinaryTree left;
-    BinaryTree right;
-    NodeVal val;
+public class BinaryTree<T> {
+    BinaryTree<T> left;
+    BinaryTree<T> right;
+    T val;
 
     BinaryTree() {
     };
 
-    BinaryTree(NodeVal val) {
+    BinaryTree(T val) {
         this.val = val;
     }
 

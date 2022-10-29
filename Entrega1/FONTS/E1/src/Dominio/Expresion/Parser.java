@@ -4,22 +4,22 @@ import Dominio.Expresion.NodeVal.OPERATOR;
 import Dominio.Expresion.NodeVal.NODE_TYPE;
 
 public class Parser {
-    public static BinaryTree parse(String expr) {
+    public static BinaryTree<NodeVal> parse(String expr) {
         int ptr = 0;
-        BinaryTree root = new BinaryTree();
-        BinaryTree currNode = root;
+        BinaryTree<NodeVal> root = new BinaryTree<NodeVal>();
+        BinaryTree<NodeVal> currNode = root;
         while (ptr < expr.length()) {
             char c = expr.charAt(ptr);
             switch (c) {
                 case '|': {
-                    BinaryTree newRoot = new BinaryTree();
+                    BinaryTree<NodeVal> newRoot = new BinaryTree<NodeVal>();
                     newRoot.val = new NodeVal(NODE_TYPE.OPERATOR, OPERATOR.OR);
                     newRoot.left = root;
                     newRoot.right = parse(expr.substring(ptr + 1));
                     return newRoot;
                 }
                 case '&': {
-                    BinaryTree newRoot = new BinaryTree();
+                    BinaryTree<NodeVal> newRoot = new BinaryTree<NodeVal>();
                     newRoot.val = new NodeVal(NODE_TYPE.OPERATOR, OPERATOR.AND);
                     newRoot.left = root;
                     newRoot.right = parse(expr.substring(ptr + 1));
@@ -28,13 +28,13 @@ public class Parser {
                 case '!': {
                     currNode.val = new NodeVal(NODE_TYPE.OPERATOR, OPERATOR.NOT);
                     currNode.right = null;
-                    currNode.left = new BinaryTree();
+                    currNode.left = new BinaryTree<NodeVal>();
                     currNode = currNode.left;
                     break;
                 }
                 case '(': {
                     int nextPtr = ptr + 1 + findNext(expr.substring(ptr + 1), ')');
-                    BinaryTree toCopyBecauseJavaSucks = parse(expr.substring(ptr + 1, nextPtr));
+                    BinaryTree<NodeVal> toCopyBecauseJavaSucks = parse(expr.substring(ptr + 1, nextPtr));
                     currNode.val = toCopyBecauseJavaSucks.val;
                     currNode.left = toCopyBecauseJavaSucks.left;
                     currNode.right = toCopyBecauseJavaSucks.right;
