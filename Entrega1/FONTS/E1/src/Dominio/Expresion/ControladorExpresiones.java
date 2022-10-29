@@ -2,9 +2,23 @@ package Dominio.Expresion;
 
 import java.util.HashMap;
 
+import Dominio.Utils.BinaryTree;
+import Dominio.Utils.ParseNode;
+
 public class ControladorExpresiones {
 
     HashMap<String, Expresion> expresiones; // prob better to hashMap by alias
+
+    public ControladorExpresiones() {
+        this.expresiones = new HashMap<String, Expresion>();
+    }
+
+    public String get(String alias) {
+        if (!expresiones.containsKey(alias)) {
+            return "Expresion no encontrada";
+        }
+        return expresiones.get(alias).getExpresion();
+    }
 
     public void add(String alias, String expresion) {
         // this could be surrounded in a try catch, to check if expresion is valid
@@ -44,7 +58,7 @@ public class ControladorExpresiones {
         return true;
     }
 
-    // Handle error on creating expresion
+    // TODO: Handle error on creating expresion
     public BinaryTree<ParseNode> parseFromStringExpr(String expr) {
         Expresion expresion = new Expresion(expr);
         // if this doesn't throw anything...
@@ -59,9 +73,5 @@ public class ControladorExpresiones {
         }
         Expresion expresion = expresiones.get(alias);
         return Parser.parse(expresion.getExpresion());
-    }
-
-    public static void main(String[] args) {
-        BinaryTree<ParseNode> bT = Parser.parse("{p1 p2 p3} & (“hola adéu” | pep) & !joan");
     }
 }

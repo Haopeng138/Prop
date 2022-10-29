@@ -1,7 +1,9 @@
 package Dominio.Expresion;
 
-import Dominio.Expresion.ParseNode.OPERATOR;
-import Dominio.Expresion.ParseNode.NODE_TYPE;
+import Dominio.Utils.BinaryTree;
+import Dominio.Utils.ParseNode;
+import Dominio.Utils.ParseNode.NODE_TYPE;
+import Dominio.Utils.ParseNode.OPERATOR;
 
 public class Parser {
     public static BinaryTree<ParseNode> parse(String expr) {

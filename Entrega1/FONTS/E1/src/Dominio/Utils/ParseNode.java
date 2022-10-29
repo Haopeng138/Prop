@@ -1,21 +1,21 @@
-package Dominio.Expresion;
+package Dominio.Utils;
 
 public class ParseNode {
-    NODE_TYPE label;
-    Object val;
+    public NODE_TYPE label;
+    public Object val;
 
-    ParseNode(NODE_TYPE label, Object val) {
+    public ParseNode(NODE_TYPE label, Object val) {
         this.label = label;
         this.val = val;
     }
 
-    enum NODE_TYPE {
+    public enum NODE_TYPE {
         OPERATOR,
         CONTAIN,
         MATCH
     }
 
-    enum OPERATOR {
+    public enum OPERATOR {
         AND,
         OR,
         NOT
