@@ -2,18 +2,38 @@ package Dominio.Estructura;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 class AutoresTest {
+
+
     @Test
-    public void CreacionBorrado(){
+    void has() {
         Autores a = new Autores();
-        Autor autor = new Autor("Carlos");
-        a.add(autor);
-        a.remove(autor);
-        ArrayList<Autor> b = a.getAutores();
-        assertEquals(b.isEmpty(),true);
+        Autor ab = new Autor("Joan");
+        a.add(ab);
+        assertEquals(a.getAutores().get(0).getName(),"Joagfr");
+    }
+
+    @Test
+    void add() {
+    }
+
+    @Test
+    void addTitleToAutor() {
+    }
+
+    @Test
+    void remove() {
+    }
+
+    @Test
+    void getAutores() {
+    }
+
+    @Test
+    void getOrderedAutores() {
     }
 }

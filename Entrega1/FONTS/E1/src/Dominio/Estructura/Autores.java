@@ -37,5 +37,8 @@ public class Autores {
     public TreeSet<Autor> getOrderedAutores() {
         return (TreeSet<Autor>) autores.keySet();
     }
+    public ArrayList<Titulo> getTitles(Autor a ){
+        return new ArrayList<Titulo>();
+    }
 
 }
