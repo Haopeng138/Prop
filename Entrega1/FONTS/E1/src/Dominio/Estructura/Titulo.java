@@ -2,7 +2,8 @@ package Dominio.Estructura;
 
 public class Titulo {
     private String name;
-    public Titulo(String name){
+
+    public Titulo(String name) {
         this.name = name;
     }
 
@@ -11,6 +12,10 @@ public class Titulo {
     }
 
     public String getName() {
+        return name;
+    }
+
+    public String toString() {
         return name;
     }
 }
