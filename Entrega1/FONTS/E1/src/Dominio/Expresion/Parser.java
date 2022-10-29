@@ -1,40 +1,40 @@
 package Dominio.Expresion;
 
-import Dominio.Expresion.NodeVal.OPERATOR;
-import Dominio.Expresion.NodeVal.NODE_TYPE;
+import Dominio.Expresion.ParseNode.OPERATOR;
+import Dominio.Expresion.ParseNode.NODE_TYPE;
 
 public class Parser {
-    public static BinaryTree<NodeVal> parse(String expr) {
+    public static BinaryTree<ParseNode> parse(String expr) {
         int ptr = 0;
-        BinaryTree<NodeVal> root = new BinaryTree<NodeVal>();
-        BinaryTree<NodeVal> currNode = root;
+        BinaryTree<ParseNode> root = new BinaryTree<ParseNode>();
+        BinaryTree<ParseNode> currNode = root;
         while (ptr < expr.length()) {
             char c = expr.charAt(ptr);
             switch (c) {
                 case '|': {
-                    BinaryTree<NodeVal> newRoot = new BinaryTree<NodeVal>();
-                    newRoot.val = new NodeVal(NODE_TYPE.OPERATOR, OPERATOR.OR);
+                    BinaryTree<ParseNode> newRoot = new BinaryTree<ParseNode>();
+                    newRoot.val = new ParseNode(NODE_TYPE.OPERATOR, OPERATOR.OR);
                     newRoot.left = root;
                     newRoot.right = parse(expr.substring(ptr + 1));
                     return newRoot;
                 }
                 case '&': {
-                    BinaryTree<NodeVal> newRoot = new BinaryTree<NodeVal>();
-                    newRoot.val = new NodeVal(NODE_TYPE.OPERATOR, OPERATOR.AND);
+                    BinaryTree<ParseNode> newRoot = new BinaryTree<ParseNode>();
+                    newRoot.val = new ParseNode(NODE_TYPE.OPERATOR, OPERATOR.AND);
                     newRoot.left = root;
                     newRoot.right = parse(expr.substring(ptr + 1));
                     return newRoot;
                 }
                 case '!': {
-                    currNode.val = new NodeVal(NODE_TYPE.OPERATOR, OPERATOR.NOT);
+                    currNode.val = new ParseNode(NODE_TYPE.OPERATOR, OPERATOR.NOT);
                     currNode.right = null;
-                    currNode.left = new BinaryTree<NodeVal>();
+                    currNode.left = new BinaryTree<ParseNode>();
                     currNode = currNode.left;
                     break;
                 }
                 case '(': {
                     int nextPtr = ptr + 1 + findNext(expr.substring(ptr + 1), ')');
-                    BinaryTree<NodeVal> toCopyBecauseJavaSucks = parse(expr.substring(ptr + 1, nextPtr));
+                    BinaryTree<ParseNode> toCopyBecauseJavaSucks = parse(expr.substring(ptr + 1, nextPtr));
                     currNode.val = toCopyBecauseJavaSucks.val;
                     currNode.left = toCopyBecauseJavaSucks.left;
                     currNode.right = toCopyBecauseJavaSucks.right;
@@ -43,7 +43,7 @@ public class Parser {
                 }
                 case '{': {
                     int nextPtr = ptr + 1 + findNext(expr.substring(ptr + 1), '}');
-                    currNode.val = new NodeVal(NODE_TYPE.CONTAIN, getWords(expr.substring(ptr + 1, nextPtr)));
+                    currNode.val = new ParseNode(NODE_TYPE.CONTAIN, getWords(expr.substring(ptr + 1, nextPtr)));
                     currNode.left = null;
                     currNode.right = null;
                     ptr = nextPtr;
@@ -51,7 +51,7 @@ public class Parser {
                 }
                 case '“': {
                     int nextPtr = ptr + 1 + findNext(expr.substring(ptr + 1), '”');
-                    currNode.val = new NodeVal(NODE_TYPE.MATCH, expr.substring(ptr + 1, nextPtr));
+                    currNode.val = new ParseNode(NODE_TYPE.MATCH, expr.substring(ptr + 1, nextPtr));
                     currNode.left = null;
                     currNode.right = null;
                     ptr = nextPtr;
@@ -62,7 +62,7 @@ public class Parser {
                 }
                 default: {
                     int nextPtr = ptr + 1 + findNextOrEnd(expr.substring(ptr + 1), ' ');
-                    currNode.val = new NodeVal(NODE_TYPE.CONTAIN, getWords(expr.substring(ptr, nextPtr)));
+                    currNode.val = new ParseNode(NODE_TYPE.CONTAIN, getWords(expr.substring(ptr, nextPtr)));
                     currNode.left = null;
                     currNode.right = null;
                     ptr = nextPtr;

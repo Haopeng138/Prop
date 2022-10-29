@@ -1,10 +1,10 @@
 package Dominio.Expresion;
 
-public class NodeVal {
+public class ParseNode {
     NODE_TYPE label;
     Object val;
 
-    NodeVal(NODE_TYPE label, Object val) {
+    ParseNode(NODE_TYPE label, Object val) {
         this.label = label;
         this.val = val;
     }

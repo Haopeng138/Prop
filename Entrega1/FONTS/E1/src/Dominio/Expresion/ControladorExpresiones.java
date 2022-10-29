@@ -45,7 +45,7 @@ public class ControladorExpresiones {
     }
 
     // Handle error on creating expresion
-    public BinaryTree parseFromStringExpr(String expr) {
+    public BinaryTree<ParseNode> parseFromStringExpr(String expr) {
         Expresion expresion = new Expresion(expr);
         // if this doesn't throw anything...
         // else we need to say it's invalid in some way
@@ -53,7 +53,7 @@ public class ControladorExpresiones {
         return Parser.parse(expr);
     }
 
-    public BinaryTree parseFromAlias(String alias) {
+    public BinaryTree<ParseNode> parseFromAlias(String alias) {
         if (!expresiones.containsKey(alias)) {
             return null;
         }
@@ -62,6 +62,6 @@ public class ControladorExpresiones {
     }
 
     public static void main(String[] args) {
-        BinaryTree bT = Parser.parse("{p1 p2 p3} & (“hola adéu” | pep) & !joan");
+        BinaryTree<ParseNode> bT = Parser.parse("{p1 p2 p3} & (“hola adéu” | pep) & !joan");
     }
 }
