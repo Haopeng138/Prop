@@ -30,6 +30,7 @@ class BusquedaPorPrefijoTest {
         ArrayList<Autor> expecteda = a.getAutores();
         assertEquals(expecteda,av);
 
-        // Caso 2: No existe los autores con este prefijo  => devuelve una lista vacia
+        // Caso 2: No existe los autores con este prefijo  => devuelve una lista vacía
+
     }
 }

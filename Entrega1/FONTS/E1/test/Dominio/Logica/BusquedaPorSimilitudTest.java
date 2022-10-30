@@ -13,6 +13,6 @@ class BusquedaPorSimilitudTest {
 
     @Test
     void buscar() {
-
+        // Caso 1: Introduce un documento D y un número K: encuentra los K documentos más similares a K
     }
 }

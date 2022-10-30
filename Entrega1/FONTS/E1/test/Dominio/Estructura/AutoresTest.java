@@ -93,6 +93,8 @@ class AutoresTest {
             Autor tmpa = new Autor(s);
             a.add(tmpa);
         }
+
+        // TODO : Acabar este test
         TreeSet<Autor> autorTreeSet =  a.getOrderedAutores();
 /*        boolean ordenado = true;
         String tmp="";

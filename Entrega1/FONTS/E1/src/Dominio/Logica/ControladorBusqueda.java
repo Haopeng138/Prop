@@ -1,10 +1,11 @@
 package Dominio.Logica;
 
-import java.util.ArrayList;
-import java.util.TreeSet;
+import java.util.*;
 
 import Dominio.Estructura.Autor;
 import Dominio.Estructura.Documento;
+import Dominio.Utils.BinaryTree;
+import Dominio.Utils.ParseNode;
 
 public class ControladorBusqueda {
 
@@ -12,8 +13,10 @@ public class ControladorBusqueda {
         return BusquedaPorPrefijo.buscar(autores, prefix);
     }
 
-    public ArrayList<Documento> buscarPorExpresion(String expresion){
-        return BusquedaPorExpresion.buscar(expresion);
+    public Set<Documento> buscarPorExpresion(String expresion){
+        BinaryTree<ParseNode> bTree = new BinaryTree<ParseNode>();
+        Set<Documento> documentos = new HashSet<>();
+        return BusquedaPorExpresion.buscar(bTree,documentos);
     }
 
     public ArrayList<Documento> buscarPorSimilitud(Documento D,int K){
