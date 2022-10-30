@@ -1,6 +1,5 @@
 package Dominio.Logica;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,10 +10,7 @@ import Dominio.Utils.ParseNode.OPERATOR;
 
 public class BusquedaPorExpresion {
 
-    // FIXME: how do we get the documents in here?
-    static Set<Documento> documentos;
-
-    public static Set<Documento> buscar(BinaryTree<ParseNode> bTree) {
+    public static Set<Documento> buscar(BinaryTree<ParseNode> bTree, Set<Documento> documentos) {
         if (bTree == null) {
             return null;
         }
@@ -24,26 +20,28 @@ public class BusquedaPorExpresion {
                 OPERATOR op = (OPERATOR) nodeVal.val;
                 switch (op) {
                     case AND: {
-                        Set<Documento> set1 = buscar(bTree.left);
-                        Set<Documento> set2 = buscar(bTree.right);
-                        set1.retainAll(set2);
-                        return set1;
+                        Set<Documento> set1 = buscar(bTree.left, documentos);
+                        return buscar(bTree.right, set1);
                     }
                     case OR: {
-                        Set<Documento> set1 = buscar(bTree.left);
-                        Set<Documento> set2 = buscar(bTree.right);
-                        set1.retainAll(set2);
+                        Set<Documento> set1 = buscar(bTree.left, documentos);
+                        Set<Documento> copy = new HashSet<Documento>(documentos);
+                        copy.removeAll(set1);
+                        Set<Documento> set2 = buscar(bTree.right, copy);
+                        set1.addAll(set2);
                         return set1;
                     }
                     case NOT: {
-                        Set<Documento> unwanted = buscar(bTree.left);
-                        documentos.removeAll(unwanted);
-                        return documentos;
+                        Set<Documento> unwanted = buscar(bTree.left, documentos);
+                        Set<Documento> copy = new HashSet<Documento>(documentos);
+                        copy.removeAll(unwanted);
+                        return copy;
                     }
                 }
                 break;
             case CONTAIN:
-                ArrayList<String> words = (ArrayList<String>) nodeVal.val;
+                // TODO: what's missing is the documents implementation...
+                String[] words = (String[]) nodeVal.val;
                 /*
                  * return findDocumentsThatContain(words)
                  * which could be handled by document controller ?
@@ -56,7 +54,12 @@ public class BusquedaPorExpresion {
                  */
                 break;
             case MATCH:
+                // TODO: what's missing is the documents implementation...
                 String toMatch = (String) nodeVal.val;
+                // String[] toContain = toMatch.split(" ");
+                // Set<Documento> set1 = findDocumentsThatContain(toContain);
+                // return busquedaPorString(set1);
+
                 /*
                  * return findDocumentsThatMatch(sth)
                  * Not sure if this should also be handled by document Controller
