@@ -97,7 +97,7 @@
 ### Errores: 
     1. El número K es superior a los números de documentos que hay al sistema
 ### Cursos alternativos:
-    1. El sistema informa del error 
+    1. El sistema informa del error Crea
 
 
 ---
