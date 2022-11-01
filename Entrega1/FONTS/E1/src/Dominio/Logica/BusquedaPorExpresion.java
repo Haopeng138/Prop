@@ -66,6 +66,8 @@ public class BusquedaPorExpresion {
                  */
                 break;
         }
-        return new HashSet<Documento>();
+
+        // Resultado temporal para test
+        return new HashSet<Documento>(documentos);
     }
 }
