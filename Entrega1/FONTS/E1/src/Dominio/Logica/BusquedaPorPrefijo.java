@@ -7,8 +7,13 @@ import Dominio.Estructura.Autor;
 
 public class BusquedaPorPrefijo {
     public static ArrayList<Autor> buscar(TreeSet<Autor> autores, String prefix) {
-        String nextPrefix = computeNextPrefix(prefix);
-        return new ArrayList<Autor>(autores.subSet(new Autor(prefix), new Autor(nextPrefix)));
+        if (prefix != ""){
+            String nextPrefix = computeNextPrefix(prefix);
+            return new ArrayList<Autor>(autores.subSet(new Autor(prefix), new Autor(nextPrefix)));
+        }else{
+            return new ArrayList<Autor>(autores);
+        }
+
     }
 
     private static String computeNextPrefix(String prefix) {

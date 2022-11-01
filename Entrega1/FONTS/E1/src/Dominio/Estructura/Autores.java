@@ -43,7 +43,6 @@ public class Autores {
     }
 
     public TreeSet<Autor> getOrderedAutores() {
-        return (TreeSet<Autor>) autores.keySet();
+        return new TreeSet<Autor>(autores.keySet());
     }
-
 }

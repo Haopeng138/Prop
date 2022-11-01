@@ -25,12 +25,18 @@ class BusquedaPorPrefijoTest {
     @Test
     void buscar() {
 
-        ArrayList<Autor> av = BusquedaPorPrefijo.buscar(a.getOrderedAutores(),"a");
+        ArrayList<Autor> av = BusquedaPorPrefijo.buscar(a.getOrderedAutores(),"A");
         // Caso 1: Existe los autores con este prefijo
         ArrayList<Autor> expecteda = a.getAutores();
-        assertEquals(expecteda,av);
+        assertEquals(expecteda,av,"No ha encontrado los autores esperados");
 
         // Caso 2: No existe los autores con este prefijo  => devuelve una lista vacía
+        ArrayList<Autor> avError = BusquedaPorPrefijo.buscar(a.getOrderedAutores(),"B");
+        ArrayList<Autor> expectederror = new ArrayList<Autor>();
+        assertEquals(expectederror,avError,"Ha encontrado un prefijo que no existe");
 
+        // Caso 3: No introducir ningún prefijo
+        ArrayList<Autor> avVacio = BusquedaPorPrefijo.buscar(a.getOrderedAutores(),"");
+        assertEquals(a.getAutores(),avVacio,"No se ha devuelto todos los autores");
     }
 }
