@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 public class ExpresionTest {
 
     @Test
-    void Expresion(){
+    public void Expresion() throws Exception{
         Expresion e = new Expresion("{p1 p2 p3} & (“hola adéu” | pep) & !joan");
         assertEquals("La expresion no es correcta","{p1 p2 p3} & (“hola adéu” | pep) & !joan",e.getExpresion());
         Expresion e2 = new Expresion("{p1 p2 p3} & (“hola adéu” | pep) & !joan(");
