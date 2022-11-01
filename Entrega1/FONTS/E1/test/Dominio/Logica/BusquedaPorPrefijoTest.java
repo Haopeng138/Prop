@@ -6,11 +6,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class BusquedaPorPrefijoTest {
     Autores a;
+    Autor autor3;
     @BeforeEach
     void setUp() {
         a = new Autores();
@@ -20,6 +22,8 @@ class BusquedaPorPrefijoTest {
         a.add(autor1);
         Autor autor2 = new Autor("Abril");
         a.add(autor2);
+        autor3 = new Autor("Zeping");
+        a.add(autor3);
     }
 
     @Test
@@ -28,7 +32,8 @@ class BusquedaPorPrefijoTest {
         ArrayList<Autor> av = BusquedaPorPrefijo.buscar(a.getOrderedAutores(),"A");
         // Caso 1: Existe los autores con este prefijo
         ArrayList<Autor> expecteda = a.getAutores();
-        assertEquals(expecteda,av,"No ha encontrado los autores esperados");
+        expecteda.remove(autor3);
+        assertEquals(expecteda,av,"No se ha buscado bien");
 
         // Caso 2: No existe los autores con este prefijo  => devuelve una lista vacía
         ArrayList<Autor> avError = BusquedaPorPrefijo.buscar(a.getOrderedAutores(),"B");
