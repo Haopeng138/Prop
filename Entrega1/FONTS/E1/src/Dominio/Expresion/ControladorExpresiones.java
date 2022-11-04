@@ -20,7 +20,7 @@ public class ControladorExpresiones {
         return expresiones.get(alias).getExpresion();
     }
 
-    public void add(String alias, String expresion) {
+    public void add(String alias, String expresion) throws ExpresionException {
         // this could be surrounded in a try catch, to check if expresion is valid
         expresiones.put(alias, new Expresion(expresion));
     }
@@ -59,7 +59,7 @@ public class ControladorExpresiones {
     }
 
     // TODO: Handle error on creating expresion
-    public BinaryTree<ParseNode> parseFromStringExpr(String expr) {
+    public BinaryTree<ParseNode> parseFromStringExpr(String expr) throws ExpresionException{
         Expresion expresion = new Expresion(expr);
         // if this doesn't throw anything...
         // else we need to say it's invalid in some way

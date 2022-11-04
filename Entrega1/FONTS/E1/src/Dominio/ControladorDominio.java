@@ -1,6 +1,7 @@
 package Dominio;
 
 import Dominio.Expresion.ControladorExpresiones;
+import Dominio.Expresion.ExpresionException;
 import Dominio.Logica.ControladorBusqueda;
 import Dominio.Utils.BinaryTree;
 import Dominio.Utils.ParseNode;
@@ -33,7 +34,7 @@ public class ControladorDominio {
         return cExpresiones.get(alias);
     }
 
-    public void addExpresion(String alias, String expresion) {
+    public void addExpresion(String alias, String expresion)throws ExpresionException {
         cExpresiones.add(alias, expresion);
     }
 
@@ -49,7 +50,7 @@ public class ControladorDominio {
         return cExpresiones.remove(alias);
     }
 
-    public BinaryTree<ParseNode> parse(String expr) {
+    public BinaryTree<ParseNode> parse(String expr) throws ExpresionException{
         return cExpresiones.parseFromStringExpr(expr);
     }
 

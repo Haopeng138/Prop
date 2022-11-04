@@ -2,6 +2,7 @@ package Dominio.Logica;
 
 import Dominio.Estructura.Documento;
 import Dominio.Expresion.Expresion;
+import Dominio.Expresion.ExpresionException;
 import Dominio.Utils.BinaryTree;
 import Dominio.Utils.ParseNode;
 import org.junit.Before;
@@ -27,7 +28,7 @@ public class BusquedaPorExpresionTest {
     }
 
     @Test
-    public void buscar() {
+    public void buscar() throws ExpresionException {
         // Caso 1: Cada documento cumple una de las dos condiciones y devuelve la lista entera de documentos
         Expresion e = new Expresion("(viada , líder) | cuentos");
         BinaryTree<ParseNode> eparser = parse(e.getExpresion());

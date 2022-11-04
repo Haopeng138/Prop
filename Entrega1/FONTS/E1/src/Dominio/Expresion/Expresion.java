@@ -7,12 +7,14 @@ public class Expresion {
 
     private String expresion;
 
-    public Expresion(String expresion)  {
+    public Expresion(String expresion) throws ExpresionException {
         // if (isValid)
         // else maybe create a new type of Exception and throw that. Invalid Expresion
         // exception.
         if (areBracketsBalanced(expresion)){
             this.expresion = expresion;
+        } else {
+            throw new ExpresionException("Expresion Invalida");
         }
 
 
@@ -22,9 +24,11 @@ public class Expresion {
         return expresion;
     }
 
-    public void setExpresion(String expresion) {
+    public void setExpresion(String expresion) throws ExpresionException{
         if (areBracketsBalanced(expresion)){
             this.expresion = expresion;
+        } else {
+            throw new ExpresionException("Expresion Invalida");
         }
     }
 
