@@ -15,7 +15,7 @@ public class ControladorDominio {
 
     ControladorBusqueda cBusqueda;
     ControladorDocumento cDocumento;
-    ControladorExpresiones cExpresiones;
+    static ControladorExpresiones cExpresiones;
 
     public ArrayList<Autor> getAutores() {
         return cDocumento.getAutores();
@@ -79,16 +79,14 @@ public class ControladorDominio {
          * System.out.println("expect los autores menos Joan, b.remove(a)");
          * System.out.println(b.getAutores());
          */
-        /*
-         * cExpresiones = new ControladorExpresiones();
-         * cExpresiones.add("prova", "pep");
-         * cExpresiones.updateExpresion("prova", "{hola bones} | “bon dia”");
-         * cExpresiones.parseFromAlias("prova");
-         * cExpresiones.remove("prova");
-         * cExpresiones.parseFromStringExpr("ei & que");
-         * cExpresiones.updateAlias("prova", "thisWillFail");
-         * cExpresiones.add("prova", "pep");
-         * cExpresiones.get("prova");
-         */
+        cExpresiones = new ControladorExpresiones();
+        cExpresiones.add("prova", "pep");
+        cExpresiones.updateExpresion("prova", "{hola bones} | \"bon dia\"");
+        cExpresiones.parseFromAlias("prova");
+        cExpresiones.remove("prova");
+        cExpresiones.parseFromStringExpr("ei & que");
+        cExpresiones.updateAlias("prova", "thisWillFail");
+        cExpresiones.add("prova", "pep");
+        cExpresiones.get("prova");
     }
 }
