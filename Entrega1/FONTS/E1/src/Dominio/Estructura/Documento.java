@@ -1,6 +1,9 @@
 package Dominio.Estructura;
 
 public class Documento {
+    /**
+     * Atributos de clase Documento
+     */
     private String contenido;
     private Autor autor;
     private Titulo titulo;
@@ -30,4 +33,6 @@ public class Documento {
     public String getTitulo() {
         return titulo.getName();
     }
+
+
 }

@@ -24,6 +24,11 @@ public class Expresion {
         return expresion;
     }
 
+    /**
+     * Metodo para modificar una expresion
+     * @param expresion Una expresión
+     * @throws ExpresionException Expresion Invalida: compruebe los parentesis
+     */
     public void setExpresion(String expresion) throws ExpresionException{
         if (areBracketsBalanced(expresion)){
             this.expresion = expresion;
@@ -33,6 +38,7 @@ public class Expresion {
     }
 
     /**
+     * Metodo para confirmar si la expresion está bien escrita
      * @param expr Una expresión
      * @return true si está bien balanceada,
      * falso en caso contrario

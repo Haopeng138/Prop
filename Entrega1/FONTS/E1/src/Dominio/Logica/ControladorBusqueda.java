@@ -19,7 +19,7 @@ public class ControladorBusqueda {
         return BusquedaPorExpresion.buscar(bTree,documentos);
     }
 
-    public ArrayList<Documento> buscarPorSimilitud(Documento D,int K){
-        return BusquedaPorSimilitud.buscar(D,K);
+    public ArrayList<Documento> buscarPorSimilitud(Documento D,int K,Set<Documento> documentos){
+        return BusquedaPorSimilitud.buscar(D,K,documentos);
     }
 }
