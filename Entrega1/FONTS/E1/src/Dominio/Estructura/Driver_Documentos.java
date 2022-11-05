@@ -9,6 +9,7 @@ public class Driver_Documentos {
         System.out.println("Driver Documentos");
         System.out.println(" ");
         int opt;
+        String autor,titulo,contenido;
         do{
             System.out.println(" ----------------- ");
             System.out.println(" Menu ");
@@ -23,8 +24,9 @@ public class Driver_Documentos {
             Scanner scanopt = new Scanner(System.in);
             opt = scanopt.nextInt();
             Scanner scan = new Scanner(System.in);
-            String autor,titulo,contenido;
             switch (opt){
+                case 0:
+                    break;
                 case 1:
                     System.out.println(" Introduce autor , titulo y contenido del documento ");
                     System.out.println("Autor:");
@@ -51,6 +53,16 @@ public class Driver_Documentos {
                     break;
                 case 4:
                     System.out.println("Introduce el autor y titulo del documento que quieres modificar ");
+                    System.out.println("Autor :");
+                    autor = scan.nextLine();
+                    System.out.println("Titulo :");
+                    titulo = scan.nextLine();
+                    //todo revisar la función getContentByAutorTitle(autor,titulo)
+                    System.out.println("Contenido original : "+ documentos.getContentByAutorTitle(autor,titulo));
+                    System.out.println("");
+                    System.out.println("Escriba su nuevo contenido :");
+                    contenido = scan.nextLine();
+                    documentos.modifyContent(autor,titulo,contenido);
                     break;
                 case 5:
                     System.out.println(" Mostrando los documentos");

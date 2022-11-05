@@ -34,4 +34,24 @@ public class DocumentosTest {
         documentos.removeByAutorTitle("autor","titulo");
         assertEquals("No se ha eliminado bien",0,documentos.getDocumentos().size());
     }
+
+
+    @Test
+    public void modifyContent() {
+        documentos.add(d);
+        documentos.modifyContent("autor","titulo","Contenido nuevo");
+        String d = documentos.getContentByAutorTitle("autor","titulo");
+        assertEquals("No se ha modificado bien el contenido","Contenido nuevo",d);
+    }
+
+    @Test
+    public void getContentByAutorTitle() {
+        Documento d2 = new Documento("autor2","titulo2","Contenido2");
+        documentos.add(d);
+        documentos.add(d2);
+        String cd = documentos.getContentByAutorTitle("autor","titulo");
+        assertEquals("No se ha obtenido bien el contenido","contenido",cd);
+        String cd2 = documentos.getContentByAutorTitle("autor2","titulo2");
+        assertEquals("No se ha obtenido bien el contenido","Contenido2",cd2);
+    }
 }

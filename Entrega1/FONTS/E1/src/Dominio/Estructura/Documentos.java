@@ -53,6 +53,16 @@ public class Documentos {
         }
     }
 
+    public String getContentByAutorTitle(String autor, String title){
+        for (Documento d : this.Documentos){
+            if (d.getAutor()==autor & d.getTitulo()==title){
+                return d.getContenido();
+            }
+        }
+        return null;
+
+    }
+
     /**
      * Metodo que devuelve el conjunto de documento
      * @return Documentos
