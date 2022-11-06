@@ -7,11 +7,14 @@ public class Documento {
     private String contenido;
     private Autor autor;
     private Titulo titulo;
+    private Boolean estado;
+
 
     public Documento(String autor,String titulo, String contenido){
         this.autor = new Autor(autor);
         this.titulo = new Titulo(titulo);
         this.contenido = contenido;
+        this.estado = true;
     }
     public void setAutor(String autor){
         this.autor.setName(autor);

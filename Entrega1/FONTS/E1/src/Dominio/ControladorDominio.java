@@ -1,18 +1,24 @@
 package Dominio;
 
-import Dominio.Estructura.*;
 import Dominio.Expresion.ControladorExpresiones;
 import Dominio.Expresion.ExpresionException;
 import Dominio.Logica.ControladorBusqueda;
 import Dominio.Utils.BinaryTree;
 import Dominio.Utils.ParseNode;
+import Dominio.Estructura.Autor;
+import Dominio.Estructura.ControladorDocumento;
+import Dominio.Estructura.Titulo;
+import Dominio.Estructura.Autores;
+import Dominio.Estructura.Documento;
 import Dominio.Expresion.Expresion;
+
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.TreeSet;
 
 public class ControladorDominio {
+
 
     ControladorBusqueda cBusqueda;
     ControladorDocumento cDocumento;
@@ -57,16 +63,6 @@ public class ControladorDominio {
     public BinaryTree<ParseNode> parseFromAlias(String alias) {
         return cExpresiones.parseFromAlias(alias);
     }
-
-    public static void main(String[] args) {
-        Autor a = new Autor("Joan");
-        System.out.println(a.getName());
-        Autores b = new Autores();
-        b.add(a);
-        ArrayList<Autor> ab = b.getAutores();
-        System.out.println(ab.get(0).getName());
-    }
-
     /**
      * @param pre El prefijo de un autor
      * @return Listado de autores que comienza por el pre
@@ -74,6 +70,16 @@ public class ControladorDominio {
     public ArrayList<Autor> obtenerAutoresPrefijo(String pre){
         ArrayList<Autor> result = new ArrayList<Autor>();
         return result;
+    }
+
+    public static void main(String[] args) {
+         Autor a = new Autor("Joan");
+         System.out.println(a.getName());
+         Autores b = new Autores();
+         b.add(a);
+         ArrayList<Autor> ab = b.getAutores();
+         System.out.println(ab.get(0).getName()) ;
+
     }
 
     /**
