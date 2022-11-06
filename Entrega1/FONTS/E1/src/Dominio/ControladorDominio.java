@@ -95,8 +95,6 @@ public class ControladorDominio {
     private ArrayList<String> stringToArrayList(String contenido) {
         ArrayList<String> doc = new ArrayList<String>(Arrays.asList(contenido.split("[,. ?;:()!{}]+")));
         //ArrayList<String> separator = new ArrayList<>(Arrays.asList(".", ";", ",", " ", "(", ")", "{", "}", "!", "?", ":"));
-
-
         return doc;
     }
 
