@@ -9,8 +9,9 @@ public class Documentos {
      * Atributos de clase Documento
      */
     private ArrayList<Documento> Documentos;
-    private Set<PalabraFrec> docsPalabra [] = new HashSet<PalabraFrec> [];
-    private Set<PalabraFrec> interseccioDoc [] = new HashSet<PalabraFrec> [];
+    private ArrayList<PalabraFrec> docsPalabra [] = new ArrayList<PalabraFrec> [];
+    private ArrayList<PalabraFrec> interseccioDoc [] = new ArrayList<PalabraFrec> [];
+    private Double[][] frecResult = new Double[][];
     public Documentos (){
         this.Documentos = new ArrayList<Documento>();
     }
@@ -97,9 +98,8 @@ public class Documentos {
         return Math.log(Documentos.size() / cont);
     }
 
-    private Boolean existeP(HashSet<PalabraFrec> doc, String p) {
+    private Boolean existeP(ArrayList<PalabraFrec> doc, String p) {
         for (PalabraFrec palabrafreq : doc) {
-
             if (p.equalsIgnoreCase(palabrafreq.palabra)) return true;
         }
         return false;
@@ -119,9 +119,41 @@ public class Documentos {
             }
         }
     }
+    public void intersect(ArrayList<PalabraFrec> s1, ArrayList<PalabraFrec> s2) {
+        double result = 0;
+        for (int i = 0; i < s1.size(); ++i) {
+            boolean trobat = false;
+            for (int j = 0; !trobat && j < s2.size(); ++j) {
+                if (s1.get(i).palabra == s2.get(j).palabra)
+                    result = result + s1.get(i).frecuencia * s2.get(j).frecuencia;
+                trobat = true;
+            }
+        }
+        double s1Res = 0;
+        double s2Res = 0;
+        double sRes;
+        for (int i = 0; i < s1.size(); ++i) {
+            s1Res += s1.get(i).frecuencia * s1.get(i).frecuencia;
+        }
 
-    public void intersect() {
+        for (int i = 0; i < s2.size(); ++i) {
+            s2Res += s1.get(i).frecuencia * s1.get(i).frecuencia;
+        }
 
+        return (sqrt(s1Res) * sqrt(s2Res)) / result;
+    }
+
+    public void generarVector() {
+
+        ArrayList<PalabraFrec> s1 = new ArrayList<string> ();
+        s1 = docsPalabra[docsPalabra.size() - 1];
+
+        for (int i = 0; i < docsPalabra.size() - 1 ; ++i) {
+            ArrayList<PalabraFrec> s2 = new ArrayList<string> ()
+            double resultat = intersect(s1, s2);
+            frecResult[docsPalabra.size()-1][i] = resultat;
+            frecResult[i][docsPalabra.size()-1] = resultat;
+        }
 
     }
 
@@ -139,9 +171,6 @@ public class Documentos {
         }
         return false;
     }
-
-
-
 
 
     private PalabraFrec frecPalabrasD(ArrayList<String> docD, string p){
