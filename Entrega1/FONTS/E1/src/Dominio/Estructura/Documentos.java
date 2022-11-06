@@ -9,7 +9,7 @@ public class Documentos {
     /**
      * Atributos de clase Documento
      */
-    private ArrayList<Documento> Documentos;
+    private static ArrayList<Documento> Documentos;
     private ArrayList<ArrayList<PalabraFrec>> docsPalabra = new ArrayList<ArrayList<PalabraFrec>>();
 
     private ArrayList<ArrayList<Double>> frecResult = new ArrayList<ArrayList<Double>>();
@@ -71,7 +71,7 @@ public class Documentos {
      * Metodo que devuelve el conjunto de documento
      * @return Documentos
      */
-    public ArrayList<Documento> getDocumentos(){
+    public static ArrayList<Documento> getDocumentos(){
         return Documentos;
     }
 
@@ -148,7 +148,7 @@ public class Documentos {
             s2Res += s1.get(i).frecuencia * s1.get(i).frecuencia;
         }
 
-        return (Math.sqrt(s1Res) * Math.sqrt(s2Res)) / result;
+        return result / (Math.sqrt(s1Res) * Math.sqrt(s2Res));
     }
     public void generarVector() {
 
