@@ -1,13 +1,62 @@
 package Dominio;
+
+import Dominio.Expresion.ControladorExpresiones;
+import Dominio.Expresion.ExpresionException;
+import Dominio.Logica.ControladorBusqueda;
+import Dominio.Utils.BinaryTree;
+import Dominio.Utils.ParseNode;
 import Dominio.Estructura.Autor;
 import Dominio.Estructura.Autores;
-import Dominio.Estructura.Documento;
-import Dominio.Estructura.Titulo;
-import Dominio.Expresion.Expresion;
 
 import java.util.ArrayList;
+import java.util.TreeSet;
 
 public class ControladorDominio {
+
+    ControladorBusqueda cBusqueda;
+    ControladorDocumento cDocumento;
+    ControladorExpresiones cExpresiones;
+
+    public ArrayList<Autor> getAutores() {
+        return cDocumento.getAutores();
+    }
+
+    public TreeSet<Autor> getOrderedAutores() {
+        return cDocumento.getOrderedAutores();
+    }
+
+    public ArrayList<Titulo> getTitles(Autor a) {
+        return cDocumento.getTitles(a);
+    }
+
+    public String getExpresion(String alias) {
+        return cExpresiones.get(alias);
+    }
+
+    public void addExpresion(String alias, String expresion)throws ExpresionException {
+        cExpresiones.add(alias, expresion);
+    }
+
+    public Boolean updateAlias(String oldAlias, String newAlias) {
+        return cExpresiones.updateAlias(oldAlias, newAlias);
+    }
+
+    public Boolean updateExpresion(String alias, String expresion) {
+        return cExpresiones.updateExpresion(alias, expresion);
+    }
+
+    public Boolean removeExpresion(String alias) {
+        return cExpresiones.remove(alias);
+    }
+
+    public BinaryTree<ParseNode> parse(String expr) throws ExpresionException{
+        return cExpresiones.parseFromStringExpr(expr);
+    }
+
+    public BinaryTree<ParseNode> parseFromAlias(String alias) {
+        return cExpresiones.parseFromAlias(alias);
+    }
+
     public static void main(String[] args) {
          Autor a = new Autor("Joan");
          System.out.println(a.getName());
@@ -16,13 +65,6 @@ public class ControladorDominio {
          ArrayList<Autor> ab = b.getAutores();
          System.out.println(ab.get(0).getName()) ;
 
-    /**
-     * @param pre El prefijo de un autor
-     * @return Listado de autores que comienza por el pre
-     */
-    public ArrayList<Autor> obtenerAutoresPrefijo(String pre){
-        ArrayList<Autor> result = new ArrayList<Autor>();
-        return result;
     }
 
     /**

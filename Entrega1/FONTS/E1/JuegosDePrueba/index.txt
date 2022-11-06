@@ -1,0 +1,1 @@
+En esta carpeta definimos los juegos de pruebas para las clases
