@@ -93,9 +93,9 @@ public class ControladorDominio {
     }
 
     private ArrayList<String> stringToArrayList(String contenido) {
-        ArrayList<String> doc = new ArrayList<String>;
+        ArrayList<String> doc = new ArrayList<String>(Arrays.asList(contenido.split("[,. ?;:()!{}]+")));
         //ArrayList<String> separator = new ArrayList<>(Arrays.asList(".", ";", ",", " ", "(", ")", "{", "}", "!", "?", ":"));
-        doc = new ArrayList<String>(Arrays.asList(contenido.split("[,. ?;:()!{}]+")));
+
 
         return doc;
     }
@@ -126,7 +126,7 @@ public class ControladorDominio {
         return resultado;
     }
 
-    private Double tf(ArrayList<String> doc, Documento D, String p){
+    private Double tf(ArrayList<String> doc, String p){
         int cont  = 0;
         for (int i = 0; i < doc.size(); ++i) {
             String palabra = doc.get(i);
@@ -149,40 +149,40 @@ public class ControladorDominio {
      */
     public ArrayList<Documento> similares(Documento D, int K){
         String autorD = D.getAutor();
-        String tituloD = D.setTitulo();
+        String tituloD = D.getTitulo();
 
         ArrayList<Documento> result = new ArrayList<Documento>();
 
         ArrayList<String> docD = stringToArrayList(D.getContenido());
         ArrayList<PalabraFrec> frecuenciasD = frecPalabrasD(docD);
 
-        PalabraFrec todasFrecDocs [][] = new PalabraFrec[][];
+        ArrayList<ArrayList<PalabraFrec>> todasFrecDocs  = new ArrayList< ArrayList<PalabraFrec>>();
 
         ArrayList<Double> idf = new ArrayList<Double>(frecuenciasD.size());
-
+        ArrayList<Documento> documentos = cDocumento.getDocumentos();
         for(int i = 0; i < frecuenciasD.size(); ++i) {
             int cont = 0;
-            for (int j = 0; j < Documentos.size(); ++j) {
-                String a = Documentos.get(j).contenido;
+            for (int j = 0; j < documentos.size(); ++j) {
+                String a = documentos.get(j).getContenido();
                 ArrayList<String> docA = stringToArrayList(a);
                 if (existe (docA,frecuenciasD.get(i).palabra))++cont;
             }
-            idf.set(i, Math.log(Documentos.size()/cont));
+            idf.set(i, Math.log(documentos.size()/cont));
         }
 
-        for (int i = 0; i < Documentos.size(); ++i) {
+        for (int i = 0; i < documentos.size(); ++i) {
 
             ArrayList<PalabraFrec> f = new ArrayList<PalabraFrec>();
-            ArrayList<String> doc = stringToArrayList(Documentos.get(i).contenido);
+            ArrayList<String> doc = stringToArrayList(documentos.get(i).getContenido());
             for (int j = 0; j < frecuenciasD.size(); ++j) {
-                string p = frecuenciasD.get(j).palabra;
+                String p = frecuenciasD.get(j).palabra;
                 double frec = tf(doc, p);
                 PalabraFrec a = new PalabraFrec();
                 a.palabra = p;
                 a.frecuencia = frec*idf.get(j);
-                f.Add(a);
+                f.add(a);
             }
-            todasFrecDocs.Add(f);
+            todasFrecDocs.add(f);
         }
 
         for (int i = 0; i < todasFrecDocs.size(); ++i) {
@@ -190,7 +190,8 @@ public class ControladorDominio {
         }
 
         for (int i = 0; i < K; ++i) {
-            result.Add()
+            //todo
+
         }
         return result;
     }
