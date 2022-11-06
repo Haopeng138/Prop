@@ -49,11 +49,11 @@ public class ControladorDominio {
         return cExpresiones.remove(alias);
     }
 
-    public BinaryTree<ParseNode> parse(String expr) {
+    public BinaryTree<ParseNode> parse(String expr) throws Exception {
         return cExpresiones.parseFromStringExpr(expr);
     }
 
-    public BinaryTree<ParseNode> parseFromAlias(String alias) {
+    public BinaryTree<ParseNode> parseFromAlias(String alias) throws Exception {
         return cExpresiones.parseFromAlias(alias);
     }
 
@@ -82,9 +82,21 @@ public class ControladorDominio {
         cExpresiones = new ControladorExpresiones();
         cExpresiones.add("prova", "pep");
         cExpresiones.updateExpresion("prova", "{hola bones} | \"bon dia\"");
-        cExpresiones.parseFromAlias("prova");
+        try {
+            cExpresiones.parseFromAlias("prova");
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        // obv there'll be no main, and this will we bigish methods that concatenate a few of
+        // the smaller private methods
         cExpresiones.remove("prova");
-        cExpresiones.parseFromStringExpr("ei & que");
+        try {
+            cExpresiones.parseFromStringExpr("ei & que");
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         cExpresiones.updateAlias("prova", "thisWillFail");
         cExpresiones.add("prova", "pep");
         cExpresiones.get("prova");

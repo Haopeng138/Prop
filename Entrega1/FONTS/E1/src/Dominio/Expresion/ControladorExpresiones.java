@@ -58,25 +58,15 @@ public class ControladorExpresiones {
         return true;
     }
 
-    public BinaryTree<ParseNode> parseFromStringExpr(String expr) {
-        try {
-            return Parser.parse(expr);
-        } catch (Exception e) {
-            System.out.println("Expresion invalida");
-            return null;
-        }
+    public BinaryTree<ParseNode> parseFromStringExpr(String expr) throws Exception {
+        return Parser.parse(expr);
     }
 
-    public BinaryTree<ParseNode> parseFromAlias(String alias) {
-        try {
-            if (!expresiones.containsKey(alias)) {
-                return null;
-            }
-            Expresion expresion = expresiones.get(alias);
-            return Parser.parse(expresion.getExpresion());
-        } catch (Exception e) {
-            System.out.println("Expresion invalida");
+    public BinaryTree<ParseNode> parseFromAlias(String alias) throws Exception {
+        if (!expresiones.containsKey(alias)) {
             return null;
         }
+        Expresion expresion = expresiones.get(alias);
+        return Parser.parse(expresion.getExpresion());
     }
 }
