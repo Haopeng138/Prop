@@ -3,15 +3,16 @@ package Dominio.Estructura;
 import Dominio.Estructura.Documento;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Documentos {
     /**
      * Atributos de clase Documento
      */
     private ArrayList<Documento> Documentos;
-    private ArrayList<PalabraFrec> docsPalabra [] = new ArrayList<PalabraFrec> [];
-    private ArrayList<PalabraFrec> interseccioDoc [] = new ArrayList<PalabraFrec> [];
-    private Double[][] frecResult = new Double[][];
+    private ArrayList<ArrayList<PalabraFrec>> docsPalabra = new ArrayList<ArrayList<PalabraFrec>>();
+
+    private ArrayList<ArrayList<Double>> frecResult = new ArrayList<ArrayList<Double>>();
     public Documentos (){
         this.Documentos = new ArrayList<Documento>();
     }
@@ -79,10 +80,15 @@ public class Documentos {
         private Double frecuencia;
     }
 
-    private Double tf(String[] doc, String p){
-        int cont  = 0;
+    private ArrayList<String> stringToArrayList(String contenido) {
+        //ArrayList<String> separator = new ArrayList<>(Arrays.asList(".", ";", ",", " ", "(", ")", "{", "}", "!", "?", ":"));
+        ArrayList<String> doc = new ArrayList<String>(Arrays.asList(contenido.split("[,. ?;:()!{}]+")));
+        return doc;
+    }
+    private Double tf(ArrayList<String> doc, String p){
+        Double cont = 0.0;
         for (int i = 0; i < doc.size(); ++i) {
-            String palabra = doc[i];
+            String palabra = doc.get(i);
             if (p.equalsIgnoreCase(palabra)) ++cont;
         }
         return cont/doc.size();
@@ -91,9 +97,9 @@ public class Documentos {
     public Double idf(String p) {
         int cont = 0;
         for (int j = 0; j < Documentos.size(); ++j) {
-            String a = Documentos.get(j).contenido;
-            String[] docA = stringToArrayList(a);
-            if (existe ? (docA,p))++cont;
+            String a = Documentos.get(j).getContenido();
+            ArrayList<String> docA = stringToArrayList(a);
+            if (existe(docA, p)) ++cont;
         }
         return Math.log(Documentos.size() / cont);
     }
@@ -104,22 +110,24 @@ public class Documentos {
         }
         return false;
     }
+
+    // donde contiene el frecuencia de cada palabra de cada doc
     public void Set() {
         for (int i = 0; i < Documentos.size(); ++i) {
-            String[] docD = stringToArrayList(D.contenido);
+            ArrayList<String> docD = stringToArrayList(Documentos.get(i).getContenido());
             for (int j = 0; j < docD.size(); ++j) {
-                if (! existeP(docsPalabra[i], docD[j])) {
-                    Double a = tf(docD, docD[j]);
-                    Double b = idf(docD[j]);
+                if (! existeP(docsPalabra.get(i), docD.get(j))) {
+                    Double a = tf(docD, docD.get(j));
+                    Double b = idf(docD.get(j));
                     PalabraFrec c = new PalabraFrec();
                     c.frecuencia = a * b;
-                    c.palabra = docD[j];
-                    docsPalabra[i].Add(c);
+                    c.palabra = docD.get(j);
+                    docsPalabra.get(i).add(c);
                 }
             }
         }
     }
-    public void intersect(ArrayList<PalabraFrec> s1, ArrayList<PalabraFrec> s2) {
+    public Double intersect(ArrayList<PalabraFrec> s1, ArrayList<PalabraFrec> s2) {
         double result = 0;
         for (int i = 0; i < s1.size(); ++i) {
             boolean trobat = false;
@@ -140,118 +148,33 @@ public class Documentos {
             s2Res += s1.get(i).frecuencia * s1.get(i).frecuencia;
         }
 
-        return (sqrt(s1Res) * sqrt(s2Res)) / result;
+        return (Math.sqrt(s1Res) * Math.sqrt(s2Res)) / result;
     }
-
     public void generarVector() {
 
-        ArrayList<PalabraFrec> s1 = new ArrayList<string> ();
-        s1 = docsPalabra[docsPalabra.size() - 1];
+        ArrayList<PalabraFrec> s1 = new ArrayList<PalabraFrec>();
+        s1 = docsPalabra.get(docsPalabra.size() - 1);
 
         for (int i = 0; i < docsPalabra.size() - 1 ; ++i) {
-            ArrayList<PalabraFrec> s2 = new ArrayList<string> ()
+            ArrayList<PalabraFrec> s2 = new ArrayList<PalabraFrec> ();
+            s2 = docsPalabra.get(i);
             double resultat = intersect(s1, s2);
-            frecResult[docsPalabra.size()-1][i] = resultat;
-            frecResult[i][docsPalabra.size()-1] = resultat;
+            frecResult.get(i).set(docsPalabra.size()-1, resultat);
+            frecResult.get(docsPalabra.size()-1).set(i, resultat);
         }
 
     }
-
-
-    private ArrayList<String> stringToArrayList(String contenido) {
-        ArrayList<String> doc = new ArrayList<String>;
-        //ArrayList<String> separator = new ArrayList<>(Arrays.asList(".", ";", ",", " ", "(", ")", "{", "}", "!", "?", ":"));
-        doc = contenido.split("[,. ?;:()!{}]+");
-        return doc;
-    }
-
-    private Boolean visitado?(ArrayList<PalabraFrec> frecuencia, String p) {
+    private Boolean visitado(ArrayList<PalabraFrec>frecuencia, String p) {
         for(PalabraFrec f : frecuencia) {
             if(f.palabra == p) return true;
         }
         return false;
     }
 
-
-    private PalabraFrec frecPalabrasD(ArrayList<String> docD, string p){
-        ArrayList<PalabraFrec> resultado = new ArrayList<PalabraFrec>();
-        for(int i = 0; i < docD.size(); ++i) {
-            String palabra1 = docD.get(i);
-            int cont = 1;
-            if (!visitado?(resultado, palabra1)){
-                for (int j = i + 1; j < docD.size(); ++j) {
-                    String palabra2 = docD.get(j);
-                    if (palabra1.equalsIgnoreCase(palabra2)) ++cont;
-                }
-                PalabraFrec a = new PalabraFrec();
-                a.palabra = palabra1;
-                a.frecuencia = cont / docD.size();
-                resultado.Add(a);
-            }
-        }
-        return resultado;
-    }
-
-
-    private Boolean existe?(ArrayList<String> doc, String p) {
+    private Boolean existe(ArrayList<String> doc, String p) {
         for (String palabra : doc) {
             if (p.equalsIgnoreCase(palabra)) return true;
         }
         return false;
     }
-
-    /**
-     * @param D documento seleccionado
-     * @param K un número natural
-     * @return un conjunto de K documentos más similares a D
-     */
-    public ArrayList<Documento> similares(Documento D, int K){
-        Autor autorD = D.autor;
-        Titulo tituloD = D.titulo;
-
-        ArrayList<Documento> result = new ArrayList<Documento>();
-
-        ArrayList<String> docD = stringToArrayList(D.contenido);
-        ArrayList<PalabraFrec> frecuenciasD = frecPalabrasD(docD);
-
-        PalabraFrec todasFrecDocs [][] = new PalabraFrec[][];
-
-        ArrayList<Double> idf = new ArrayList<Double>(frecuenciasD.size());
-
-        for(int i = 0; i < frecuenciasD.size(); ++i) {
-            int cont = 0;
-            for (int j = 0; j < Documentos.size(); ++j) {
-                String a = Documentos.get(j).contenido;
-                ArrayList<String> docA = stringToArrayList(a);
-                if (existe? (docA,frecuenciasD.get(i).palabra))++cont;
-            }
-            idf.set(i, Math.log(Documentos.size()/cont));
-        }
-
-        for (int i = 0; i < Documentos.size(); ++i) {
-
-            ArrayList<PalabraFrec> f = new ArrayList<PalabraFrec>();
-            ArrayList<String> doc = stringToArrayList(Documentos.get(i).contenido);
-            for (int j = 0; j < frecuenciasD.size(); ++j) {
-                string p = frecuenciasD.get(j).palabra;
-                double frec = tf(doc, p);
-                PalabraFrec a = new PalabraFrec();
-                a.palabra = p;
-                a.frecuencia = frec*idf.get(j);
-                f.Add(a);
-            }
-            todasFrecDocs.Add(f);
-        }
-
-        for (int i = 0; i < todasFrecDocs.size(); ++i) {
-
-        }
-
-        for (int i = 0; i < K; ++i) {
-            result.Add()
-        }
-        return result;
-    }
-
-
 }
