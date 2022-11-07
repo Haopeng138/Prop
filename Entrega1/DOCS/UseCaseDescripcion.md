@@ -74,9 +74,9 @@
     1. El usuario informa un prefijo, que puede ser nulo
     2. El sistema devuelve una lista que tienn el mismo prefijo y los lista
 ### Errores
-    1. El prefijo está sintacticamente incorrecto
+    1. El prefijo está sintacticamente incorrecto 
 ### Cursos alternativo:
-    1. El sistema informa del error
+    1. El sistema informa del error y no devuelve nada
 ---
 ## Búsqueda por autor y título
 ### Actor: Usuario
@@ -87,7 +87,7 @@
     1a. No existe el autor
     1b. No existe el título
 ### Cursos alternativos:
-    1. El sistema informa del error
+    1. El sistema informa del error y no devuelve nada
 ---
 ## Listar por similitud
 ### Actor: Usuario
@@ -97,7 +97,7 @@
 ### Errores: 
     1. El número K es superior a los números de documentos que hay al sistema
 ### Cursos alternativos:
-    1. El sistema informa del error
+    1. El sistema informa del error Crea
 
 
 ---
@@ -142,4 +142,4 @@
 ### Errores:
     4. La expresión está sintácticamente incorrecta
 ### Cursos alternativos:
-    4 El sistema informa del error 
+    4 El sistema informa del error, y no se modifica la expresion

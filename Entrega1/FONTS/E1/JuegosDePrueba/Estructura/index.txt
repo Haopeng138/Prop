@@ -1,0 +1,4 @@
+En esta carpeta de defini distintos casos de pruebas para la parte de estructura
+
+Einput001:
+    Mismo autor añadiendo con diferentes titulos y contenidos

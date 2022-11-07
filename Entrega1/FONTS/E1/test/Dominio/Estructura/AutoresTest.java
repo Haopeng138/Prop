@@ -1,68 +1,70 @@
 package Dominio.Estructura;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.TreeSet;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class AutoresTest {
-    Autores a;
+public class AutoresTest {
+
+    Autores a ;
     Autor autorg;
-    @BeforeEach
-    void setUp() {
+    @Before
+    public void setUp() throws Exception {
         a = new Autores();
         autorg = new Autor("Alberto");
         a.add(autorg);
     }
 
     @Test
-    void has() {
+    public void has() {
         Autor autor = new Autor("Alberto");
         // Caso en que el autor si que está
-        assertTrue(a.has(autor),"No esta el autor");
+        assertTrue("No esta el autor", a.has(autor));
 
         // Caso en que el autor no está
-        assertFalse(a.has(new Autor("Nombre que no existe")),"Esta el autor");
+        assertFalse("Esta el autor", a.has(new Autor("Nombre que no existe")));
+
     }
 
     @Test
-    void add() {
+    public void add() {
         Autor autor = new Autor("Joan");
         // Caso inicial (solo hay un autor)
-        assertEquals(1,a.getNumAutor(),"Debería estar solo un autor");
+        assertEquals("Debería estar solo un autor",1,a.getNumAutor());
 
         // Caso 2: se añade un autor => hay dos autores
         a.add(autor);
-        assertEquals(2,a.getNumAutor(),"Debería haber 2 autores ");
+        assertEquals("Debería haber 2 autores ",2,a.getNumAutor());
 
         // Caso 3: se añade un autor repetido => no se deberia añadir
         a.add(autor);
-        assertEquals(2,a.getNumAutor(),"No debería poder añadir el mismo autor dos veces");
+        assertEquals("No debería poder añadir el mismo autor dos veces",2,a.getNumAutor());
 
         // Caso 4: se añade un autor que no tiene nombre => no se deberia añadir
         Autor autortmp = new Autor("");
         a.add(autortmp);
-        assertEquals(2,a.getNumAutor(),"No debería poder añadir un autor que no tiene nombre");
+        assertEquals("No debería poder añadir un autor que no tiene nombre",2,a.getNumAutor());
+
     }
 
     @Test
-    void addTitleToAutor() {
+    public void addTitleToAutor() {
         Titulo t = new Titulo("Monstruo de las galletas");
         // Caso inicial: (no hay titulo) añadir un titulo =>
         a.addTitleToAutor(t,autorg);
         ArrayList<Titulo> titulos = a.getTitles(autorg);
         String tmp = titulos.get(titulos.size()-1).toString();
-        assertEquals("Monstruo de las galletas",tmp,"El titulo no se ha introducido bien");
-        assertEquals(1,titulos.size(),"Solo tendría que haber un titulo");
+        assertEquals("El titulo no se ha introducido bien","Monstruo de las galletas",tmp);
+        assertEquals("Solo tendría que haber un titulo",1,titulos.size());
 
         // Caso 2: Añadir un titulo repetido
         a.addTitleToAutor(t,autorg);
         ArrayList<Titulo> titulos2 = a.getTitles(autorg);
-        assertEquals(1,titulos2.size(),"El mismo titulo no debería poder añadir");
+        assertEquals("El mismo titulo no debería poder añadir",1,titulos2.size());
 
         // Caso 3: Añadir un titulo en blanco
         Titulo t2 = new Titulo("");
@@ -72,22 +74,23 @@ class AutoresTest {
     }
 
     @Test
-    void remove() {
+    public void remove() {
         // Caso 1 : eliminar un autor que no existe
         Autor aux = new Autor("Nombre que no esta en la lista");
         int numAutorIni = a.getNumAutor();
         a.remove(aux);
         int numAutorRmv = a.getNumAutor();
-        assertEquals(numAutorIni,numAutorRmv,"Ha eliminado un autor que no existe");
+        assertEquals("Ha eliminado un autor que no existe",numAutorIni,numAutorRmv);
 
         // Caso 2: eliminar un autor que existe
         a.remove(autorg);
         numAutorRmv = a.getNumAutor();
-        assertEquals(0,numAutorRmv,"No se ha eliminado el autor correctamente");
+        assertEquals("No se ha eliminado el autor correctamente",0,numAutorRmv);
+
     }
 
     @Test
-    void getOrderedAutores() {
+    public void getOrderedAutores() {
         for(int i = 10; i>=0; i--){
             String s = Integer.toString(i);
             Autor tmpa = new Autor(s);
@@ -109,9 +112,8 @@ class AutoresTest {
             }
 
         }
-        assertTrue(ordenado,"Los autores están ordenados");
+        assertTrue("Los autores no están ordenados",ordenado);
+
 
     }
-
-
 }

@@ -10,7 +10,7 @@ los datos del juego de ensayo y su descripción (ver el apartado de descripción
 
 Además, aquí vamos a poner las reglas:
 
--Todo directorio debe tener un fichero como este con la descripción de los contenidos
+-Todos los directorios debe tener un fichero como este con la descripción de los contenidos
 -No accentual los nombres de los ficheros
 -No rutas absolutas
 

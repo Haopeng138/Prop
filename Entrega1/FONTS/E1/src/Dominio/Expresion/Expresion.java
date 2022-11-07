@@ -5,31 +5,40 @@ import java.util.Deque;
 
 public class Expresion {
 
-    private String alias;
     private String expresion;
 
-    public Expresion(String expresion,String alias) {
-        this.expresion = expresion;
-        this.alias = alias;
-    }
+    public Expresion(String expresion) throws ExpresionException {
+        // if (isValid)
+        // else maybe create a new type of Exception and throw that. Invalid Expresion
+        // exception.
+        if (areBracketsBalanced(expresion)){
+            this.expresion = expresion;
+        } else {
+            throw new ExpresionException("Expresion Invalida");
+        }
 
-    public String getAlias() {
-        return alias;
+
     }
 
     public String getExpresion() {
         return expresion;
     }
 
-    public void setAlias(String alias) {
-        this.alias = alias;
-    }
-
-    public void setExpresion(String expresion) {
-        this.expresion = expresion;
+    /**
+     * Metodo para modificar una expresion
+     * @param expresion Una expresión
+     * @throws ExpresionException Expresion Invalida: compruebe los parentesis
+     */
+    public void setExpresion(String expresion) throws ExpresionException{
+        if (areBracketsBalanced(expresion)){
+            this.expresion = expresion;
+        } else {
+            throw new ExpresionException("Expresion Invalida");
+        }
     }
 
     /**
+     * Metodo para confirmar si la expresion está bien escrita
      * @param expr Una expresión
      * @return true si está bien balanceada,
      * falso en caso contrario
@@ -52,7 +61,7 @@ public class Expresion {
             // If current character is not opening
             // bracket, then it must be closing. So stack
             // cannot be empty at this point.
-            if (stack.isEmpty()) return false;
+
             char check;
             switch (x) {
                 case ')':

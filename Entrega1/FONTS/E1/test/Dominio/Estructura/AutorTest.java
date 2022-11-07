@@ -1,27 +1,26 @@
 package Dominio.Estructura;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class AutorTest {
+public class AutorTest {
 
     @Test
-    void testToString() {
+    public void testToString() {
         Autor a = new Autor("Joan");
         //Con el mismo nombre
-        assertEquals("Joan",a.toString(),"Debe tener el mismo nombre");
+        assertEquals( "Debe tener el mismo nombre","Joan",a.toString());
         //Con un nombre diferente
         assertNotEquals("random",a.toString());
 
     }
 
     @Test
-    void compareTo() {
+    public void compareTo() {
         Autor a = new Autor("Joan");
         Autor b = new Autor("Luis");
-        assertEquals(0,a.compareTo(a),"Deben ser lo mismo");
-        assertNotEquals(0,a.compareTo(b),"No deben ser lo mismo");
-
+        assertEquals("Deben ser lo mismo",0,a.compareTo(a));
+        assertNotEquals("No deben ser lo mismo",0,a.compareTo(b));
     }
 }
