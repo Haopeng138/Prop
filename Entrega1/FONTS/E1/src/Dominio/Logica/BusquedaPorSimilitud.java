@@ -15,10 +15,10 @@ public class BusquedaPorSimilitud {
     }
 
     /**
-     * Metodo que devuelve los K documentos más similares al documento D según Tfidf
+     * Método que devuelve los K documentos más similares al documento D según Tfidf
      *
      * @param D          Documento del cual queremos
-     * @param K          Numero de documentos que queremos obtener
+     * @param K          Número de documentos que queremos obtener
      * @param frecResult Resultado de similitud de cada documento con los otros
      * @return Los K documentos más similares a D del conjunto de documentos
      */

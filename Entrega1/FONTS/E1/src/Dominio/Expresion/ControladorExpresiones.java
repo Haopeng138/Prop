@@ -75,14 +75,14 @@ public class ControladorExpresiones {
         }
     }
 
-    public BinaryTree<ParseNode> parseFromAlias(String alias) {
+    public BinaryTree<ParseNode> parseFromAlias(String alias) throw ExpresionException{
         try {
             if (!expresiones.containsKey(alias)) {
                 return null;
             }
             Expresion expresion = expresiones.get(alias);
             return Parser.parse(expresion.getExpresion());
-        } catch (Exception e) {
+        } catch (ExpresionException e) {
             System.out.println("Expresion invalida");
             return null;
         }

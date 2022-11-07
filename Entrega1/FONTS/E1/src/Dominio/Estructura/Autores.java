@@ -43,7 +43,7 @@ public class Autores {
      * @param a Un autor
      * @return un conjunto de autor
      */
-    public ArrayList<Titulo> getTitles(Autor a ){
+    public ArrayList<Titulo> getTitles(Autor a){
         return autores.get(a);
     }
 
@@ -72,7 +72,4 @@ public class Autores {
         return new TreeSet<Autor>(autores.keySet());
     }
 
-    public ArrayList<Titulo> getTitles(Autor a) {
-        return autores.get(a);
-    }
 }
