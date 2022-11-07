@@ -1,18 +1,21 @@
 package Dominio.Estructura;
 
-import Dominio.Estructura.Documento;
-
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 
 public class Documentos {
+
+    private class InfoModificado {
+        private Double frecuencia;
+        private Boolean modif;
+    }
+
     /**
      * Atributos de clase Documento
      */
     private static ArrayList<Documento> Documentos;
-    private ArrayList<ArrayList<PalabraFrec>> docsPalabra = new ArrayList<ArrayList<PalabraFrec>>();
+    private ArrayList<HashMap<String,Double>> docsPalabra = new ArrayList<HashMap<String,Double>>();
 
-    private ArrayList<ArrayList<Double>> frecResult = new ArrayList<ArrayList<Double>>();
+    private ArrayList<ArrayList<InfoModificado>> frecResult = new ArrayList<ArrayList<InfoModificado>>();
     public Documentos (){
         this.Documentos = new ArrayList<Documento>();
     }
@@ -75,23 +78,16 @@ public class Documentos {
         return Documentos;
     }
 
-    private class PalabraFrec {
-        private String palabra;
-        private Double frecuencia;
-    }
-
     private ArrayList<String> stringToArrayList(String contenido) {
         //ArrayList<String> separator = new ArrayList<>(Arrays.asList(".", ";", ",", " ", "(", ")", "{", "}", "!", "?", ":"));
-        ArrayList<String> doc = new ArrayList<String>(Arrays.asList(contenido.split("[,. ?;:()!{}]+")));
+        String contenidoMinusculas = contenido.toLowerCase();
+        ArrayList<String> doc = new ArrayList<String>(Arrays.asList(contenidoMinusculas.split("[,. ?;:()!{}]+")));
         return doc;
     }
 
     // Si una palabra ya está en el arrayList, es decir, ya tiene su frecuencia
-    private Boolean existeP(ArrayList<PalabraFrec> doc, String p) {
-        for (PalabraFrec palabrafreq : doc) {
-            if (p.equalsIgnoreCase(palabrafreq.palabra)) return true;
-        }
-        return false;
+    private Boolean existeP(HashMap<String,Double> doc, String p) {
+        return doc.containsKey(p);
     }
 
     private Boolean existe(ArrayList<String> doc, String p) {
@@ -117,7 +113,10 @@ public class Documentos {
         for (int j = 0; j < Documentos.size(); ++j) {
             String a = Documentos.get(j).getContenido();
             ArrayList<String> docA = stringToArrayList(a);
-            if (existe(docA, p)) ++cont;
+            if (existe(docA, p)) {
+                ++cont;
+                break;
+            }
         }
         return Math.log(Documentos.size() / cont);
     }
@@ -130,47 +129,51 @@ public class Documentos {
                 if (! existeP(docsPalabra.get(i), docD.get(j))) {
                     Double a = tf(docD, docD.get(j));
                     Double b = idf(docD.get(j));
-                    PalabraFrec c = new PalabraFrec();
-                    c.frecuencia = a * b;
-                    c.palabra = docD.get(j);
-                    docsPalabra.get(i).add(c);
+                    Double frecuencia = a * b;
+                    String palabra = docD.get(j);
+                    docsPalabra.get(i).put(palabra, frecuencia);
                 }
             }
         }
     }
-    public Double intersect(ArrayList<PalabraFrec> s1, ArrayList<PalabraFrec> s2) {
+    public Double intersect(HashMap<String,Double> s1, HashMap<String,Double> s2) {
         double result = 0.0;
-        for (int i = 0; i < s1.size(); ++i) {
+        for (String a : s1.keySet()) {
             boolean trobat = false;
-            for (int j = 0; !trobat && j < s2.size(); ++j) {
-                if (s1.get(i).palabra == s2.get(j).palabra) {
-                    result = result + s1.get(i).frecuencia * s2.get(j).frecuencia;
-                    trobat = true;
+            while (!trobat) {
+                for (String b : s2.keySet()) {
+                    if (a == b) {
+                        result = result + s1.get(a) * s2.get(b);
+                        trobat = true;
+                    }
                 }
             }
         }
         double s1Res = 0.0;
         double s2Res = 0.0;
-        for (int i = 0; i < s1.size(); ++i) {
-            s1Res += s1.get(i).frecuencia * s1.get(i).frecuencia;
+        for (String a : s1.keySet()) {
+            s1Res += Math.pow(s1.get(a), 2);
         }
 
-        for (int i = 0; i < s2.size(); ++i) {
-            s2Res += s2.get(i).frecuencia * s2.get(i).frecuencia;
+        for (String b : s2.keySet()) {
+            s2Res += Math.pow(s2.get(b), 2);
         }
         return result / (Math.sqrt(s1Res) * Math.sqrt(s2Res));
     }
 
     public void generarVector() {
-        ArrayList<PalabraFrec> s1 = new ArrayList<PalabraFrec>();
+        HashMap<String,Double> s1 = new HashMap<>();
         s1 = docsPalabra.get(docsPalabra.size() - 1);
 
         for (int i = 0; i < docsPalabra.size() - 1 ; ++i) {
-            ArrayList<PalabraFrec> s2 = new ArrayList<PalabraFrec> ();
+            HashMap<String,Double> s2 = new HashMap<>();
             s2 = docsPalabra.get(i);
             double resultat = intersect(s1, s2);
-            frecResult.get(i).set(docsPalabra.size()-1, resultat);
-            frecResult.get(docsPalabra.size()-1).set(i, resultat);
+            InfoModificado info = new InfoModificado();
+            info.frecuencia = resultat;
+            info.modif = true;
+            frecResult.get(i).set(docsPalabra.size()-1, info);
+            frecResult.get(docsPalabra.size()-1).set(i, info);
         }
     }
 }
