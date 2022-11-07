@@ -2,6 +2,8 @@ package Dominio.Logica;
 
 import Dominio.Estructura.Documento;
 import Dominio.Estructura.Documentos;
+import Dominio.Expresion.Expresion;
+import Dominio.Expresion.ExpresionException;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -15,27 +17,58 @@ public class Driver_busqueda {
         File []files = listoffiles(folder,"Einput",".txt");
         iniciarDocumentos(documentos,files);
         int opt;
+
         do{
             System.out.println(" -------------- ");
             System.out.println(" Menu ");
+            System.out.println(" 0- Salir ");
             System.out.println(" 1- Busqueda por expresion ");
             System.out.println(" 2- Busqueda por prefijo ");
             System.out.println(" 3- Busqueda por similitud ");
             System.out.println(" 4- Mostrar documentos ");
             Scanner scanopt = new Scanner(System.in);
             opt = scanopt.nextInt();
+            Scanner scan = new Scanner(System.in);
             switch (opt){
                 case 0:
                     break;
                 case 1:
                     System.out.println("Busqueda por expresion ");
-
+                    System.out.println("Introduce una expresion ");
+                    boolean valido = false;
+                    String exp;
+                    while (!valido){
+                        try {
+                            exp = scan.nextLine();
+                            Expresion e = new Expresion(exp);
+                            valido = true;
+                        }catch (ExpresionException error){
+                            System.out.println(error.getMessage());
+                            System.out.println("Vuelve a introducir la expresion");
+                        }
+                    }
+                    break;
                 case 2:
-
+                    System.out.println("Busqueda por prefijo ");
+                    System.out.println("Introduce un prefijo ");
+                    String pre;
+                    pre = scan.nextLine();
+                    break;
                 case 3:
+                    System.out.println("Busqueda por similitud ");
+                    System.out.println("Introduce el autor y titulo del documento");
+                    System.out.println("Autor : ");
+                    String autor = scan.nextLine();
+                    System.out.println("Titulo : ");
+                    String titulo = scan.nextLine();
+                    break;
+
                 case 4:
-                    System.out.println("Mostrando los documentos4");
+                    System.out.println("Mostrando los documentos");
                     mostrarDocumentos(documentos);
+                    break;
+                default:
+                    System.out.println("\t Opciones inexistentes");
 
             }
 

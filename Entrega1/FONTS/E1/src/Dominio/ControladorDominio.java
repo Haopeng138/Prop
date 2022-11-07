@@ -1,14 +1,14 @@
 package Dominio;
 
-import Dominio.Estructura.*;
 import Dominio.Expresion.ControladorExpresiones;
-import Dominio.Expresion.Expresion;
 import Dominio.Expresion.ExpresionException;
 import Dominio.Logica.ControladorBusqueda;
 import Dominio.Utils.BinaryTree;
 import Dominio.Utils.ParseNode;
+import Dominio.Expresion.Expresion;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.TreeSet;
 
 public class ControladorDominio {
@@ -58,13 +58,21 @@ public class ControladorDominio {
     }
 
     public static void main(String[] args) {
-         Autor a = new Autor("Joan");
-         System.out.println(a.getName());
-         Autores b = new Autores();
-         b.add(a);
-         ArrayList<Autor> ab = b.getAutores();
-         System.out.println(ab.get(0).getName()) ;
+        Autor a = new Autor("Joan");
+        System.out.println(a.getName());
+        Autores b = new Autores();
+        b.add(a);
+        ArrayList<Autor> ab = b.getAutores();
+        System.out.println(ab.get(0).getName());
+    }
 
+    /**
+     * @param pre El prefijo de un autor
+     * @return Listado de autores que comienza por el pre
+     */
+    public ArrayList<Autor> obtenerAutoresPrefijo(String pre){
+        ArrayList<Autor> result = new ArrayList<Autor>();
+        return result;
     }
 
     /**
@@ -77,6 +85,116 @@ public class ControladorDominio {
         return result;
     }
 
+//////////////////////////////////////////////////////////////
+    private class PalabraFrec {
+        private String palabra;
+        private Double frecuencia;
+    }
+
+    private ArrayList<String> stringToArrayList(String contenido) {
+        ArrayList<String> doc = new ArrayList<String>(Arrays.asList(contenido.split("[,. ?;:()!{}]+")));
+        //ArrayList<String> separator = new ArrayList<>(Arrays.asList(".", ";", ",", " ", "(", ")", "{", "}", "!", "?", ":"));
+        return doc;
+    }
+
+    private Boolean visitado(ArrayList<PalabraFrec> frecuencia, String p) {
+        for(PalabraFrec f : frecuencia) {
+            if(f.palabra == p) return true;
+        }
+        return false;
+    }
+
+    private ArrayList<PalabraFrec> frecPalabrasD(ArrayList<String> docD){
+        ArrayList<PalabraFrec> resultado = new ArrayList<PalabraFrec>();
+        for(int i = 0; i < docD.size(); ++i) {
+            String palabra1 = docD.get(i);
+            int cont = 1;
+            if (!visitado(resultado, palabra1)){
+                for (int j = i + 1; j < docD.size(); ++j) {
+                    String palabra2 = docD.get(j);
+                    if (palabra1.equalsIgnoreCase(palabra2)) ++cont;
+                }
+                PalabraFrec a = new PalabraFrec();
+                a.palabra = palabra1;
+                a.frecuencia = Double.valueOf(cont / docD.size());
+                resultado.add(a);
+            }
+        }
+        return resultado;
+    }
+
+    private Double tf(ArrayList<String> doc, String p){
+        int cont  = 0;
+        for (int i = 0; i < doc.size(); ++i) {
+            String palabra = doc.get(i);
+            if (p.equalsIgnoreCase(palabra)) ++cont;
+        }
+        return Double.valueOf(cont/doc.size());
+    }
+
+    private Boolean existe(ArrayList<String> doc, String p) {
+        for (String palabra : doc) {
+            if (p.equalsIgnoreCase(palabra)) return true;
+        }
+        return false;
+    }
+
+    /**
+     * @param D documento seleccionado
+     * @param K un número natural
+     * @return un conjunto de K documentos más similares a D
+     */
+    public ArrayList<Documento> similares(Documento D, int K){
+        String autorD = D.getAutor();
+        String tituloD = D.getTitulo();
+
+        ArrayList<Documento> result = new ArrayList<Documento>();
+
+        ArrayList<String> docD = stringToArrayList(D.getContenido());
+        ArrayList<PalabraFrec> frecuenciasD = frecPalabrasD(docD);
+
+        ArrayList<ArrayList<PalabraFrec>> todasFrecDocs  = new ArrayList< ArrayList<PalabraFrec>>();
+
+        ArrayList<Double> idf = new ArrayList<Double>(frecuenciasD.size());
+        ArrayList<Documento> documentos = cDocumento.getDocumentos();
+        for(int i = 0; i < frecuenciasD.size(); ++i) {
+            int cont = 0;
+            for (int j = 0; j < documentos.size(); ++j) {
+                String a = documentos.get(j).getContenido();
+                ArrayList<String> docA = stringToArrayList(a);
+                if (existe (docA,frecuenciasD.get(i).palabra))++cont;
+            }
+            idf.set(i, Math.log(documentos.size()/cont));
+        }
+
+        for (int i = 0; i < documentos.size(); ++i) {
+
+            ArrayList<PalabraFrec> f = new ArrayList<PalabraFrec>();
+            ArrayList<String> doc = stringToArrayList(documentos.get(i).getContenido());
+            for (int j = 0; j < frecuenciasD.size(); ++j) {
+                String p = frecuenciasD.get(j).palabra;
+                double frec = tf(doc, p);
+                PalabraFrec a = new PalabraFrec();
+                a.palabra = p;
+                a.frecuencia = frec*idf.get(j);
+                f.add(a);
+            }
+            todasFrecDocs.add(f);
+        }
+
+        for (int i = 0; i < todasFrecDocs.size(); ++i) {
+
+        }
+
+        for (int i = 0; i < K; ++i) {
+            //todo
+
+        }
+        return result;
+    }
+
+    ////////////////////////////////////////////////////////////////
+
     /**
      * @param e Una expresión
      * @return un conjunto de documentos
@@ -84,35 +202,8 @@ public class ControladorDominio {
     public ArrayList<Documento> busquedaPorExpresion(Expresion e){
         ArrayList<Documento> result = new ArrayList<Documento>();
         return result;
-        /*
-         * Autor a = new Autor("Joan");
-         * System.out.println("expect Joan, its a.getName()");
-         * System.out.println(a.getName());
-         * Autores b = new Autores();
-         * b.add(new Autor("Miquel"));
-         * b.add(new Autor("za"));
-         * b.add(a);
-         * Titulo t = new Titulo("Hei");
-         * b.addTitleToAutor(t, a);
-         * System.out.println("expect the titles, it's b.getTitles()");
-         * System.out.println(b.getTitles(a));
-         * System.out.println("expect za, its getAutores, con prefijo z");
-         * System.out.println(b.getAutores());
-         * ArrayList<Autor> ab = b.getAutores();
-         * System.out.println("expect los autores, its b.getAutores()");
-         * System.out.println(ab);
-         * b.remove(a);
-         * System.out.println("expect los autores menos Joan, b.remove(a)");
-         * System.out.println(b.getAutores());
-         */
-        cExpresiones = new ControladorExpresiones();
-        cExpresiones.add("prova", "pep");
-        cExpresiones.updateExpresion("prova", "{hola bones} | \"bon dia\"");
-        cExpresiones.parseFromAlias("prova");
-        cExpresiones.remove("prova");
-        cExpresiones.parseFromStringExpr("ei & que");
-        cExpresiones.updateAlias("prova", "thisWillFail");
-        cExpresiones.add("prova", "pep");
-        cExpresiones.get("prova");
     }
+
+
+
 }

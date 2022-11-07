@@ -26,4 +26,8 @@ public class ControladorDocumento extends BusquedaPorSimilitud {
     public ArrayList<Titulo> getTitles(Autor a) {
         return autores.getTitles(a);
     }
+
+    public ArrayList<Documento> getDocumentos(){
+        return this.documentos.getDocumentos();
+    }
 }
