@@ -3,10 +3,7 @@ package Dominio.Logica;
 import Dominio.Estructura.Documento;
 import Dominio.Estructura.Documentos;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Set;
+import java.util.*;
 
 public class BusquedaPorSimilitud {
 
@@ -36,21 +33,24 @@ public class BusquedaPorSimilitud {
             Double a = frecResult.get(indice).get(i);
             res.add(a);
         }
-        Collections.sort(res);
+
+        Comparator<Object> comparador = Collections.reverseOrder();
+        Collections.sort(res, comparador);
 
         int cont = 0;
-        for (int i = 0; i < frecResult.get(indice).size(); ++i) {
-            Double b = res.get(i);
-            if (cont < K) {
-                if (indice != i) {
-                    if (b == frecResult.get(indice).get(i)) {
-                        Documento c = docs.get(i);
-                        resultado.add(c);
-                        ++cont;
-                    }
+
+        for (int i = 0; cont < K && i < res.size(); ++i) {
+            Boolean find = false;
+            for (int j = 0; !find && j < frecResult.get(indice).size(); ++j) {
+                if (res.get(i) == frecResult.get(indice).get(j)) {
+                    find = true;
+                    Documento c = docs.get(j);
+                    resultado.add(c);
+                    ++cont;
                 }
             }
         }
+
         return resultado;
     }
 }
