@@ -1,10 +1,12 @@
 package Dominio;
 
+import Dominio.Estructura.*;
 import Dominio.Expresion.ControladorExpresiones;
 import Dominio.Expresion.ExpresionException;
 import Dominio.Logica.ControladorBusqueda;
 import Dominio.Utils.BinaryTree;
 import Dominio.Utils.ParseNode;
+import Dominio.Expresion.Expresion;
 import Dominio.Estructura.Autor;
 import Dominio.Estructura.ControladorDocumento;
 import Dominio.Estructura.Titulo;
@@ -19,10 +21,9 @@ import java.util.TreeSet;
 
 public class ControladorDominio {
 
-
     ControladorBusqueda cBusqueda;
     ControladorDocumento cDocumento;
-    ControladorExpresiones cExpresiones;
+    static ControladorExpresiones cExpresiones;
 
     public ArrayList<Autor> getAutores() {
         return cDocumento.getAutores();
@@ -70,15 +71,6 @@ public class ControladorDominio {
     public ArrayList<Autor> obtenerAutoresPrefijo(String pre){
         ArrayList<Autor> result = new ArrayList<Autor>();
         return result;
-    }
-
-    public static void main(String[] args) {
-         Autor a = new Autor("Joan");
-         System.out.println(a.getName());
-         Autores b = new Autores();
-         b.add(a);
-         ArrayList<Autor> ab = b.getAutores();
-         System.out.println(ab.get(0).getName()) ;
 
     }
 
