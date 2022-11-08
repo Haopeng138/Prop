@@ -27,28 +27,10 @@ public class Autores {
         return autores.get(a) != null;
     }
 
-    /**
-     * Añadir el autor a al conjunto de autores
-     * @param a Un Autor
-     */
     public void add(Autor a) {
         this.autores.put(a, new ArrayList<Titulo>());
     }
 
-
-    /**
-     * Metodo que nos devuelve el numero de autores
-     * @return EL numero de autores
-     */
-    public int getNumAutor(){
-        return autores.size();
-    }
-
-    /**
-     * Metodo que añade un titulo al conjunto de titulos de un autor
-     * @param t Titulo
-     * @param a Autor
-     */
     public void addTitleToAutor(Titulo t, Autor a) {
         ArrayList<Titulo> titulos = autores.get(a);
         titulos.add(t);
@@ -61,7 +43,7 @@ public class Autores {
      * @param a Un autor
      * @return un conjunto de autor
      */
-    public ArrayList<Titulo> getTitles(Autor a ){
+    public ArrayList<Titulo> getTitles(Autor a){
         return autores.get(a);
     }
 
@@ -89,4 +71,5 @@ public class Autores {
     public TreeSet<Autor> getOrderedAutores() {
         return new TreeSet<Autor>(autores.keySet());
     }
+
 }

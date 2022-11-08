@@ -6,7 +6,7 @@ import Dominio.Utils.ParseNode.NODE_TYPE;
 import Dominio.Utils.ParseNode.OPERATOR;
 
 public class Parser {
-    public static BinaryTree<ParseNode> parse(String expr) {
+    public static BinaryTree<ParseNode> parse(String expr) throws Exception {
         int ptr = 0;
         BinaryTree<ParseNode> root = new BinaryTree<ParseNode>();
         BinaryTree<ParseNode> currNode = root;
@@ -80,10 +80,13 @@ public class Parser {
         return words.split(" ");
     }
 
-    private static int findNext(String expr, char c) {
+    private static int findNext(String expr, char c) throws Exception {
         int nextPtr = 0;
-        while (expr.charAt(nextPtr) != c) {
+        while (nextPtr < expr.length() && expr.charAt(nextPtr) != c) {
             nextPtr++;
+        }
+        if (nextPtr == expr.length()) {
+            throw new Exception("No closing token found: " + c);
         }
         return nextPtr;
     }
@@ -92,7 +95,7 @@ public class Parser {
         try {
             int nextPtr = findNext(expr, c);
             return nextPtr;
-        } catch (StringIndexOutOfBoundsException e) {
+        } catch (Exception e) {
             return expr.length();
         }
     }
