@@ -49,8 +49,8 @@ public class Driver_Documento {
                     }
                     break;
                 case 3:
-                    System.out.println(" Introduce el nuevo nombre ");
-                    documento.setContenido(scan.nextLine());
+                    System.out.println(" Introduce el nuevo nombre del autor");
+                    documento.setAutor(scan.nextLine());
                     break;
                 case 4:
                     System.out.println(" Introduce el nuevo titulo ");
@@ -58,6 +58,7 @@ public class Driver_Documento {
                     break;
                 case 5:
                     System.out.println(" El contenido antiguo és :\n "+documento.getContenido());
+                    System.out.println(" Introduce el nuevo contenido ");
                     documento.setContenido(scan.nextLine());
                     break;
             }
