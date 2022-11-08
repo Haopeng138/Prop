@@ -61,7 +61,7 @@ public class ControladorDominio {
         return cExpresiones.parseFromStringExpr(expr);
     }
 
-    public BinaryTree<ParseNode> parseFromAlias(String alias) {
+    public BinaryTree<ParseNode> parseFromAlias(String alias) throws Exception {
         return cExpresiones.parseFromAlias(alias);
     }
     /**
