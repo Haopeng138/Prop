@@ -14,10 +14,15 @@ public class Documentos {
      * Atributos de clase Documento
      */
     private static ArrayList<Documento> Documentos;
+
+    //tf * idf
     private static ArrayList<HashMap<String,Double>> docsPalabra = new ArrayList<HashMap<String,Double>>();
 
+    //similitud entre documentos
     private static ArrayList<ArrayList<InfoModificado>> frecResult = new ArrayList<ArrayList<InfoModificado>>();
+    //frecuencia de cada palabra en un documento
     private ArrayList<HashMap<String, Double>> tf = new ArrayList<>();
+    //número de documentos en qué parece la palabra
     private static HashMap<String, Double> contidf = new HashMap<>();
     public Documentos (){
         this.Documentos = new ArrayList<Documento>();
