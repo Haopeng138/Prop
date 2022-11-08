@@ -1,5 +1,9 @@
 package Dominio.Estructura;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
+
 public class Documento {
     /**
      * Atributos de clase Documento
@@ -38,6 +42,31 @@ public class Documento {
         return titulo.getName();
     }
 
+    public static ArrayList<String> stringToArrayList(String contenido) {
+        //ArrayList<String> separator = new ArrayList<>(Arrays.asList(".", ";", ",", " ", "(", ")", "{", "}", "!", "?", ":"));
+        String contenidoMinusculas = contenido.toLowerCase();
+        ArrayList<String> doc = new ArrayList<String>(Arrays.asList(contenidoMinusculas.split("[,. ¿?;:()¡!{}...]+")));
+        return doc;
+    }
 
+    public static Boolean existe(ArrayList<String> doc, String p) {
+        for (String palabra : doc) {
+            if (p.equalsIgnoreCase(palabra)) return true;
+        }
+        return false;
+    }
+    public Boolean existePalabra(String palabra) {
+        ArrayList<String> doc = new ArrayList<String>();
+        doc = stringToArrayList(contenido);
+        return existe(doc, palabra);
+    }
 
+    public Boolean existeString(String conjuntoPalabras) {
+        ArrayList<String> conjPalabras = new ArrayList<String>();
+        conjPalabras = stringToArrayList(conjuntoPalabras);
+        int numeroPalabra = conjPalabras.size();
+        for (int i = 0; i < conjPalabras.size(); ++i) {
+
+        }
+    }
 }

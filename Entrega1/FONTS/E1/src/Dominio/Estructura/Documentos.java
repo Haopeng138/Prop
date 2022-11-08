@@ -2,6 +2,7 @@ package Dominio.Estructura;
 
 import java.util.*;
 
+
 public class Documentos {
 
     public static class InfoModificado {
@@ -21,7 +22,7 @@ public class Documentos {
     //similitud entre documentos
     private static ArrayList<ArrayList<InfoModificado>> frecResult = new ArrayList<ArrayList<InfoModificado>>();
     //frecuencia de cada palabra en un documento
-    private ArrayList<HashMap<String, Double>> tf = new ArrayList<>();
+    private static ArrayList<HashMap<String, Double>> tf = new ArrayList<>();
     //número de documentos en qué parece la palabra
     private static HashMap<String, Double> contidf = new HashMap<>();
     public Documentos (){
@@ -34,6 +35,13 @@ public class Documentos {
      */
     public void add(Documento d){
         Documentos.add(d);
+        int mida = Documentos.size();
+        frecResult.add(new ArrayList<>(mida));
+        docsPalabra.add(new HashMap<>());
+        tf.add(new HashMap<>());
+        inicializarTF(d);
+        actualizarIDF(d, mida);
+
     }
 
     public HashMap<String, Double> getContidf() { return contidf; }
@@ -90,24 +98,11 @@ public class Documentos {
         return Documentos;
     }
 
-    private static ArrayList<String> stringToArrayList(String contenido) {
-        //ArrayList<String> separator = new ArrayList<>(Arrays.asList(".", ";", ",", " ", "(", ")", "{", "}", "!", "?", ":"));
-        String contenidoMinusculas = contenido.toLowerCase();
-        ArrayList<String> doc = new ArrayList<String>(Arrays.asList(contenidoMinusculas.split("[,. ¿?;:()¡!{}...]+")));
-        return doc;
-    }
-
     // Si una palabra ya está en el arrayList, es decir, ya tiene su frecuencia
     private static Boolean existeP(HashMap<String, Double> doc, String p) {
         return doc.containsKey(p);
     }
 
-    private static Boolean existe(ArrayList<String> doc, String p) {
-        for (String palabra : doc) {
-            if (p.equalsIgnoreCase(palabra)) return true;
-        }
-        return false;
-    }
 
     // una vez, en la hora de input
     private Double tf(ArrayList<String> doc, String p){
@@ -123,8 +118,8 @@ public class Documentos {
         Double cont = 0.0;
         for (int j = 0; j < Documentos.size(); ++j) {
             String a = Documentos.get(j).getContenido();
-            ArrayList<String> docA = stringToArrayList(a);
-            if (existe(docA, p)) {
+            ArrayList<String> docA = Documento.stringToArrayList(a);
+            if (Documento.existe(docA, p)) {
                 ++cont;
                 break;
             }
@@ -134,7 +129,7 @@ public class Documentos {
 
 
     public static void actualizarIDF(Documento D, int indexDoc) {
-        ArrayList<String> docD = stringToArrayList(Documentos.get(indexDoc).getContenido());
+        ArrayList<String> docD = Documento.stringToArrayList(Documentos.get(indexDoc).getContenido());
         HashMap<String, Boolean> noVisitat = new HashMap<>();
         for (int i = 0; i < docD.size(); ++i) {
             if (! noVisitat.containsKey(docD.get(i))) noVisitat.put(docD.get(i), false);
@@ -160,7 +155,7 @@ public class Documentos {
     }
 
     public void eliminarDocIDF(Documento D, int indexDoc) {
-        ArrayList<String> docD = stringToArrayList(Documentos.get(indexDoc).getContenido());
+        ArrayList<String> docD = Documento.stringToArrayList(Documentos.get(indexDoc).getContenido());
         HashMap<String, Boolean> noVisitat = new HashMap<>();
         for (int i = 0; i < docD.size(); ++i) {
             if (! noVisitat.containsKey(docD.get(i))) noVisitat.put(docD.get(i), false);
@@ -180,9 +175,9 @@ public class Documentos {
     }
     public void inicializarTF(Documento D) {
         int mida = tf.size();
-        ArrayList<String> docD = stringToArrayList(D.getContenido());
+        ArrayList<String> docD = Documento.stringToArrayList(D.getContenido());
         for (int j = 0; j < docD.size(); ++j) {
-            if (! existe(docD, docD.get(j))) {
+            if (! Documento.existe(docD, docD.get(j))) {
                 Double a = tf(docD, docD.get(j));
                 tf.get(mida).put(docD.get(j), a);
             }
@@ -190,7 +185,7 @@ public class Documentos {
     }
 
     //calcula tf-idf de un documento (al principio cuando hace input)
-    public void TfIdf(int docIndex) {
+    public static void TfIdf(int docIndex) {
         HashMap<String, Double> docD = tf.get(docIndex);
         for (String a : docD.keySet()) {
             Double frecuencia = docD.get(a) * (Math.log(Documentos.size()/contidf.get(a)));
@@ -225,6 +220,7 @@ public class Documentos {
 
     public static void generarVector(Documento D, int docIndex) {
         HashMap<String,Double> s1 = new HashMap<>();
+        TfIdf(docIndex);
         s1 = docsPalabra.get(docIndex);
 
         for (int i = 0; i < docsPalabra.size(); ++i) {
@@ -234,8 +230,7 @@ public class Documentos {
                 double resultat = intersect(s1, s2);
                 InfoModificado info = new InfoModificado();
                 info.frecuencia = resultat;
-                info.modif = false;
-                frecResult.get(i).set(docIndex, info);
+                info.modif = true;
                 frecResult.get(docIndex).set(i, info);
             }
         }
