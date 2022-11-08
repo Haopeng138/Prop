@@ -10,6 +10,12 @@ import Dominio.Utils.ParseNode.OPERATOR;
 
 public class BusquedaPorExpresion {
 
+    /**
+     * Metodo que buscar documentos que cumple la expresión
+     * @param bTree La expresion parseada a un BinaryTree
+     * @param documentos Documentos en la cual queremos buscar
+     * @return Conjunto de documentos que cumple la expresión
+     */
     public static Set<Documento> buscar(BinaryTree<ParseNode> bTree, Set<Documento> documentos) {
         if (bTree == null) {
             return null;
@@ -66,6 +72,8 @@ public class BusquedaPorExpresion {
                  */
                 break;
         }
-        return new HashSet<Documento>();
+
+        // Resultado temporal para test
+        return new HashSet<Documento>(documentos);
     }
 }

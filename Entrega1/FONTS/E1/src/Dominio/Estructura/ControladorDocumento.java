@@ -1,9 +1,12 @@
 package Dominio.Estructura;
 
+import Dominio.Logica.BusquedaPorExpresion;
+import Dominio.Logica.BusquedaPorSimilitud;
+
 import java.util.ArrayList;
 import java.util.TreeSet;
 
-public class ControladorDocumento {
+public class ControladorDocumento extends BusquedaPorSimilitud {
 
     Autores autores;
     Documentos documentos;
@@ -22,5 +25,9 @@ public class ControladorDocumento {
 
     public ArrayList<Titulo> getTitles(Autor a) {
         return autores.getTitles(a);
+    }
+
+    public ArrayList<Documento> getDocumentos(){
+        return this.documentos.getDocumentos();
     }
 }
