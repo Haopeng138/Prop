@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class Driver_Titulo {
     public static void main(String[] args) {
-        System.out.println(" Driver de autor ");
-        System.out.println(" --------------- ");
+        System.out.println(" Driver de titulo ");
+        System.out.println("  ");
         int opt;
         Scanner optscan = new Scanner(System.in);
         Titulo titulo = new Titulo();

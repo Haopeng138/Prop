@@ -14,7 +14,7 @@ public class Driver_Documentos {
             System.out.println(" ----------------- ");
             System.out.println(" Menu ");
             System.out.println("0- Salir");
-            System.out.println("1- Crear Documento");
+            System.out.println("1- Añadir Documento");
             System.out.println("2- Cargar Docuemento");
             System.out.println("3- Eliminar Documento");
             System.out.println("4- Modificar Documento");

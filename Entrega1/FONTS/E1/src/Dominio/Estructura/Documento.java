@@ -9,6 +9,10 @@ public class Documento {
     private Titulo titulo;
     private Boolean estado;
 
+    public Documento(){
+
+    }
+
 
     public Documento(String autor,String titulo, String contenido){
         this.autor = new Autor(autor);
