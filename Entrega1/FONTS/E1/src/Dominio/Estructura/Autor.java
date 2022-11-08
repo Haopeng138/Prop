@@ -7,6 +7,10 @@ public class Autor implements Comparable<Autor> {
      */
     private String name;
 
+    public Autor() {
+
+    }
+
     /**
      * Constructor por defecto de la clase
      * @param name Nombre del autor
