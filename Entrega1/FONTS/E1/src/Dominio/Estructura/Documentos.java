@@ -17,7 +17,7 @@ public class Documentos {
     private static ArrayList<Documento> Documentos;
 
     //tf * idf
-    private static ArrayList<HashMap<String,Double>> docsPalabra = new ArrayList<HashMap<String,Double>>();
+
 
     //similitud entre documentos
     private static ArrayList<ArrayList<InfoModificado>> frecResult = new ArrayList<ArrayList<InfoModificado>>();
@@ -37,7 +37,6 @@ public class Documentos {
         Documentos.add(d);
         int mida = Documentos.size();
         frecResult.add(new ArrayList<>(mida));
-        docsPalabra.add(new HashMap<>());
         tf.add(new HashMap<>());
         inicializarTF(d);
         actualizarIDF(d, mida);
@@ -46,15 +45,20 @@ public class Documentos {
 
     public HashMap<String, Double> getContidf() { return contidf; }
     public ArrayList<HashMap<String, Double>> getTf() { return tf; }
-    public ArrayList<HashMap<String, Double>> getDocsPalabra() { return  docsPalabra; }
 
     /**
      * Metodo para eliminar un documento del conjunto de documento
      * @param d Un documento
      */
     public void remove(Documento d){
+        boolean trobat = false;
+        for (int i = 0; ! trobat && i < Documentos.size(); ++i) {
+            if (Documentos.get(i) == d) {
+                trobat = true;
+                eliminarDocIDF(d, i);
+            }
+        }
         Documentos.remove(d);
-
     }
 
     /**
@@ -63,15 +67,30 @@ public class Documentos {
      * @param title Nombre del título
      */
     public void removeByAutorTitle(String autor,String title){
+        boolean trobat = false;
+        for (int i = 0; ! trobat && i < Documentos.size(); ++i) {
+            if (Documentos.get(i).getAutor() == autor && Documentos.get(i).getTitulo() == title) {
+                trobat = true;
+                eliminarDocIDF(Documentos.get(i), i);
+            }
+        }
         Documentos.removeIf(d -> d.getAutor().equals(autor) && d.getTitulo().equals(title) );
     }
 
     public void modifyContent(String autor,String title, String contenido){
         boolean find = false;
-        for (Documento d : Documentos){
+        for (int i = 0; i < Documentos.size(); ++i){
+            Documento d = Documentos.get(i);
             if (d.getAutor()==autor & d.getTitulo()==title){
                 d.setContenido(contenido);
                 find = true;
+                modificarTF(d);
+                for (int j = 0; j < frecResult.get(i).size()-1; ++i) {
+                    if (frecResult.get(i).get(j).modif) frecResult.get(i).get(j).modif = false;
+                }
+                for (int j = 1; i+j < frecResult.size()+1; ++i) {
+                    if (frecResult.get(i).get(i+j).modif) frecResult.get(i).get(i+j).modif = false;
+                }
                 break;
             }
         }
@@ -87,7 +106,6 @@ public class Documentos {
             }
         }
         return null;
-
     }
 
     /**
@@ -103,7 +121,6 @@ public class Documentos {
         return doc.containsKey(p);
     }
 
-
     // una vez, en la hora de input
     private Double tf(ArrayList<String> doc, String p){
         Double cont = 0.0;
@@ -114,6 +131,7 @@ public class Documentos {
         return cont/doc.size();
     }
 
+    //no hace falta ????
     private static Double idf(String p) {
         Double cont = 0.0;
         for (int j = 0; j < Documentos.size(); ++j) {
@@ -127,7 +145,6 @@ public class Documentos {
         return cont;
     }
 
-
     public static void actualizarIDF(Documento D, int indexDoc) {
         ArrayList<String> docD = Documento.stringToArrayList(Documentos.get(indexDoc).getContenido());
         HashMap<String, Boolean> noVisitat = new HashMap<>();
@@ -137,9 +154,8 @@ public class Documentos {
 
         for (int j = 0; j < docD.size(); ++j) {
             if (!existeP(contidf, docD.get(j))) {
-                Double b = idf(docD.get(j));
                 String palabra = docD.get(j);
-                contidf.put(palabra, b);
+                contidf.put(palabra, 1.0);
                 noVisitat.put(palabra, true);
             }
             else {
@@ -173,6 +189,28 @@ public class Documentos {
             }
         }
     }
+
+
+    public void modificarTF (Documento D) {
+        int mida = -1;
+        boolean trobat = false;
+        for (int i = 0; ! trobat && i < Documentos.size(); ++i) {
+            if (Documentos.get(i) == D) {
+                trobat = true;
+                mida = i;
+            }
+        }
+        tf.get(mida).clear();
+        ArrayList<String> docD = Documento.stringToArrayList(D.getContenido());
+        for (int j = 0; j < docD.size(); ++j) {
+            if (! Documento.existe(docD, docD.get(j))) {
+                Double a = tf(docD, docD.get(j));
+                tf.get(mida).put(docD.get(j), a);
+            }
+        }
+        actualizarIDF(D, mida);
+    }
+
     public void inicializarTF(Documento D) {
         int mida = tf.size();
         ArrayList<String> docD = Documento.stringToArrayList(D.getContenido());
@@ -185,54 +223,46 @@ public class Documentos {
     }
 
     //calcula tf-idf de un documento (al principio cuando hace input)
-    public static void TfIdf(int docIndex) {
-        HashMap<String, Double> docD = tf.get(docIndex);
-        for (String a : docD.keySet()) {
-            Double frecuencia = docD.get(a) * (Math.log(Documentos.size()/contidf.get(a)));
-            docsPalabra.get(docIndex).put(a, frecuencia);
-        }
-    }
+
 
     // similitud entre dos docs
     public static Double intersect(HashMap<String, Double> s1, HashMap<String, Double> s2) {
+
         double result = 0.0;
-        for (String a : s1.keySet()) {
-            boolean trobat = false;
-            while (!trobat) {
-                for (String b : s2.keySet()) {
-                    if (a == b) {
-                        result = result + s1.get(a) * s2.get(b);
-                        trobat = true;
-                    }
-                }
-            }
-        }
         double s1Res = 0.0;
         double s2Res = 0.0;
+
         for (String a : s1.keySet()) {
-            s1Res += Math.pow(s1.get(a), 2);
+            double idf = contidf.get(a);
+            s1Res += Math.pow(s1.get(a) * (Math.log(Documentos.size()/idf)), 2);
         }
-        for (String b : s2.keySet()) {
-            s2Res += Math.pow(s2.get(b), 2);
+
+        for (String a : s2.keySet()) {
+            double idf = contidf.get(a);
+            s2Res += Math.pow(s2.get(a) * (Math.log(Documentos.size()/idf)), 2);
         }
+
+        for (String a : s1.keySet()) {
+            if (s2.containsKey(a)) {
+                double idf = contidf.get(a);
+                result = result + (s1.get(a) * (Math.log(Documentos.size()/idf))) * (s2.get(a) * (Math.log(Documentos.size()/idf)));
+            }
+        }
+
         return result / (Math.sqrt(s1Res) * Math.sqrt(s2Res));
     }
 
-    public static void generarVector(Documento D, int docIndex) {
+    public static void generarVector(int docIndex, int docSim) {
         HashMap<String,Double> s1 = new HashMap<>();
-        TfIdf(docIndex);
-        s1 = docsPalabra.get(docIndex);
+        s1 = tf.get(docIndex);
+        HashMap<String, Double> s2 = new HashMap<>();
+        s2 = tf.get(docSim);
 
-        for (int i = 0; i < docsPalabra.size(); ++i) {
-            if (Documentos.get(i) != D) {
-                HashMap<String, Double> s2 = new HashMap<>();
-                s2 = docsPalabra.get(i);
-                double resultat = intersect(s1, s2);
-                InfoModificado info = new InfoModificado();
-                info.frecuencia = resultat;
-                info.modif = true;
-                frecResult.get(docIndex).set(i, info);
-            }
-        }
+        double resultat = intersect(s1, s2);
+        InfoModificado info = new InfoModificado();
+        info.frecuencia = resultat;
+        info.modif = true;
+        frecResult.get(docIndex).set(docSim, info);
     }
 }
+
