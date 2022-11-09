@@ -9,20 +9,22 @@ public class Documento {
     private Titulo titulo;
     private Boolean estado;
 
-
-    public Documento(String autor,String titulo, String contenido){
+    public Documento(String autor, String titulo, String contenido) {
         this.autor = new Autor(autor);
         this.titulo = new Titulo(titulo);
         this.contenido = contenido;
         this.estado = true;
     }
-    public void setAutor(String autor){
+
+    public void setAutor(String autor) {
         this.autor.setName(autor);
     }
-    public void setTitulo(String titulo){
+
+    public void setTitulo(String titulo) {
         this.titulo.setName(titulo);
     }
-    public void setContenido(String contenido){
+
+    public void setContenido(String contenido) {
         this.contenido = contenido;
     }
 
@@ -37,7 +39,5 @@ public class Documento {
     public String getTitulo() {
         return titulo.getName();
     }
-
-
 
 }

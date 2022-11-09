@@ -1,22 +1,30 @@
 package Dominio.Logica;
 
 import java.util.HashSet;
-import java.util.Set;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.HashMap;
+import java.util.stream.Collectors;
 
-import Dominio.Estructura.Documento;
 import Dominio.Utils.BinaryTree;
 import Dominio.Utils.ParseNode;
 import Dominio.Utils.ParseNode.OPERATOR;
+
+import Dominio.Estructura.Autor;
+import Dominio.Estructura.Titulo;
 
 public class BusquedaPorExpresion {
 
     /**
      * Metodo que buscar documentos que cumple la expresión
-     * @param bTree La expresion parseada a un BinaryTree
-     * @param documentos Documentos en la cual queremos buscar
+     * 
+     * @param bTree  La expresion parseada a un BinaryTree
+     * @param indice Indice por el que buscar documentos
      * @return Conjunto de documentos que cumple la expresión
+     * @throws Exception
      */
-    public static Set<Documento> buscar(BinaryTree<ParseNode> bTree, Set<Documento> documentos) {
+    public static HashMap<Autor, HashSet<Titulo>> buscar(BinaryTree<ParseNode> bTree,
+            HashMap<Autor, HashSet<Titulo>> indice) throws Exception {
         if (bTree == null) {
             return null;
         }
@@ -26,54 +34,69 @@ public class BusquedaPorExpresion {
                 OPERATOR op = (OPERATOR) nodeVal.val;
                 switch (op) {
                     case AND: {
-                        Set<Documento> set1 = buscar(bTree.left, documentos);
-                        return buscar(bTree.right, set1);
+                        // We return the documents that fulfill both conditions
+                        HashMap<Autor, HashSet<Titulo>> hm1 = buscar(bTree.left, indice);
+                        return buscar(bTree.right, hm1);
                     }
                     case OR: {
-                        Set<Documento> set1 = buscar(bTree.left, documentos);
-                        Set<Documento> copy = new HashSet<Documento>(documentos);
-                        copy.removeAll(set1);
-                        Set<Documento> set2 = buscar(bTree.right, copy);
-                        set1.addAll(set2);
-                        return set1;
+                        // We return the documents that fulfill one of the conditions
+                        HashMap<Autor, HashSet<Titulo>> copy = new HashMap<Autor, HashSet<Titulo>>(indice);
+                        HashMap<Autor, HashSet<Titulo>> hm1 = buscar(bTree.left, indice);
+                        // We remove the author title pairs that have already been found
+                        hm1.forEach((a, sT) -> copy.merge(a, sT, (sT1, sT2) -> sT1.removeAll(sT2) ? sT1 : sT1));
+                        // We remove the authors that have no documents that we are keeping
+                        copy.entrySet().removeIf(e -> e.getValue().isEmpty());
+                        HashMap<Autor, HashSet<Titulo>> hm2 = buscar(bTree.right, copy);
+                        // We add both searches
+                        hm2.forEach((k, v) -> hm1.merge(k, v, (v1, v2) -> v1.addAll(v2) ? v1 : v1));
+                        return hm1;
                     }
                     case NOT: {
-                        Set<Documento> unwanted = buscar(bTree.left, documentos);
-                        Set<Documento> copy = new HashSet<Documento>(documentos);
-                        copy.removeAll(unwanted);
+                        // We return the documents that do not fulfill the condition
+                        HashMap<Autor, HashSet<Titulo>> unwanted = buscar(bTree.left, indice);
+                        HashMap<Autor, HashSet<Titulo>> copy = new HashMap<Autor, HashSet<Titulo>>(indice);
+                        // We remove the author title pairs that have already been found
+                        unwanted.forEach((a, sT) -> copy.merge(a, sT, (sT1, sT2) -> sT1.removeAll(sT2) ? sT1 : sT1));
+                        // We remove the authors that have no documents that we are keeping
+                        copy.entrySet().removeIf(e -> e.getValue().isEmpty());
                         return copy;
                     }
+                    default: {
+                        throw new Exception();
+                    }
                 }
-                break;
-            case CONTAIN:
-                // TODO: what's missing is the documents implementation...
+            case CONTAIN: {
                 String[] words = (String[]) nodeVal.val;
-                /*
-                 * return findDocumentsThatContain(words)
-                 * which could be handled by document controller ?
-                 * Or shall we get the library and operate it from here... don't think so.
-                 * it should be sth like...
-                 * for (String word : words) {
-                 * library.getDocumentsThatHave(word)
-                 * }
-                 * ...etc
-                 */
-                break;
-            case MATCH:
-                // TODO: what's missing is the documents implementation...
+                // we filter out the documents that don't contain the words specified
+                return new HashMap<Autor, HashSet<Titulo>>(indice.entrySet().stream()
+                        .filter(a -> !a.getValue().stream().filter(t -> cDocumento.tienePalabras(a.getKey(), t, words))
+                                .collect(Collectors.toSet()).isEmpty())
+                        .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)));
+            }
+            case MATCH: {
                 String toMatch = (String) nodeVal.val;
-                // String[] toContain = toMatch.split(" ");
-                // Set<Documento> set1 = findDocumentsThatContain(toContain);
-                // return busquedaPorString(set1);
+                // we filter out the documents that don't contain the string specified
+                return new HashMap<Autor, HashSet<Titulo>>(indice.entrySet().stream()
+                        .filter(a_sT -> !a_sT.getValue().stream()
+                                .filter(t -> cDocumento.tieneString(a_sT.getKey(), t, toMatch))
+                                .collect(Collectors.toSet()).isEmpty())
+                        .collect(Collectors.toMap(newI -> newI.getKey(), newI -> newI.getValue())));
+            }
+            default: {
+                throw new Exception("Couldn't make it work");
+            }
+        }
+    }
 
-                /*
-                 * return findDocumentsThatMatch(sth)
-                 * Not sure if this should also be handled by document Controller
-                 */
-                break;
+    private static class cDocumento {
+        // TODO: implement this in library
+
+        public static Boolean tienePalabras(Autor key, Titulo t, String[] words) {
+            return true;
         }
 
-        // Resultado temporal para test
-        return new HashSet<Documento>(documentos);
+        public static Boolean tieneString(Autor key, Titulo t, String toMatch) {
+            return true;
+        }
     }
 }

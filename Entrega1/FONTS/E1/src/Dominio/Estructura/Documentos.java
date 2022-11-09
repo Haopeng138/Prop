@@ -86,7 +86,7 @@ public class Documentos {
      * Metodo que devuelve el conjunto de documento
      * @return Documentos
      */
-    public static ArrayList<Documento> getDocumentos(){
+    public ArrayList<Documento> getDocumentos(){
         return Documentos;
     }
 
