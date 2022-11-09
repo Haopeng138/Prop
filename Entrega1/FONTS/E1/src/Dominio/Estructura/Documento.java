@@ -55,18 +55,31 @@ public class Documento {
         }
         return false;
     }
+
     public Boolean existePalabra(String palabra) {
         ArrayList<String> doc = new ArrayList<String>();
         doc = stringToArrayList(contenido);
         return existe(doc, palabra);
     }
 
+    //Búsqueda de un string en el contenido
     public Boolean existeString(String conjuntoPalabras) {
-        ArrayList<String> conjPalabras = new ArrayList<String>();
-        conjPalabras = stringToArrayList(conjuntoPalabras);
-        int numeroPalabra = conjPalabras.size();
-        for (int i = 0; i < conjPalabras.size(); ++i) {
-
+        int midaString = conjuntoPalabras.length();
+        int i = 0;
+        int j = 0;
+        while (i < contenido.length() && j < midaString) {
+            if (conjuntoPalabras.charAt(j) == contenido.charAt(i)) {
+                ++i;
+                ++j;
+            }
+            else {
+                if (i+1 < contenido.length() && conjuntoPalabras.charAt(j) != contenido.charAt(i+1)) {
+                    ++i;
+                    j = 0;
+                }
+                else ++j;
+            }
         }
+        return j == midaString;
     }
 }
