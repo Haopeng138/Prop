@@ -5,6 +5,7 @@ import Dominio.Estructura.Documentos;
 
 import java.util.*;
 
+
 public class BusquedaPorSimilitud {
 
     private static Integer buscarIndice(Documento doc, ArrayList<Documento> docs) {
@@ -22,15 +23,29 @@ public class BusquedaPorSimilitud {
      * @param frecResult Resultado de similitud de cada documento con los otros
      * @return Los K documentos más similares a D del conjunto de documentos
      */
-    public static ArrayList<Documento> buscar(Documento D, int K, ArrayList<ArrayList<Double>> frecResult) {
+    public static ArrayList<Documento> buscar(Documento D, int K, ArrayList<ArrayList<Documentos.InfoModificado>> frecResult) {
         ArrayList<Documento> resultado = new ArrayList<>();
         ArrayList<Documento> docs = new ArrayList<Documento>();
         docs = Documentos.getDocumentos();
 
         int indice = buscarIndice(D, docs);
+
+        for (int i = 0; i < frecResult.get(indice).size()-1; ++i) {
+            if (!frecResult.get(indice).get(i).modif) Documentos.generarVector(indice, i);
+        }
+        for (int i = 1; i+indice < frecResult.size()+1; ++i) {
+            if (!frecResult.get(indice).get(indice+i).modif) Documentos.generarVector(indice, indice+1);;
+        }
+
         ArrayList<Double> res = new ArrayList<Double>();
-        for (int i = 0; i < frecResult.get(indice).size(); ++i) {
-            Double a = frecResult.get(indice).get(i);
+        //documentos con indices mayores que el D
+        for (int i = 1; i+indice < frecResult.size()+1; ++i) {
+            Double a = frecResult.get(indice).get(indice+i).frecuencia;
+            res.add(a);
+        }
+        //documentos con indices menores que el D
+        for (int i = 0; i < frecResult.get(indice).size()-1; ++i) {
+            Double a = frecResult.get(indice).get(i).frecuencia;
             res.add(a);
         }
 
@@ -42,7 +57,7 @@ public class BusquedaPorSimilitud {
         for (int i = 0; cont < K && i < res.size(); ++i) {
             Boolean find = false;
             for (int j = 0; !find && j < frecResult.get(indice).size(); ++j) {
-                if (res.get(i) == frecResult.get(indice).get(j)) {
+                if (res.get(i) == frecResult.get(indice).get(j).frecuencia) {
                     find = true;
                     Documento c = docs.get(j);
                     resultado.add(c);
@@ -50,7 +65,6 @@ public class BusquedaPorSimilitud {
                 }
             }
         }
-
         return resultado;
     }
 }
