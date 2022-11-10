@@ -12,21 +12,21 @@ public class Libreria {
     Autores autores;
     Documentos documentos;
 
-    public void createDocumento(String a, String t, String contenido) throws Exception {
+    public void createDocumento(String a, String t, String contenido) {
         if (a == "") {
-            throw new Exception("El autor no puede ser vacio");
+            System.out.println("El autor no puede ser vacio");
         }
         if (t == "") {
-            throw new Exception("El titulo no puede ser vacio");
+            System.out.println("El titulo no puede ser vacio");
         }
 
         Autor autor = new Autor(a);
         Titulo titulo = new Titulo(t);
         if (autores.has(autor)) {
-            autores.addTitleToAutor(titulo, autor);
+            autores.addTitleToAutor(new DocumentHeader(autor, titulo));
         } else {
             autores.add(autor);
-            autores.addTitleToAutor(titulo, autor);
+            autores.addTitleToAutor(new DocumentHeader(autor, titulo));
         }
 
         Documento documento = new Documento(a, t, contenido);
@@ -34,10 +34,9 @@ public class Libreria {
     }
 
     public Documento getDocumento(String a, String t) {
-        Autor autor = new Autor(a);
-        Titulo titulo = new Titulo(t);
+        DocumentHeader header = new DocumentHeader(a, t);
         try {
-            int idx = autores.getDocumentIdx(autor, titulo);
+            int idx = autores.getDocumentIdx(header);
             return documentos.getDocumentos().get(idx);
         } catch (Exception e) {
             System.out.println("No existe el documento");
@@ -46,11 +45,10 @@ public class Libreria {
     }
 
     public void removeDocumento(String a, String t) {
-        Autor autor = new Autor(a);
-        Titulo titulo = new Titulo(t);
+        DocumentHeader header = new DocumentHeader(a, t);
         try {
-            int idx = autores.getDocumentIdx(autor, titulo);
-            autores.remove(autor);
+            int idx = autores.getDocumentIdx(header);
+            autores.removeTitle(a, t);
             // documentos.remove(idx); Documentos needs to remove from idx!
         } catch (Exception e) {
             System.out.println("No existe el documento");
@@ -58,12 +56,11 @@ public class Libreria {
     }
 
     public void modifyDocumento(String a, String t, String contenido) {
-        Autor autor = new Autor(a);
-        Titulo titulo = new Titulo(t);
+        DocumentHeader header = new DocumentHeader(a, t);
         try {
-            int idx = autores.getDocumentIdx(autor, titulo);
-            // documentos.modifyContent(idx, contenido); Documentos needs to modify from
-            // idx!
+            int idx = autores.getDocumentIdx(header);
+            // documentos.modifyContent(idx, contenido);
+            // Documentos needs to modify from idx!
         } catch (Exception e) {
             System.out.println("No existe el documento");
         }
@@ -81,6 +78,7 @@ public class Libreria {
         return autores.getTitles(a);
     }
 
+    // Maybe this method shouldn't exist
     public ArrayList<Documento> getDocumentos() {
         return this.documentos.getDocumentos(); // This can't work!
         // We need to at least check if it's been removed...
@@ -93,11 +91,29 @@ public class Libreria {
 
     // TODO:
     public Boolean tienePalabra(DocumentHeader documentHeader, String word) {
-        return null;
+        try {
+            int idx = autores.getDocumentIdx(documentHeader);
+            // return documentos.tienePalabra(idx, word);
+            return true;
+        } catch (Exception e) {
+            System.out.format("No existe el autor: %s, con el titulo: %s", documentHeader.getAutor(),
+                    documentHeader.getTitulo());
+            e.printStackTrace();
+            return false;
+        }
     }
 
     // TODO:
     public Boolean tieneString(DocumentHeader documentHeader, String toMatch) {
-        return null;
+        try {
+            int idx = autores.getDocumentIdx(documentHeader);
+            // return documentos.tieneContenido(idx, toMatch);
+            return true;
+        } catch (Exception e) {
+            System.out.format("No existe el autor: %s, con el titulo: %s", documentHeader.getAutor(),
+                    documentHeader.getTitulo());
+            e.printStackTrace();
+            return false;
+        }
     }
 }

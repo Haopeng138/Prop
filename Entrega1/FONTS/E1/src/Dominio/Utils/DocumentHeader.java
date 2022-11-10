@@ -12,6 +12,11 @@ public class DocumentHeader {
         titulo = t;
     }
 
+    public DocumentHeader(String a, String t) {
+        autor = new Autor(a);
+        titulo = new Titulo(t);
+    }
+
     public Autor getAutor() {
         return autor;
     }

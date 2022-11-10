@@ -6,6 +6,8 @@ import java.util.HashSet;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import Dominio.Utils.DocumentHeader;
+
 public class Autores {
     /**
      * Atributos de clase Autores
@@ -31,23 +33,34 @@ public class Autores {
         return autores.get(a) != null;
     }
 
+    public Boolean has(String a) {
+        return autores.get(new Autor(a)) != null;
+    }
+
     public void add(Autor a) {
         if (!this.has(a)) {
             autores.put(a, new HashMap<Titulo, Integer>());
         } else
             System.out.println("El autor ya existe!");
-        // eso puede que se tenga que convertir a excepcion
     }
 
-    public void addTitleToAutor(Titulo t, Autor a) {
-        HashMap<Titulo, Integer> titulos = autores.get(a);
+    public void add(String a) {
+        if (!this.has(a)) {
+            autores.put(new Autor(a), new HashMap<Titulo, Integer>());
+        } else
+            System.out.println("El autor ya existe!");
+    }
+
+    public void addTitleToAutor(DocumentHeader header) {
+        HashMap<Titulo, Integer> titulos = autores.get(header.getAutor());
         currentIdx++;
-        if (titulos.get(t) != null) {
-            System.out.format("Ya existe el documento con titulo: %s para el autor %s", t.getName(), a.getName());
+        if (titulos.get(header.getTitulo()) != null) {
+            System.out.format("Ya existe el documento con titulo: %s para el autor %s", header.getTitulo().getName(),
+                    header.getAutor().getName());
             return;
         }
-        titulos.put(t, currentIdx);
-        autores.replace(a, titulos);
+        titulos.put(header.getTitulo(), currentIdx);
+        autores.replace(header.getAutor(), titulos);
     }
 
     /**
@@ -67,6 +80,10 @@ public class Autores {
      */
     public void remove(Autor a) {
         autores.remove(a);
+    }
+
+    public void remove(String a) {
+        autores.remove(new Autor(a));
     }
 
     /**
@@ -104,22 +121,59 @@ public class Autores {
      * @return Posicion en la que se indexa el documento
      * @throws Exception
      */
-    public Integer getDocumentIdx(Autor a, Titulo t) throws Exception {
-        if (!this.has(a)) {
+    public Integer getDocumentIdx(DocumentHeader header) throws Exception {
+        if (!this.has(header.getAutor())) {
             throw new Exception("Autor no encontrado");
         }
-        HashMap<Titulo, Integer> titulos = autores.get(a);
-        Integer idx = titulos.get(t);
-        if (t == null) {
+        HashMap<Titulo, Integer> titulos = autores.get(header.getAutor());
+        Integer idx = titulos.get(header.getTitulo());
+        if (header.getTitulo() == null) {
             throw new Exception("El autor no tiene este titulo");
         }
         return idx;
     }
 
+    /**
+     * Metodo que devuelve el indice del documento
+     * 
+     * @return La lista de autores y titulos
+     */
     public TreeMap<Autor, HashSet<Titulo>> getIdx() {
         TreeMap<Autor, HashSet<Titulo>> entries = new TreeMap<Autor, HashSet<Titulo>>();
         autores.forEach((a, hmT) -> entries.put(a, new HashSet<Titulo>(hmT.keySet())));
         return entries;
+    }
+
+    /**
+     * Metodo que borra un documento
+     * 
+     * @param a Autor
+     * @param t Titulo
+     */
+    public void removeTitle(String a, String t) {
+        Autor autor = new Autor(a);
+        HashMap<Titulo, Integer> titulos = autores.get(autor);
+        titulos.remove(new Titulo(t));
+        if (!titulos.isEmpty()) {
+            autores.put(autor, titulos);
+        } else {
+            autores.remove(autor);
+        }
+    }
+
+    /**
+     * Metodo que borra un documento
+     * 
+     * @param header pareja autor titulo
+     */
+    public void removeTitle(DocumentHeader header) {
+        HashMap<Titulo, Integer> titulos = autores.get(header.getAutor());
+        titulos.remove(header.getTitulo());
+        if (!titulos.isEmpty()) {
+            autores.put(header.getAutor(), titulos);
+        } else {
+            autores.remove(header.getAutor());
+        }
     }
 
 }
