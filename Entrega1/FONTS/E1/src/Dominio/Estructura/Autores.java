@@ -2,6 +2,7 @@ package Dominio.Estructura;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
@@ -41,6 +42,10 @@ public class Autores {
     public void addTitleToAutor(Titulo t, Autor a) {
         HashMap<Titulo, Integer> titulos = autores.get(a);
         currentIdx++;
+        if (titulos.get(t) != null) {
+            System.out.format("Ya existe el documento con titulo: %s para el autor %s", t.getName(), a.getName());
+            return;
+        }
         titulos.put(t, currentIdx);
         autores.replace(a, titulos);
     }
@@ -99,7 +104,7 @@ public class Autores {
      * @return Posicion en la que se indexa el documento
      * @throws Exception
      */
-    public Integer getIndex(Autor a, Titulo t) throws Exception {
+    public Integer getDocumentIdx(Autor a, Titulo t) throws Exception {
         if (!this.has(a)) {
             throw new Exception("Autor no encontrado");
         }
@@ -109,6 +114,12 @@ public class Autores {
             throw new Exception("El autor no tiene este titulo");
         }
         return idx;
+    }
+
+    public TreeMap<Autor, HashSet<Titulo>> getIdx() {
+        TreeMap<Autor, HashSet<Titulo>> entries = new TreeMap<Autor, HashSet<Titulo>>();
+        autores.forEach((a, hmT) -> entries.put(a, new HashSet<Titulo>(hmT.keySet())));
+        return entries;
     }
 
 }

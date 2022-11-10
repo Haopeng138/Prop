@@ -25,15 +25,15 @@ public class ControladorDocumento {
             autores.addTitleToAutor(titulo, autor);
         }
 
-        Documento documento = new Documento(a, t, contenido); // Mirar si es necesario esta clase
-        documentos.add(documento); // Porque aqui realmente lo unico interesante es el contenido
+        Documento documento = new Documento(a, t, contenido);
+        documentos.add(documento);
     }
 
     public Documento getDocumento(String a, String t) {
         Autor autor = new Autor(a);
         Titulo titulo = new Titulo(t);
         try {
-            int idx = autores.getIndex(autor, titulo);
+            int idx = autores.getDocumentIdx(autor, titulo);
             return documentos.getDocumentos().get(idx);
         } catch (Exception e) {
             System.out.println("No existe el documento");
@@ -45,9 +45,9 @@ public class ControladorDocumento {
         Autor autor = new Autor(a);
         Titulo titulo = new Titulo(t);
         try {
-            int idx = autores.getIndex(autor, titulo);
+            int idx = autores.getDocumentIdx(autor, titulo);
             autores.remove(autor);
-            // documentos.remove(idx);
+            // documentos.remove(idx); Documentos needs to remove from idx!
         } catch (Exception e) {
             System.out.println("No existe el documento");
         }
@@ -57,8 +57,9 @@ public class ControladorDocumento {
         Autor autor = new Autor(a);
         Titulo titulo = new Titulo(t);
         try {
-            int idx = autores.getIndex(autor, titulo);
-            // documentos.update(idx);
+            int idx = autores.getDocumentIdx(autor, titulo);
+            // documentos.modifyContent(idx, contenido); Documentos needs to modify from
+            // idx!
         } catch (Exception e) {
             System.out.println("No existe el documento");
         }
