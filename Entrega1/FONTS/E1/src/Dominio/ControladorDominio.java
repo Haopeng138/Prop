@@ -5,14 +5,14 @@ import Dominio.Expresion.ControladorExpresiones;
 import Dominio.Expresion.ExpresionException;
 import Dominio.Logica.ControladorBusqueda;
 import Dominio.Utils.BinaryTree;
+import Dominio.Utils.DocumentHeader;
 import Dominio.Utils.ParseNode;
 import Dominio.Expresion.Expresion;
 import Dominio.Estructura.Autor;
-import Dominio.Estructura.ControladorDocumento;
+import Dominio.Estructura.Libreria;
 import Dominio.Estructura.Titulo;
 import Dominio.Estructura.Autores;
 import Dominio.Estructura.Documento;
-import Dominio.Expresion.Expresion;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,19 +21,19 @@ import java.util.TreeSet;
 public class ControladorDominio {
 
     ControladorBusqueda cBusqueda;
-    ControladorDocumento cDocumento;
+    Libreria libreria;
     static ControladorExpresiones cExpresiones;
 
     public ArrayList<Autor> getAutores() {
-        return cDocumento.getAutores();
+        return libreria.getAutores();
     }
 
     public TreeSet<Autor> getOrderedAutores() {
-        return cDocumento.getOrderedAutores();
+        return libreria.getOrderedAutores();
     }
 
     public ArrayList<Titulo> getTitles(Autor a) {
-        return cDocumento.getTitles(a);
+        return libreria.getTitles(a);
     }
 
     public String getExpresion(String alias) {
@@ -160,7 +160,7 @@ public class ControladorDominio {
         ArrayList<ArrayList<PalabraFrec>> todasFrecDocs = new ArrayList<ArrayList<PalabraFrec>>();
 
         ArrayList<Double> idf = new ArrayList<Double>(frecuenciasD.size());
-        ArrayList<Documento> documentos = cDocumento.getDocumentos();
+        ArrayList<Documento> documentos = libreria.getDocumentos();
         for (int i = 0; i < frecuenciasD.size(); ++i) {
             int cont = 0;
             for (int j = 0; j < documentos.size(); ++j) {
@@ -204,9 +204,7 @@ public class ControladorDominio {
      * @param e Una expresión
      * @return un conjunto de documentos
      */
-    public ArrayList<Documento> busquedaPorExpresion(Expresion e) {
-        ArrayList<Documento> result = new ArrayList<Documento>();
-        return result;
+    public ArrayList<DocumentHeader> busquedaPorExpresion(Expresion e) {
+        return cBusqueda.buscarPorExpresion(e, libreria);
     }
-
 }

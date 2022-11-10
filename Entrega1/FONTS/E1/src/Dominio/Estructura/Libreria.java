@@ -1,9 +1,13 @@
 package Dominio.Estructura;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.TreeMap;
 import java.util.TreeSet;
 
-public class ControladorDocumento {
+import Dominio.Utils.DocumentHeader;
+
+public class Libreria {
 
     Autores autores;
     Documentos documentos;
@@ -81,5 +85,19 @@ public class ControladorDocumento {
         return this.documentos.getDocumentos(); // This can't work!
         // We need to at least check if it's been removed...
         // best way to return "documentos" might be to return autores...
+    }
+
+    public TreeMap<Autor, HashSet<Titulo>> getIdx() {
+        return autores.getIdx();
+    }
+
+    // TODO:
+    public Boolean tienePalabra(DocumentHeader documentHeader, String word) {
+        return null;
+    }
+
+    // TODO:
+    public Boolean tieneString(DocumentHeader documentHeader, String toMatch) {
+        return null;
     }
 }

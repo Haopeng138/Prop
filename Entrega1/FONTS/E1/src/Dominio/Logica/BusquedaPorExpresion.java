@@ -8,36 +8,20 @@ import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 import Dominio.Utils.BinaryTree;
+import Dominio.Utils.DocumentHeader;
 import Dominio.Utils.ParseNode;
 import Dominio.Utils.ParseNode.OPERATOR;
 
 import Dominio.Estructura.Autor;
 import Dominio.Estructura.Titulo;
+import Dominio.Estructura.Libreria;
 
 public class BusquedaPorExpresion {
 
     private TreeMap<Autor, HashSet<Titulo>> indice;
     private static Libreria libreria;
 
-    private class DocumentHeader {
-        Autor autor;
-        Titulo titulo;
-
-        DocumentHeader(Autor a, Titulo t) {
-            autor = a;
-            titulo = t;
-        }
-
-        Autor getAutor() {
-            return autor;
-        }
-
-        Titulo getTitulo() {
-            return titulo;
-        }
-    }
-
-    public ArrayList<DocumentHeader> buscar(Libreria libreria, BinaryTree<ParseNode> bTree) throws Exception {
+    public ArrayList<DocumentHeader> buscar(BinaryTree<ParseNode> bTree, Libreria libreria) throws Exception {
         TreeMap<Autor, HashSet<Titulo>> indice = libreria.getIdx();
         TreeMap<Autor, HashSet<Titulo>> indiceResuelto = buscarRec(bTree, indice);
         ArrayList<DocumentHeader> documentHeaders = new ArrayList<DocumentHeader>();
@@ -102,7 +86,8 @@ public class BusquedaPorExpresion {
                 return new TreeMap<Autor, HashSet<Titulo>>(indice.entrySet().stream()
                         .filter(a -> !a.getValue().stream()
                                 .filter(t -> words.stream()
-                                        .allMatch(word -> libreria.tienePalabra(a.getKey(), t, word)))
+                                        .allMatch(
+                                                word -> libreria.tienePalabra(new DocumentHeader(a.getKey(), t), word)))
                                 .collect(Collectors.toSet()).isEmpty())
                         .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)));
             }
@@ -111,7 +96,7 @@ public class BusquedaPorExpresion {
                 // we filter out the documents that don't contain the string specified
                 return new TreeMap<Autor, HashSet<Titulo>>(indice.entrySet().stream()
                         .filter(a_sT -> !a_sT.getValue().stream()
-                                .filter(t -> libreria.tieneString(a_sT.getKey(), t, toMatch))
+                                .filter(t -> libreria.tieneString(new DocumentHeader(a_sT.getKey(), t), toMatch))
                                 .collect(Collectors.toSet()).isEmpty())
                         .collect(Collectors.toMap(newI -> newI.getKey(), newI -> newI.getValue())));
             }
