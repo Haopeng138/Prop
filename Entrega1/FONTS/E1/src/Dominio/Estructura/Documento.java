@@ -8,40 +8,77 @@ public class Documento {
     /**
      * Atributos de clase Documento
      */
-    private String contenido;
+    private static String contenido;
     private Autor autor;
     private Titulo titulo;
     private Boolean estado;
 
-
+    /**
+     * Método de creación de un documento
+     * @param autor Nombre del autor
+     * @param titulo Nombre del título
+     * @param contenido Contenido del documento
+     */
     public Documento(String autor,String titulo, String contenido){
         this.autor = new Autor(autor);
         this.titulo = new Titulo(titulo);
         this.contenido = contenido;
         this.estado = true;
     }
+
+    /**
+     * Método para actualizar el nombre del autor
+     * @param autor Nombre nuevo del autor
+     */
     public void setAutor(String autor){
         this.autor.setName(autor);
     }
+
+    /**
+     * Método para actualizar el nombre del título
+     * @param titulo Nombre nuevo del título
+     */
     public void setTitulo(String titulo){
         this.titulo.setName(titulo);
     }
+
+    /**
+     * Método para actualizar el contenido
+     * @param contenido Contenido nuevo
+     */
     public void setContenido(String contenido){
         this.contenido = contenido;
     }
 
+    /**
+     * Método para devolver el nombre del autor
+     * @return Nombre de autor
+     */
     public String getAutor() {
         return autor.getName();
     }
 
-    public String getContenido() {
-        return contenido;
-    }
-
+    /**
+     * Método para devolver el nombre del título
+     * @return Nombre de título
+     */
     public String getTitulo() {
         return titulo.getName();
     }
 
+    /**
+     * Método para devolver el contenido
+     * @return Contenido
+     */
+    public String getContenido() {
+        return contenido;
+    }
+
+    /**
+     * Método para convertir un String en un ArrayList
+     * @param contenido Contenido
+     * @return Contenido en ArrayList
+     */
     public static ArrayList<String> stringToArrayList(String contenido) {
         //ArrayList<String> separator = new ArrayList<>(Arrays.asList(".", ";", ",", " ", "(", ")", "{", "}", "!", "?", ":"));
         String contenidoMinusculas = contenido.toLowerCase();
@@ -49,19 +86,12 @@ public class Documento {
         return doc;
     }
 
-    public static Boolean existe(ArrayList<String> doc, String p) {
-        for (String palabra : doc) {
-            if (p.equalsIgnoreCase(palabra)) return true;
-        }
-        return false;
-    }
-
-    public Boolean existePalabra(String palabra) {
-        ArrayList<String> doc = new ArrayList<String>();
-        doc = stringToArrayList(contenido);
-        return existe(doc, palabra);
-    }
-
+    /**
+     * Método para verificar la existencia de un String en el contenido
+     * @param conjuntoPalabras Un conjunto de palabras
+     * @return True, si el conjunto "conjuntoPalabras" está en el contenido
+     *         False, en el caso contrario
+     */
     //Búsqueda de un string en el contenido
     public Boolean existeString(String conjuntoPalabras) {
         int midaString = conjuntoPalabras.length();
