@@ -44,6 +44,17 @@ public class Libreria {
         }
     }
 
+    public Documento getDocumento(DocumentHeader header) {
+        try {
+            int idx = autores.getDocumentIdx(header);
+            return documentos.getDocumentos().get(idx);
+        } catch (Exception e) {
+            System.out.println("No existe el documento");
+            return null;
+        }
+    }
+
+    // TODO:
     public void removeDocumento(String a, String t) {
         DocumentHeader header = new DocumentHeader(a, t);
         try {
@@ -55,6 +66,7 @@ public class Libreria {
         }
     }
 
+    // TODO:
     public void modifyDocumento(String a, String t, String contenido) {
         DocumentHeader header = new DocumentHeader(a, t);
         try {
@@ -114,6 +126,20 @@ public class Libreria {
                     documentHeader.getTitulo());
             e.printStackTrace();
             return false;
+        }
+    }
+
+    public float computeSimilarity(DocumentHeader header, DocumentHeader toCompare) {
+        try {
+            int idx1 = autores.getDocumentIdx(header);
+            int idx2 = autores.getDocumentIdx(toCompare);
+            // we should get a method that checks if it has been computed, or it computes it
+            // by indexs
+            // return documentos.intersect(idx1, idx2);
+            return 1;
+        } catch (Exception e) {
+            System.out.println("No existen los documentos que se quieren comparar!");
+            return -1;
         }
     }
 }

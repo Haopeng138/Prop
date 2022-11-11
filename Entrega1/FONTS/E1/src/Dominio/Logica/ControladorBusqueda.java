@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.TreeSet;
 
 import Dominio.Estructura.Autor;
-import Dominio.Estructura.Documento;
 import Dominio.Estructura.Libreria;
 import Dominio.Expresion.Expresion;
 import Dominio.Utils.BinaryTree;
@@ -29,7 +28,7 @@ public class ControladorBusqueda {
         }
     }
 
-    public ArrayList<Documento> buscarPorSimilitud(Documento D, int K, ArrayList<ArrayList<Double>> frecResult) {
-        return BusquedaPorSimilitud.buscar(D, K, frecResult);
+    public ArrayList<DocumentHeader> buscarPorSimilitud(DocumentHeader header, int K, Libreria libreria) {
+        return BusquedaPorSimilitud.buscar(header, K, libreria);
     }
 }

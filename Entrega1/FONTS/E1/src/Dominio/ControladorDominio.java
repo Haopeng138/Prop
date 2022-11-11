@@ -1,6 +1,5 @@
 package Dominio;
 
-import Dominio.Estructura.*;
 import Dominio.Expresion.ControladorExpresiones;
 import Dominio.Expresion.ExpresionException;
 import Dominio.Logica.ControladorBusqueda;
@@ -11,7 +10,6 @@ import Dominio.Expresion.Expresion;
 import Dominio.Estructura.Autor;
 import Dominio.Estructura.Libreria;
 import Dominio.Estructura.Titulo;
-import Dominio.Estructura.Autores;
 import Dominio.Estructura.Documento;
 
 import java.util.ArrayList;

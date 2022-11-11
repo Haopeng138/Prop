@@ -17,11 +17,10 @@ import Dominio.Estructura.Titulo;
 import Dominio.Estructura.Libreria;
 
 public class BusquedaPorExpresion {
-
-    private TreeMap<Autor, HashSet<Titulo>> indice;
-    private static Libreria libreria;
+    private Libreria libreria;
 
     public ArrayList<DocumentHeader> buscar(BinaryTree<ParseNode> bTree, Libreria libreria) throws Exception {
+        this.libreria = libreria;
         TreeMap<Autor, HashSet<Titulo>> indice = libreria.getIdx();
         TreeMap<Autor, HashSet<Titulo>> indiceResuelto = buscarRec(bTree, indice);
         ArrayList<DocumentHeader> documentHeaders = new ArrayList<DocumentHeader>();
@@ -37,7 +36,7 @@ public class BusquedaPorExpresion {
      * @return Conjunto de documentos que cumple la expresión
      * @throws Exception
      */
-    public static TreeMap<Autor, HashSet<Titulo>> buscarRec(BinaryTree<ParseNode> bTree,
+    public TreeMap<Autor, HashSet<Titulo>> buscarRec(BinaryTree<ParseNode> bTree,
             TreeMap<Autor, HashSet<Titulo>> indice) throws Exception {
         if (bTree == null) {
             return null;
