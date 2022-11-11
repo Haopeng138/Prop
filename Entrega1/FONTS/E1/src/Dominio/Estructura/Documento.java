@@ -20,13 +20,16 @@ public class Documento {
         this.contenido = contenido;
         this.estado = true;
     }
-    public void setAutor(String autor){
+
+    public void setAutor(String autor) {
         this.autor.setName(autor);
     }
-    public void setTitulo(String titulo){
+
+    public void setTitulo(String titulo) {
         this.titulo.setName(titulo);
     }
-    public void setContenido(String contenido){
+
+    public void setContenido(String contenido) {
         this.contenido = contenido;
     }
 
