@@ -9,7 +9,7 @@ public class Autores {
     /**
      * Atributos de clase Autores
      */
-    private SortedMap<Autor, ArrayList<Titulo>> autores;
+    private static SortedMap<Autor, ArrayList<Titulo>> autores;
 
     /**
      * Constructor por defecto
@@ -68,7 +68,7 @@ public class Autores {
      * Metodo que devuelve el conjunto de autores ordenados
      * @return Un conjunto de autores ordenados
      */
-    public TreeSet<Autor> getOrderedAutores() {
+    public static TreeSet<Autor> getOrderedAutores() {
         return new TreeSet<Autor>(autores.keySet());
     }
 
