@@ -116,8 +116,7 @@ public class Autores {
     /**
      * Metodo que devuelve el indice del documento
      * 
-     * @param a Autor
-     * @param t Title
+     * @param header
      * @return Posicion en la que se indexa el documento
      * @throws Exception
      */
