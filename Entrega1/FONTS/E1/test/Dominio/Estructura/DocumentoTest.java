@@ -9,7 +9,7 @@ public class DocumentoTest {
     Documento d;
     @Before
     public void setUp() throws Exception {
-        d = new Documento("Alberto","Magias","Un texto muy largo");
+        d = new Documento("Alberto","Magias","Un texto muy largo que explica porque vamos a aprobar");
     }
 
     @Test
@@ -31,5 +31,16 @@ public class DocumentoTest {
         d.setContenido("Contenido");
         String contenido = d.getContenido();
         assertEquals("No se ha modificado bien el contenido","Contenido",contenido);
+    }
+
+
+    @Test
+    public void existeString() {
+        String ConjuntoPalabras = "vamos a aprobar";
+        String ConjuntoPalabras2 = "randomgafdgafdgdf";
+        boolean b = d.existeString(ConjuntoPalabras);
+        assertTrue("Existe y no lo ha encontrado",b);
+        boolean b2 = d.existeString(ConjuntoPalabras2);
+        assertFalse("No existe y lo ha encontrado",b2);
     }
 }
