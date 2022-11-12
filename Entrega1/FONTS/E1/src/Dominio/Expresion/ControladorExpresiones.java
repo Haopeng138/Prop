@@ -13,11 +13,12 @@ public class ControladorExpresiones {
         this.expresiones = new HashMap<String, Expresion>();
     }
 
-    public String get(String alias) {
+    public Expresion get(String alias) {
         if (!expresiones.containsKey(alias)) {
-            return "Expresion no encontrada";
+            System.out.println("Expresion no encontrada");
+            return null;
         }
-        return expresiones.get(alias).getExpresion();
+        return expresiones.get(alias);
     }
 
     public void add(String alias, String expresion) throws ExpresionException {
@@ -74,11 +75,19 @@ public class ControladorExpresiones {
 
     public BinaryTree<ParseNode> parseFromAlias(String alias) throws Exception {
 
-            if (!expresiones.containsKey(alias)) {
-                return null;
-            }
-            Expresion expresion = expresiones.get(alias);
-            return Parser.parse(expresion.getExpresion());
+        if (!expresiones.containsKey(alias)) {
+            return null;
+        }
+        Expresion expresion = expresiones.get(alias);
+        return Parser.parse(expresion.getExpresion());
 
+    }
+
+    public String getAsString(String alias) {
+        if (!expresiones.containsKey(alias)) {
+            System.out.println("Expresion no encontrada");
+            return null;
+        }
+        return expresiones.get(alias).getExpresion();
     }
 }

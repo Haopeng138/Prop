@@ -1,83 +1,63 @@
 package Dominio.Logica;
 
-import Dominio.Estructura.Documento;
-import Dominio.Estructura.Documentos;
-
+import Dominio.Estructura.Autor;
+import Dominio.Estructura.Libreria;
+import Dominio.Estructura.Titulo;
+import Dominio.Utils.DocumentHeader;
 import java.util.*;
-
 
 public class BusquedaPorSimilitud {
 
     /**
-     * Método para buscar el índice del documento
-     * @param d Un Documento
-     * @param docs Conjunto de documentos
-     * @return Índice del documento "d"
-     */
-    private static Integer buscarIndice(Documento d, ArrayList<Documento> docs) {
-        for (int i = 0; i < docs.size(); ++i) {
-            if (d == docs.get(i)) return i;
-        }
-        return -1;
-    }
-
-    /**
      * Método que devuelve los K documentos más similares al documento D según Tfidf
-     * @param d          Documento del cual queremos
-     * @param K          Número de documentos que queremos obtener
-     * @param frecResult Resultado de similitud de cada documento con los otros
-     * @return K documentos más similares al documento "d" del conjunto de documentos
+     *
+     * @param header   Documento del cual queremos
+     * @param K        Número de documentos que queremos obtener
+     * @param libreria Resultado de similitud de cada documento con los otros
+     * @return Los K documentos más similares a D del conjunto de documentos
      */
-    public static ArrayList<Documento> buscar(Documento d, int K, ArrayList<ArrayList<Documentos.InfoModificado>> frecResult) {
-        ArrayList<Documento> resultado = new ArrayList<>();
-        ArrayList<Documento> docs = new ArrayList<Documento>();
-        docs = Documentos.getDocumentos();
 
-        int indice = buscarIndice(d, docs);
+    public static ArrayList<DocumentHeader> buscar(DocumentHeader header, int K, Libreria libreria) {
 
-        for (int i = 0; i < frecResult.get(indice).size()-1; ++i) {
-            if (docs.get(i).getEstado()) {
-                if (!frecResult.get(indice).get(i).modif) Documentos.generarSimilitudEntreDocs(indice, i);
-            }
-        }
-        for (int i = 1; i+indice < frecResult.size()+1; ++i) {
-            if (docs.get(indice+i).getEstado()) {
-                if (!frecResult.get(indice).get(indice + i).modif) Documentos.generarSimilitudEntreDocs(indice, indice + 1);
-            }
-        }
+        TreeMap<Autor, HashSet<Titulo>> index = libreria.getIdx();
+        // We should get indexs!!!! :)
+        // getFrecResult for a document means getting all comparisons!
+        // We need to go through index, as we need to also check for those who have been
+        // deleted and such
+        ArrayList<Similitud> res = new ArrayList<Similitud>();
+        index.forEach((a, sT) -> sT.forEach(t -> {
+            DocumentHeader toCompare = new DocumentHeader(a, t);
+            double similitud = libreria.computeSimilarity(header, toCompare);
+            res.add(new Similitud(toCompare, similitud));
+        }));
 
-        ArrayList<Double> res = new ArrayList<Double>();
-        //documentos con indices mayores que el D
-        for (int i = 1; i+indice < frecResult.size()+1; ++i) {
-            if (docs.get(i+indice).getEstado()) {
-                Double a = frecResult.get(indice).get(indice + i).frecuencia;
-                res.add(a);
-            }
-        }
-        //documentos con indices menores que el D
-        for (int i = 0; i < frecResult.get(indice).size()-1; ++i) {
-            if (docs.get(i).getEstado()) {
-                Double a = frecResult.get(indice).get(i).frecuencia;
-                res.add(a);
-            }
-        }
-
-        Comparator<Object> comparador = Collections.reverseOrder();
+        Comparator<Similitud> comparador = Collections.reverseOrder();
         Collections.sort(res, comparador);
 
-        int cont = 0;
+        ArrayList<DocumentHeader> resultado = new ArrayList<DocumentHeader>();
 
-        for (int i = 0; cont < K && i < res.size(); ++i) {
-            Boolean find = false;
-            for (int j = 0; !find && j < frecResult.get(indice).size(); ++j) {
-                if (res.get(i) == frecResult.get(indice).get(j).frecuencia) {
-                    find = true;
-                    Documento c = docs.get(j);
-                    resultado.add(c);
-                    ++cont;
-                }
-            }
+        // Start at 1, cuz comparison with itself will be at index 0
+        for (int i = 1; i < K; i++) {
+            resultado.add(res.get(i).header);
         }
+
         return resultado;
+    }
+
+    private static class Similitud implements Comparator<Similitud> {
+        DocumentHeader header;
+        double similitud;
+
+        public Similitud(DocumentHeader header, double similitud) {
+            this.header = header;
+            this.similitud = similitud;
+        }
+
+        @Override
+        public int compare(Similitud o1, Similitud o2) {
+            Similitud s1 = (Similitud) o1;
+            Similitud s2 = (Similitud) o2;
+            return Double.compare(s1.similitud, s2.similitud);
+        }
     }
 }

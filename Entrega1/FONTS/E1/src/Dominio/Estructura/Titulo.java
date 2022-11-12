@@ -3,6 +3,9 @@ package Dominio.Estructura;
 public class Titulo {
     private String name;
 
+    public Titulo(){
+
+    }
     public Titulo(String name) {
         this.name = name;
     }
@@ -17,5 +20,10 @@ public class Titulo {
 
     public String toString() {
         return name;
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode();
     }
 }
