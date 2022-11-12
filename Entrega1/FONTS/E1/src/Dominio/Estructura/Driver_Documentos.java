@@ -48,7 +48,7 @@ public class Driver_Documentos {
                     autor = scan.nextLine();
                     System.out.println("Titulo: ");
                     titulo = scan.nextLine();
-                    documentos.removeByAutorTitle(autor,titulo);
+                    /*documentos.removeByAutorTitle(autor,titulo);*/
 
                     break;
                 case 4:
@@ -58,21 +58,21 @@ public class Driver_Documentos {
                     System.out.println("Titulo :");
                     titulo = scan.nextLine();
                     //todo revisar la función getContentByAutorTitle(autor,titulo)
-                    System.out.println("Contenido original : "+ documentos.getContentByAutorTitle(autor,titulo));
+                    /*System.out.println("Contenido original : "+ documentos.getContentByAutorTitle(autor,titulo));*/
                     System.out.println("");
                     System.out.println("Escriba su nuevo contenido :");
                     contenido = scan.nextLine();
-                    documentos.modifyContent(autor,titulo,contenido);
+                    /*documentos.modifyContent(autor,titulo,contenido);*/
                     break;
                 case 5:
                     System.out.println(" Mostrando los documentos");
-                    ArrayList<Documento> listdoc = documentos.getDocumentos();
+                    /*ArrayList<Documento> listdoc = documentos.getDocumentos();
                     for(Documento dc : listdoc){
                         System.out.println(" --------------------- ");
                         System.out.println("Autor: "+ dc.getAutor());
                         System.out.println("Titulo: " + dc.getTitulo());
                         System.out.println("Contenido: " +dc.getContenido());
-                    }
+                    }*/
                     break;
                 default:
                     System.err.println("\t Opción inexistente");
