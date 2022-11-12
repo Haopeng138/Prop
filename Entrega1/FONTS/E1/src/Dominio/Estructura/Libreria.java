@@ -12,6 +12,11 @@ public class Libreria {
     Autores autores;
     Documentos documentos;
 
+    public Libreria() {
+        autores = new Autores();
+        documentos = new Documentos();
+    }
+
     public void createDocumento(String a, String t, String contenido) {
         if (a == "") {
             System.out.println("El autor no puede ser vacio");
