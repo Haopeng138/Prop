@@ -31,25 +31,30 @@ public class BusquedaPorExpresionTest {
 
     @Test
     public void buscar() throws Exception {
-        // Caso 1: Cada documento cumple una de las dos condiciones y devuelve la lista entera de documentos
-        Expresion e = new Expresion("(viada , líder) | cuentos");
+
+        Expresion e = new Expresion("(viada , líder) & !cuentos");
         BinaryTree<ParseNode> eparser = parse(e.getExpresion());
         ArrayList<DocumentHeader> result = bpe.buscar(eparser,libreria);
         ArrayList<DocumentHeader> expeted = new ArrayList<DocumentHeader>();
         expeted.add(new DocumentHeader("Chinua Achebe","Todo se desmorona"));
-        // Caso 1: Solo un documento cumple la condición
-        Expresion e2 = new Expresion("(viada , líder) | !cuentos");
+
+        // Caso 1: Solo cumple la condición uno de los
+        //assertEquals("No se ha devuelto documentos que se esperaba autor",expeted.get(0).getAutor().getName(),result.get(0).getAutor().getName());
+        //assertEquals("No se ha devuelto documentos que se esperaba titulo",expeted.get(0).getTitulo().getName(),result.get(0).getTitulo().getName());
+
+        Expresion e2 = new Expresion("(viada , líder) | cuentos");
         BinaryTree<ParseNode> eparser2 = parse(e2.getExpresion());
         ArrayList<DocumentHeader> result2 = bpe.buscar(eparser2,libreria);
-        assertEquals("Ha devuelto documentos que se esperaba",expeted,result2);
-
         expeted.add(new DocumentHeader("Hans Christian Andersen", "Cuentos infantiles"));
         expeted.add(new DocumentHeader("Dante Alighieri", "Divina Comedia"));
 
         // Caso 2: Cada documento cumple una de las dos condiciones y devuelve la lista entera de documentos
-        assertEquals("No lo mirado en todos los documentos",expeted,result);
-
-
+        assertEquals("No se ha devuelto documentos que se esperaba autor 0",expeted.get(0).getAutor().getName(),result2.get(0).getAutor().getName());
+        assertEquals("No se ha devuelto documentos que se esperaba titulo 0",expeted.get(0).getTitulo().getName(),result2.get(0).getTitulo().getName());
+        assertEquals("No se ha devuelto documentos que se esperaba autor 1",expeted.get(1).getAutor().getName(),result2.get(1).getAutor().getName());
+        assertEquals("No se ha devuelto documentos que se esperaba titulo 1",expeted.get(1).getTitulo().getName(),result2.get(1).getTitulo().getName());
+        assertEquals("No se ha devuelto documentos que se esperaba autor 2",expeted.get(2).getAutor().getName(),result2.get(2).getAutor().getName());
+        assertEquals("No se ha devuelto documentos que se esperaba titulo 2",expeted.get(2).getTitulo().getName(),result2.get(2).getTitulo().getName());
 
     }
 }
