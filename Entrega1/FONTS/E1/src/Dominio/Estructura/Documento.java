@@ -3,6 +3,9 @@ package Dominio.Estructura;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Documento {
     /**
      * Atributos de clase Documento
@@ -128,13 +131,13 @@ public class Documento {
                 ++i;
                 ++j;
             } else {
-                if (i + 1 < contenido.length() && conjuntoPalabras.charAt(j) != contenido.charAt(i + 1)) {
-                    ++i;
-                    j = 0;
-                } else
-                    ++j;
+                ++i;
+                j = 0;
             }
         }
         return j == midaString;
     }
 }
+
+//bbbhohhola ----> contenido
+//hola ----> conjuntoPalabras
