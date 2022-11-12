@@ -25,6 +25,7 @@ public class Autores {
 
     /**
      * Metodo que nos indica si el autor existe en nuestro conjunto de autores
+     * 
      * @param a Un autor
      * @return True si existe , False en caso contrario
      */
@@ -68,10 +69,9 @@ public class Autores {
      * @param a Un autor
      * @return un conjunto de autor
      */
-    public ArrayList<Titulo> getTitles(Autor a) {
-        return new ArrayList<Titulo>(autores.get(a).keySet());
+    public ArrayList<Titulo> getTitles(String a) {
+        return new ArrayList<Titulo>(autores.get(new Autor(a)).keySet());
     }
-
 
     /**
      * Metodo que elimina un autor de nuestro conjunto de autores

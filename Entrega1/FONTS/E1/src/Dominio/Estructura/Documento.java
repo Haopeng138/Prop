@@ -8,7 +8,7 @@ public class Documento {
     /**
      * Atributos de clase Documento
      */
-    private static String contenido;
+    private String contenido;
     private Autor autor;
     private Titulo titulo;
     private Boolean estado;
@@ -90,7 +90,7 @@ public class Documento {
      * @param contenido Contenido
      * @return Contenido en ArrayList
      */
-    public static ArrayList<String> stringToArrayList(String contenido) {
+    public ArrayList<String> stringToArrayList(String contenido) {
         //ArrayList<String> separator = new ArrayList<>(Arrays.asList(".", ";", ",", " ", "(", ")", "{", "}", "!", "?", ":"));
         String contenidoMinusculas = contenido.toLowerCase();
         ArrayList<String> doc = new ArrayList<String>(Arrays.asList(contenidoMinusculas.split("[,. ¿?;:()¡!{}...]+")));
