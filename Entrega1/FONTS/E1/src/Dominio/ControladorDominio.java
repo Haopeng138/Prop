@@ -73,8 +73,10 @@ public class ControladorDominio {
      * @param e Una expresión
      * @return un conjunto de documentos
      */
-    public ArrayList<DocumentHeader> busquedaPorExpresion(Expresion e) {
-        return cBusqueda.buscarPorExpresion(e, libreria);
+    public ArrayList<DocumentHeader> busquedaPorExpresion(String alias) {
+
+        Expresion expresion = cExpresiones.get(alias);
+        return cBusqueda.buscarPorExpresion(expresion, libreria);
     }
 
     //// PUNTO 4
@@ -96,6 +98,6 @@ public class ControladorDominio {
     }
 
     public String getExpresion(String alias) {
-        return cExpresiones.get(alias);
+        return cExpresiones.getAsString(alias);
     }
 }
