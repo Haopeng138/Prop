@@ -42,9 +42,10 @@ public class Documentos {
         int mida = documentos.size();
         frecResult.add(new ArrayList<>(mida));
         tf.add(new HashMap<>());
-        inicializarTF(d);
-        actualizarIDF(d);
-
+        /*
+         * inicializarTF(d);
+         * actualizarIDF(d);
+         */
     }
 
     /**
@@ -280,7 +281,11 @@ public class Documentos {
         return tf.get(idx).get(palabra) != null;
     }
 
-    Documento getDocumento(int idx) {
+    public Documento getDocumento(int idx) {
         return documentos.get(idx);
+    }
+
+    public ArrayList<Documento> getDocumentos() {
+        return documentos;
     }
 }
