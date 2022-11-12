@@ -1,34 +1,18 @@
 package Dominio.Logica;
 
-import Dominio.Estructura.Documento;
-import Dominio.Estructura.Documentos;
 import Dominio.Estructura.Autor;
 import Dominio.Estructura.Libreria;
 import Dominio.Estructura.Titulo;
 import Dominio.Utils.DocumentHeader;
 import java.util.*;
 
-
 public class BusquedaPorSimilitud {
-
-    /**
-     * Método para buscar el índice del documento
-     * @param d Un Documento
-     * @param docs Conjunto de documentos
-     * @return Índice del documento "d"
-     */
-    private static Integer buscarIndice(Documento d, ArrayList<Documento> docs) {
-        for (int i = 0; i < docs.size(); ++i) {
-            if (d == docs.get(i)) return i;
-        }
-        return -1;
-    }
 
     /**
      * Método que devuelve los K documentos más similares al documento D según Tfidf
      *
-     * @param header          Documento del cual queremos
-     * @param K          Número de documentos que queremos obtener
+     * @param header   Documento del cual queremos
+     * @param K        Número de documentos que queremos obtener
      * @param libreria Resultado de similitud de cada documento con los otros
      * @return Los K documentos más similares a D del conjunto de documentos
      */
@@ -43,7 +27,7 @@ public class BusquedaPorSimilitud {
         ArrayList<Similitud> res = new ArrayList<Similitud>();
         index.forEach((a, sT) -> sT.forEach(t -> {
             DocumentHeader toCompare = new DocumentHeader(a, t);
-            float similitud = libreria.computeSimilarity(header, toCompare);
+            double similitud = libreria.computeSimilarity(header, toCompare);
             res.add(new Similitud(toCompare, similitud));
         }));
 
@@ -62,9 +46,9 @@ public class BusquedaPorSimilitud {
 
     private static class Similitud implements Comparator<Similitud> {
         DocumentHeader header;
-        float similitud;
+        double similitud;
 
-        public Similitud(DocumentHeader header, float similitud) {
+        public Similitud(DocumentHeader header, double similitud) {
             this.header = header;
             this.similitud = similitud;
         }
@@ -73,7 +57,7 @@ public class BusquedaPorSimilitud {
         public int compare(Similitud o1, Similitud o2) {
             Similitud s1 = (Similitud) o1;
             Similitud s2 = (Similitud) o2;
-            return Float.compare(s1.similitud, s2.similitud);
+            return Double.compare(s1.similitud, s2.similitud);
         }
     }
 }

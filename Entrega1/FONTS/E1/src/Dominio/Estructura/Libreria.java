@@ -37,7 +37,7 @@ public class Libreria {
         DocumentHeader header = new DocumentHeader(a, t);
         try {
             int idx = autores.getDocumentIdx(header);
-            return documentos.getDocumentos().get(idx);
+            return documentos.getDocumento(idx);
         } catch (Exception e) {
             System.out.println("No existe el documento");
             return null;
@@ -47,7 +47,7 @@ public class Libreria {
     public Documento getDocumento(DocumentHeader header) {
         try {
             int idx = autores.getDocumentIdx(header);
-            return documentos.getDocumentos().get(idx);
+            return documentos.getDocumento(idx);
         } catch (Exception e) {
             System.out.println("No existe el documento");
             return null;
@@ -99,13 +99,6 @@ public class Libreria {
         return autores.getTitles(a);
     }
 
-    // Maybe this method shouldn't exist
-    public ArrayList<Documento> getDocumentos() {
-        return this.documentos.getDocumentos(); // This can't work!
-        // We need to at least check if it's been removed...
-        // best way to return "documentos" might be to return autores...
-    }
-
     public TreeMap<Autor, HashSet<Titulo>> getIdx() {
         return autores.getIdx();
     }
@@ -132,14 +125,13 @@ public class Libreria {
         }
     }
 
-    public float computeSimilarity(DocumentHeader header, DocumentHeader toCompare) {
+    public double computeSimilarity(DocumentHeader header, DocumentHeader toCompare) {
         try {
             int idx1 = autores.getDocumentIdx(header);
             int idx2 = autores.getDocumentIdx(toCompare);
             // we should get a method that checks if it has been computed, or it computes it
             // by indexs
-            // return documentos.intersect(idx1, idx2);
-            return 1;
+            return documentos.generarSimilitudEntreDocs(idx1, idx2);
         } catch (Exception e) {
             System.out.println("No existen los documentos que se quieren comparar!");
             return -1;

@@ -18,9 +18,6 @@ public class Documentos {
      */
     private ArrayList<Documento> documentos;
 
-    // tf * idf
-    private ArrayList<HashMap<String, Double>> docsPalabra = new ArrayList<HashMap<String, Double>>();
-
     // similitud entre documentos
     private ArrayList<ArrayList<InfoModificado>> frecResult = new ArrayList<ArrayList<InfoModificado>>();
     // frecuencia de cada palabra de un documento
@@ -42,18 +39,12 @@ public class Documentos {
      */
     public void add(Documento d) {
         documentos.add(d);
-    }
+        int mida = documentos.size();
+        frecResult.add(new ArrayList<>(mida));
+        tf.add(new HashMap<>());
+        inicializarTF(d);
+        actualizarIDF(d);
 
-    public HashMap<String, Double> getContidf() {
-        return contidf;
-    }
-
-    public ArrayList<HashMap<String, Double>> getTf() {
-        return tf;
-    }
-
-    public ArrayList<HashMap<String, Double>> getDocsPalabra() {
-        return docsPalabra;
     }
 
     /**
@@ -62,6 +53,7 @@ public class Documentos {
      * @param d Un documento
      */
     public void remove(int idx) {
+        eliminarDocIDF(documentos.get(idx));
         documentos.remove(documentos.get(idx));
 
     }
@@ -72,15 +64,15 @@ public class Documentos {
         Documento d = documentos.get(idx);
 
         d.setContenido(contenido);
-        modificarTF(d);
+        modificarTF(idx);
         actualizarIDF(d);
-        for (int j = 0; j < frecResult.get(idx).size() - 1; ++j) {
+        for (int j = 0; j < frecResult.get(idx).size(); ++j) {
             if (frecResult.get(idx).get(j).modif)
                 frecResult.get(idx).get(j).modif = false;
         }
-        for (int j = 1; idx + j < frecResult.size() + 1; ++j) {
-            if (frecResult.get(idx).get(idx + j).modif)
-                frecResult.get(idx).get(idx + j).modif = false;
+        for (int j = idx + 1; j < frecResult.size(); ++j) {
+            if (frecResult.get(idx).get(j).modif)
+                frecResult.get(idx).get(j).modif = false;
         }
     }
 
@@ -144,21 +136,6 @@ public class Documentos {
     }
 
     /*
-     * //no hace falta ????
-     * private static Double idf(String p) {
-     * Double cont = 0.0;
-     * for (int j = 0; j < Documentos.size(); ++j) {
-     * String a = Documentos.get(j).getContenido();
-     * ArrayList<String> docA = stringToArrayList(a);
-     * if (existe(docA, p)) {
-     * ++cont;
-     * break;
-     * }
-     * }
-     * return cont;
-     * }
-     * 
-     * /**
      * Método para actualizar el contidf cada vez que haya una modificación del
      * contenido de un documento o cuando añade un nuevo documento
      * 
@@ -221,21 +198,15 @@ public class Documentos {
      * 
      * @param d Un documento
      */
-    private void modificarTF(Documento d) {
-        int mida = -1;
-        boolean trobat = false;
-        for (int i = 0; !trobat && i < documentos.size(); ++i) {
-            if (documentos.get(i) == d) {
-                trobat = true;
-                mida = i;
-            }
-        }
-        tf.get(mida).clear();
+    private void modificarTF(int idx) {
+
+        Documento d = documentos.get(idx);
+        tf.get(idx).clear();
         ArrayList<String> docD = d.stringToArrayList(d.getContenido());
         for (int j = 0; j < docD.size(); ++j) {
-            if (!tf.get(mida).containsKey(docD.get(j))) {
+            if (!tf.get(idx).containsKey(docD.get(j))) {
                 Double a = tf(docD, docD.get(j));
-                tf.get(mida).put(docD.get(j), a);
+                tf.get(idx).put(docD.get(j), a);
             }
         }
     }
@@ -280,21 +251,25 @@ public class Documentos {
      * @param docIndice Índice de un documento
      * @param docSim    Índice de otro documento
      */
-    private void generarSimilitudEntreDocs(int docIndice, int docSim) {
+    public double generarSimilitudEntreDocs(int docIndice, int docSim) {
         HashMap<String, Double> s1 = new HashMap<>();
         s1 = tf.get(docIndice);
         HashMap<String, Double> s2 = new HashMap<>();
         s2 = tf.get(docSim);
 
+        int pequeno = docIndice < docSim ? docIndice : docSim;
+        int grande = docIndice < docSim ? docSim : docIndice;
+
+        if (frecResult.get(grande).get(pequeno).modif) {
+            return frecResult.get(grande).get(pequeno).frecuencia;
+        }
+
         double resultat = intersect(s1, s2);
         InfoModificado info = new InfoModificado();
         info.frecuencia = resultat;
         info.modif = true;
-        frecResult.get(docIndice).set(docSim, info);
-    }
-
-    public ArrayList<Documento> getDocumentos() {
-        return documentos;
+        frecResult.get(grande).set(pequeno, info);
+        return resultat;
     }
 
     public Boolean tieneString(int idx, String texto) {
@@ -303,5 +278,9 @@ public class Documentos {
 
     public boolean tienePalabra(int idx, String palabra) {
         return tf.get(idx).get(palabra) != null;
+    }
+
+    Documento getDocumento(int idx) {
+        return documentos.get(idx);
     }
 }
