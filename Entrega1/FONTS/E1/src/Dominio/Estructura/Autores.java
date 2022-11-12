@@ -25,7 +25,6 @@ public class Autores {
 
     /**
      * Metodo que nos indica si el autor existe en nuestro conjunto de autores
-     * 
      * @param a Un autor
      * @return True si existe , False en caso contrario
      */
@@ -65,7 +64,7 @@ public class Autores {
 
     /**
      * Metodo que devuelve todos los titulos que tiene un autor
-     * 
+     *
      * @param a Un autor
      * @return un conjunto de autor
      */
@@ -73,9 +72,10 @@ public class Autores {
         return new ArrayList<Titulo>(autores.get(a).keySet());
     }
 
+
     /**
      * Metodo que elimina un autor de nuestro conjunto de autores
-     * 
+     *
      * @param a Autor
      */
     public void remove(Autor a) {
@@ -88,7 +88,7 @@ public class Autores {
 
     /**
      * Metodo que devuelve el conjunto de autores
-     * 
+     *
      * @return Un conjunto de autores
      */
     public ArrayList<Autor> getAutores() {
@@ -97,7 +97,7 @@ public class Autores {
 
     /**
      * Metodo que devuelve el conjunto de autores ordenados
-     * 
+     *
      * @return Un conjunto de autores ordenados
      */
     public TreeSet<Autor> getOrderedAutores() {
@@ -106,7 +106,7 @@ public class Autores {
 
     /**
      * Metodo que devuelve el numero de autores en el sistema
-     * 
+     *
      * @return El numero de autores en el sistema
      */
     public int getNumAutor() {
@@ -115,7 +115,7 @@ public class Autores {
 
     /**
      * Metodo que devuelve el indice del documento
-     * 
+     *
      * @param header
      * @return Posicion en la que se indexa el documento
      * @throws Exception
@@ -134,7 +134,7 @@ public class Autores {
 
     /**
      * Metodo que devuelve el indice del documento
-     * 
+     *
      * @return La lista de autores y titulos
      */
     public TreeMap<Autor, HashSet<Titulo>> getIdx() {
@@ -145,7 +145,7 @@ public class Autores {
 
     /**
      * Metodo que borra un documento
-     * 
+     *
      * @param a Autor
      * @param t Titulo
      */
@@ -162,7 +162,7 @@ public class Autores {
 
     /**
      * Metodo que borra un documento
-     * 
+     *
      * @param header pareja autor titulo
      */
     public void removeTitle(DocumentHeader header) {

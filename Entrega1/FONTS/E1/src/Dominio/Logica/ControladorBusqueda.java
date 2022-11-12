@@ -1,7 +1,6 @@
 package Dominio.Logica;
 
-import java.util.ArrayList;
-import java.util.TreeSet;
+import java.util.*;
 
 import Dominio.Estructura.Autor;
 import Dominio.Estructura.Libreria;

@@ -1,22 +1,36 @@
 package Dominio.Logica;
 
+import Dominio.Estructura.Documento;
+import Dominio.Estructura.Documentos;
 import Dominio.Estructura.Autor;
 import Dominio.Estructura.Libreria;
 import Dominio.Estructura.Titulo;
 import Dominio.Utils.DocumentHeader;
-
 import java.util.*;
+
 
 public class BusquedaPorSimilitud {
 
     /**
+     * Método para buscar el índice del documento
+     * @param d Un Documento
+     * @param docs Conjunto de documentos
+     * @return Índice del documento "d"
+     */
+    private static Integer buscarIndice(Documento d, ArrayList<Documento> docs) {
+        for (int i = 0; i < docs.size(); ++i) {
+            if (d == docs.get(i)) return i;
+        }
+        return -1;
+    }
+
+    /**
      * Método que devuelve los K documentos más similares al documento D según Tfidf
      *
-     * @param header   Documento del cual queremos
-     * @param K        Número de documentos que queremos obtener
-     * @param libreria Libreria con todos los documentos
-     * @return Los K documentos más similares al documento header del conjunto de
-     *         documentos
+     * @param header          Documento del cual queremos
+     * @param K          Número de documentos que queremos obtener
+     * @param libreria Resultado de similitud de cada documento con los otros
+     * @return Los K documentos más similares a D del conjunto de documentos
      */
 
     public static ArrayList<DocumentHeader> buscar(DocumentHeader header, int K, Libreria libreria) {
