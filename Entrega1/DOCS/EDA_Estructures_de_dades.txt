@@ -1,0 +1,60 @@
+Estructuras de datos
+
+
+ControladorDeDominio
+
+-> ControladorBusqueda
+	-> BusquedaPorExpresion
+		// no tiene ED
+	-> BusquedaPorPrefijo
+		// no tiene ED
+	-> BusquedaPorSimilitud
+		// no tiene ED
+-> Libreria
+	-> Autores
+		· TreeMap<Autor, HashMap<Titulo, Integer>> autores
+			TreeMap para tener un mapa ordenado, podria ser un HashMap entonces insertar, borrar y consultar costaria O(1) pero para hacer busqueda por prefijo, coste O(#autores)
+			así que haciendolo con TreeMap, insertar, borrar y consultar es O(log(#autores)) pero la busqueda por prefijo se reduce a O(log(#autores) + #coincidentes)
+			Coste espacial O(#autores)
+
+		-> Autor
+			// no tiene ED
+		-> Titulo
+			// no tiene ED
+		
+	-> Documentos
+		· ArrayList<Documento> documentos
+			ArrayList de documentos, se busca por indice a traves de la libreria que busca el indice en autores, busqueda y modificacion O(1), y insertar en un arrayList es coste
+			amortizado O(1)
+			Coste espacial O(#documentos)
+		
+    		· ArrayList<ArrayList<InfoModificado>> frecResult
+			Matriz diagonal inferior que sirve como cache para el resultado de similitud entre dos documentos. Se busca y modifica por indice O(1), y se inserta una fila de
+			tamaño #documentos - 1 cada vez que se inserta un documento O(#documento). 
+			Coste espacial (todas las parejas de documentos / 2 - # documentos), asintoticamente 
+			O(#documentos^2)
+			Podria no existir, pero su implementacion ayuda a reducir el tiempo de queries repetidas a casi O(1) (Es una cache)
+			
+    		· ArrayList<HashMap<String, Double>> tf
+    			Array de vectores de palabras. Cada vector de frecuencia se implementa con un HashMap, coste busqueda, insercion y modificacion palabra O(1)
+			Coste espacial O(#documentos*(#numPalabras/documento))
+
+		· HashMap<String, Double> contidf
+			Vector de palabras de todos los documentos. Análisi equivalente a tf.
+			Podria no existir, pero entonces al calcular el idf, tendriamos que recorrer todos los vectores de palabras subiendo de O(#palabras) a O(#palabras*(#documentos))
+
+-> ControladorExpresiones
+	· HashMap<String, Expresion> expresiones
+		HashMap para guarda expresiones, O(1) en insertar, borrar y modificar
+		Coste espacial O(#expresiones)
+		
+	-> Expresiones
+		// no tiene ED
+
+Utils
+
+-> BinTree, implementacion basica de un arbol binario
+
+-> ParseNode, nodos que usa el parser para el arbol binario. Pueden ser de tipo operador (AND, OR NOT), de tipo contain (aray de string) o de tipo match (string)
+
+-> DocumentHeader, abstraccion de la llave primaria de un documento, para buscar en la libreria a traves de autor y titulo se usa el DocumentHeader, que es un wrapper de estos.

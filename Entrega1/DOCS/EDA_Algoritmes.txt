@@ -1,0 +1,50 @@
+Algoritmos
+
+
+ControladorDeDominio
+
+-> ControladorBusqueda
+	-> BusquedaPorExpresion
+		· buscar(bTree, libreria)
+			Recibe un arbol binario, y la libreria. Los nodos del árbol pueden ser operadores, contain (el documento tiene que contener la palabra), o match (el documento tiene
+			que matchear la string).
+			LLama una funcion que se encargara de viajar recursivamente a través del arbol, con el indice de los documentos
+
+		· buscarRec(bTree, indice)
+			Recibe el subarbol que aun no se ha parseado, y el indice de los documentos en los que buscar. Si el nodo es de tipo operador: AND -> devuelve la interseccion entre
+			el resultado de buscar en sus hijos. OR -> devuelve la ujnion entre el resultado de buscar en sus hijos, y NOT -> devuelve los documentos que no son devueltos por
+			el resultado de buscar en su hijo izquierdo.
+
+	-> BusquedaPorPrefijo
+		· buscar(autores, prefix)
+			Dado un TreeSet de autores, y un prefijo, calcula el siguiente string que ya no cumple el prefijo, y devuelve todos los autores que estan entre el prefijo y este
+			siguiente string. Se ayuda de la funcion auxiliar computeNextPrefix(prefix).
+
+	-> BusquedaPorSimilitud
+		· buscar(header, K, libreria)
+			recibe el header del documento al que encontrar los K documentos mas similares, y la libreria de documentos. Coge el indice de documentos de la libreria, y para
+			cada uno de los documentos que no sean el mismo, coge su header, y pregunta la similitud a la libreria. Va guardando la informacion en un array de Similitud, que
+			consiste en (DocumentHeader, similitud). Finalmente ordena por similitud y devuelve los k con mejor puntuacion de similitud.
+
+-> Libreria
+	-> Autores
+		// clase CRUD
+
+		-> Autor
+			Wrapper de string, se implementa toString y compare para poder usar como entries del TreeMap / TreeSet
+		-> Titulo
+			Wrapper de String
+		
+	-> Documentos
+		Documentos, aparte de la gestion CRUD de documentos, es la clase encargada de calcular los vectores para el tf-idf, y calcular la similitud (por el momento)
+		El algoritmo usado para ello es el tf-idf, para cada documento se tiene su tf (vector de palabras), y se tiene el contidf (vector de palabras de todos los documentos)
+		asi que con el medodo generarSimilitud(indice1, indice2) se encarga de mirar en la cache si ya esta calculado y devolverlo o si no, calcularlo con la formula del tf-idf
+		similitud = tf*idf, donde tf = frecPalabra y idf = numDocumentos / numDocumentos en que aparece la palabra. Generar similitud, a partir de los dos vectores resultantes
+		del tf-idf, calcula la norma de cada vector, su producto escalar y devuelve el producto escalar normalizado, es decir el coseno del angulo = v1*v2/(|v1||v2|).
+		En caso de que el contenido de un documento este repetido en todos los documentos se divide por zero y devuelve NaN, lo creemos improbable.
+
+-> ControladorExpresiones
+	// clase CRUD
+		
+	-> Expresiones
+		// Wrapper de String String
