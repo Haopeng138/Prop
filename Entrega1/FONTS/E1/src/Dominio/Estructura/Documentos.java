@@ -29,7 +29,6 @@ public class Documentos {
     //número de documentos en qué parece la palabra
     private static HashMap<String, Double> contidf = new HashMap<>();
 
-
     /**
      * Métode de creación por defecto de documentos
      */
@@ -38,56 +37,22 @@ public class Documentos {
     }
 
     /**
-     * Método que devuelve el conjunto de documento
-     * @return Documentos
-     */
-    public static ArrayList<Documento> getDocumentos (){
-        return Documentos;
-    }
-
-
-    /**
-     * Método que devuelve la matriz de similitud entre los documentos
-     * @return frecResult
-     */
-    public  static  ArrayList<ArrayList<InfoModificado>> getFrecResult() { return frecResult; }
-
-    /**
-     * Método para añadir un documento al conjunto de documento
+     * Metodo para añadir un documento al conjunto de documento
      * @param d Un documento
      */
     public void add(Documento d){
         Documentos.add(d);
-        int mida = Documentos.size();
-        frecResult.add(new ArrayList<>(mida));
-        tf.add(new HashMap<>());
-        inicializarTF(d);
-        actualizarIDF(d);
     }
-
-
-
-    /**
-     * Método que devuelve el conjunto de documento
-     * @return Documentos
-     */
 
     public HashMap<String, Double> getContidf() { return contidf; }
     public ArrayList<HashMap<String, Double>> getTf() { return tf; }
     public ArrayList<HashMap<String, Double>> getDocsPalabra() { return  docsPalabra; }
 
     /**
-     * Método para eliminar un documento del conjunto de documento
+     * Metodo para eliminar un documento del conjunto de documento
      * @param d Un documento
      */
     public void remove(Documento d){
-        boolean trobat = false;
-        for (int i = 0; ! trobat && i < Documentos.size(); ++i) {
-            if (Documentos.get(i) == d) {
-                trobat = true;
-                eliminarDocIDF(d);
-            }
-        }
         Documentos.remove(d);
 
     }
@@ -108,12 +73,6 @@ public class Documentos {
         Documentos.removeIf(d -> d.getAutor().equals(autor) && d.getTitulo().equals(title) );
     }
 
-    /**
-     * Método para modificar el contenido de un documento dado el autor y el título
-     * @param autor Nombre del autor
-     * @param title Nombre del título
-     * @param contenido Contenido del documento con el título "title" y del autor "autor"
-     */
     public void modifyContent(String autor,String title, String contenido){
         boolean find = false;
         for (int i = 0; i < Documentos.size(); ++i){
@@ -154,19 +113,6 @@ public class Documentos {
 
     }
 
-
-    private static ArrayList<String> stringToArrayList(String contenido) {
-        //ArrayList<String> separator = new ArrayList<>(Arrays.asList(".", ";", ",", " ", "(", ")", "{", "}", "!", "?", ":"));
-        String contenidoMinusculas = contenido.toLowerCase();
-        ArrayList<String> doc = new ArrayList<String>(Arrays.asList(contenidoMinusculas.split("[,. ¿?;:()¡!{}...]+")));
-        return doc;
-    }
-
-    // Si una palabra ya está en el arrayList, es decir, ya tiene su frecuencia
-    private static Boolean existeP(HashMap<String, Double> doc, String p) {
-        return doc.containsKey(p);
-    }
-
     /**
      * Método para verificar la existencia de una key en el contidf
      * @param p Una palabra
@@ -178,21 +124,11 @@ public class Documentos {
     }
 
     /**
-     *
-     * @param d
-     */
-    public void altabajaDoc(Documento d) {
-        if (d.getEstado()) actualizarIDF(d);
-        else eliminarDocIDF(d);
-    }
-
-    /**
      * Método para calcular la frecuencia de una palabra en un determinado documento (TF)
      * @param doc Contenido del documento en forma de ArrayList
      * @param p Una palabra
      * @return Frecuencia de la palabra "p" en el documento "doc"
      */
-    // una vez, en la hora de input
     private Double tf(ArrayList<String> doc, String p){
         Double cont = 0.0;
         for (int i = 0; i < doc.size(); ++i) {
@@ -316,17 +252,6 @@ public class Documentos {
      */
     public static Double intersect(HashMap<String, Double> s1, HashMap<String, Double> s2) {
         double result = 0.0;
-        for (String a : s1.keySet()) {
-            boolean trobat = false;
-            while (!trobat) {
-                for (String b : s2.keySet()) {
-                    if (a == b) {
-                        result = result + s1.get(a) * s2.get(b);
-                        trobat = true;
-                    }
-                }
-            }
-        }
         double s1Res = 0.0;
         double s2Res = 0.0;
 
@@ -367,4 +292,3 @@ public class Documentos {
         frecResult.get(docIndice).set(docSim, info);
     }
 }
-

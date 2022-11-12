@@ -22,8 +22,6 @@ public class Documento {
      * @param contenido Contenido del documento
      */
 
-
-
     public Documento(String autor,String titulo, String contenido){
         this.autor = new Autor(autor);
         this.titulo = new Titulo(titulo);
@@ -73,13 +71,6 @@ public class Documento {
         return titulo.getName();
     }
 
-
-    /**
-     * Método para devolver el estado del documento
-     * @return Estado
-     */
-    public Boolean getEstado() { return  estado; }
-
     /**
      * Método para devolver el contenido
      * @return Contenido
@@ -87,6 +78,12 @@ public class Documento {
     public String getContenido() {
         return contenido;
     }
+
+    /**
+     * Método para devolver el estado del documento
+     * @return Estado
+     */
+    public Boolean getEstado() { return  estado; }
 
     /**
      * Método para convertir un String en un ArrayList
@@ -99,6 +96,8 @@ public class Documento {
         ArrayList<String> doc = new ArrayList<String>(Arrays.asList(contenidoMinusculas.split("[,. ¿?;:()¡!{}...]+")));
         return doc;
     }
+
+
 
     /**
      * Método para verificar la existencia de un String en el contenido

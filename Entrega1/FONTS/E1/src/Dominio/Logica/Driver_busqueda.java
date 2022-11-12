@@ -48,19 +48,20 @@ public class Driver_busqueda {
                             System.out.println(error.getMessage());
                             System.out.println("Vuelve a introducir la expresion");
                         }
-                        Set<Documento> resExp = ControladorBusqueda.buscarPorExpresion(exp);
+                        /*Set<Documento> resExp = ControladorBusqueda.buscarPorExpresion(exp);
                         for (Iterator<Documento> it = resExp.iterator(); it.hasNext(); ) {
                             Documento d = it.next();
                             System.out.println("Autor : " + d.getAutor());
                             System.out.println("Titulo : "+ d.getTitulo());
                             System.out.println("Contenido : "+ d.getContenido());
                             System.out.println();
-                        }
+                        }*/
                         System.out.println("Los documentos con la expresión " + exp);
                     }
 
                     break;
                 case 2:
+                    /*
                     System.out.println("Busqueda por prefijo ");
                     System.out.println("Introduce un prefijo ");
                     String pre;
@@ -72,7 +73,7 @@ public class Driver_busqueda {
                         String autor = String.valueOf(resAutores.get(i));
                         System.out.println(autor);
                     }
-                    System.out.println("Los autores con el mismo prefijo");
+                    System.out.println("Los autores con el mismo prefijo");*/
                     break;
 
                 case 3:
@@ -85,13 +86,13 @@ public class Driver_busqueda {
                     System.out.println("La K : ");
                     int K = Integer.parseInt(scan.nextLine());
                     ArrayList<Documento> resDocs = new ArrayList<>();
-                    Documento d = documentos.getDocumentByAutorTitle(autor, titulo);
+                    /*Documento d = documentos.getDocumentByAutorTitle(autor, titulo);
                     resDocs = ControladorBusqueda.buscarPorSimilitud(d, K);
                     for (int i = 0; i < resDocs.size(); ++i) {
                         String a = resDocs.get(i).getAutor();
                         String t = resDocs.get(i).getTitulo();
                         System.out.println("Autor: " + a + " con su libro " + t);
-                    }
+                    }*/
                     System.out.println("Los documentos más similiares escrito");
                     break;
 
@@ -132,10 +133,10 @@ public class Driver_busqueda {
     }
 
     public static void mostrarDocumentos(Documentos documentos){
-        for (Documento d: documentos.getDocumentos()){
+        /*for (Documento d: documentos.getDocumentos()){
             System.out.println("Autor : " + d.getAutor());
             System.out.println("Titulo : "+ d.getTitulo());
             System.out.println("Contenido : "+ d.getContenido());
-        }
+        }*/
     }
 }
