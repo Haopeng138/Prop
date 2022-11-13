@@ -33,6 +33,7 @@
     1. El usuario indica el documento a eliminar
     2. El sistema borra el documento correspondiente
 
+
 ---
 ## Guardar Documento
 ### Actor: Usuario
