@@ -18,7 +18,8 @@ public class Driver_Documentos {
             System.out.println("2- Cargar Docuemento");
             System.out.println("3- Eliminar Documento");
             System.out.println("4- Modificar Documento");
-            System.out.println("5- Mostrar Documento");
+            System.out.println("5- Mostrar Documentos");
+            System.out.println("6- Obtener Similitud entre documentos");
             System.out.println(" ----------------- ");
             System.out.println("Introduce tu opción");
             Scanner scanopt = new Scanner(System.in);
@@ -67,7 +68,15 @@ public class Driver_Documentos {
                       System.out.println("Titulo: " + dc.getTitulo());
                       System.out.println("Contenido: " +dc.getContenido());
                     }
-
+                    break;
+                case 6:
+                    System.out.println("Introduce los ixd que quieres comparar");
+                    System.out.println("Idx1 :");
+                    Scanner scanidx = new Scanner(System.in);
+                    int idx1 = scanidx.nextInt();
+                    System.out.println("Idx2 :");
+                    int idx2 = scanidx.nextInt();
+                    System.out.println(documentos.generarSimilitudEntreDocs(idx1,idx2));
                     break;
                 default:
                     System.err.println("\t Opción inexistente");
