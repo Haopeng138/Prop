@@ -49,6 +49,7 @@ public class BusquedaPorExpresionTest {
         expeted.add(new DocumentHeader("Dante Alighieri", "Divina Comedia"));
 
         // Caso 2: Cada documento cumple una de las dos condiciones y devuelve la lista entera de documentos
+        // Todo: cambiar el orden dependiendo de la función
         assertEquals("No se ha devuelto documentos que se esperaba autor 0",expeted.get(0).getAutor().getName(),result2.get(0).getAutor().getName());
         assertEquals("No se ha devuelto documentos que se esperaba titulo 0",expeted.get(0).getTitulo().getName(),result2.get(0).getTitulo().getName());
         assertEquals("No se ha devuelto documentos que se esperaba autor 1",expeted.get(1).getAutor().getName(),result2.get(1).getAutor().getName());
