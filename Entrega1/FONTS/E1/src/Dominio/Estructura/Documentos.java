@@ -25,6 +25,8 @@ public class Documentos {
     // número de documentos en qué parece la palabra
     private HashMap<String, Double> contidf = new HashMap<>();
 
+    Set<String> stopwords = new HashSet<String>(Arrays.asList("cuales","mismo","del","expresó","fin","unos","grandes","toda","posible","buen","usted","dicen","menos","pasada","mientras","misma","aseguró","les","propia","dejó","mayor","bueno","vamos","al","hubo","muchos","estos","manera","podrían","junto","cual","está","mucho","estamos","estoy","fueron","ningunos","hicieron","buena","siempre","quien","ello","primer","quién","tampoco","actualmente","último","estuvo","otras","anterior","llevar","sea","habían","después","podrán","propio","sus","por","se","hoy","sólo","mismas","ellas","si","propios","cosas","consideró","muchas","a","nunca","pasado","ser","cualquier","quienes","su","alguna","e","gran","diferente","encuentra","o","dijeron","todo","alguno","ella","lleva","están","existen","y","igual","todos","da","algo","siendo","de","nuestro","lugar","serán","parte","dio","ellos","cinco","primeros","tercera","han","apenas","nuestra","un","poco","solamente","hay","cómo","sino","él","dijo","el","mismos","en","poca","debe","va","cuatro","es","donde","sobre","tendrán","algunos","ex","pueden","mediante","será","buenas","conocer","última","había","unas","nuevas","últimos","que","tenemos","tenido","hacia","pero","ayer","nuevos","seis","hacerlo","comentó","también","tuvo","ahora","adelante","señaló","nos","aún","tiene","durante","otro","algún","sin","sí","respecto","más","otra","dentro","sola","una","solo","nueva","últimas","tienen","éste","lado","nuevo","partir","uno","ha","así","buenos","embargo","ésta","he","porque","entonces","segunda","realizar","siete","quiere","tras","ya","cerca","demás","haciendo","haber","segundo","yo","tener","casi","mejor","decir","nosotros","hemos","pueda","bien","habrá","como","van","realizado","tenga","siguiente","pocas","hace","diferentes","alrededor","llegó","estaban","varias","esos","explicó","nada","qué","pues","dos","añadió","incluso","solas","tanto","algunas","según","esas","hacer","los","cuanto","hacen","sido","era","tengo","informó","antes","hasta","poner","tendrá","agregó","tenía","cuando","pudo","aquí","hecho","éstos","existe","estará","varios","principalmente","próximos","debido","esa","ante","cada","la","ese","pocos","creo","fue","le","través","eso","con","lo","otros","podemos","esto","dice","propias","dan","ambos","son","dar","pesar","me","ninguno","tres","mi","entre","tal","las","tan","aproximadamente","ver","desde","sigue","ahí","cierto","nosotras","vez","todas","este","queremos","indicó","esta","eran","éstas","dicho","mencionó","todavía","ni","nuestras","ejemplo","no","primero","mucha","hizo","trata","nuestros","dieron","sean","además","podría","luego","momento","muy","total","primera","para","nadie","cuenta","ningún","deben","contra","próximo","afirmó","puede","dado","ocho","bajo","podrá","ninguna","veces","aunque","parece","realizó","sería","fuera","haya","considera","estar","manifestó","ningunas","solos","estas","estaba","quedó"));
+
     /**
      * Métode de creación por defecto de documentos
      */
@@ -40,7 +42,7 @@ public class Documentos {
     public void add(Documento d) {
         documentos.add(d);
         int mida = documentos.size();
-        frecResult.add(new ArrayList<>(mida));
+        frecResult.add(new ArrayList<InfoModificado>(mida-1));
         tf.add(new HashMap<>());
         inicializarTF(d);
         actualizarIDF(d);
@@ -49,7 +51,7 @@ public class Documentos {
     /**
      * Metodo para eliminar un documento del conjunto de documento
      * 
-     * @param d Un documento
+     * @param idx Índice de un documento
      */
     public void remove(int idx) {
         eliminarDocIDF(documentos.get(idx));
@@ -78,9 +80,8 @@ public class Documentos {
     /**
      * Método para obtener el contenido de un documento dado el autor y el título
      * 
-     * @param autor Nombre del autor
-     * @param title Nombre del título
-     * @return Contenido del documento con el título "title" y del autor "autor", si
+     * @param idx Índice del documento
+     * @return Contenido del documento con el índice idx, si
      *         existe este documento
      *         Null, en el caso contrario
      */
@@ -127,9 +128,11 @@ public class Documentos {
         int mida = tf.size() - 1;
         ArrayList<String> docD = d.stringToArrayList(d.getContenido());
         for (int j = 0; j < docD.size(); ++j) {
-            if (!tf.get(mida).containsKey(docD.get(j))) {
-                Double a = tf(docD, docD.get(j));
-                tf.get(mida).put(docD.get(j), a);
+            if (! stopwords.contains(docD.get(j))) {
+                if (!tf.get(mida).containsKey(docD.get(j))) {
+                    Double a = tf(docD, docD.get(j));
+                    tf.get(mida).put(docD.get(j), a);
+                }
             }
         }
     }
@@ -195,7 +198,7 @@ public class Documentos {
      * Método para actualizar el tf cuando haya una modificación del contenido de un
      * documento
      * 
-     * @param d Un documento
+     * @param idx Índice de un documento
      */
     private void modificarTF(int idx) {
 
@@ -203,9 +206,11 @@ public class Documentos {
         tf.get(idx).clear();
         ArrayList<String> docD = d.stringToArrayList(d.getContenido());
         for (int j = 0; j < docD.size(); ++j) {
-            if (!tf.get(idx).containsKey(docD.get(j))) {
-                Double a = tf(docD, docD.get(j));
-                tf.get(idx).put(docD.get(j), a);
+            if (! stopwords.contains(docD.get(j))) {
+                if (!tf.get(idx).containsKey(docD.get(j))) {
+                    Double a = tf(docD, docD.get(j));
+                    tf.get(idx).put(docD.get(j), a);
+                }
             }
         }
     }
