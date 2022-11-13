@@ -52,7 +52,7 @@ public class Expresion {
         for (int i = 0; i < expr.length(); i++) {
             char x = expr.charAt(i);
 
-            if (x == '(' || x == '{') {
+            if (x == '(' || x == '{' || x== '"') {
                 // Push the element in the stack
                 stack.push(x);
                 continue;
@@ -73,6 +73,11 @@ public class Expresion {
                 case '}':
                     check = stack.pop();
                     if (check == '(' || check == '[')
+                        return false;
+                    break;
+                case '"':
+                    check = stack.pop();
+                    if (check == '"')
                         return false;
                     break;
             }

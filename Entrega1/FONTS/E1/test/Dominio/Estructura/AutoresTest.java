@@ -1,5 +1,6 @@
 package Dominio.Estructura;
 
+import Dominio.Utils.DocumentHeader;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -44,33 +45,34 @@ public class AutoresTest {
         a.add(autor);
         assertEquals("No debería poder añadir el mismo autor dos veces",2,a.getNumAutor());
 
-        // Caso 4: se añade un autor que no tiene nombre => no se deberia añadir
-        Autor autortmp = new Autor("");
-        a.add(autortmp);
-        assertEquals("No debería poder añadir un autor que no tiene nombre",2,a.getNumAutor());
 
     }
 
     @Test
     public void addTitleToAutor() {
-        /*
+
         Titulo t = new Titulo("Monstruo de las galletas");
         // Caso inicial: (no hay titulo) añadir un titulo =>
-        a.addTitleToAutor(t,autorg);
-        ArrayList<Titulo> titulos = a.getTitles(autorg);
+        DocumentHeader header = new DocumentHeader(autorg,t);
+        a.addTitleToAutor(header);
+        ArrayList<Titulo> titulos = a.getTitles(autorg.getName());
         String tmp = titulos.get(titulos.size()-1).toString();
         assertEquals("El titulo no se ha introducido bien","Monstruo de las galletas",tmp);
         assertEquals("Solo tendría que haber un titulo",1,titulos.size());
 
         // Caso 2: Añadir un titulo repetido
-        a.addTitleToAutor(t,autorg);
-        ArrayList<Titulo> titulos2 = a.getTitles(autorg);
+        a.addTitleToAutor(header);
+        ArrayList<Titulo> titulos2 = a.getTitles(autorg.getName());
         assertEquals("El mismo titulo no debería poder añadir",1,titulos2.size());
 
         // Caso 3: Añadir un titulo en blanco
         Titulo t2 = new Titulo("");
-        a.addTitleToAutor(t2,autorg);
-        ArrayList<Titulo> titulos3 = a.getTitles(autorg);*/
+        DocumentHeader header1 = new DocumentHeader(autorg,t2);
+        a.addTitleToAutor(header1);
+        ArrayList<Titulo> titulos3 = a.getTitles(autorg.getName());
+        // Todo decidir si un titulo nullo se puede añadir
+        assertEquals("El mismo titulo no debería poder añadir",1,titulos3.size());
+        assertEquals("El titulo aunque esté vacío puede añadir",2,titulos3.size());
 
     }
 
@@ -117,4 +119,51 @@ public class AutoresTest {
 
 
     }
+
+    @Test
+    public void getDocumentIdx() throws Exception {
+        Titulo t = new Titulo("Monstruo de las galletas");
+        // Caso inicial: (no hay titulo) añadir un titulo =>
+        DocumentHeader header = new DocumentHeader(autorg,t);
+        a.addTitleToAutor(header);
+        Titulo t2 = new Titulo("No te deja dormir");
+        DocumentHeader header2 = new DocumentHeader(autorg,t2);
+        a.addTitleToAutor(header2);
+        Integer i = 1;
+        assertEquals("No se ha devuelto el index esperado",i,a.getDocumentIdx(header));
+        i = 2;
+        assertEquals("No se ha devuelto el index esperado",i,a.getDocumentIdx(header2));
+        try {
+            DocumentHeader headererror = new DocumentHeader("janfkga","gksjdfnlgkjsdf");
+            a.getDocumentIdx(headererror);
+        }catch (Exception e){
+            assertEquals("No se ha detectado el error","Autor no encontrado",e.getMessage());
+        }
+
+        try{
+            DocumentHeader headererrort = new DocumentHeader(autorg,new Titulo("HOla"));
+            a.getDocumentIdx(headererrort);
+        }catch (Exception e){
+            assertEquals("No se ha detecatado que no tiene el titulo","El autor no tiene este titulo",e.getMessage());
+        }
+    }
+
+    @Test
+    public void getIdx() {
+    }
+
+    @Test
+    public void removeTitle() {
+        Titulo t = new Titulo("Hola");
+        DocumentHeader header = new DocumentHeader(autorg,t);
+        a.add(autorg);
+        a.addTitleToAutor(header);
+        Titulo t2 = new Titulo("Hola2");
+        DocumentHeader header1 = new DocumentHeader(autorg,t2);
+        a.addTitleToAutor(header1);
+        a.removeTitle(autorg.getName(),t.getName());
+        assertEquals("Solo deberia tener un titulo:",t2.getName(),a.getTitles(autorg.getName()).get(0).getName());
+    }
+
+
 }

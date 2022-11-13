@@ -82,6 +82,8 @@ public class Autores {
         autores.remove(a);
     }
 
+
+    // TOdo: eliminar aqui ?
     public void remove(String a) {
         autores.remove(new Autor(a));
     }
@@ -165,6 +167,7 @@ public class Autores {
      *
      * @param header pareja autor titulo
      */
+    // Todo elminar aqui ?
     public void removeTitle(DocumentHeader header) {
         HashMap<Titulo, Integer> titulos = autores.get(header.getAutor());
         titulos.remove(header.getTitulo());
