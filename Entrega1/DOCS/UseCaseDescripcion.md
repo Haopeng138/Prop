@@ -33,21 +33,10 @@
     1. El usuario indica el documento a eliminar
     2. El sistema borra el documento correspondiente
 
+
 ---
 ## Guardar Documento
 ### Actor: Usuario
-
----
-## Alta Documento
-### Actor:Usuario
-### Comportamiento:
-    1. El usuario da de alta a un documento con un id único (definido por el sistema)
-
----
-## Baja Documento
-### Actor:Usuario
-### Comportamiento:
-    1. El usuario da de baja a un documento
 
 ---
 ## Modificar Documento
@@ -65,7 +54,6 @@
 ### Comportamiento:
     1. El usuario elige el nombre de un autor
     2. El sistema devuelve una lista de títulos
-
 
 ---
 ## Búsqueda por prefijo
@@ -98,7 +86,6 @@
     1. El número K es superior a los números de documentos que hay al sistema
 ### Cursos alternativos:
     1. El sistema informa del error Crea
-
 
 ---
 ## Listar por expresión booleana

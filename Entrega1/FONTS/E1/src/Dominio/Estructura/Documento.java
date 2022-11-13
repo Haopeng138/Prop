@@ -3,6 +3,9 @@ package Dominio.Estructura;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Documento {
     /**
      * Atributos de clase Documento
@@ -27,7 +30,6 @@ public class Documento {
         this.autor = new Autor(autor);
         this.titulo = new Titulo(titulo);
         this.contenido = contenido;
-        this.estado = true;
     }
 
     /**
@@ -57,9 +59,6 @@ public class Documento {
         this.contenido = contenido;
     }
 
-    public void setEstado(Boolean estado) {
-        this.estado = estado;
-    }
 
     /**
      * Método para devolver el nombre del autor
@@ -86,15 +85,6 @@ public class Documento {
      */
     public String getContenido() {
         return contenido;
-    }
-
-    /**
-     * Método para devolver el estado del documento
-     * 
-     * @return Estado
-     */
-    public Boolean getEstado() {
-        return estado;
     }
 
     /**

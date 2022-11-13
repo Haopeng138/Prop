@@ -27,7 +27,7 @@ public class ControladorBusqueda {
         }
     }
 
-    public ArrayList<DocumentHeader> buscarPorSimilitud(DocumentHeader header, int K, Libreria libreria) {
+    public static ArrayList<DocumentHeader> buscarPorSimilitud(DocumentHeader header, int K, Libreria libreria) {
         return BusquedaPorSimilitud.buscar(header, K, libreria);
     }
 }
