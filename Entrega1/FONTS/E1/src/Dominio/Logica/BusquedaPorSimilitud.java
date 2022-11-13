@@ -26,9 +26,11 @@ public class BusquedaPorSimilitud {
         // deleted and such
         ArrayList<Similitud> res = new ArrayList<Similitud>();
         index.forEach((a, sT) -> sT.forEach(t -> {
-            DocumentHeader toCompare = new DocumentHeader(a, t);
-            double similitud = libreria.computeSimilarity(header, toCompare);
-            res.add(new Similitud(toCompare, similitud));
+            if (a != header.getAutor() && t != header.getTitulo()) {
+                DocumentHeader toCompare = new DocumentHeader(a, t);
+                double similitud = libreria.computeSimilarity(header, toCompare);
+                res.add(new Similitud(toCompare, similitud));
+            }
         }));
 
         Comparator<Similitud> comparador = Collections.reverseOrder();
@@ -36,8 +38,7 @@ public class BusquedaPorSimilitud {
 
         ArrayList<DocumentHeader> resultado = new ArrayList<DocumentHeader>();
 
-        // Start at 1, cuz comparison with itself will be at index 0
-        for (int i = 1; i < K; i++) {
+        for (int i = 0; i < K; i++) {
             resultado.add(res.get(i).header);
         }
 
