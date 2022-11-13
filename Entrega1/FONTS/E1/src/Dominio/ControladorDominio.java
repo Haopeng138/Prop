@@ -16,7 +16,7 @@ public class ControladorDominio {
 
     Libreria libreria;
     ControladorExpresiones cExpresiones;
-
+    ControladorBusqueda cBusqueda = new ControladorBusqueda();
     public ControladorDominio() {
         libreria = new Libreria();
         cExpresiones = new ControladorExpresiones();
@@ -46,7 +46,7 @@ public class ControladorDominio {
      * @return Listado de autores que comienza por el pre
      */
     public ArrayList<Autor> obtenerAutoresPrefijo(String pre) {
-        return ControladorBusqueda.buscarPorPrefijo(libreria.getOrderedAutores(), pre);
+        return cBusqueda.buscarPorPrefijo(libreria.getOrderedAutores(), pre);
     }
 
     /**
@@ -65,7 +65,7 @@ public class ControladorDominio {
      * @return un conjunto de documentos
      */
     public ArrayList<DocumentHeader> busquedaPorSimilitud(String a, String t, int k) {
-        return ControladorBusqueda.buscarPorSimilitud(new DocumentHeader(a, t), k, libreria);
+        return cBusqueda.buscarPorSimilitud(new DocumentHeader(a, t), k, libreria);
     }
 
     /**
@@ -77,7 +77,7 @@ public class ControladorDominio {
         BinaryTree<ParseNode> bTree;
         try {
             bTree = cExpresiones.parseFromAlias(alias);
-            return ControladorBusqueda.buscarPorExpresion(bTree, libreria);
+            return cBusqueda.buscarPorExpresion(bTree, libreria);
         } catch (Exception e) {
             System.out.println("No se ha podido construir el arbol de busqueda de la expresion");
             return null;

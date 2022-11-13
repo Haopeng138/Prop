@@ -69,21 +69,37 @@ public class Expresion {
             char check;
             switch (x) {
                 case ')':
-                    check = stack.pop();
-                    if (check == '{' || check == '"')
+                    try {
+                        check = stack.pop();
+                        if (check == '{' || check == '"')
+                            return false;
+                    }catch (Exception error){
+                        //Error cuando no hay nada
                         return false;
+                    }
+
                     break;
 
                 case '}':
-                    check = stack.pop();
-                    if (check == '(' || check == '"')
+                    try {
+                        check = stack.pop();
+                        if (check == '(' || check == '"')
+                            return false;
+                    }catch (Exception error){
                         return false;
+                    }
+
                     break;
                 case '"':
-                    check = stack.pop();
-                    if (check == '(' || check == '{')
+                    try {
+                        check = stack.pop();
+                        if (check == '(' || check == '{')
+                            return false;
+                        open = true;
+                    }catch (Exception error){
                         return false;
-                    open = true;
+                    }
+
                     break;
             }
         }

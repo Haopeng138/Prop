@@ -14,13 +14,11 @@ import java.util.*;
 public class Driver_busqueda {
     static ControladorDominio dominio = new ControladorDominio();
     public static void main(String[] args) throws FileNotFoundException {
-        Documentos documentos = new Documentos();
         File folder = new File("Entrega1/FONTS/E1/JuegosDePrueba/Estructura");
         File []files = listoffiles(folder,"Einput001",".txt");
-        iniciarDocumentos(documentos,files);
+        iniciarDocumentos(files);
 
         int opt;
-
         do{
             System.out.println(" -------------- ");
             System.out.println(" Menu ");
@@ -28,7 +26,6 @@ public class Driver_busqueda {
             System.out.println(" 1- Busqueda por expresion ");
             System.out.println(" 2- Busqueda por prefijo ");
             System.out.println(" 3- Busqueda por similitud ");
-            System.out.println(" 4- Mostrar documentos ");
             Scanner scanopt = new Scanner(System.in);
             opt = scanopt.nextInt();
             Scanner scan = new Scanner(System.in);
@@ -37,29 +34,29 @@ public class Driver_busqueda {
                     break;
                 case 1:
                     System.out.println("Busqueda por expresion ");
+                    String alias ;
+                    System.out.println("Introduce tu alias");
+                    alias = scan.nextLine();
                     System.out.println("Introduce una expresion ");
                     boolean valido = false;
-                    String exp = "";
-                    String alias = "";
+                    String exp;
                     while (!valido){
                         try {
                             exp = scan.nextLine();
-                            System.out.println("Introduce tu alias");
-                            alias = scan.nextLine();
                             dominio.addExpresion(alias, exp);
                             valido = true;
+                            ArrayList<DocumentHeader> resExp = dominio.busquedaPorExpresion(alias);
+                            for (int i = 0; i < resExp.size(); ++i) {
+                                DocumentHeader d = resExp.get(i);
+                                System.out.println("Autor : " + d.getAutor());
+                                System.out.println("Titulo : "+ d.getTitulo());
+                                System.out.println();
+                            }
+                            System.out.println("Los documentos con la expresión " + exp);
                         }catch (ExpresionException error){
                             System.out.println(error.getMessage());
                             System.out.println("Vuelve a introducir la expresion");
                         }
-                        ArrayList<DocumentHeader> resExp = dominio.busquedaPorExpresion(alias);
-                        for (int i = 0; i < resExp.size(); ++i) {
-                            DocumentHeader d = resExp.get(i);
-                            System.out.println("Autor : " + d.getAutor());
-                            System.out.println("Titulo : "+ d.getTitulo());
-                            System.out.println();
-                        }
-                        System.out.println("Los documentos con la expresión " + exp);
                     }
                     break;
                 case 2:
@@ -93,11 +90,6 @@ public class Driver_busqueda {
                     }
                     System.out.println("Los documentos más similiares escrito");
                     break;
-
-                case 4:
-                    System.out.println("Mostrando los documentos");
-                    mostrarDocumentos(documentos);
-                    break;
                 default:
                     System.out.println("\t Opciones inexistentes");
 
@@ -117,24 +109,16 @@ public class Driver_busqueda {
         return files;
     }
 
-    public static void iniciarDocumentos(Documentos documentos , File[] files) throws FileNotFoundException {
+    public static void iniciarDocumentos( File[] files) throws FileNotFoundException {
         for (File fileEntry : files) {
             Scanner scan = new Scanner(fileEntry);
             while (scan.hasNext()){
                 String autor = scan.nextLine();
                 String titulo = scan.nextLine();
                 String contenido = scan.nextLine();
-                Documento d = new Documento(autor,titulo,contenido);
                 dominio.createDocumento(autor, titulo, contenido);
             }
         }
     }
 
-    public static void mostrarDocumentos(Documentos documentos){
-        for (Documento d: documentos.getDocumentos()){
-            System.out.println("Autor : " + d.getAutor());
-            System.out.println("Titulo : "+ d.getTitulo());
-            System.out.println("Contenido : "+ d.getContenido());
-        }
-    }
 }
