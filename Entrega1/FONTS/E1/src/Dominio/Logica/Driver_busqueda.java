@@ -2,7 +2,6 @@ package Dominio.Logica;
 
 import Dominio.ControladorDominio;
 import Dominio.Estructura.*;
-import Dominio.Expresion.Expresion;
 import Dominio.Expresion.ExpresionException;
 import Dominio.Utils.DocumentHeader;
 
@@ -13,13 +12,14 @@ import java.util.*;
 
 public class Driver_busqueda {
     static ControladorDominio dominio = new ControladorDominio();
+
     public static void main(String[] args) throws FileNotFoundException {
         File folder = new File("Entrega1/FONTS/E1/JuegosDePrueba/Estructura");
-        File []files = listoffiles(folder,"Einput001",".txt");
+        File[] files = listoffiles(folder, "Einput001", ".txt");
         iniciarDocumentos(files);
 
         int opt;
-        do{
+        do {
             System.out.println(" -------------- ");
             System.out.println(" Menu ");
             System.out.println(" 0- Salir ");
@@ -29,18 +29,18 @@ public class Driver_busqueda {
             Scanner scanopt = new Scanner(System.in);
             opt = scanopt.nextInt();
             Scanner scan = new Scanner(System.in);
-            switch (opt){
+            switch (opt) {
                 case 0:
                     break;
                 case 1:
                     System.out.println("Busqueda por expresion ");
-                    String alias ;
+                    String alias;
                     System.out.println("Introduce tu alias");
                     alias = scan.nextLine();
                     System.out.println("Introduce una expresion ");
                     boolean valido = false;
                     String exp;
-                    while (!valido){
+                    while (!valido) {
                         try {
                             exp = scan.nextLine();
                             dominio.addExpresion(alias, exp);
@@ -49,11 +49,11 @@ public class Driver_busqueda {
                             for (int i = 0; i < resExp.size(); ++i) {
                                 DocumentHeader d = resExp.get(i);
                                 System.out.println("Autor : " + d.getAutor());
-                                System.out.println("Titulo : "+ d.getTitulo());
+                                System.out.println("Titulo : " + d.getTitulo());
                                 System.out.println();
                             }
                             System.out.println("Los documentos con la expresión " + exp);
-                        }catch (ExpresionException error){
+                        } catch (ExpresionException error) {
                             System.out.println(error.getMessage());
                             System.out.println("Vuelve a introducir la expresion");
                         }
@@ -65,7 +65,7 @@ public class Driver_busqueda {
                     System.out.println("Introduce un prefijo ");
                     String pre;
                     pre = scan.nextLine();
-                    ArrayList<Autor> resAutores =  dominio.obtenerAutoresPrefijo(pre);
+                    ArrayList<Autor> resAutores = dominio.obtenerAutoresPrefijo(pre);
                     for (int i = 0; i < resAutores.size(); ++i) {
                         String autor = String.valueOf(resAutores.get(i));
                         System.out.println(autor);
@@ -95,12 +95,12 @@ public class Driver_busqueda {
 
             }
 
-        }while (opt!=0);
+        } while (opt != 0);
 
     }
 
-    public static File [] listoffiles(File folder,String startpattern,String endpattern){
-        File [] files =  folder.listFiles(new FilenameFilter() {
+    public static File[] listoffiles(File folder, String startpattern, String endpattern) {
+        File[] files = folder.listFiles(new FilenameFilter() {
             @Override
             public boolean accept(File dir, String name) {
                 return name.startsWith(startpattern) & name.endsWith(endpattern);
@@ -109,10 +109,10 @@ public class Driver_busqueda {
         return files;
     }
 
-    public static void iniciarDocumentos( File[] files) throws FileNotFoundException {
+    public static void iniciarDocumentos(File[] files) throws FileNotFoundException {
         for (File fileEntry : files) {
             Scanner scan = new Scanner(fileEntry);
-            while (scan.hasNext()){
+            while (scan.hasNext()) {
                 String autor = scan.nextLine();
                 String titulo = scan.nextLine();
                 String contenido = scan.nextLine();
