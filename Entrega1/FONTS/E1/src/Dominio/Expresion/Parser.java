@@ -81,9 +81,21 @@ public class Parser {
     }
 
     private static int findNext(String expr, char c) throws Exception {
-        int nextPtr = expr.length() - 1;
-        while (nextPtr > 0 && expr.charAt(nextPtr) != c) {
-            nextPtr--;
+        int nextPtr = 0;
+        char match = Matches.match(c);
+        int count = 0;
+        while (nextPtr < expr.length()) {
+            if (expr.charAt(nextPtr) == c) {
+                if (count == 0) {
+                    return nextPtr;
+                } else {
+                    count--;
+                }
+            }
+            if (expr.charAt(nextPtr) == match) {
+                count++;
+            }
+            nextPtr++;
         }
         if (nextPtr == 0) {
             throw new Exception("No closing token found: " + c);
@@ -97,6 +109,25 @@ public class Parser {
             return nextPtr;
         } catch (Exception e) {
             return expr.length();
+        }
+    }
+
+    protected static class Matches {
+        protected static char match(char c) {
+            switch (c) {
+                case ')': {
+                    return '(';
+                }
+                case '}': {
+                    return '{';
+                }
+                case '"': {
+                    return '"';
+                }
+                default: {
+                    return ' ';
+                }
+            }
         }
     }
 }
