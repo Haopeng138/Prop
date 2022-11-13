@@ -26,39 +26,29 @@ public class BusquedaPorSimilitud {
         // deleted and such
         ArrayList<Similitud> res = new ArrayList<Similitud>();
         index.forEach((a, sT) -> sT.forEach(t -> {
-            if (a != header.getAutor() && t != header.getTitulo()) {
-                DocumentHeader toCompare = new DocumentHeader(a, t);
-                double similitud = libreria.computeSimilarity(header, toCompare);
-                res.add(new Similitud(toCompare, similitud));
-            }
+            DocumentHeader toCompare = new DocumentHeader(a, t);
+            double similitud = libreria.computeSimilarity(header, toCompare);
+            res.add(new Similitud(toCompare, similitud));
         }));
 
-        Comparator<Similitud> comparador = Collections.reverseOrder();
-        Collections.sort(res, comparador);
+        Collections.sort(res, (h1, h2) -> -Double.compare(h1.similitud, h2.similitud));
 
         ArrayList<DocumentHeader> resultado = new ArrayList<DocumentHeader>();
 
-        for (int i = 0; i < K; i++) {
+        for (int i = 1; i < K + 1 && i < res.size(); i++) {
             resultado.add(res.get(i).header);
         }
 
         return resultado;
     }
 
-    private static class Similitud implements Comparator<Similitud> {
+    private static class Similitud {
         DocumentHeader header;
         double similitud;
 
         public Similitud(DocumentHeader header, double similitud) {
             this.header = header;
             this.similitud = similitud;
-        }
-
-        @Override
-        public int compare(Similitud o1, Similitud o2) {
-            Similitud s1 = (Similitud) o1;
-            Similitud s2 = (Similitud) o2;
-            return Double.compare(s1.similitud, s2.similitud);
         }
     }
 }

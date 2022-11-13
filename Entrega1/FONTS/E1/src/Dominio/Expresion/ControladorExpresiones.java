@@ -59,20 +59,6 @@ public class ControladorExpresiones {
         return true;
     }
 
-    // TODO: Handle error on creating expresion
-    public BinaryTree<ParseNode> parseFromStringExpr(String expr) throws ExpresionException {
-        Expresion expresion = new Expresion(expr);
-        // if this doesn't throw anything...
-        // else we need to say it's invalid in some way
-        // throw new InvalidExpressionException();
-        try {
-            return Parser.parse(expr);
-        } catch (Exception e) {
-            System.out.println("Expresion invalida");
-            return null;
-        }
-    }
-
     public BinaryTree<ParseNode> parseFromAlias(String alias) throws Exception {
 
         if (!expresiones.containsKey(alias)) {

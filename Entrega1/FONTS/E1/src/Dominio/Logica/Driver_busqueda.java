@@ -1,7 +1,5 @@
 package Dominio.Logica;
 
-import Dominio.Estructura.Autor;
-import Dominio.Estructura.Autores;
 import Dominio.Estructura.Documento;
 import Dominio.Estructura.Documentos;
 import Dominio.Expresion.Expresion;
@@ -16,11 +14,11 @@ public class Driver_busqueda {
     public static void main(String[] args) throws FileNotFoundException {
         Documentos documentos = new Documentos();
         File folder = new File("Entrega1/FONTS/E1/JuegosDePrueba/Estructura");
-        File []files = listoffiles(folder,"Einput",".txt");
-        iniciarDocumentos(documentos,files);
+        File[] files = listoffiles(folder, "Einput", ".txt");
+        iniciarDocumentos(documentos, files);
         int opt;
 
-        do{
+        do {
             System.out.println(" -------------- ");
             System.out.println(" Menu ");
             System.out.println(" 0- Salir ");
@@ -31,7 +29,7 @@ public class Driver_busqueda {
             Scanner scanopt = new Scanner(System.in);
             opt = scanopt.nextInt();
             Scanner scan = new Scanner(System.in);
-            switch (opt){
+            switch (opt) {
                 case 0:
                     break;
                 case 1:
@@ -39,41 +37,44 @@ public class Driver_busqueda {
                     System.out.println("Introduce una expresion ");
                     boolean valido = false;
                     String exp = "";
-                    while (!valido){
+                    while (!valido) {
                         try {
                             exp = scan.nextLine();
                             Expresion e = new Expresion(exp);
                             valido = true;
-                        }catch (ExpresionException error){
+                        } catch (ExpresionException error) {
                             System.out.println(error.getMessage());
                             System.out.println("Vuelve a introducir la expresion");
                         }
-                        /*Set<Documento> resExp = ControladorBusqueda.buscarPorExpresion(exp);
-                        for (Iterator<Documento> it = resExp.iterator(); it.hasNext(); ) {
-                            Documento d = it.next();
-                            System.out.println("Autor : " + d.getAutor());
-                            System.out.println("Titulo : "+ d.getTitulo());
-                            System.out.println("Contenido : "+ d.getContenido());
-                            System.out.println();
-                        }*/
+                        /*
+                         * Set<Documento> resExp = ControladorBusqueda.buscarPorExpresion(exp);
+                         * for (Iterator<Documento> it = resExp.iterator(); it.hasNext(); ) {
+                         * Documento d = it.next();
+                         * System.out.println("Autor : " + d.getAutor());
+                         * System.out.println("Titulo : "+ d.getTitulo());
+                         * System.out.println("Contenido : "+ d.getContenido());
+                         * System.out.println();
+                         * }
+                         */
                         System.out.println("Los documentos con la expresión " + exp);
                     }
 
                     break;
                 case 2:
                     /*
-                    System.out.println("Busqueda por prefijo ");
-                    System.out.println("Introduce un prefijo ");
-                    String pre;
-                    pre = scan.nextLine();
-                    ArrayList<Autor> resAutores = new ArrayList<>();
-                    TreeSet<Autor> autores = Autores.getOrderedAutores();
-                    resAutores = ControladorBusqueda.buscarPorPrefijo(autores,pre);
-                    for (int i = 0; i < resAutores.size(); ++i) {
-                        String autor = String.valueOf(resAutores.get(i));
-                        System.out.println(autor);
-                    }
-                    System.out.println("Los autores con el mismo prefijo");*/
+                     * System.out.println("Busqueda por prefijo ");
+                     * System.out.println("Introduce un prefijo ");
+                     * String pre;
+                     * pre = scan.nextLine();
+                     * ArrayList<Autor> resAutores = new ArrayList<>();
+                     * TreeSet<Autor> autores = Autores.getOrderedAutores();
+                     * resAutores = ControladorBusqueda.buscarPorPrefijo(autores,pre);
+                     * for (int i = 0; i < resAutores.size(); ++i) {
+                     * String autor = String.valueOf(resAutores.get(i));
+                     * System.out.println(autor);
+                     * }
+                     * System.out.println("Los autores con el mismo prefijo");
+                     */
                     break;
 
                 case 3:
@@ -86,13 +87,15 @@ public class Driver_busqueda {
                     System.out.println("La K : ");
                     int K = Integer.parseInt(scan.nextLine());
                     ArrayList<Documento> resDocs = new ArrayList<>();
-                    /*Documento d = documentos.getDocumentByAutorTitle(autor, titulo);
-                    resDocs = ControladorBusqueda.buscarPorSimilitud(d, K);
-                    for (int i = 0; i < resDocs.size(); ++i) {
-                        String a = resDocs.get(i).getAutor();
-                        String t = resDocs.get(i).getTitulo();
-                        System.out.println("Autor: " + a + " con su libro " + t);
-                    }*/
+                    /*
+                     * Documento d = documentos.getDocumentByAutorTitle(autor, titulo);
+                     * resDocs = ControladorBusqueda.buscarPorSimilitud(d, K);
+                     * for (int i = 0; i < resDocs.size(); ++i) {
+                     * String a = resDocs.get(i).getAutor();
+                     * String t = resDocs.get(i).getTitulo();
+                     * System.out.println("Autor: " + a + " con su libro " + t);
+                     * }
+                     */
                     System.out.println("Los documentos más similiares escrito");
                     break;
 
@@ -105,12 +108,12 @@ public class Driver_busqueda {
 
             }
 
-        }while (opt!=0);
+        } while (opt != 0);
 
     }
 
-    public static File [] listoffiles(File folder,String startpattern,String endpattern){
-        File [] files =  folder.listFiles(new FilenameFilter() {
+    public static File[] listoffiles(File folder, String startpattern, String endpattern) {
+        File[] files = folder.listFiles(new FilenameFilter() {
             @Override
             public boolean accept(File dir, String name) {
                 return name.startsWith(startpattern) & name.endsWith(endpattern);
@@ -119,24 +122,26 @@ public class Driver_busqueda {
         return files;
     }
 
-    public static void iniciarDocumentos(Documentos documentos , File[] files) throws FileNotFoundException {
+    public static void iniciarDocumentos(Documentos documentos, File[] files) throws FileNotFoundException {
         for (File fileEntry : files) {
             Scanner scan = new Scanner(fileEntry);
-            while (scan.hasNext()){
+            while (scan.hasNext()) {
                 String autor = scan.nextLine();
                 String titulo = scan.nextLine();
                 String contenido = scan.nextLine();
-                Documento d = new Documento(autor,titulo,contenido);
+                Documento d = new Documento(autor, titulo, contenido);
                 documentos.add(d);
             }
         }
     }
 
-    public static void mostrarDocumentos(Documentos documentos){
-        /*for (Documento d: documentos.getDocumentos()){
-            System.out.println("Autor : " + d.getAutor());
-            System.out.println("Titulo : "+ d.getTitulo());
-            System.out.println("Contenido : "+ d.getContenido());
-        }*/
+    public static void mostrarDocumentos(Documentos documentos) {
+        /*
+         * for (Documento d: documentos.getDocumentos()){
+         * System.out.println("Autor : " + d.getAutor());
+         * System.out.println("Titulo : "+ d.getTitulo());
+         * System.out.println("Contenido : "+ d.getContenido());
+         * }
+         */
     }
 }

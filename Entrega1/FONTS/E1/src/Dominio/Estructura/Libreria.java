@@ -134,8 +134,9 @@ public class Libreria {
         try {
             int idx1 = autores.getDocumentIdx(header);
             int idx2 = autores.getDocumentIdx(toCompare);
-            // we should get a method that checks if it has been computed, or it computes it
-            // by indexs
+            if (idx1 == idx2) {
+                return 1;
+            }
             return documentos.generarSimilitudEntreDocs(idx1, idx2);
         } catch (Exception e) {
             System.out.println("No existen los documentos que se quieren comparar!");

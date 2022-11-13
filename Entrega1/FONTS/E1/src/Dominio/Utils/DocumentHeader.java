@@ -24,4 +24,20 @@ public class DocumentHeader {
     public Titulo getTitulo() {
         return titulo;
     }
+
+    /**
+     * Compara que coincida el nombre del autor y del titulo
+     * 
+     * @param o header a ser comparado
+     * @return
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        DocumentHeader that = (DocumentHeader) o;
+        return autor.equals(that.getAutor()) && titulo.equals(that.getTitulo());
+    }
 }

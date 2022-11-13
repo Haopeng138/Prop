@@ -10,7 +10,8 @@ public class Documentos {
     public class InfoModificado {
         public Double frecuencia;
         public Boolean modif = false;
-        public InfoModificado (){
+
+        public InfoModificado() {
             this.frecuencia = 0.0;
             this.modif = false;
         }
@@ -43,9 +44,9 @@ public class Documentos {
     public void add(Documento d) {
         documentos.add(d);
         int mida = documentos.size();
-        frecResult.add(new ArrayList<InfoModificado>(mida-1));
-        for (int i= 0; i<mida;i++){
-            frecResult.get(mida-1).add(new InfoModificado());
+        frecResult.add(new ArrayList<InfoModificado>(mida - 1));
+        for (int i = 0; i < mida; i++) {
+            frecResult.get(mida - 1).add(new InfoModificado());
         }
         tf.add(new HashMap<>());
         inicializarTF(d);
@@ -63,7 +64,6 @@ public class Documentos {
 
     }
 
-    // TODO: FIXME: mirar esto
     public void modifyContent(int idx, String contenido) {
 
         Documento d = documentos.get(idx);

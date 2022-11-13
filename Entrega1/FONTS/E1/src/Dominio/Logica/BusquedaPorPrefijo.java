@@ -8,15 +8,16 @@ import Dominio.Estructura.Autor;
 public class BusquedaPorPrefijo {
     /**
      * Metodo que busca autores por prefijo
+     * 
      * @param autores El conjunto de autores
-     * @param prefix El prefijo por el cual queremos buscar
+     * @param prefix  El prefijo por el cual queremos buscar
      * @return Conjunto de autores empieza por el "prefix"
      */
     public static ArrayList<Autor> buscar(TreeSet<Autor> autores, String prefix) {
-        if (prefix != ""){
+        if (prefix != "") {
             String nextPrefix = computeNextPrefix(prefix);
             return new ArrayList<Autor>(autores.subSet(new Autor(prefix), new Autor(nextPrefix)));
-        }else{
+        } else {
             return new ArrayList<Autor>(autores);
         }
 

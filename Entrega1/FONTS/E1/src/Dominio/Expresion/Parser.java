@@ -51,8 +51,8 @@ public class Parser {
                     ptr = nextPtr;
                     break;
                 }
-                case '“': {
-                    int nextPtr = ptr + 1 + findNext(expr.substring(ptr + 1), '”');
+                case '"': {
+                    int nextPtr = ptr + 1 + findNext(expr.substring(ptr + 1), '"');
                     currNode.val = new ParseNode(NODE_TYPE.MATCH, expr.substring(ptr + 1, nextPtr));
                     currNode.left = null;
                     currNode.right = null;
@@ -81,11 +81,11 @@ public class Parser {
     }
 
     private static int findNext(String expr, char c) throws Exception {
-        int nextPtr = 0;
-        while (nextPtr < expr.length() && expr.charAt(nextPtr) != c) {
-            nextPtr++;
+        int nextPtr = expr.length() - 1;
+        while (nextPtr > 0 && expr.charAt(nextPtr) != c) {
+            nextPtr--;
         }
-        if (nextPtr == expr.length()) {
+        if (nextPtr == 0) {
             throw new Exception("No closing token found: " + c);
         }
         return nextPtr;

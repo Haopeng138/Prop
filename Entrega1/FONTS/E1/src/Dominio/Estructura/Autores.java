@@ -41,19 +41,18 @@ public class Autores {
         if (!this.has(a)) {
             autores.put(a, new HashMap<Titulo, Integer>());
         } else
-            System.out.println("El autor ya existe!");
+            System.out.format("El autor: %s, ya existe!\n", a);
     }
 
     public void add(String a) {
         if (!this.has(a)) {
             autores.put(new Autor(a), new HashMap<Titulo, Integer>());
         } else
-            System.out.println("El autor ya existe!");
+            System.out.format("El autor: %s, ya existe!\n", a);
     }
 
     public void addTitleToAutor(DocumentHeader header) {
         HashMap<Titulo, Integer> titulos = autores.get(header.getAutor());
-        currentIdx++;
         if (titulos.get(header.getTitulo()) != null) {
             System.out.format("Ya existe el documento con titulo: %s para el autor %s", header.getTitulo().getName(),
                     header.getAutor().getName());
@@ -61,6 +60,7 @@ public class Autores {
         }
         titulos.put(header.getTitulo(), currentIdx);
         autores.replace(header.getAutor(), titulos);
+        currentIdx++;
     }
 
     /**
@@ -81,7 +81,6 @@ public class Autores {
     public void remove(Autor a) {
         autores.remove(a);
     }
-
 
     // TOdo: eliminar aqui ?
     public void remove(String a) {
@@ -128,8 +127,8 @@ public class Autores {
         }
         HashMap<Titulo, Integer> titulos = autores.get(header.getAutor());
         Integer idx = titulos.get(header.getTitulo());
-        if (header.getTitulo() == null) {
-            throw new Exception("El autor no tiene este titulo");
+        if (idx == null) {
+            throw new Exception("Titulo no encontrado");
         }
         return idx;
     }
