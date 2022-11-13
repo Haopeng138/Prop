@@ -26,7 +26,6 @@ public class BusquedaPorSimilitudTest {
 
     @Test
     public void buscar() {
-        // TODO hay problema con la libreria
         DocumentHeader header = new DocumentHeader("Hans Christian Andersen", "Cuentos infantiles");
         DocumentHeader header1 = new DocumentHeader("Nombre", "titulo");
         DocumentHeader header2 = new DocumentHeader("Dante Alighieri", "Divina Comedia");

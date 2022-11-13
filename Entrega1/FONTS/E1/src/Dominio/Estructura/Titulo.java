@@ -35,6 +35,6 @@ public class Titulo {
         if (o == null || getClass() != o.getClass())
             return false;
         Titulo that = (Titulo) o;
-        return name == that.getName();
+        return name.equals(that.getName());
     }
 }
