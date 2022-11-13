@@ -37,6 +37,10 @@ public class Autores {
         return autores.get(new Autor(a)) != null;
     }
 
+    /**
+     * Metodo que añade un autor al conjunto de autores
+     * @param a autor
+     */
     public void add(Autor a) {
         if (!this.has(a)) {
             autores.put(a, new HashMap<Titulo, Integer>());
@@ -44,6 +48,10 @@ public class Autores {
             System.out.format("El autor: %s, ya existe!\n", a);
     }
 
+    /**
+     * Metodo que añade un autor al conjunto de autores
+     * @param a nombre del autor
+     */
     public void add(String a) {
         if (!this.has(a)) {
             autores.put(new Autor(a), new HashMap<Titulo, Integer>());
@@ -51,6 +59,11 @@ public class Autores {
             System.out.format("El autor: %s, ya existe!\n", a);
     }
 
+    /**
+     * Metodo que añade un titulo al conjunto de titulos de un autor
+     * @param header El header de un documento autor y titulo
+     *
+     */
     public void addTitleToAutor(DocumentHeader header) {
         HashMap<Titulo, Integer> titulos = autores.get(header.getAutor());
         if (titulos.get(header.getTitulo()) != null) {

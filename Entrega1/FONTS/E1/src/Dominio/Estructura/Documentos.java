@@ -143,7 +143,7 @@ public class Documentos {
         }
     }
 
-    /*
+    /**
      * Método para actualizar el contidf cada vez que haya una modificación del
      * contenido de un documento o cuando añade un nuevo documento
      * 
@@ -282,18 +282,39 @@ public class Documentos {
         return resultat;
     }
 
+    /**
+     * Metodo que devuelve si el documento tiene este texto
+     * @param idx indice del documento
+     * @param texto texto que se quiere buscar
+     * @return true si tiene, false en caso contrario
+     */
     public Boolean tieneString(int idx, String texto) {
         return documentos.get(idx).existeString(texto);
     }
 
+    /**
+     * Metodo que
+     * @param idx indice del documento
+     * @param palabra pala que se quiere buscar
+     * @return
+     */
     public boolean tienePalabra(int idx, String palabra) {
         return tf.get(idx).get(palabra) != null;
     }
 
+    /**
+     * Metodo que devuelve el documento dado su indice
+     * @param idx indice del documento
+     * @return
+     */
     public Documento getDocumento(int idx) {
         return documentos.get(idx);
     }
 
+    /**
+     * Metodo que devuelve el conjunto de documentos
+     * @return  el conjunto de documentos
+     */
     public ArrayList<Documento> getDocumentos() {
         return documentos;
     }

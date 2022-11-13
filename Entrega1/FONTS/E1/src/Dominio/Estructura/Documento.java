@@ -89,9 +89,8 @@ public class Documento {
 
     /**
      * Método para convertir un String en un ArrayList
-     * 
-     * @param contenido Contenido
-     * @return Contenido en ArrayList
+     *
+     * @return Contenido del documento en ArrayList
      */
     public ArrayList<String> stringToArrayList() {
         // ArrayList<String> separator = new ArrayList<>(Arrays.asList(".", ";", ",", "

@@ -56,7 +56,7 @@ public class Autor implements Comparable<Autor> {
     /**
      * Compara que coincida el nombre del autor
      * 
-     * @param a Autor a ser comparado
+     * @param o Autor a ser comparado
      * @return
      */
     @Override

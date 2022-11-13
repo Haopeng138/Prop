@@ -1,5 +1,6 @@
 package Dominio.Estructura;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Driver_Documentos {
@@ -23,6 +24,7 @@ public class Driver_Documentos {
             Scanner scanopt = new Scanner(System.in);
             opt = scanopt.nextInt();
             Scanner scan = new Scanner(System.in);
+            int idx;
             switch (opt) {
                 case 0:
                     break;
@@ -42,41 +44,30 @@ public class Driver_Documentos {
                     System.out.println(" Selecciona el fichero // Funcionalidad en construcción");
                     break;
                 case 3:
-                    System.out.println(" Introduce el auto y titulo del documento que quieres eliminar");
-                    System.out.println("Autor: ");
-                    autor = scan.nextLine();
-                    System.out.println("Titulo: ");
-                    titulo = scan.nextLine();
-                    /* documentos.removeByAutorTitle(autor,titulo); */
-
+                    System.out.println(" Introduce el indice del documento que quieres eliminar");
+                    System.out.println("Idx: ");
+                    idx = scan.nextInt();
+                    documentos.remove(idx);
                     break;
                 case 4:
-                    System.out.println("Introduce el autor y titulo del documento que quieres modificar ");
-                    System.out.println("Autor :");
-                    autor = scan.nextLine();
-                    System.out.println("Titulo :");
-                    titulo = scan.nextLine();
-                    // todo revisar la función getContentByAutorTitle(autor,titulo)
-                    /*
-                     * System.out.println("Contenido original : "+
-                     * documentos.getContentByAutorTitle(autor,titulo));
-                     */
-                    System.out.println("");
-                    System.out.println("Escriba su nuevo contenido :");
-                    contenido = scan.nextLine();
-                    /* documentos.modifyContent(autor,titulo,contenido); */
+                    System.out.println("Introduce el indice del documento que quieres modificar ");
+                    System.out.println("Idx :");
+                    idx  = scan.nextInt();
+                    System.out.println("Contenido nuevo :");
+                    Scanner scanconten = new Scanner(System.in);
+                    contenido = scanconten.nextLine();
+                    documentos.modifyContent(idx,contenido);
                     break;
                 case 5:
                     System.out.println(" Mostrando los documentos");
-                    /*
-                     * ArrayList<Documento> listdoc = documentos.getDocumentos();
-                     * for(Documento dc : listdoc){
-                     * System.out.println(" --------------------- ");
-                     * System.out.println("Autor: "+ dc.getAutor());
-                     * System.out.println("Titulo: " + dc.getTitulo());
-                     * System.out.println("Contenido: " +dc.getContenido());
-                     * }
-                     */
+                    ArrayList<Documento> listdoc = documentos.getDocumentos();
+                    for(Documento dc : listdoc){
+                      System.out.println(" --------------------- ");
+                      System.out.println("Autor: "+ dc.getAutor());
+                      System.out.println("Titulo: " + dc.getTitulo());
+                      System.out.println("Contenido: " +dc.getContenido());
+                    }
+
                     break;
                 default:
                     System.err.println("\t Opción inexistente");
