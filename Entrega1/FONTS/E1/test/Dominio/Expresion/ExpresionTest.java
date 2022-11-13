@@ -21,18 +21,19 @@ public class ExpresionTest {
 
     @Test
     public void setExpresion() throws ExpresionException{
-
-        Expresion e = new Expresion("{p1 p2 p3} & (“hola adéu” | pep) & !joan");
+        // Todo no reconoce la doble comilla :\""\. solo reconoce esta “
+        Expresion e = new Expresion("{p1 p2 p3} & ( “hola adéu“ | pep) & !joan");
         //Caso 1: Modificar a una expresion invalida
         try {
             e.setExpresion("rw & (a b c");
         }catch (Exception error){
-            assertEquals("No se ha detectado bien una expresion mala","Expresion Invalida",e.getExpresion());
+            assertEquals("No se ha detectado bien una expresion mala","Expresion Invalida",error.getMessage());
         }
 
-        //Caso 2: Una expresion no válida
+        //Caso 2: Modificar a una expresion valida
         e.setExpresion("{p1 p2 p3} & (“hola adéu” | pep) & !joan");
         assertEquals("La expresion no es correcta","{p1 p2 p3} & (“hola adéu” | pep) & !joan",e.getExpresion());
+
 
     }
 }

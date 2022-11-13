@@ -10,7 +10,10 @@ public class Documentos {
     public class InfoModificado {
         public Double frecuencia;
         public Boolean modif = false;
-
+        public InfoModificado (){
+            this.frecuencia = 0.0;
+            this.modif = false;
+        }
     }
 
     /**
@@ -40,7 +43,10 @@ public class Documentos {
     public void add(Documento d) {
         documentos.add(d);
         int mida = documentos.size();
-        frecResult.add(new ArrayList<>(mida));
+        frecResult.add(new ArrayList<InfoModificado>(mida-1));
+        for (int i= 0; i<mida;i++){
+            frecResult.get(mida-1).add(new InfoModificado());
+        }
         tf.add(new HashMap<>());
         inicializarTF(d);
         actualizarIDF(d);
@@ -125,7 +131,7 @@ public class Documentos {
      */
     private void inicializarTF(Documento d) {
         int mida = tf.size() - 1;
-        ArrayList<String> docD = d.stringToArrayList(d.getContenido());
+        ArrayList<String> docD = d.stringToArrayList();
         for (int j = 0; j < docD.size(); ++j) {
             if (!tf.get(mida).containsKey(docD.get(j))) {
                 Double a = tf(docD, docD.get(j));
@@ -141,7 +147,7 @@ public class Documentos {
      * @param d Un documento
      */
     private void actualizarIDF(Documento d) {
-        ArrayList<String> docD = d.stringToArrayList(d.getContenido());
+        ArrayList<String> docD = d.stringToArrayList();
         HashMap<String, Boolean> noVisitat = new HashMap<>();
         for (int i = 0; i < docD.size(); ++i) {
             if (!noVisitat.containsKey(docD.get(i)))
@@ -171,7 +177,7 @@ public class Documentos {
      * @param d Un documento
      */
     private void eliminarDocIDF(Documento d) {
-        ArrayList<String> docD = d.stringToArrayList(d.getContenido());
+        ArrayList<String> docD = d.stringToArrayList();
         HashMap<String, Boolean> noVisitat = new HashMap<>();
         for (int i = 0; i < docD.size(); ++i) {
             if (!noVisitat.containsKey(docD.get(i)))
@@ -201,7 +207,7 @@ public class Documentos {
 
         Documento d = documentos.get(idx);
         tf.get(idx).clear();
-        ArrayList<String> docD = d.stringToArrayList(d.getContenido());
+        ArrayList<String> docD = d.stringToArrayList();
         for (int j = 0; j < docD.size(); ++j) {
             if (!tf.get(idx).containsKey(docD.get(j))) {
                 Double a = tf(docD, docD.get(j));

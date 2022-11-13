@@ -103,7 +103,7 @@ public class Documento {
      * @param contenido Contenido
      * @return Contenido en ArrayList
      */
-    public ArrayList<String> stringToArrayList(String contenido) {
+    public ArrayList<String> stringToArrayList() {
         // ArrayList<String> separator = new ArrayList<>(Arrays.asList(".", ";", ",", "
         // ", "(", ")", "{", "}", "!", "?", ":"));
         String contenidoMinusculas = contenido.toLowerCase();
@@ -131,8 +131,10 @@ public class Documento {
                 if (i + 1 < contenido.length() && conjuntoPalabras.charAt(j) != contenido.charAt(i + 1)) {
                     ++i;
                     j = 0;
-                } else
-                    ++j;
+                } else {
+                    ++i;
+                    j = 0;
+                }
             }
         }
         return j == midaString;
