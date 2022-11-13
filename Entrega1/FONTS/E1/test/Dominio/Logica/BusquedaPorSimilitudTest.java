@@ -24,6 +24,12 @@ public class BusquedaPorSimilitudTest {
     public void buscar() {
         DocumentHeader header = new DocumentHeader("Hans Christian Andersen", "Cuentos infantiles");
         ArrayList<DocumentHeader> result = BusquedaPorSimilitud.buscar(header,1,libreria);
+        assertEquals("No ha devuelto el numero de documentos indicados",1,result.size());
+        assertEquals("No se ha encontrado el más parecido",header,result.get(0));
+
+        ArrayList<DocumentHeader> result2 = BusquedaPorSimilitud.buscar(header,2,libreria);
+        assertEquals("No ha devuelto el numero de documentos indicados",2,result2.size());
+        assertEquals("No se ha encontrado el más parecido",header,result.get(0));
         assertEquals("No se ha encontrado el más parecido",header,result.get(0));
     }
 
