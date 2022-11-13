@@ -3,8 +3,9 @@ package Dominio;
 import Dominio.Expresion.ControladorExpresiones;
 import Dominio.Expresion.ExpresionException;
 import Dominio.Logica.ControladorBusqueda;
+import Dominio.Utils.BinaryTree;
 import Dominio.Utils.DocumentHeader;
-import Dominio.Expresion.Expresion;
+import Dominio.Utils.ParseNode;
 import Dominio.Estructura.Autor;
 import Dominio.Estructura.Libreria;
 import Dominio.Estructura.Titulo;
@@ -13,12 +14,10 @@ import java.util.ArrayList;
 
 public class ControladorDominio {
 
-    ControladorBusqueda cBusqueda;
     Libreria libreria;
-    static ControladorExpresiones cExpresiones;
+    ControladorExpresiones cExpresiones;
 
     public ControladorDominio() {
-        cBusqueda = new ControladorBusqueda();
         libreria = new Libreria();
         cExpresiones = new ControladorExpresiones();
     }
@@ -47,7 +46,7 @@ public class ControladorDominio {
      * @return Listado de autores que comienza por el pre
      */
     public ArrayList<Autor> obtenerAutoresPrefijo(String pre) {
-        return cBusqueda.buscarPorPrefijo(libreria.getOrderedAutores(), pre);
+        return ControladorBusqueda.buscarPorPrefijo(libreria.getOrderedAutores(), pre);
     }
 
     /**
@@ -66,7 +65,7 @@ public class ControladorDominio {
      * @return un conjunto de documentos
      */
     public ArrayList<DocumentHeader> busquedaPorSimilitud(String a, String t, int k) {
-        return cBusqueda.buscarPorSimilitud(new DocumentHeader(a, t), k, libreria);
+        return ControladorBusqueda.buscarPorSimilitud(new DocumentHeader(a, t), k, libreria);
     }
 
     /**
@@ -75,8 +74,14 @@ public class ControladorDominio {
      */
     public ArrayList<DocumentHeader> busquedaPorExpresion(String alias) {
 
-        Expresion expresion = cExpresiones.get(alias);
-        return cBusqueda.buscarPorExpresion(expresion, libreria);
+        BinaryTree<ParseNode> bTree;
+        try {
+            bTree = cExpresiones.parseFromAlias(alias);
+            return ControladorBusqueda.buscarPorExpresion(bTree, libreria);
+        } catch (Exception e) {
+            System.out.println("No se ha podido construir el arbol de busqueda de la expresion");
+            return null;
+        }
     }
 
     //// PUNTO 4

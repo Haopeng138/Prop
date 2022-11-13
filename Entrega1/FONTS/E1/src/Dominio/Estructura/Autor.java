@@ -52,4 +52,20 @@ public class Autor implements Comparable<Autor> {
     public int compareTo(Autor a) {
         return name.compareTo(a.getName());
     }
+
+    /**
+     * Compara que coincida el nombre del autor
+     * 
+     * @param a Autor a ser comparado
+     * @return
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        Autor that = (Autor) o;
+        return name == that.getName();
+    }
 }
