@@ -13,7 +13,6 @@ public class Documento {
     private String contenido;
     private Autor autor;
     private Titulo titulo;
-    private Boolean estado;
 
     public Documento() {
     }
@@ -30,7 +29,6 @@ public class Documento {
         this.autor = new Autor(autor);
         this.titulo = new Titulo(titulo);
         this.contenido = contenido;
-        this.estado = true;
     }
 
     /**
@@ -60,9 +58,6 @@ public class Documento {
         this.contenido = contenido;
     }
 
-    public void setEstado(Boolean estado) {
-        this.estado = estado;
-    }
 
     /**
      * Método para devolver el nombre del autor
@@ -89,15 +84,6 @@ public class Documento {
      */
     public String getContenido() {
         return contenido;
-    }
-
-    /**
-     * Método para devolver el estado del documento
-     * 
-     * @return Estado
-     */
-    public Boolean getEstado() {
-        return estado;
     }
 
     /**
@@ -138,6 +124,3 @@ public class Documento {
         return j == midaString;
     }
 }
-
-//bbbhohhola ----> contenido
-//hola ----> conjuntoPalabras
