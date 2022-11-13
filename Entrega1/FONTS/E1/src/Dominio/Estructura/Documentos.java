@@ -132,7 +132,7 @@ public class Documentos {
      */
     private void inicializarTF(Documento d) {
         int mida = tf.size() - 1;
-        ArrayList<String> docD = d.stringToArrayList(d.getContenido());
+        ArrayList<String> docD = d.stringToArrayList();
         for (int j = 0; j < docD.size(); ++j) {
             if (! stopwords.contains(docD.get(j))) {
                 if (!tf.get(mida).containsKey(docD.get(j))) {
@@ -210,7 +210,7 @@ public class Documentos {
 
         Documento d = documentos.get(idx);
         tf.get(idx).clear();
-        ArrayList<String> docD = d.stringToArrayList(d.getContenido());
+        ArrayList<String> docD = d.stringToArrayList();
         for (int j = 0; j < docD.size(); ++j) {
             if (! stopwords.contains(docD.get(j))) {
                 if (!tf.get(idx).containsKey(docD.get(j))) {
