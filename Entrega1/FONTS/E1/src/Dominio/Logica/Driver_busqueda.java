@@ -15,9 +15,20 @@ public class Driver_busqueda {
 
     public static void main(String[] args) throws FileNotFoundException {
         File folder = new File("./Entrega1/FONTS/E1/JuegosDePrueba/Estructura");
-        System.out.println(folder.getAbsolutePath());
+
+        /*String basedir = System.getProperties().get("user.dir").toString();
+        File folder = new File(basedir + "/Entrega1/FONTS/E1/JuegosDePrueba/Estructura");
+        System.out.println(folder.getAbsolutePath());*/
+        System.out.println("Primero :"+folder.getAbsolutePath());
         File[] files = listoffiles(folder, "Einput001", ".txt");
         iniciarDocumentos(files);
+        if (files == null){
+            folder = new File("./");
+            files = listoffiles(folder, "Einput001", ".txt");
+            System.out.println("Segundo :"+folder.getAbsolutePath());
+            iniciarDocumentos(files);
+        }
+
 
         int opt;
         do {
@@ -111,15 +122,20 @@ public class Driver_busqueda {
     }
 
     public static void iniciarDocumentos(File[] files) throws FileNotFoundException {
-        for (File fileEntry : files) {
-            Scanner scan = new Scanner(fileEntry);
-            while (scan.hasNext()) {
-                String autor = scan.nextLine();
-                String titulo = scan.nextLine();
-                String contenido = scan.nextLine();
-                dominio.createDocumento(autor, titulo, contenido);
+        try{
+            for (File fileEntry : files) {
+                Scanner scan = new Scanner(fileEntry);
+                while (scan.hasNext()) {
+                    String autor = scan.nextLine();
+                    String titulo = scan.nextLine();
+                    String contenido = scan.nextLine();
+                    dominio.createDocumento(autor, titulo, contenido);
+                }
             }
+        }catch (Exception ignored){
+            System.out.println("Pasando ");
         }
+
     }
 
 }
