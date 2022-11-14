@@ -1,0 +1,17 @@
+//EJECUTABLE DE TITULO_TEST:
+
+- Objeto de la prueba:
+	En esta prueba hemos usado la clase de Título como objeto del test.
+
+- Ficheros de datos necesarios:
+	Para este test solo hemos incluido el fichero TituloTest.java.
+
+- Valores estudiados:
+	Para comprobar que los códigos funcionen bien, hemos comprovado con diferentes valores de títulos con el objetivo de ver se pasa correctamente
+	el test implementado. Esta prueba se trata de una prueba de caja negra, ya que no sabemos como se gestiona las funciones internas del sistema.
+
+- Efectos estudiados:
+	Una de las condiciones para tener éxito el test es que el título no debe ser nulo.
+
+- Operativa:
+	La funcionalidad de este test es comprobar que todos los nombres de títulos son diferentes entre ellos.

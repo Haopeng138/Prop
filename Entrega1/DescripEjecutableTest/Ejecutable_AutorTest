@@ -1,0 +1,18 @@
+//EJECUTABLE DE AUTOR_TEST:
+
+- Objeto de la prueba:
+	En esta prueba solo usamos la clase de Autor.
+
+- Ficheros de datos necesarios:
+	Solo usamos el AutorTest.java ya que el test es sobre esta clase.
+
+- Valores estudiados:
+	Con igual y diferente nombre de autores para comprobar, principalmente, que no haya dos o más autores con el mismo nombre. Se trata de una
+	prueba de caja negra, ya que no sabemos como se gestiona las funciones interiores del sistema.
+
+- Efectos estudiados:
+	Para tener éxito el test de Autor es necesario que el nombre introducido no sea nulo. Si no, se lanza una excepción por la pantalla.
+
+- Operativa:
+	La funcionalidad de este test es comprobar que todos los nombres de autores son diferentes entre ellos, es decir, un nombre de autor
+	es único entre todos.
