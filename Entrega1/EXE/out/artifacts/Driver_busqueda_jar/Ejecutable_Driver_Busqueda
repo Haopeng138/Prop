@@ -1,0 +1,20 @@
+Ejecutable de Búsquedas
+
+-Objeto:
+	En este ejectuable de driver de Búsquedas usamos los casos de uso de Crear Documento, Alta expresión, Búsqueda por prefijo, Listar por similitud, Listar por expresión booleana,
+ 	la finalidad es comprobar que cumple los casos de uso.
+	Además de usar la clase de Controlador de Búsquedad, hemos usado la de Libreria, formado por Documentos y Autores, la de Expresión, la de búsqueda por prefijo, la de búsqueda por similitud, la de búsqueda por
+	expresión, hemos utilizado casi todas las clases que tenemos del proyecto, también comprueba que se puede añadir un conjunto de documentos con un conjunto de autor y título único y un contenido cualquier, y se comprueba
+	que no puede tener dos documentos con el mismo autor y título.
+-Driver utilizado es el de búsquedas, tiene la missión de comprobar que las búsquedas por prefijo, similitud o expresión booleana dan resultados correctos.
+
+-Los ficheros utilitzados son los de Autor.java, Título.java, Documento.java, Documentos.java, Autores.java, Libreria.java, Expresion.java, ControladorExpresiones.java, Parser.java, BusquedaPorExpresion.java, BusquedaPorPrefijo.java,
+BusquedaPorSimilitud.java y ControladorBusqueda.java, donde se guarda las clases Autor, Título, Documento, Documentos, Autores, Libreria (Autores + Documentos), Parser, Expresión, Búsqueda Por Similitud, Búsqueda por Expresión, Búsqueda por
+prefijo. Estos ficheros son imprescidible para que el funcionamiento sea correcto. Además, tenemos un fichero de juegos de prueba, el Einput001.txt
+
+-Hemos probado con un conjunto de documentos con contenidos similares o distintos entre ellos, la finalidad de este juego de prueba es ver que se puede hacer las búsquedas correctamente, es decir, que nos dan resultados
+favorables (como los habíamos planteado) que sigue las restricciones. Aquí solo llama a otras clases que hacen las funciones que tocan sin saber como gestionarlas (caja negra).
+
+-En cada caso, si el documento introduciodo no está bien formado o la expresión boolena está incorrecta se sala la excepción, en el contrario, se procesa la opción elegida.
+
+-Una vez, ejecutado el ejecutable, se crea un .jar del driver de Búsquedas, luego ejecutamos este driver y seguir las instrucciones que imprime por la pantalla.

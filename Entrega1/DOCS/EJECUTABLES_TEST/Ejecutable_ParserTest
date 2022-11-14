@@ -1,0 +1,15 @@
+Ejecutable de ParserTest
+
+-Objeto:
+	En este ejecutable usamos la clase de Expresion y ParserNode ya que es un test unitario de la clase Parser que comprueba que el árbol formado por las expresiones esté bien lógicamente y
+	sintácticamente.
+
+-Los ficheros usados son Expresion.java, ParseNode.java, BinaryTree.java, que contiene la clase de Expresion, de ParserNode y de BinaryTree, respectivamente.
+
+-Para las funciones de este Test, tenemos que asegurar que el árbol formado por una expresión es correcta, por ejemplo, la expresión "{p1 p2 p3} & (hola adéu | (!pep))". Si no está bien formada, ya
+no podremos encontrar el resultado mediante ese árbol. Por tanto, generamos un árbol con una expresión y luego testear si el nodo se coincide con el que habíamos planteado.
+Es una caja negra ya que no sabe como se gestiona las funciones.
+
+-Para tener éxito el test, es necesario que el árbol esté bien formado para poder consultar sus nodos de forma correcta.
+
+-El funcionamiento principal del ejecutable es testear todas las funciones que hay en él para que todos se pueden pasar.

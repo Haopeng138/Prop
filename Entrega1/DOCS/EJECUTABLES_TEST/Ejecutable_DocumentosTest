@@ -1,0 +1,14 @@
+Ejecutable de DocumentosTest
+
+-Objeto:
+	En este ejecutable, usamos la clase de Documento y Documentos ya que la clase Documento está reutlizada a la clase Documentos, por tanto, es un test unitario de la clase Documentos.
+
+-Los ficheros usados son Documento.java, Documentos.java, DocumentosTest.java, donde contiene la clase Documento, Documentos respectivamente.
+
+-Para cada función de la Clase DocumentosTest, hemos probado con algunos ejemplos que se puedan añadir, eliminar y modificar los documentos sin saltar ninguna excepción, además también se comprueba
+que la similitud entre los documentos esté bien calculada. La finalidad de esto es tener los documentos bien creados, listos para ser eliminados o modificados o consultados, para que esto funcione bien
+usamos el Test para comprobarlos. Es una caja negra ya que no sabe como se gestiona las funciones.
+
+-Para tener éxito este test, cada documento debe tener un conjunto de Autor+Titulo distinto o introducir un índice de documento existente, sino se saldrían excepciones.
+
+-El funcionamiento principal del ejecutable es testear todas las funciones que hay en él para que todos se pueden pasar.

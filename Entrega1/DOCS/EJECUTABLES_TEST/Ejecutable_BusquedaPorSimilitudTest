@@ -1,0 +1,18 @@
+Ejecutable de BusquedaPorSimilitudTest
+
+-Objeto:
+	En este ejecutable usamos la clase de DocumentHeader(Autor+Título), Libreria(Autores+Documentos) y BusquedaPorSimilitud porque estamos haciendo un test unitario de una búsqueda
+	por los documentos, donde tiene que encontrar documentos parecidos a un cierto documento.
+
+-Los ficheros disponidos son Libreria.java (clase Autores y Documentos), DocumentHeader.java (clase Autor y Título) y BusquedaPorSimilitud.java, que contiene la clase de Libreria, de DocumentHeader
+y de BusquedaPorSimilitud, respectivamente.
+
+-Para la función de búsqueda por similitud, añadimos unos documentos válidos para poder calcular sus TF-IDFs, luego es simplemente escoger uno de los documentos, comparar con los otros para ver la similitud entre ellos y
+devolver los más parecidos. El objetivo principal es tener los TF-IDFs de cada palabra de cada documento bien calculado, así nos facilita mucho a la hora de consultar la similitud.
+Es una caja negra ya que no sabe como se gestiona las funciones.
+
+-Para tener el test con éxito, es necesario que los documentos estén bien formados y tener los TF-IDF bien calculados de cada documento para poder encontrar la similitud entre los documentos de forma
+correcta (como hemos planteado).
+
+-El funcionamiento principal del ejecutable es testear todas las funciones que hay en él para que todos se pueden pasar.
+

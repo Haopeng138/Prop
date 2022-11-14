@@ -1,0 +1,19 @@
+Ejecutable de Documentos:
+
+-Objeto:
+	En este ejectuable de driver de Documentos usamos los casos de uso de Crear Documento, Cargar Documento, Eliminar Documento, Modificar Documento, la finalidad es comprobar que cumple los casos de uso.
+	Además de usar la clase de Documentos, hemos usado la de Documento, donde ya contiene las clases de Autor y Título para que se pueda añadir un conjunto de documentos
+	con un conjunto de autor y título único y el contenido, aquí también se comprueba que no puede tener dos documentos con el mismo autor y título.
+-Driver utilizado es el de Documentos, tiene la missión de comprobar que los documentos se pueden crear, cargar, eliminar, modificar y comparar la similitud entre ellos correctamente, es decir,
+podemos gestionar los documentos con sus índices correspodientes.
+
+-Los ficheros utilitzados son los de Autor.java, Título.java, Documento.java y Documentos.java donde se guarda las clases Autor, Título, Documento y Documentos, respectivamente. Estos ficheros son imprescidible para
+que el funcionamiento sea correcto.
+
+-Hemos probado con un conjunto de autor y título con su contenido, modificar de cada documento su contenido con valores iguales o distintos (modifican solo algunas palabras) para ver que funcionen correctamente (generar correctamente los TFs y IDFs),
+el objetivo principal es ver que podemos añadir, eliminar, cargar y modificar un documento sin dar ningún error esperado, además de esto ver que se actualizan bien los TFs y IDFs de los documentos, ya que con TF-IDF veamos la similitud entre los documentos,
+está entre 0 i 1, 0 significa que no tiene nada de similitud y 1 tiene el contenido igual. Aquí solo llama a otras clases que hacen las funciones que tocan sin saber como gestionarlas (caja negra).
+
+-En cada caso, si el documento introduciodo no está bien formado se sala la excepción, en el contrario, se procesa la opción elegida.
+
+-Una vez, ejecutado el ejecutable, se crea un .jar del driver de Documentos, luego ejecutamos este driver y seguir las instrucciones que imprime por la pantalla.
