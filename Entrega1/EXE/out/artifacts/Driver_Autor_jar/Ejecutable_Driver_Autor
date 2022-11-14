@@ -1,0 +1,25 @@
+//EJECUTABLE DE AUTOR:
+
+- Objeto de la prueba:
+	En este ejecutable incluye los siguientes casos de uso principalmente: crear un autor, mostrar el nombre del autor, modificar el nombre del
+	autor y comprovar la existencia de un autor.
+	Clase: Autor.
+
+- Driver:
+	Nombre: Driver_Autor.
+	Descripción: Este driver tiene la principal función en la creación, la modificación y la comprovación de un autor.
+
+- Ficheros de datos necesarios:
+	Sólo hemos incluido el fichero Autor.java para este ejecutable.
+
+- Valores estudiados:
+	Usando diferentes valores para comprovar el bien funcionamiento del ejecutable. Para cada opción, al principio hemos introducido
+	los valores que pueden causar excepción para ver que realmente es lo que ocurre. Y también la forma que se pueda procesar de
+	manera correcta. Además de esto, el ejecutable se trata de prueba de caja negra, ya que no consideramos la lógica interna del sistema.
+
+- Efectos estudiados:
+	En cada caso, si el nombre introducido es nulo se salta la excepción, en caso contrario, se procesa la opción elegida.
+
+- Operativa:
+	Después de ejecutarse el ejecutable se crea un .jar del driver de Autor, seguidamente ejecutamos este driver y seguimos las instrucciones
+	que muestra por la pantella.

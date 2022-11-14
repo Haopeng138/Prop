@@ -1,0 +1,23 @@
+//EJECUTABLE DE TÍTULO:
+
+- Objeto de la prueba:
+	Los objetos que intervienen en este ejecutable son los casos de uso siguientes: crear un título, mostrar el título y modificar el título.
+	Clase: Titulo.
+
+- Driver:
+	Nombre: Driver_Titulo.
+	Descripción: Función princial de crear, mostrar y modificar un título de un documento.
+
+- Ficheros de datos necesarios:
+	El fichero necesario para este ejecutable es el Titulo.java, es el único necesario.
+
+- Valores estudiados:
+	Hemos probado por diferentes valores para comprobar que funcione correctamente el nuestro ejecutable, para crear y modificar un título.
+	Esta prueba se trata de una de caja negra, sin consideración la lógica interior del sistema.
+
+- Efectos estudiados:
+	Para cada opción, si el título introducido es nulo se salta la excepción, en caso contrario, se procesa correctamente la opción elegida.
+
+- Operativa:
+	Después de ejecutarse el ejecutable se crea un .jar del driver de Título, seguidamente ejecutamos este driver y seguimos las instrucciones
+	que muestra por la pantella.
