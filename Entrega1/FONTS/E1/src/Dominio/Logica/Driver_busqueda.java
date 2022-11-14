@@ -19,13 +19,13 @@ public class Driver_busqueda {
         /*String basedir = System.getProperties().get("user.dir").toString();
         File folder = new File(basedir + "/Entrega1/FONTS/E1/JuegosDePrueba/Estructura");
         System.out.println(folder.getAbsolutePath());*/
-        System.out.println("Primero :"+folder.getAbsolutePath());
+        //System.out.println("Primero :"+folder.getAbsolutePath());
         File[] files = listoffiles(folder, "Einput001", ".txt");
         iniciarDocumentos(files);
         if (files == null){
             folder = new File("./");
             files = listoffiles(folder, "Einput001", ".txt");
-            System.out.println("Segundo :"+folder.getAbsolutePath());
+            //System.out.println("Segundo :"+folder.getAbsolutePath());
             iniciarDocumentos(files);
         }
 
@@ -133,7 +133,7 @@ public class Driver_busqueda {
                 }
             }
         }catch (Exception ignored){
-            System.out.println("Pasando ");
+            //System.out.println("Pasando ");
         }
 
     }
