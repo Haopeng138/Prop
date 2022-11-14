@@ -14,7 +14,7 @@ public class Driver_busqueda {
     static ControladorDominio dominio = new ControladorDominio();
 
     public static void main(String[] args) throws FileNotFoundException {
-        File folder = new File("./Entrega1/FONTS/E1/JuegosDePrueba/Estructura");
+        File folder = new File("../../../Entrega1/FONTS/E1/JuegosDePrueba/Estructura");
 
         /*String basedir = System.getProperties().get("user.dir").toString();
         File folder = new File(basedir + "/Entrega1/FONTS/E1/JuegosDePrueba/Estructura");
