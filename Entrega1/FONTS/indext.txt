@@ -1,15 +1,35 @@
 Codigo fuente del proyecto
 
+Para compilar el proyecto y generar los .jar(los archivos .class esta en la carpeta de out en el mismo directorio y los archivos .jar  estará acompañado con su .sh en el mismo directorio):
+    make all
+Para eliminar los archivos generado:
+    make clean
 
--Src
-	-- Controladores
-	
-	-- Dominio
-		Autor
-		Autores
-		Titulo 
-		Documento
-		Documentos
-		Expresion
-		Expresiones
+En la carpeta E1 esta el codigo fuente del projecto organizado de esta manera
+
+Parte relacionado con codigos:
+-E1
+--Src
+	--Dominio
+	    --Estrutura
+		    Autor
+		    Autores
+		    Titulo
+		    Documento
+		    Documentos
+		    Libreria/Controlador Documentos
+		--Espresion
+		    Expresion
+		    ControladorExpresoin
+		--Logica
+		    BusquedaPorExpresion
+		    BusquedaPorPrefijo
+		    BusquedaPorSimilitud
+		    ControladorBusqueda
 		ControladorDominio
+
+Además dentro de la carpeta E1 también está:
+
+    -JuegosDePrueba: un carpeta para obtener inputs
+    -test: Test unitarios de junit
+
