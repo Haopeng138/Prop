@@ -1,0 +1,19 @@
+Ejecutable de Documento:
+
+-Objeto:
+	En este ejectuable de driver de Documento usamos los casos de uso de Crear Documento, Modificar Documento (concretamente puede ser autor, título o contenido), la finalidad
+	es comprobar que cumple los casos de uso.
+	Además de usar la clase de Documento, hemos usado la de Título y Autor para que se añade un nuevo documento con un título y autor único, es decir, cada documento
+	tindría un conjunto de autor y título distinto, aquí también se comprueba que el autor y el título ya estan creados.
+-Driver utilizado es el de Documento, tiene la missión de comprobar que un documento se puede añadir correctament y modificarlo adequamente.
+
+-Los ficheros utilitzados son los de Autor.java, Título.java y Documento.java donde se guarda las clases Autor, Título y Documento, respectivamente. Estos ficheros son imprescidible para
+que el funcionamiento sea correcto.
+
+-Hemos probado con un conjunto de autor y título con su contenido, modificar del documento su título, autor y contenido con valores iguales o distintos para ver que funcionen correctamente,
+el objetivo principal es ver que podemos añadir y modificar un documento sin dar ningún error esperado, por ejemplo, imprimir un documento que no existe o modificar un documento con mismo valores
+que tenían o modificar el documento sin haber creado. Aquí solo llama a otras clases que hacen las funciones que tocan sin saber como gestionarlas (caja negra).
+
+-En cada caso, si el documento introducido no está bien formado se sale la excepción, en el contrario, se procesa la opción escogida.
+
+-Una vez, ejecutado el ejecutable, se crea un .jar del driver de Documento, luego ejecutamos este driver y seguir las instrucciones que imprime por la pantalla.
