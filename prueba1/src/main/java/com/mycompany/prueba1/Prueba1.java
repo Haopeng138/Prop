@@ -12,6 +12,9 @@ package com.mycompany.prueba1;
 public class Prueba1 {
 
     public static void main(String[] args) {
+        framePrueba j = new framePrueba();
+        j.setVisible(true);
+       
         System.out.println("Hello World!");
     }
 }

@@ -16,7 +16,7 @@ public class framePrueba extends javax.swing.JFrame {
     public framePrueba() {
         initComponents();
     }
-
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,7 +26,7 @@ public class framePrueba extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
+        SizeMenu = new javax.swing.JScrollPane();
         SizeMenuBusqueda = new javax.swing.JList<>();
         MenuBarPrincipal = new javax.swing.JMenuBar();
         FileMenu = new javax.swing.JMenu();
@@ -41,16 +41,16 @@ public class framePrueba extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(SizeMenuBusqueda);
+        SizeMenuBusqueda.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SizeMenuBusquedaMouseClicked(evt);
+            }
+        });
+        SizeMenu.setViewportView(SizeMenuBusqueda);
 
         FileMenu.setText("File");
 
         NuevoDoc.setText("Nuevo");
-        NuevoDoc.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NuevoDocActionPerformed(evt);
-            }
-        });
         FileMenu.add(NuevoDoc);
 
         CargarDoc.setText("Cargar");
@@ -68,22 +68,23 @@ public class framePrueba extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(523, Short.MAX_VALUE))
+                .addComponent(SizeMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(579, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE)
+                .addComponent(SizeMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void NuevoDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevoDocActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NuevoDocActionPerformed
+    private void SizeMenuBusquedaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SizeMenuBusquedaMouseClicked
+
+        //ListarPorAutor.setVisible(true);// TODO add your handling code here:
+    }//GEN-LAST:event_SizeMenuBusquedaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -111,11 +112,14 @@ public class framePrueba extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(framePrueba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
+                ListarPorAutor a = new ListarPorAutor();
                 new framePrueba().setVisible(true);
+                a.setVisible(true);
             }
         });
     }
@@ -126,7 +130,7 @@ public class framePrueba extends javax.swing.JFrame {
     private javax.swing.JMenu HelpMenu;
     private javax.swing.JMenuBar MenuBarPrincipal;
     private javax.swing.JMenuItem NuevoDoc;
+    private javax.swing.JScrollPane SizeMenu;
     private javax.swing.JList<String> SizeMenuBusqueda;
-    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
