@@ -8,6 +8,7 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
+import javax.swing.border.EmptyBorder;
 
 /**
  *
@@ -32,6 +33,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         initComponents();
         init2();
         iniciarllista();
+        add(new JScrollPane(listaDocumento), BorderLayout.CENTER);
+      
+  
     }
     
     private void init2(){
@@ -49,9 +53,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         listaTitulos = new JList();
         
         DocumentoItem d = new DocumentoItem("autor1","titulo2");
-        listaDocumento.add(d);
+        listaDocumento.add(d,"documentos");
         ListaItems.add(new JScrollPane(listaDocumento));
-        ListaItems.setVisible(true);
+        ListaItems.setBorder(new EmptyBorder(10, 10, 10, 10));
     }
    
     /**
@@ -66,7 +70,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         SizeMenu = new javax.swing.JScrollPane();
         SizeMenuBusqueda = new javax.swing.JList<>();
         PanelBusquedas = new javax.swing.JPanel();
-        ListaItems = new javax.swing.JScrollPane();
+        ListaItems = new javax.swing.JPanel();
+        tituloItem1 = new com.mycompany.prueba1.TituloItem();
         MenuBarPrincipal = new javax.swing.JMenuBar();
         FileMenu = new javax.swing.JMenu();
         NuevoDoc = new javax.swing.JMenuItem();
@@ -88,6 +93,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         SizeMenu.setViewportView(SizeMenuBusqueda);
 
         PanelBusquedas.setLayout(new java.awt.CardLayout());
+
+        ListaItems.setLayout(new java.awt.GridLayout());
 
         FileMenu.setText("File");
 
@@ -115,12 +122,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(SizeMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(PanelBusquedas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(ListaItems, javax.swing.GroupLayout.PREFERRED_SIZE, 692, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(PanelBusquedas, javax.swing.GroupLayout.DEFAULT_SIZE, 698, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(ListaItems, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap())))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(tituloItem1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,7 +143,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(PanelBusquedas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(ListaItems, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(tituloItem1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(126, 126, 126)
+                        .addComponent(ListaItems, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -215,11 +230,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem CargarDoc;
     private javax.swing.JMenu FileMenu;
     private javax.swing.JMenu HelpMenu;
-    private javax.swing.JScrollPane ListaItems;
+    private javax.swing.JPanel ListaItems;
     private javax.swing.JMenuBar MenuBarPrincipal;
     private javax.swing.JMenuItem NuevoDoc;
     private javax.swing.JPanel PanelBusquedas;
     private javax.swing.JScrollPane SizeMenu;
     private javax.swing.JList<String> SizeMenuBusqueda;
+    private com.mycompany.prueba1.TituloItem tituloItem1;
     // End of variables declaration//GEN-END:variables
 }
