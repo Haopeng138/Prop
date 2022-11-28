@@ -40,11 +40,6 @@ public class ListarPorExpresion extends javax.swing.JPanel {
         NombreAutor = new javax.swing.JTextField();
         TextAlias = new javax.swing.JLabel();
         ButtonAñadir = new javax.swing.JButton();
-        VentanaAñadirAlia = new javax.swing.JInternalFrame();
-        TextInfoAlia = new javax.swing.JLabel();
-        TextAlia = new javax.swing.JTextField();
-        ButtunGuardar = new javax.swing.JButton();
-        ButtonCancelar = new javax.swing.JButton();
 
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -93,44 +88,6 @@ public class ListarPorExpresion extends javax.swing.JPanel {
             }
         });
 
-        VentanaAñadirAlia.setVisible(true);
-
-        TextInfoAlia.setText("Asigne una alia para la expresión:");
-
-        ButtunGuardar.setText("Guardar");
-
-        ButtonCancelar.setText("Cancelar");
-
-        javax.swing.GroupLayout VentanaAñadirAliaLayout = new javax.swing.GroupLayout(VentanaAñadirAlia.getContentPane());
-        VentanaAñadirAlia.getContentPane().setLayout(VentanaAñadirAliaLayout);
-        VentanaAñadirAliaLayout.setHorizontalGroup(
-            VentanaAñadirAliaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(VentanaAñadirAliaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(VentanaAñadirAliaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TextAlia)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, VentanaAñadirAliaLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(ButtunGuardar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ButtonCancelar))
-                    .addComponent(TextInfoAlia, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        VentanaAñadirAliaLayout.setVerticalGroup(
-            VentanaAñadirAliaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(VentanaAñadirAliaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(TextInfoAlia)
-                .addGap(18, 18, 18)
-                .addComponent(TextAlia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(VentanaAñadirAliaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ButtonCancelar)
-                    .addComponent(ButtunGuardar))
-                .addContainerGap(12, Short.MAX_VALUE))
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -151,10 +108,6 @@ public class ListarPorExpresion extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(ButtonBuscar)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(90, 90, 90)
-                .addComponent(VentanaAñadirAlia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,9 +126,7 @@ public class ListarPorExpresion extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ButtonBuscar)
                     .addComponent(ButtonAñadir))
-                .addGap(18, 18, 18)
-                .addComponent(VentanaAñadirAlia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(197, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {AliasExist, Expresion, NombreAutor});
@@ -246,14 +197,9 @@ public class ListarPorExpresion extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> AliasExist;
     private javax.swing.JButton ButtonAñadir;
     private javax.swing.JButton ButtonBuscar;
-    private javax.swing.JButton ButtonCancelar;
-    private javax.swing.JButton ButtunGuardar;
     private javax.swing.JTextField Expresion;
     private javax.swing.JTextField NombreAutor;
-    private javax.swing.JTextField TextAlia;
     private javax.swing.JLabel TextAlias;
-    private javax.swing.JLabel TextInfoAlia;
     private javax.swing.JLabel TipoBusqueda;
-    private javax.swing.JInternalFrame VentanaAñadirAlia;
     // End of variables declaration//GEN-END:variables
 }

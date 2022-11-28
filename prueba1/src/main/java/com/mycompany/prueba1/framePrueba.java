@@ -19,10 +19,8 @@ public class framePrueba extends javax.swing.JFrame {
     public framePrueba() {
         initComponents();
     }
+
     
-    
-    
-   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,6 +30,33 @@ public class framePrueba extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        VentAñadirAlia = new javax.swing.JInternalFrame();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        TextNombreAlia = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        ButtonCancelar = new javax.swing.JButton();
+        ButtonGuardar = new javax.swing.JButton();
+        VentModificarAlia = new javax.swing.JInternalFrame();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        TextNombreAlia1 = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
+        ButtonCancelar1 = new javax.swing.JButton();
+        ButtonGuardar1 = new javax.swing.JButton();
+        VentEliminarAlia = new javax.swing.JInternalFrame();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        TextNombreAlia2 = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextArea3 = new javax.swing.JTextArea();
+        ButtonCancelar2 = new javax.swing.JButton();
+        ButtonGuardar2 = new javax.swing.JButton();
         SizeMenu = new javax.swing.JScrollPane();
         SizeMenuBusqueda = new javax.swing.JList<>();
         TextTipoListado = new javax.swing.JLabel();
@@ -42,10 +67,187 @@ public class framePrueba extends javax.swing.JFrame {
         NuevoDoc = new javax.swing.JMenuItem();
         CargarDoc = new javax.swing.JMenuItem();
         AliasMenu = new javax.swing.JMenu();
-        AñadirAlia = new javax.swing.JMenuItem();
+        NuevaAlia = new javax.swing.JMenuItem();
         ModificarAlia = new javax.swing.JMenuItem();
         EliminarAlia = new javax.swing.JMenuItem();
         HelpMenu = new javax.swing.JMenu();
+
+        VentAñadirAlia.setVisible(true);
+
+        jLabel1.setText("Añadir una nueva alia:");
+
+        jLabel2.setText("Nombre de alia:");
+
+        jLabel3.setText("Expresión:");
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        ButtonCancelar.setText("Cancelar");
+
+        ButtonGuardar.setText("Guardar");
+
+        javax.swing.GroupLayout VentAñadirAliaLayout = new javax.swing.GroupLayout(VentAñadirAlia.getContentPane());
+        VentAñadirAlia.getContentPane().setLayout(VentAñadirAliaLayout);
+        VentAñadirAliaLayout.setHorizontalGroup(
+            VentAñadirAliaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(VentAñadirAliaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(VentAñadirAliaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(VentAñadirAliaLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(ButtonGuardar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ButtonCancelar))
+                    .addGroup(VentAñadirAliaLayout.createSequentialGroup()
+                        .addGroup(VentAñadirAliaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(VentAñadirAliaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TextNombreAlia)
+                            .addComponent(jScrollPane1)))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        VentAñadirAliaLayout.setVerticalGroup(
+            VentAñadirAliaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(VentAñadirAliaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(VentAñadirAliaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(TextNombreAlia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(VentAñadirAliaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(VentAñadirAliaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ButtonCancelar)
+                    .addComponent(ButtonGuardar))
+                .addGap(12, 12, 12))
+        );
+
+        VentModificarAlia.setVisible(true);
+
+        jLabel4.setText("Modificar una alia:");
+
+        jLabel5.setText("Nombre de alia:");
+
+        jLabel6.setText("Expresión:");
+
+        jTextArea2.setColumns(20);
+        jTextArea2.setRows(5);
+        jScrollPane2.setViewportView(jTextArea2);
+
+        ButtonCancelar1.setText("Cancelar");
+
+        ButtonGuardar1.setText("Guardar");
+
+        javax.swing.GroupLayout VentModificarAliaLayout = new javax.swing.GroupLayout(VentModificarAlia.getContentPane());
+        VentModificarAlia.getContentPane().setLayout(VentModificarAliaLayout);
+        VentModificarAliaLayout.setHorizontalGroup(
+            VentModificarAliaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(VentModificarAliaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(VentModificarAliaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(VentModificarAliaLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(ButtonGuardar1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ButtonCancelar1))
+                    .addGroup(VentModificarAliaLayout.createSequentialGroup()
+                        .addGroup(VentModificarAliaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(VentModificarAliaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TextNombreAlia1)
+                            .addComponent(jScrollPane2)))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        VentModificarAliaLayout.setVerticalGroup(
+            VentModificarAliaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(VentModificarAliaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(VentModificarAliaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(TextNombreAlia1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(VentModificarAliaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(VentModificarAliaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ButtonCancelar1)
+                    .addComponent(ButtonGuardar1))
+                .addGap(12, 12, 12))
+        );
+
+        VentEliminarAlia.setVisible(true);
+
+        jLabel7.setText("Añadir una nueva alia:");
+
+        jLabel8.setText("Nombre de alia:");
+
+        jLabel9.setText("Expresión:");
+
+        jTextArea3.setColumns(20);
+        jTextArea3.setRows(5);
+        jScrollPane3.setViewportView(jTextArea3);
+
+        ButtonCancelar2.setText("Cancelar");
+
+        ButtonGuardar2.setText("Guardar");
+
+        javax.swing.GroupLayout VentEliminarAliaLayout = new javax.swing.GroupLayout(VentEliminarAlia.getContentPane());
+        VentEliminarAlia.getContentPane().setLayout(VentEliminarAliaLayout);
+        VentEliminarAliaLayout.setHorizontalGroup(
+            VentEliminarAliaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(VentEliminarAliaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(VentEliminarAliaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(VentEliminarAliaLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(ButtonGuardar2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ButtonCancelar2))
+                    .addGroup(VentEliminarAliaLayout.createSequentialGroup()
+                        .addGroup(VentEliminarAliaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel8))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(VentEliminarAliaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TextNombreAlia2)
+                            .addComponent(jScrollPane3)))
+                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        VentEliminarAliaLayout.setVerticalGroup(
+            VentEliminarAliaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(VentEliminarAliaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(VentEliminarAliaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(TextNombreAlia2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(VentEliminarAliaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(VentEliminarAliaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ButtonCancelar2)
+                    .addComponent(ButtonGuardar2))
+                .addGap(12, 12, 12))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -90,8 +292,8 @@ public class framePrueba extends javax.swing.JFrame {
 
         AliasMenu.setText("Alias");
 
-        AñadirAlia.setText("Añadir");
-        AliasMenu.add(AñadirAlia);
+        NuevaAlia.setText("Añadir");
+        AliasMenu.add(NuevaAlia);
 
         ModificarAlia.setText("Modificar");
         AliasMenu.add(ModificarAlia);
@@ -138,7 +340,7 @@ public class framePrueba extends javax.swing.JFrame {
 
         //ListarPorAutor.setVisible(true);// TODO add your handling code here:
         
-        CardLayout card =  (CardLayout)mainPanel.getLayout();
+        CardLayout card = (CardLayout)mainPanel.getLayout();
         if ("Listar por autor".equals((String)SizeMenuBusqueda.getSelectedValue()) ) {    
             mainPanel.add(new ListarPorAutor(), "listarAutor");
             card.show(mainPanel, "listarAutor");
@@ -205,7 +407,12 @@ public class framePrueba extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu AliasMenu;
-    private javax.swing.JMenuItem AñadirAlia;
+    private javax.swing.JButton ButtonCancelar;
+    private javax.swing.JButton ButtonCancelar1;
+    private javax.swing.JButton ButtonCancelar2;
+    private javax.swing.JButton ButtonGuardar;
+    private javax.swing.JButton ButtonGuardar1;
+    private javax.swing.JButton ButtonGuardar2;
     private javax.swing.JMenuItem CargarDoc;
     private javax.swing.JMenuItem EliminarAlia;
     private javax.swing.JMenu FileMenu;
@@ -213,10 +420,32 @@ public class framePrueba extends javax.swing.JFrame {
     private javax.swing.JPanel IniciPanel;
     private javax.swing.JMenuBar MenuBarPrincipal;
     private javax.swing.JMenuItem ModificarAlia;
+    private javax.swing.JMenuItem NuevaAlia;
     private javax.swing.JMenuItem NuevoDoc;
     private javax.swing.JScrollPane SizeMenu;
     private javax.swing.JList<String> SizeMenuBusqueda;
+    private javax.swing.JTextField TextNombreAlia;
+    private javax.swing.JTextField TextNombreAlia1;
+    private javax.swing.JTextField TextNombreAlia2;
     private javax.swing.JLabel TextTipoListado;
+    private javax.swing.JInternalFrame VentAñadirAlia;
+    private javax.swing.JInternalFrame VentEliminarAlia;
+    private javax.swing.JInternalFrame VentModificarAlia;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextArea jTextArea3;
     private javax.swing.JPanel mainPanel;
     // End of variables declaration//GEN-END:variables
 }
