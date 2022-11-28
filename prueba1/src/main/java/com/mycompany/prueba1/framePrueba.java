@@ -4,6 +4,8 @@
  */
 package com.mycompany.prueba1;
 
+import java.awt.CardLayout;
+
 /**
  *
  * @author flors
@@ -13,9 +15,13 @@ public class framePrueba extends javax.swing.JFrame {
     /**
      * Creates new form framePrueba
      */
+    
     public framePrueba() {
         initComponents();
     }
+    
+    
+    
    
     /**
      * This method is called from within the constructor to initialize the form.
@@ -29,12 +35,17 @@ public class framePrueba extends javax.swing.JFrame {
         SizeMenu = new javax.swing.JScrollPane();
         SizeMenuBusqueda = new javax.swing.JList<>();
         TextTipoListado = new javax.swing.JLabel();
+        mainPanel = new javax.swing.JPanel();
+        IniciPanel = new javax.swing.JPanel();
         MenuBarPrincipal = new javax.swing.JMenuBar();
         FileMenu = new javax.swing.JMenu();
         NuevoDoc = new javax.swing.JMenuItem();
         CargarDoc = new javax.swing.JMenuItem();
+        AliasMenu = new javax.swing.JMenu();
+        AñadirAlia = new javax.swing.JMenuItem();
+        ModificarAlia = new javax.swing.JMenuItem();
+        EliminarAlia = new javax.swing.JMenuItem();
         HelpMenu = new javax.swing.JMenu();
-        Alias = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,6 +63,21 @@ public class framePrueba extends javax.swing.JFrame {
 
         TextTipoListado.setText("  Seleccione el tipo de listado");
 
+        mainPanel.setLayout(new java.awt.CardLayout());
+
+        javax.swing.GroupLayout IniciPanelLayout = new javax.swing.GroupLayout(IniciPanel);
+        IniciPanel.setLayout(IniciPanelLayout);
+        IniciPanelLayout.setHorizontalGroup(
+            IniciPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 441, Short.MAX_VALUE)
+        );
+        IniciPanelLayout.setVerticalGroup(
+            IniciPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 405, Short.MAX_VALUE)
+        );
+
+        mainPanel.add(IniciPanel, "card2");
+
         FileMenu.setText("File");
 
         NuevoDoc.setText("Nuevo");
@@ -62,11 +88,20 @@ public class framePrueba extends javax.swing.JFrame {
 
         MenuBarPrincipal.add(FileMenu);
 
+        AliasMenu.setText("Alias");
+
+        AñadirAlia.setText("Añadir");
+        AliasMenu.add(AñadirAlia);
+
+        ModificarAlia.setText("Modificar");
+        AliasMenu.add(ModificarAlia);
+
+        EliminarAlia.setText("Eliminar");
+        AliasMenu.add(EliminarAlia);
+
+        MenuBarPrincipal.add(AliasMenu);
+
         HelpMenu.setText("Help");
-
-        Alias.setText("Alias");
-        HelpMenu.add(Alias);
-
         MenuBarPrincipal.add(HelpMenu);
 
         setJMenuBar(MenuBarPrincipal);
@@ -79,15 +114,20 @@ public class framePrueba extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(SizeMenu)
                     .addComponent(TextTipoListado, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE))
-                .addContainerGap(453, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(TextTipoListado, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(SizeMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(TextTipoListado)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SizeMenu)))
                 .addContainerGap())
         );
 
@@ -97,6 +137,32 @@ public class framePrueba extends javax.swing.JFrame {
     private void SizeMenuBusquedaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SizeMenuBusquedaMouseClicked
 
         //ListarPorAutor.setVisible(true);// TODO add your handling code here:
+        
+        CardLayout card =  (CardLayout)mainPanel.getLayout();
+        if ("Listar por autor".equals((String)SizeMenuBusqueda.getSelectedValue()) ) {    
+            mainPanel.add(new ListarPorAutor(), "listarAutor");
+            card.show(mainPanel, "listarAutor");
+        }
+        
+        if ("Listar por autor y título".equals((String)SizeMenuBusqueda.getSelectedValue()) ) {
+            mainPanel.add(new ListarPorAutorYTitulo(), "listarAutorTitulo");
+            card.show(mainPanel, "listarAutorTitulo");
+        }
+        
+        if ("Listar por prefijo".equals((String)SizeMenuBusqueda.getSelectedValue()) ) {
+            mainPanel.add(new ListarPorPrefijo(), "listarPrefijo");
+            card.show(mainPanel, "listarPrefijo");
+        }
+        
+        if ("Listar por similitud".equals((String)SizeMenuBusqueda.getSelectedValue()) ) {
+            mainPanel.add(new ListarPorSimilitud(), "listarSimilitud");
+            card.show(mainPanel, "listarSimilitud");
+        }
+        
+        if ("Listar por expresión".equals((String)SizeMenuBusqueda.getSelectedValue()) ) { 
+            mainPanel.add(new ListarPorExpresion(), "listarExpresion");
+            card.show(mainPanel, "listarExpresion");
+        }
     }//GEN-LAST:event_SizeMenuBusquedaMouseClicked
 
     /**
@@ -138,14 +204,19 @@ public class framePrueba extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem Alias;
+    private javax.swing.JMenu AliasMenu;
+    private javax.swing.JMenuItem AñadirAlia;
     private javax.swing.JMenuItem CargarDoc;
+    private javax.swing.JMenuItem EliminarAlia;
     private javax.swing.JMenu FileMenu;
     private javax.swing.JMenu HelpMenu;
+    private javax.swing.JPanel IniciPanel;
     private javax.swing.JMenuBar MenuBarPrincipal;
+    private javax.swing.JMenuItem ModificarAlia;
     private javax.swing.JMenuItem NuevoDoc;
     private javax.swing.JScrollPane SizeMenu;
     private javax.swing.JList<String> SizeMenuBusqueda;
     private javax.swing.JLabel TextTipoListado;
+    private javax.swing.JPanel mainPanel;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,6 +4,8 @@
  */
 package com.mycompany.prueba1;
 
+import java.awt.Color;
+
 /**
  *
  * @author flors
@@ -17,6 +19,7 @@ public class ListarPorAutor extends javax.swing.JPanel {
         initComponents();
     }
 
+    private boolean first = true;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,6 +33,12 @@ public class ListarPorAutor extends javax.swing.JPanel {
         ButtonBuscar = new javax.swing.JButton();
         NombreAutor = new javax.swing.JTextField();
 
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                formMousePressed(evt);
+            }
+        });
+
         TipoBusqueda.setText("BÚSQUEDA POR NOMBRE DE AUTOR");
         TipoBusqueda.setToolTipText("");
 
@@ -37,23 +46,26 @@ public class ListarPorAutor extends javax.swing.JPanel {
         ButtonBuscar.setLabel("Buscar");
         ButtonBuscar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
+        NombreAutor.setForeground(new java.awt.Color(102, 102, 102));
         NombreAutor.setText("Introduce un nombre de autor");
+        NombreAutor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                NombreAutorMousePressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(TipoBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 422, Short.MAX_VALUE)
-                                .addComponent(ButtonBuscar))
-                            .addComponent(NombreAutor))
-                        .addGap(6, 6, 6)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 429, Short.MAX_VALUE)
+                        .addComponent(ButtonBuscar))
+                    .addComponent(NombreAutor))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -71,6 +83,26 @@ public class ListarPorAutor extends javax.swing.JPanel {
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {ButtonBuscar, NombreAutor});
 
     }// </editor-fold>//GEN-END:initComponents
+
+    private void NombreAutorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NombreAutorMousePressed
+        // TODO add your handling code here:
+        if (first) {
+            first = false;
+            NombreAutor.setText("");
+            NombreAutor.setForeground(new Color(0, 0, 0));
+            NombreAutor.setEnabled(true);
+        }
+    }//GEN-LAST:event_NombreAutorMousePressed
+
+    private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
+        // TODO add your handling code here:
+        if ("".equals(NombreAutor.getText())) {
+            NombreAutor.setText("Introduce un nombre de autor");
+            NombreAutor.setForeground(new Color(102, 102, 102));
+            first = true;
+            NombreAutor.setEnabled(false);
+        }
+    }//GEN-LAST:event_formMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -21,17 +21,32 @@
             </MenuItem>
           </SubComponents>
         </Menu>
+        <Menu class="javax.swing.JMenu" name="AliasMenu">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Alias"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="A&#xf1;adirAlia">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="A&#xf1;adir"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="ModificarAlia">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Modificar"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="EliminarAlia">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Eliminar"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
         <Menu class="javax.swing.JMenu" name="HelpMenu">
           <Properties>
             <Property name="text" type="java.lang.String" value="Help"/>
           </Properties>
-          <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="Alias">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Alias"/>
-              </Properties>
-            </MenuItem>
-          </SubComponents>
         </Menu>
       </SubComponents>
     </Menu>
@@ -64,18 +79,25 @@
                   <Component id="SizeMenu" max="32767" attributes="0"/>
                   <Component id="TextTipoListado" pref="184" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="453" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="mainPanel" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="TextTipoListado" pref="20" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="SizeMenu" min="-2" pref="379" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="mainPanel" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="TextTipoListado" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="SizeMenu" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -114,5 +136,31 @@
         <Property name="text" type="java.lang.String" value="  Seleccione el tipo de listado"/>
       </Properties>
     </Component>
+    <Container class="javax.swing.JPanel" name="mainPanel">
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
+      <SubComponents>
+        <Container class="javax.swing.JPanel" name="IniciPanel">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+              <CardConstraints cardName="card2"/>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <EmptySpace min="0" pref="441" max="32767" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <EmptySpace min="0" pref="405" max="32767" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+        </Container>
+      </SubComponents>
+    </Container>
   </SubComponents>
 </Form>
