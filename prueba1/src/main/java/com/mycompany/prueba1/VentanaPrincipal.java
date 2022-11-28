@@ -10,17 +10,18 @@ import java.awt.CardLayout;
  *
  * @author flors
  */
-public class framePrueba extends javax.swing.JFrame {
+public class VentanaPrincipal extends javax.swing.JFrame {
 
     private ListarPorAutor listaAutor = new ListarPorAutor();
     private ListarPorAutorYTitulo listaAutorTitulo = new ListarPorAutorYTitulo();
     private ListarPorExpresion listaExpresion = new ListarPorExpresion();
     private ListarPorPrefijo listaPrefijo = new ListarPorPrefijo();
     private ListarPorSimilitud listaSimilitud = new ListarPorSimilitud();
+    private NewDocument newDocument ;
     /**
      * Creates new form framePrueba
      */
-    public framePrueba() {
+    public VentanaPrincipal() {
         initComponents();
         init2();
     }
@@ -71,6 +72,11 @@ public class framePrueba extends javax.swing.JFrame {
         FileMenu.setText("File");
 
         NuevoDoc.setText("Nuevo");
+        NuevoDoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NuevoDocActionPerformed(evt);
+            }
+        });
         FileMenu.add(NuevoDoc);
 
         CargarDoc.setText("Cargar");
@@ -132,6 +138,17 @@ public class framePrueba extends javax.swing.JFrame {
                     
     }//GEN-LAST:event_SizeMenuBusquedaMouseClicked
 
+    private void NuevoDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevoDocActionPerformed
+        // TODO add your handling code here:
+       if(newDocument == null){
+           newDocument = new NewDocument();
+           newDocument.show();
+       }else{
+           System.out.println("Ya hay una ventana abierta");
+       }
+              
+    }//GEN-LAST:event_NuevoDocActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -149,20 +166,21 @@ public class framePrueba extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(framePrueba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(framePrueba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(framePrueba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(framePrueba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
         
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new framePrueba().setVisible(true);
+                new VentanaPrincipal().setVisible(true);
                 
             }
         });
