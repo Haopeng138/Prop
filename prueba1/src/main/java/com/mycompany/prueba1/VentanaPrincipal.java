@@ -4,7 +4,10 @@
  */
 package com.mycompany.prueba1;
 
+import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import javax.swing.JList;
+import javax.swing.JScrollPane;
 
 /**
  *
@@ -17,22 +20,37 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private ListarPorExpresion listaExpresion = new ListarPorExpresion();
     private ListarPorPrefijo listaPrefijo = new ListarPorPrefijo();
     private ListarPorSimilitud listaSimilitud = new ListarPorSimilitud();
-    private NewDocument newDocument ;
+    private NuevoDocumentoFrame newDocument ;
+    private JList listaTitulos;
+    private JList listaAutores;
+    private JList listaDocumento;
+    
     /**
      * Creates new form framePrueba
      */
     public VentanaPrincipal() {
         initComponents();
         init2();
+        iniciarllista();
     }
     
     private void init2(){
-        jPanel1.add(listaAutor,"listaAutor");
-        jPanel1.add(listaAutorTitulo,"listaAutorTitulo");
-        jPanel1.add(listaExpresion,"listaExpresion");
-        jPanel1.add(listaPrefijo,"listaPrefijo");
-        jPanel1.add(listaSimilitud,"listaSimilitud");
-              
+        PanelBusquedas.add(listaAutor,"listaAutor");
+        PanelBusquedas.add(listaAutorTitulo,"listaAutorTitulo");
+        PanelBusquedas.add(listaExpresion,"listaExpresion");
+        PanelBusquedas.add(listaPrefijo,"listaPrefijo");
+        PanelBusquedas.add(listaSimilitud,"listaSimilitud");
+        
+    }
+    
+    private void iniciarllista(){
+        listaDocumento = new JList();
+        listaAutores = new JList();
+        listaTitulos = new JList();
+        DocumentoItem d = new DocumentoItem("autor1","titulo2");
+        listaDocumento.add(d);
+        ListaItems.add(new JScrollPane(listaDocumento));
+        ListaItems.setVisible(true);
     }
    
     /**
@@ -46,7 +64,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         SizeMenu = new javax.swing.JScrollPane();
         SizeMenuBusqueda = new javax.swing.JList<>();
-        jPanel1 = new javax.swing.JPanel();
+        PanelBusquedas = new javax.swing.JPanel();
+        ListaItems = new javax.swing.JScrollPane();
         MenuBarPrincipal = new javax.swing.JMenuBar();
         FileMenu = new javax.swing.JMenu();
         NuevoDoc = new javax.swing.JMenuItem();
@@ -67,7 +86,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         SizeMenu.setViewportView(SizeMenuBusqueda);
 
-        jPanel1.setLayout(new java.awt.CardLayout());
+        PanelBusquedas.setLayout(new java.awt.CardLayout());
 
         FileMenu.setText("File");
 
@@ -96,7 +115,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(SizeMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 673, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(PanelBusquedas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(ListaItems, javax.swing.GroupLayout.PREFERRED_SIZE, 692, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,8 +127,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(SizeMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(PanelBusquedas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ListaItems, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -116,22 +140,22 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         //ListarPorAutor.setVisible(true);// TODO add your handling code here:
         int idx = SizeMenuBusqueda.getSelectedIndex();
-        CardLayout card = (CardLayout)jPanel1.getLayout();
+        CardLayout card = (CardLayout)PanelBusquedas.getLayout();
         switch (idx){
             case 0:
-                card.show(jPanel1, "listaAutor");
+                card.show(PanelBusquedas, "listaAutor");
                 break;
             case 1:
-                card.show(jPanel1, "listaAutorTitulo");
+                card.show(PanelBusquedas, "listaAutorTitulo");
                 break;
             case 2:
-                card.show(jPanel1, "listaExpresion");
+                card.show(PanelBusquedas, "listaExpresion");
                 break;
             case 3:
-                card.show(jPanel1, "listaPrefijo");
+                card.show(PanelBusquedas, "listaPrefijo");
                 break;
             case 4:
-                card.show(jPanel1, "listaSimilitud");
+                card.show(PanelBusquedas, "listaSimilitud");
                 break;
         }
                 
@@ -141,7 +165,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void NuevoDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevoDocActionPerformed
         // TODO add your handling code here:
        if(newDocument == null){
-           newDocument = new NewDocument();
+           newDocument = new NuevoDocumentoFrame();
            newDocument.show();
        }else{
            System.out.println("Ya hay una ventana abierta");
@@ -190,10 +214,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem CargarDoc;
     private javax.swing.JMenu FileMenu;
     private javax.swing.JMenu HelpMenu;
+    private javax.swing.JScrollPane ListaItems;
     private javax.swing.JMenuBar MenuBarPrincipal;
     private javax.swing.JMenuItem NuevoDoc;
+    private javax.swing.JPanel PanelBusquedas;
     private javax.swing.JScrollPane SizeMenu;
     private javax.swing.JList<String> SizeMenuBusqueda;
-    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
