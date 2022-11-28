@@ -26,7 +26,7 @@
                       <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="TipoBusqueda" pref="357" max="32767" attributes="0"/>
+                              <Component id="TipoBusqueda" pref="417" max="32767" attributes="0"/>
                               <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
                           </Group>
                           <Component id="Titulo" alignment="1" max="32767" attributes="0"/>
@@ -52,7 +52,7 @@
               <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="ButtonBuscar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="328" max="32767" attributes="0"/>
+              <EmptySpace pref="18" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

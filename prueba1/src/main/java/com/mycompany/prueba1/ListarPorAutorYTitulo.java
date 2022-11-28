@@ -66,7 +66,7 @@ public class ListarPorAutorYTitulo extends javax.swing.JPanel {
                         .addGap(61, 61, 61)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(TipoBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)
+                                .addComponent(TipoBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
                                 .addGap(61, 61, 61))
                             .addComponent(NombreAutor)
                             .addComponent(Titulo)))
@@ -86,7 +86,7 @@ public class ListarPorAutorYTitulo extends javax.swing.JPanel {
                 .addComponent(Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(9, 9, 9)
                 .addComponent(ButtonBuscar)
-                .addContainerGap(252, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

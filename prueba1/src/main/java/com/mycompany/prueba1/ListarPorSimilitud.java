@@ -77,7 +77,7 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
                         .addGap(61, 61, 61)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(TipoBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
+                                .addComponent(TipoBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
                                 .addGap(61, 61, 61))
                             .addComponent(Titulo, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jTextField1)
@@ -97,7 +97,7 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ButtonBuscar)
-                .addContainerGap(328, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

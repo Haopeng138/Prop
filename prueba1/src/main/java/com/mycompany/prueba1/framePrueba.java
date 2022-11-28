@@ -4,17 +4,34 @@
  */
 package com.mycompany.prueba1;
 
+import java.awt.CardLayout;
+
 /**
  *
  * @author flors
  */
 public class framePrueba extends javax.swing.JFrame {
 
+    private ListarPorAutor listaAutor = new ListarPorAutor();
+    private ListarPorAutorYTitulo listaAutorTitulo = new ListarPorAutorYTitulo();
+    private ListarPorExpresion listaExpresion = new ListarPorExpresion();
+    private ListarPorPrefijo listaPrefijo = new ListarPorPrefijo();
+    private ListarPorSimilitud listaSimilitud = new ListarPorSimilitud();
     /**
      * Creates new form framePrueba
      */
     public framePrueba() {
         initComponents();
+        init2();
+    }
+    
+    private void init2(){
+        jPanel1.add(listaAutor,"listaAutor");
+        jPanel1.add(listaAutorTitulo,"listaAutorTitulo");
+        jPanel1.add(listaExpresion,"listaExpresion");
+        jPanel1.add(listaPrefijo,"listaPrefijo");
+        jPanel1.add(listaSimilitud,"listaSimilitud");
+              
     }
    
     /**
@@ -28,6 +45,7 @@ public class framePrueba extends javax.swing.JFrame {
 
         SizeMenu = new javax.swing.JScrollPane();
         SizeMenuBusqueda = new javax.swing.JList<>();
+        jPanel1 = new javax.swing.JPanel();
         MenuBarPrincipal = new javax.swing.JMenuBar();
         FileMenu = new javax.swing.JMenu();
         NuevoDoc = new javax.swing.JMenuItem();
@@ -37,7 +55,7 @@ public class framePrueba extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         SizeMenuBusqueda.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Listar por autor", "Listar por autor y título", "Listar por prefijo", "Listar por similitud", "Listar por expresión" };
+            String[] strings = { "Listar por autor", "Listar por autor y título", "Listar por expresion", "Listar por prefijo", "Listar por similitud" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -47,6 +65,8 @@ public class framePrueba extends javax.swing.JFrame {
             }
         });
         SizeMenu.setViewportView(SizeMenuBusqueda);
+
+        jPanel1.setLayout(new java.awt.CardLayout());
 
         FileMenu.setText("File");
 
@@ -69,12 +89,17 @@ public class framePrueba extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(SizeMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(579, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(SizeMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(SizeMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -84,6 +109,27 @@ public class framePrueba extends javax.swing.JFrame {
     private void SizeMenuBusquedaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SizeMenuBusquedaMouseClicked
 
         //ListarPorAutor.setVisible(true);// TODO add your handling code here:
+        int idx = SizeMenuBusqueda.getSelectedIndex();
+        CardLayout card = (CardLayout)jPanel1.getLayout();
+        switch (idx){
+            case 0:
+                card.show(jPanel1, "listaAutor");
+                break;
+            case 1:
+                card.show(jPanel1, "listaAutorTitulo");
+                break;
+            case 2:
+                card.show(jPanel1, "listaExpresion");
+                break;
+            case 3:
+                card.show(jPanel1, "listaPrefijo");
+                break;
+            case 4:
+                card.show(jPanel1, "listaSimilitud");
+                break;
+        }
+                
+                    
     }//GEN-LAST:event_SizeMenuBusquedaMouseClicked
 
     /**
@@ -132,5 +178,6 @@ public class framePrueba extends javax.swing.JFrame {
     private javax.swing.JMenuItem NuevoDoc;
     private javax.swing.JScrollPane SizeMenu;
     private javax.swing.JList<String> SizeMenuBusqueda;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

@@ -30,6 +30,8 @@ public class ListarPorAutor extends javax.swing.JPanel {
         NombreAutor = new javax.swing.JTextField();
         ButtonBuscar = new javax.swing.JButton();
 
+        setPreferredSize(new java.awt.Dimension(600, 225));
+
         TipoBusqueda.setText("BÚSQUEDA POR NOMBRE DE AUTOR");
         TipoBusqueda.setToolTipText("");
 
@@ -50,7 +52,7 @@ public class ListarPorAutor extends javax.swing.JPanel {
                 .addGap(61, 61, 61)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(TipoBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Buscador, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE))
+                    .addComponent(Buscador, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE))
                 .addGap(61, 61, 61))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -66,7 +68,7 @@ public class ListarPorAutor extends javax.swing.JPanel {
                 .addComponent(Buscador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ButtonBuscar)
-                .addContainerGap(349, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
