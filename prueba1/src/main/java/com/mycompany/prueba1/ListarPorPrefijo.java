@@ -4,11 +4,9 @@
  */
 package com.mycompany.prueba1;
 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
 /**
  *
+ * @author flors
  */
 public class ListarPorPrefijo extends javax.swing.JPanel {
 
@@ -17,26 +15,8 @@ public class ListarPorPrefijo extends javax.swing.JPanel {
      */
     public ListarPorPrefijo() {
         initComponents();
-        init2();
     }
-    private void init2(){
-        NombreAutor.addMouseListener(new MouseAdapter(){
-            @Override
-            public void mouseClicked(MouseEvent e){
-                    if (NombreAutor.getText().contentEquals("Introduce un prefijo") ){
-                        NombreAutor.setText(null);
-                    }
-            }
-        });
-        ButtonBuscar.addMouseListener(new MouseAdapter(){
-            @Override
-            public void mouseClicked(MouseEvent e){
-                    if (!NombreAutor.getText().contentEquals("Introduce un prefijo") ){
-                        System.out.println(NombreAutor.getText());
-                    }
-            }
-        });
-    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -46,11 +26,9 @@ public class ListarPorPrefijo extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        NombreAutor = new javax.swing.JTextField();
         TipoBusqueda = new javax.swing.JLabel();
         ButtonBuscar = new javax.swing.JButton();
-
-        NombreAutor.setText("Introduce un prefijo");
+        NombreAutor = new javax.swing.JTextField();
 
         TipoBusqueda.setText("BÚSQUEDA POR PREFIJO");
         TipoBusqueda.setToolTipText("");
@@ -59,22 +37,21 @@ public class ListarPorPrefijo extends javax.swing.JPanel {
         ButtonBuscar.setLabel("Buscar");
         ButtonBuscar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
+        NombreAutor.setText("Introduce un prefijo");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(TipoBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(ButtonBuscar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(84, Short.MAX_VALUE)
-                        .addComponent(NombreAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addComponent(TipoBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(61, 61, 61))
+                    .addComponent(NombreAutor, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -85,8 +62,11 @@ public class ListarPorPrefijo extends javax.swing.JPanel {
                 .addComponent(NombreAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ButtonBuscar)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(256, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {ButtonBuscar, NombreAutor});
+
     }// </editor-fold>//GEN-END:initComponents
 
 

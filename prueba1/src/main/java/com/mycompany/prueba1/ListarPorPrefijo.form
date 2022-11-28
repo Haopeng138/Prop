@@ -16,22 +16,17 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" attributes="0">
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="TipoBusqueda" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Component id="ButtonBuscar" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace pref="84" max="32767" attributes="0"/>
-                      <Component id="NombreAutor" min="-2" pref="474" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
-                      <Component id="TipoBusqueda" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="NombreAutor" pref="429" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -41,20 +36,15 @@
               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               <Component id="TipoBusqueda" min="-2" pref="30" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="NombreAutor" min="-2" max="-2" attributes="0"/>
+              <Component id="NombreAutor" linkSize="1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="ButtonBuscar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="41" max="32767" attributes="0"/>
+              <Component id="ButtonBuscar" linkSize="1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="256" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JTextField" name="NombreAutor">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Introduce un prefijo"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="TipoBusqueda">
       <Properties>
         <Property name="text" type="java.lang.String" value="B&#xda;SQUEDA POR PREFIJO"/>
@@ -66,6 +56,11 @@
         <Property name="horizontalTextPosition" type="int" value="0"/>
         <Property name="label" type="java.lang.String" value="Buscar"/>
         <Property name="verticalTextPosition" type="int" value="3"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="NombreAutor">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Introduce un prefijo"/>
       </Properties>
     </Component>
   </SubComponents>

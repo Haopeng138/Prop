@@ -4,11 +4,9 @@
  */
 package com.mycompany.prueba1;
 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
 /**
  *
+ * @author flors
  */
 public class ListarPorSimilitud extends javax.swing.JPanel {
 
@@ -17,47 +15,7 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
      */
     public ListarPorSimilitud() {
         initComponents();
-        init2();
     }
-    private void init2(){
-        NombreAutor.addMouseListener(new MouseAdapter(){
-            @Override
-            public void mouseClicked(MouseEvent e){
-                    if (NombreAutor.getText().contentEquals("Introduce un nombre de autor") ){
-                        NombreAutor.setText(null);
-                    }
-            }
-        });
-        Titulo.addMouseListener(new MouseAdapter(){
-            @Override
-            public void mouseClicked(MouseEvent e){
-                    if (Titulo.getText().contentEquals("Introduce un título") ){
-                        Titulo.setText(null);
-                    }
-            }
-        });
-        Knumber.addMouseListener(new MouseAdapter(){
-            @Override
-            public void mouseClicked(MouseEvent e){
-                    if (Knumber.getText().contentEquals("Introduce un número") ){
-                        Knumber.setText(null);
-                    }
-            }
-        });
-        ButtonBuscar.addMouseListener(new MouseAdapter(){
-            @Override
-            public void mouseClicked(MouseEvent e){
-                    if (!NombreAutor.getText().contentEquals("Introduce un nombre de autor") 
-                            && !Titulo.getText().contentEquals("Introduce un título")
-                            && !Knumber.getText().contentEquals("Introduce un número") ){
-                        System.out.println(NombreAutor.getText());
-                        System.out.println(Titulo.getText());
-                        System.out.println(Knumber.getText().contentEquals("Introduce un número"));
-                    }
-            }
-        });
-    }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -71,7 +29,7 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
         TipoBusqueda = new javax.swing.JLabel();
         ButtonBuscar = new javax.swing.JButton();
         Titulo = new javax.swing.JTextField();
-        Knumber = new javax.swing.JTextField();
+        jTextField1 = new javax.swing.JTextField();
         NombreAutor = new javax.swing.JTextField();
 
         TipoBusqueda.setText("BÚSQUEDA POR SIMILITUD");
@@ -88,10 +46,10 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
             }
         });
 
-        Knumber.setText("Introduce un número");
-        Knumber.addActionListener(new java.awt.event.ActionListener() {
+        jTextField1.setText("Introduce un número");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                KnumberActionPerformed(evt);
+                jTextField1ActionPerformed(evt);
             }
         });
 
@@ -111,37 +69,36 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField1)
+                    .addComponent(NombreAutor, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
+                    .addComponent(Titulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(ButtonBuscar))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(TipoBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
-                                .addGap(61, 61, 61))
-                            .addComponent(Titulo, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(Knumber)
-                            .addComponent(NombreAutor))))
-                .addGap(61, 61, 61))
+                    .addComponent(TipoBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(TipoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(NombreAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Knumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ButtonBuscar)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(238, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {ButtonBuscar, NombreAutor, Titulo, jTextField1});
+
     }// </editor-fold>//GEN-END:initComponents
 
     private void NombreAutorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NombreAutorMouseClicked
@@ -157,16 +114,16 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_TituloActionPerformed
 
-    private void KnumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KnumberActionPerformed
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_KnumberActionPerformed
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonBuscar;
-    private javax.swing.JTextField Knumber;
     private javax.swing.JTextField NombreAutor;
     private javax.swing.JLabel TipoBusqueda;
     private javax.swing.JTextField Titulo;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,11 +4,11 @@
  */
 package com.mycompany.prueba1;
 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.Color;
 
 /**
  *
+ * @author flors
  */
 public class ListarPorAutor extends javax.swing.JPanel {
 
@@ -17,26 +17,9 @@ public class ListarPorAutor extends javax.swing.JPanel {
      */
     public ListarPorAutor() {
         initComponents();
-        init2();
     }
-    private void init2(){
-        NombreAutor.addMouseListener(new MouseAdapter(){
-            @Override
-            public void mouseClicked(MouseEvent e){
-                    if (NombreAutor.getText().contentEquals("Introduce un nombre de autor") ){
-                        NombreAutor.setText(null);
-                    }
-            }
-        });
-        ButtonBuscar.addMouseListener(new MouseAdapter(){
-            @Override
-            public void mouseClicked(MouseEvent e){
-                    if (!NombreAutor.getText().contentEquals("Introduce un nombre de autor") ){
-                        System.out.println(NombreAutor.getText());
-                    }
-            }
-        });
-    }
+
+    private boolean first = true;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -47,43 +30,43 @@ public class ListarPorAutor extends javax.swing.JPanel {
     private void initComponents() {
 
         TipoBusqueda = new javax.swing.JLabel();
-        Buscador = new javax.swing.JToolBar();
-        NombreAutor = new javax.swing.JTextField();
         ButtonBuscar = new javax.swing.JButton();
+        NombreAutor = new javax.swing.JTextField();
 
-        setPreferredSize(new java.awt.Dimension(600, 225));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                formMousePressed(evt);
+            }
+        });
 
         TipoBusqueda.setText("BÚSQUEDA POR NOMBRE DE AUTOR");
         TipoBusqueda.setToolTipText("");
-
-        Buscador.setRollover(true);
-
-        NombreAutor.setText("Introduce un nombre de autor");
-        NombreAutor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NombreAutorActionPerformed(evt);
-            }
-        });
-        Buscador.add(NombreAutor);
 
         ButtonBuscar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         ButtonBuscar.setLabel("Buscar");
         ButtonBuscar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
+        NombreAutor.setForeground(new java.awt.Color(102, 102, 102));
+        NombreAutor.setText("Introduce un nombre de autor");
+        NombreAutor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                NombreAutorMousePressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(TipoBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Buscador, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE))
-                .addGap(61, 61, 61))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(ButtonBuscar)
-                .addGap(62, 62, 62))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(TipoBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 429, Short.MAX_VALUE)
+                        .addComponent(ButtonBuscar))
+                    .addComponent(NombreAutor))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -91,21 +74,38 @@ public class ListarPorAutor extends javax.swing.JPanel {
                 .addGap(21, 21, 21)
                 .addComponent(TipoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Buscador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(NombreAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ButtonBuscar)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(353, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {ButtonBuscar, NombreAutor});
+
     }// </editor-fold>//GEN-END:initComponents
 
-    private void NombreAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreAutorActionPerformed
+    private void NombreAutorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NombreAutorMousePressed
         // TODO add your handling code here:
+        if (first) {
+            first = false;
+            NombreAutor.setText("");
+            NombreAutor.setForeground(new Color(0, 0, 0));
+            NombreAutor.setEnabled(true);
+        }
+    }//GEN-LAST:event_NombreAutorMousePressed
 
-    }//GEN-LAST:event_NombreAutorActionPerformed
+    private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
+        // TODO add your handling code here:
+        if ("".equals(NombreAutor.getText())) {
+            NombreAutor.setText("Introduce un nombre de autor");
+            NombreAutor.setForeground(new Color(102, 102, 102));
+            first = true;
+            NombreAutor.setEnabled(false);
+        }
+    }//GEN-LAST:event_formMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JToolBar Buscador;
     private javax.swing.JButton ButtonBuscar;
     private javax.swing.JTextField NombreAutor;
     private javax.swing.JLabel TipoBusqueda;

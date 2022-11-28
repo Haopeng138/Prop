@@ -4,11 +4,11 @@
  */
 package com.mycompany.prueba1;
 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.Color;
 
 /**
  *
+ * @author flors
  */
 public class ListarPorAutorYTitulo extends javax.swing.JPanel {
 
@@ -17,37 +17,11 @@ public class ListarPorAutorYTitulo extends javax.swing.JPanel {
      */
     public ListarPorAutorYTitulo() {
         initComponents();
-        init2();
-    }
-    private void init2(){
-        NombreAutor.addMouseListener(new MouseAdapter(){
-            @Override
-            public void mouseClicked(MouseEvent e){
-                    if (NombreAutor.getText().contentEquals("Introduce un nombre de autor") ){
-                        NombreAutor.setText(null);
-                    }
-            }
-        });
-        Titulo.addMouseListener(new MouseAdapter(){
-            @Override
-            public void mouseClicked(MouseEvent e){
-                    if (Titulo.getText().contentEquals("Introduce un título") ){
-                        Titulo.setText(null);
-                    }
-            }
-        });
-        ButtonBuscar.addMouseListener(new MouseAdapter(){
-            @Override
-            public void mouseClicked(MouseEvent e){
-                    if (!NombreAutor.getText().contentEquals("Introduce un nombre de autor") 
-                            && !Titulo.getText().contentEquals("Introduce un título")){
-                        System.out.println(NombreAutor.getText());
-                        System.out.println(Titulo.getText());
-                    }
-            }
-        });
     }
 
+    private boolean firstA = true;
+    private boolean firstT = true;
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -62,6 +36,12 @@ public class ListarPorAutorYTitulo extends javax.swing.JPanel {
         NombreAutor = new javax.swing.JTextField();
         Titulo = new javax.swing.JTextField();
 
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                formMousePressed(evt);
+            }
+        });
+
         TipoBusqueda.setText("BÚSQUEDA POR NOMBRE DE AUTOR Y TÍTULO");
         TipoBusqueda.setToolTipText("");
 
@@ -69,6 +49,7 @@ public class ListarPorAutorYTitulo extends javax.swing.JPanel {
         ButtonBuscar.setLabel("Buscar");
         ButtonBuscar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
+        NombreAutor.setForeground(new java.awt.Color(102, 102, 102));
         NombreAutor.setText("Introduce un nombre de autor");
         NombreAutor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -81,10 +62,11 @@ public class ListarPorAutorYTitulo extends javax.swing.JPanel {
             }
         });
 
+        Titulo.setForeground(new java.awt.Color(102, 102, 102));
         Titulo.setText("Introduce un título");
-        Titulo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TituloActionPerformed(evt);
+        Titulo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                TituloMousePressed(evt);
             }
         });
 
@@ -93,19 +75,15 @@ public class ListarPorAutorYTitulo extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(TipoBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
-                                .addGap(61, 61, 61))
-                            .addComponent(NombreAutor)
-                            .addComponent(Titulo)))
+                    .addComponent(NombreAutor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
+                    .addComponent(Titulo, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(ButtonBuscar)))
-                .addGap(61, 61, 61))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(ButtonBuscar))
+                    .addComponent(TipoBusqueda, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,15 +94,14 @@ public class ListarPorAutorYTitulo extends javax.swing.JPanel {
                 .addComponent(NombreAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ButtonBuscar)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(255, Short.MAX_VALUE))
         );
-    }// </editor-fold>//GEN-END:initComponents
 
-    private void TituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TituloActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TituloActionPerformed
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {ButtonBuscar, NombreAutor, Titulo});
+
+    }// </editor-fold>//GEN-END:initComponents
 
     private void NombreAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreAutorActionPerformed
         // TODO add your handling code here:
@@ -132,8 +109,36 @@ public class ListarPorAutorYTitulo extends javax.swing.JPanel {
 
     private void NombreAutorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NombreAutorMouseClicked
           // TODO add your handling code here:
+          if (firstA) {
+              firstA = false;
+              NombreAutor.setEnabled(true);
+              NombreAutor.setText("");
+              NombreAutor.setForeground(new Color(0, 0, 0));
+          }
         
     }//GEN-LAST:event_NombreAutorMouseClicked
+
+    private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
+        // TODO add your handling code here:
+        
+        
+        if ("".equals(Titulo.getText())) {
+            Titulo.setText("Introduce un título");
+            Titulo.setForeground(new Color(102, 102, 102));
+            firstT = true;
+            Titulo.setEnabled(false);
+        }
+    }//GEN-LAST:event_formMousePressed
+
+    private void TituloMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TituloMousePressed
+        // TODO add your handling code here:
+        if (firstT) {
+            firstT = false;
+            Titulo.setEnabled(true);
+            Titulo.setText("");
+            Titulo.setForeground(new Color(0, 0, 0));
+        }
+    }//GEN-LAST:event_TituloMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
