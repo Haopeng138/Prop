@@ -6,6 +6,7 @@ package com.mycompany.prueba1;
 
 /**
  *
+ * @author flors
  */
 public class ListarPorExpresion extends javax.swing.JPanel {
 
@@ -25,17 +26,18 @@ public class ListarPorExpresion extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBox1 = new javax.swing.JComboBox<>();
+        AliasExist = new javax.swing.JComboBox<>();
         TipoBusqueda = new javax.swing.JLabel();
         ButtonBuscar = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        Expresion = new javax.swing.JTextField();
         NombreAutor = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        TextAlias = new javax.swing.JLabel();
+        ButtonAñadir = new javax.swing.JButton();
 
-        jComboBox1.setSelectedItem(null);
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        AliasExist.setSelectedItem(null);
+        AliasExist.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                AliasExistActionPerformed(evt);
             }
         });
 
@@ -46,7 +48,7 @@ public class ListarPorExpresion extends javax.swing.JPanel {
         ButtonBuscar.setLabel("Buscar");
         ButtonBuscar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        jTextField1.setText("Introduce una expresión");
+        Expresion.setText("Introduce una expresión");
 
         NombreAutor.setText("Introduce una alia");
         NombreAutor.addActionListener(new java.awt.event.ActionListener() {
@@ -55,28 +57,32 @@ public class ListarPorExpresion extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setText("Alias:");
+        TextAlias.setText("Busca una alia existente:");
+
+        ButtonAñadir.setText("Añadir");
+        ButtonAñadir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        ButtonAñadir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(72, 72, 72)
-                .addComponent(TipoBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(61, 61, 61))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(TipoBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)
                     .addComponent(NombreAutor)
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField1)
+                    .addComponent(AliasExist, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Expresion, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(460, 460, 460)
-                        .addComponent(ButtonBuscar)))
-                .addGap(61, 61, 61))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ButtonAñadir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ButtonBuscar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(TextAlias)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -84,19 +90,21 @@ public class ListarPorExpresion extends javax.swing.JPanel {
                 .addGap(21, 21, 21)
                 .addComponent(TipoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(TextAlias, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(AliasExist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(NombreAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Expresion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ButtonBuscar)
-                .addContainerGap(312, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ButtonBuscar)
+                    .addComponent(ButtonAñadir))
+                .addContainerGap(283, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {NombreAutor, jComboBox1, jTextField1});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {AliasExist, Expresion, NombreAutor});
 
     }// </editor-fold>//GEN-END:initComponents
 
@@ -104,18 +112,19 @@ public class ListarPorExpresion extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_NombreAutorActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void AliasExistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AliasExistActionPerformed
                 // TODO add your handling code here:
-                jComboBox1.removeAll();
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+                AliasExist.removeAll();
+    }//GEN-LAST:event_AliasExistActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> AliasExist;
+    private javax.swing.JButton ButtonAñadir;
     private javax.swing.JButton ButtonBuscar;
+    private javax.swing.JTextField Expresion;
     private javax.swing.JTextField NombreAutor;
+    private javax.swing.JLabel TextAlias;
     private javax.swing.JLabel TipoBusqueda;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

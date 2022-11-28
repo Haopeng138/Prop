@@ -28,11 +28,13 @@ public class framePrueba extends javax.swing.JFrame {
 
         SizeMenu = new javax.swing.JScrollPane();
         SizeMenuBusqueda = new javax.swing.JList<>();
+        TextTipoListado = new javax.swing.JLabel();
         MenuBarPrincipal = new javax.swing.JMenuBar();
         FileMenu = new javax.swing.JMenu();
         NuevoDoc = new javax.swing.JMenuItem();
         CargarDoc = new javax.swing.JMenuItem();
         HelpMenu = new javax.swing.JMenu();
+        Alias = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,6 +50,8 @@ public class framePrueba extends javax.swing.JFrame {
         });
         SizeMenu.setViewportView(SizeMenuBusqueda);
 
+        TextTipoListado.setText("  Seleccione el tipo de listado");
+
         FileMenu.setText("File");
 
         NuevoDoc.setText("Nuevo");
@@ -59,6 +63,10 @@ public class framePrueba extends javax.swing.JFrame {
         MenuBarPrincipal.add(FileMenu);
 
         HelpMenu.setText("Help");
+
+        Alias.setText("Alias");
+        HelpMenu.add(Alias);
+
         MenuBarPrincipal.add(HelpMenu);
 
         setJMenuBar(MenuBarPrincipal);
@@ -68,13 +76,18 @@ public class framePrueba extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(SizeMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(579, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(SizeMenu)
+                    .addComponent(TextTipoListado, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE))
+                .addContainerGap(453, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(SizeMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(TextTipoListado, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(SizeMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -125,6 +138,7 @@ public class framePrueba extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Alias;
     private javax.swing.JMenuItem CargarDoc;
     private javax.swing.JMenu FileMenu;
     private javax.swing.JMenu HelpMenu;
@@ -132,5 +146,6 @@ public class framePrueba extends javax.swing.JFrame {
     private javax.swing.JMenuItem NuevoDoc;
     private javax.swing.JScrollPane SizeMenu;
     private javax.swing.JList<String> SizeMenuBusqueda;
+    private javax.swing.JLabel TextTipoListado;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,6 +6,7 @@ package com.mycompany.prueba1;
 
 /**
  *
+ * @author flors
  */
 public class ListarPorAutor extends javax.swing.JPanel {
 
@@ -26,36 +27,34 @@ public class ListarPorAutor extends javax.swing.JPanel {
     private void initComponents() {
 
         TipoBusqueda = new javax.swing.JLabel();
-        Buscador = new javax.swing.JToolBar();
-        NombreAutor = new javax.swing.JTextField();
         ButtonBuscar = new javax.swing.JButton();
+        NombreAutor = new javax.swing.JTextField();
 
         TipoBusqueda.setText("BÚSQUEDA POR NOMBRE DE AUTOR");
         TipoBusqueda.setToolTipText("");
 
-        Buscador.setRollover(true);
-
-        NombreAutor.setText("Introduce un nombre de autor");
-        Buscador.add(NombreAutor);
-
         ButtonBuscar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         ButtonBuscar.setLabel("Buscar");
         ButtonBuscar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+
+        NombreAutor.setText("Introduce un nombre de autor");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(TipoBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Buscador, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE))
-                .addGap(61, 61, 61))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(ButtonBuscar)
-                .addGap(62, 62, 62))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 422, Short.MAX_VALUE)
+                                .addComponent(ButtonBuscar))
+                            .addComponent(NombreAutor))
+                        .addGap(6, 6, 6)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -63,16 +62,18 @@ public class ListarPorAutor extends javax.swing.JPanel {
                 .addGap(21, 21, 21)
                 .addComponent(TipoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Buscador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(NombreAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ButtonBuscar)
-                .addContainerGap(349, Short.MAX_VALUE))
+                .addContainerGap(353, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {ButtonBuscar, NombreAutor});
+
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JToolBar Buscador;
     private javax.swing.JButton ButtonBuscar;
     private javax.swing.JTextField NombreAutor;
     private javax.swing.JLabel TipoBusqueda;

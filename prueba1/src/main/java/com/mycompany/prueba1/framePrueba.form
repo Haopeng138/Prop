@@ -25,6 +25,13 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Help"/>
           </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="Alias">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Alias"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
         </Menu>
       </SubComponents>
     </Menu>
@@ -52,16 +59,22 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <Component id="SizeMenu" min="-2" pref="165" max="-2" attributes="0"/>
-              <EmptySpace pref="579" max="32767" attributes="0"/>
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="SizeMenu" max="32767" attributes="0"/>
+                  <Component id="TextTipoListado" pref="184" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace pref="453" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <Component id="SizeMenu" pref="411" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="TextTipoListado" pref="20" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="SizeMenu" min="-2" pref="379" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -96,5 +109,10 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JLabel" name="TextTipoListado">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="  Seleccione el tipo de listado"/>
+      </Properties>
+    </Component>
   </SubComponents>
 </Form>
