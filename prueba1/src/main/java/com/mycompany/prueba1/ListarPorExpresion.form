@@ -27,9 +27,9 @@
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="NombreAutor" alignment="0" max="32767" attributes="0"/>
+                          <Component id="Alias" alignment="0" max="32767" attributes="0"/>
                           <Component id="jComboBox1" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jTextField1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="Expresion" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="-2" pref="460" max="-2" attributes="0"/>
                               <Component id="ButtonBuscar" min="-2" max="-2" attributes="0"/>
@@ -52,9 +52,9 @@
                   <Component id="jLabel1" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="NombreAutor" linkSize="3" min="-2" max="-2" attributes="0"/>
+              <Component id="Alias" linkSize="3" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jTextField1" linkSize="3" min="-2" max="-2" attributes="0"/>
+              <Component id="Expresion" linkSize="3" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="ButtonBuscar" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="23" max="32767" attributes="0"/>
@@ -92,17 +92,17 @@
         <Property name="verticalTextPosition" type="int" value="3"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="Expresion">
       <Properties>
         <Property name="text" type="java.lang.String" value="Introduce una expresi&#xf3;n"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="NombreAutor">
+    <Component class="javax.swing.JTextField" name="Alias">
       <Properties>
         <Property name="text" type="java.lang.String" value="Introduce una alia"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NombreAutorActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AliasActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">

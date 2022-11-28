@@ -30,7 +30,7 @@
                               <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
                           </Group>
                           <Component id="Titulo" alignment="1" max="32767" attributes="0"/>
-                          <Component id="jTextField1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="Knumber" alignment="0" max="32767" attributes="0"/>
                           <Component id="NombreAutor" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -49,7 +49,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="Titulo" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
+              <Component id="Knumber" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="ButtonBuscar" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="18" max="32767" attributes="0"/>
@@ -79,12 +79,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TituloActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="Knumber">
       <Properties>
         <Property name="text" type="java.lang.String" value="Introduce un n&#xfa;mero"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="KnumberActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="NombreAutor">

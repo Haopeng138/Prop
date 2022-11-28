@@ -4,6 +4,9 @@
  */
 package com.mycompany.prueba1;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 /**
  *
  */
@@ -14,6 +17,37 @@ public class ListarPorExpresion extends javax.swing.JPanel {
      */
     public ListarPorExpresion() {
         initComponents();
+        init2();
+    }
+    
+    private void init2(){
+        Alias.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+                    if (Alias.getText().contentEquals("Introduce una alia") ){
+                        Alias.setText(null);
+                    }
+            }
+        });
+        Expresion.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+                    if (Expresion.getText().contentEquals("Introduce una expresión") ){
+                        Expresion.setText(null);
+                    }
+            }
+        });
+        ButtonBuscar.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+                    if (!Alias.getText().contentEquals("Introduce una alia") 
+                            && !Expresion.getText().contentEquals("Introduce una expresión")){
+                        System.out.println(Alias.getText());
+                        System.out.println(Expresion.getText());
+                    }
+            }
+        });
+        
     }
 
     /**
@@ -28,8 +62,8 @@ public class ListarPorExpresion extends javax.swing.JPanel {
         jComboBox1 = new javax.swing.JComboBox<>();
         TipoBusqueda = new javax.swing.JLabel();
         ButtonBuscar = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        NombreAutor = new javax.swing.JTextField();
+        Expresion = new javax.swing.JTextField();
+        Alias = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         jComboBox1.setSelectedItem(null);
@@ -46,12 +80,12 @@ public class ListarPorExpresion extends javax.swing.JPanel {
         ButtonBuscar.setLabel("Buscar");
         ButtonBuscar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        jTextField1.setText("Introduce una expresión");
+        Expresion.setText("Introduce una expresión");
 
-        NombreAutor.setText("Introduce una alia");
-        NombreAutor.addActionListener(new java.awt.event.ActionListener() {
+        Alias.setText("Introduce una alia");
+        Alias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NombreAutorActionPerformed(evt);
+                AliasActionPerformed(evt);
             }
         });
 
@@ -71,9 +105,9 @@ public class ListarPorExpresion extends javax.swing.JPanel {
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(NombreAutor)
+                            .addComponent(Alias)
                             .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField1)
+                            .addComponent(Expresion)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(460, 460, 460)
                                 .addComponent(ButtonBuscar)))))
@@ -89,21 +123,21 @@ public class ListarPorExpresion extends javax.swing.JPanel {
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(NombreAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Alias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Expresion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ButtonBuscar)
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {NombreAutor, jComboBox1, jTextField1});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {Alias, Expresion, jComboBox1});
 
     }// </editor-fold>//GEN-END:initComponents
 
-    private void NombreAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreAutorActionPerformed
+    private void AliasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AliasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_NombreAutorActionPerformed
+    }//GEN-LAST:event_AliasActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
                 // TODO add your handling code here:
@@ -112,11 +146,11 @@ public class ListarPorExpresion extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField Alias;
     private javax.swing.JButton ButtonBuscar;
-    private javax.swing.JTextField NombreAutor;
+    private javax.swing.JTextField Expresion;
     private javax.swing.JLabel TipoBusqueda;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

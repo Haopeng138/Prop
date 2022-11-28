@@ -4,6 +4,9 @@
  */
 package com.mycompany.prueba1;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 /**
  *
  */
@@ -14,8 +17,26 @@ public class ListarPorAutor extends javax.swing.JPanel {
      */
     public ListarPorAutor() {
         initComponents();
+        init2();
     }
-
+    private void init2(){
+        NombreAutor.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+                    if (NombreAutor.getText().contentEquals("Introduce un nombre de autor") ){
+                        NombreAutor.setText(null);
+                    }
+            }
+        });
+        ButtonBuscar.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+                    if (!NombreAutor.getText().contentEquals("Introduce un nombre de autor") ){
+                        System.out.println(NombreAutor.getText());
+                    }
+            }
+        });
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -38,6 +59,11 @@ public class ListarPorAutor extends javax.swing.JPanel {
         Buscador.setRollover(true);
 
         NombreAutor.setText("Introduce un nombre de autor");
+        NombreAutor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NombreAutorActionPerformed(evt);
+            }
+        });
         Buscador.add(NombreAutor);
 
         ButtonBuscar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -71,6 +97,11 @@ public class ListarPorAutor extends javax.swing.JPanel {
                 .addContainerGap(37, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void NombreAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreAutorActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_NombreAutorActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

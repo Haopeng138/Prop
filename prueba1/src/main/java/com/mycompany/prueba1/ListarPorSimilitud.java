@@ -28,7 +28,7 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
         TipoBusqueda = new javax.swing.JLabel();
         ButtonBuscar = new javax.swing.JButton();
         Titulo = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
+        Knumber = new javax.swing.JTextField();
         NombreAutor = new javax.swing.JTextField();
 
         TipoBusqueda.setText("BÚSQUEDA POR SIMILITUD");
@@ -45,10 +45,10 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
             }
         });
 
-        jTextField1.setText("Introduce un número");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        Knumber.setText("Introduce un número");
+        Knumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                KnumberActionPerformed(evt);
             }
         });
 
@@ -80,7 +80,7 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
                                 .addComponent(TipoBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
                                 .addGap(61, 61, 61))
                             .addComponent(Titulo, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField1)
+                            .addComponent(Knumber)
                             .addComponent(NombreAutor))))
                 .addGap(61, 61, 61))
         );
@@ -94,7 +94,7 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Knumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ButtonBuscar)
                 .addContainerGap(18, Short.MAX_VALUE))
@@ -114,16 +114,16 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_TituloActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void KnumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KnumberActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_KnumberActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonBuscar;
+    private javax.swing.JTextField Knumber;
     private javax.swing.JTextField NombreAutor;
     private javax.swing.JLabel TipoBusqueda;
     private javax.swing.JTextField Titulo;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
