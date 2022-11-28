@@ -23,7 +23,7 @@ public class ListarPorPrefijo extends javax.swing.JPanel {
         NombreAutor.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseClicked(MouseEvent e){
-                    if (NombreAutor.getText().contentEquals("Introduce un nombre de autor") ){
+                    if (NombreAutor.getText().contentEquals("Introduce un prefijo") ){
                         NombreAutor.setText(null);
                     }
             }
@@ -31,7 +31,7 @@ public class ListarPorPrefijo extends javax.swing.JPanel {
         ButtonBuscar.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseClicked(MouseEvent e){
-                    if (!NombreAutor.getText().contentEquals("Introduce un nombre de autor") ){
+                    if (!NombreAutor.getText().contentEquals("Introduce un prefijo") ){
                         System.out.println(NombreAutor.getText());
                     }
             }

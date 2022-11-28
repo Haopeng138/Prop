@@ -4,6 +4,9 @@
  */
 package com.mycompany.prueba1;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 /**
  *
  */
@@ -14,7 +17,47 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
      */
     public ListarPorSimilitud() {
         initComponents();
+        init2();
     }
+    private void init2(){
+        NombreAutor.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+                    if (NombreAutor.getText().contentEquals("Introduce un nombre de autor") ){
+                        NombreAutor.setText(null);
+                    }
+            }
+        });
+        Titulo.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+                    if (Titulo.getText().contentEquals("Introduce un título") ){
+                        Titulo.setText(null);
+                    }
+            }
+        });
+        Knumber.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+                    if (Knumber.getText().contentEquals("Introduce un número") ){
+                        Knumber.setText(null);
+                    }
+            }
+        });
+        ButtonBuscar.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+                    if (!NombreAutor.getText().contentEquals("Introduce un nombre de autor") 
+                            && !Titulo.getText().contentEquals("Introduce un título")
+                            && !Knumber.getText().contentEquals("Introduce un número") ){
+                        System.out.println(NombreAutor.getText());
+                        System.out.println(Titulo.getText());
+                        System.out.println(Knumber.getText().contentEquals("Introduce un número"));
+                    }
+            }
+        });
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
