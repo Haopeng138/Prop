@@ -15,11 +15,11 @@ import javax.swing.JScrollPane;
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
 
-    private ListarPorAutor listaAutor = new ListarPorAutor();
-    private ListarPorAutorYTitulo listaAutorTitulo = new ListarPorAutorYTitulo();
-    private ListarPorExpresion listaExpresion = new ListarPorExpresion();
-    private ListarPorPrefijo listaPrefijo = new ListarPorPrefijo();
-    private ListarPorSimilitud listaSimilitud = new ListarPorSimilitud();
+    private final ListarPorAutor listaAutor = new ListarPorAutor();
+    private final ListarPorAutorYTitulo listaAutorTitulo = new ListarPorAutorYTitulo();
+    private final ListarPorExpresion listaExpresion = new ListarPorExpresion();
+    private final ListarPorPrefijo listaPrefijo = new ListarPorPrefijo();
+    private final ListarPorSimilitud listaSimilitud = new ListarPorSimilitud();
     private NuevoDocumentoFrame newDocument ;
     private JList listaTitulos;
     private JList listaAutores;
@@ -47,6 +47,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         listaDocumento = new JList();
         listaAutores = new JList();
         listaTitulos = new JList();
+        
         DocumentoItem d = new DocumentoItem("autor1","titulo2");
         listaDocumento.add(d);
         ListaItems.add(new JScrollPane(listaDocumento));
