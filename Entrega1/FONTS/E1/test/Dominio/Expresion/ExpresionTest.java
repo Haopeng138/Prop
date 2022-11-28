@@ -15,7 +15,6 @@ public class ExpresionTest {
         } catch (Exception error) {
             assertEquals("No se detectado bien una expresion mala", "Expresion Invalida", error.getMessage());
         }
-
     }
 
     @Test
@@ -31,6 +30,5 @@ public class ExpresionTest {
         // Caso 2: Modificar a una expresion valida
         e.setExpresion("{p1 p2 p3} & (“hola adéu” | pep) & !joan");
         assertEquals("La expresion no es correcta", "{p1 p2 p3} & (“hola adéu” | pep) & !joan", e.getExpresion());
-
     }
 }

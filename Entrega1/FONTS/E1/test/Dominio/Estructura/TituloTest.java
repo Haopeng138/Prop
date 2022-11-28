@@ -13,7 +13,6 @@ public class TituloTest {
         assertEquals("Debe tener el mismo nombre", "El monstruo de las galletas", a.toString());
         // Con un nombre diferente
         assertNotEquals("No debe tener el mismo nombre", "random", a.toString());
-
     }
 
     @Test
