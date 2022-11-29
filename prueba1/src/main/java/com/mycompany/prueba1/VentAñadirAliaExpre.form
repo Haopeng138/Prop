@@ -61,7 +61,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="TextInfoAlia">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Asigne una alia para la expresi&#xf3;n:"/>
+        <Property name="text" type="java.lang.String" value="Asigne una alia para la expresi&#xf3;n booleana:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="TextAlia">

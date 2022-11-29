@@ -30,11 +30,12 @@ public class framePrueba extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        SizeMenu = new javax.swing.JScrollPane();
-        SizeMenuBusqueda = new javax.swing.JList<>();
-        TextTipoListado = new javax.swing.JLabel();
         mainPanel = new javax.swing.JPanel();
         IniciPanel = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTree1 = new javax.swing.JTree();
+        SizeMenu = new javax.swing.JScrollPane();
+        SizeMenuBusqueda = new javax.swing.JList<>();
         MenuBarPrincipal = new javax.swing.JMenuBar();
         FileMenu = new javax.swing.JMenu();
         NuevoDoc = new javax.swing.JMenuItem();
@@ -47,8 +48,45 @@ public class framePrueba extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        mainPanel.setLayout(new java.awt.CardLayout());
+
+        javax.swing.GroupLayout IniciPanelLayout = new javax.swing.GroupLayout(IniciPanel);
+        IniciPanel.setLayout(IniciPanelLayout);
+        IniciPanelLayout.setHorizontalGroup(
+            IniciPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 415, Short.MAX_VALUE)
+        );
+        IniciPanelLayout.setVerticalGroup(
+            IniciPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 428, Short.MAX_VALUE)
+        );
+
+        mainPanel.add(IniciPanel, "card2");
+
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Principal");
+        javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Documentos");
+        javax.swing.tree.DefaultMutableTreeNode treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("D1");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("D2");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("D3");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("D4");
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Alias");
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("A1");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("A2");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("A3");
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
+        jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jScrollPane1.setViewportView(jTree1);
+
         SizeMenuBusqueda.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Listar por autor", "Listar por autor y título", "Listar por prefijo", "Listar por similitud", "Listar por expresión" };
+            String[] strings = { "Listar por autor", "Listar por autor y título", "Listar por prefijo", "Listar por similitud", "Listar por expresión booleana" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -58,23 +96,6 @@ public class framePrueba extends javax.swing.JFrame {
             }
         });
         SizeMenu.setViewportView(SizeMenuBusqueda);
-
-        TextTipoListado.setText("  Seleccione el tipo de listado");
-
-        mainPanel.setLayout(new java.awt.CardLayout());
-
-        javax.swing.GroupLayout IniciPanelLayout = new javax.swing.GroupLayout(IniciPanel);
-        IniciPanel.setLayout(IniciPanelLayout);
-        IniciPanelLayout.setHorizontalGroup(
-            IniciPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 441, Short.MAX_VALUE)
-        );
-        IniciPanelLayout.setVerticalGroup(
-            IniciPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 405, Short.MAX_VALUE)
-        );
-
-        mainPanel.add(IniciPanel, "card2");
 
         FileMenu.setText("File");
 
@@ -111,7 +132,7 @@ public class framePrueba extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(SizeMenu)
-                    .addComponent(TextTipoListado, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -123,7 +144,7 @@ public class framePrueba extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(TextTipoListado)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(SizeMenu)))
                 .addContainerGap())
@@ -214,7 +235,8 @@ public class framePrueba extends javax.swing.JFrame {
     private javax.swing.JMenuItem NuevoDoc;
     private javax.swing.JScrollPane SizeMenu;
     private javax.swing.JList<String> SizeMenuBusqueda;
-    private javax.swing.JLabel TextTipoListado;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTree jTree1;
     private javax.swing.JPanel mainPanel;
     // End of variables declaration//GEN-END:variables
 }

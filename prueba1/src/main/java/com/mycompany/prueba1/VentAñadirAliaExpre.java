@@ -33,7 +33,7 @@ public class VentAñadirAliaExpre extends javax.swing.JInternalFrame {
 
         setPreferredSize(new java.awt.Dimension(400, 140));
 
-        TextInfoAlia.setText("Asigne una alia para la expresión:");
+        TextInfoAlia.setText("Asigne una alia para la expresión booleana:");
 
         ButtunGuardar.setText("Guardar");
 
