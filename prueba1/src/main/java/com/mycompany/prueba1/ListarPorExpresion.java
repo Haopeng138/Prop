@@ -87,6 +87,11 @@ public class ListarPorExpresion extends javax.swing.JPanel {
                 ButtonAñadirMousePressed(evt);
             }
         });
+        ButtonAñadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonAñadirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -191,6 +196,13 @@ public class ListarPorExpresion extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Introduce una alia!!!");
         }
     }//GEN-LAST:event_ButtonAñadirMousePressed
+
+    private void ButtonAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAñadirActionPerformed
+        // TODO add your handling code here:
+        VentAñadirAliaPrin v = new VentAñadirAliaPrin();
+        this.add(v);
+        v.show();
+    }//GEN-LAST:event_ButtonAñadirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

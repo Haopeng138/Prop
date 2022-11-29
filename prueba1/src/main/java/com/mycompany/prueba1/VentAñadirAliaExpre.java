@@ -8,12 +8,12 @@ package com.mycompany.prueba1;
  *
  * @author flors
  */
-public class VentAñadirAlia1 extends javax.swing.JInternalFrame {
+public class VentAñadirAliaExpre extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form VentAñadirAlia1
      */
-    public VentAñadirAlia1() {
+    public VentAñadirAliaExpre() {
         initComponents();
     }
 
@@ -31,6 +31,8 @@ public class VentAñadirAlia1 extends javax.swing.JInternalFrame {
         ButtunGuardar = new javax.swing.JButton();
         ButtonCancelar = new javax.swing.JButton();
 
+        setPreferredSize(new java.awt.Dimension(400, 140));
+
         TextInfoAlia.setText("Asigne una alia para la expresión:");
 
         ButtunGuardar.setText("Guardar");
@@ -44,15 +46,19 @@ public class VentAñadirAlia1 extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TextAlia)
-                    .addComponent(TextInfoAlia, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(ButtunGuardar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ButtonCancelar)))
+                    .addComponent(TextInfoAlia, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
+                    .addComponent(TextAlia))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(ButtunGuardar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ButtonCancelar)
+                .addGap(7, 7, 7))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {ButtonCancelar, ButtunGuardar});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -64,8 +70,10 @@ public class VentAñadirAlia1 extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ButtunGuardar)
                     .addComponent(ButtonCancelar))
-                .addContainerGap())
+                .addGap(12, 12, 12))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {ButtonCancelar, ButtunGuardar});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
