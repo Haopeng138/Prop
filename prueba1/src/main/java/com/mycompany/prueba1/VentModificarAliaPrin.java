@@ -8,12 +8,12 @@ package com.mycompany.prueba1;
  *
  * @author flors
  */
-public class VentMoidficarAliaPrin extends javax.swing.JInternalFrame {
+public class VentModificarAliaPrin extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form VentMoidficarAliaPrin
      */
-    public VentMoidficarAliaPrin() {
+    public VentModificarAliaPrin() {
         initComponents();
     }
 

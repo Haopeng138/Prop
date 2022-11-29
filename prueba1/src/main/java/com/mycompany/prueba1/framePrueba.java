@@ -15,8 +15,11 @@ public class framePrueba extends javax.swing.JFrame {
     /**
      * Creates new form framePrueba
      */
+    VentAñadirAliaPrin v;
     
     public framePrueba() {
+        v = new VentAñadirAliaPrin();
+        this.add(v);
         initComponents();
     }
 
@@ -89,9 +92,19 @@ public class framePrueba extends javax.swing.JFrame {
         AliasMenu.setText("Alias");
 
         NuevaAlia.setText("Añadir");
+        NuevaAlia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NuevaAliaActionPerformed(evt);
+            }
+        });
         AliasMenu.add(NuevaAlia);
 
         ModificarAlia.setText("Modificar");
+        ModificarAlia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModificarAliaActionPerformed(evt);
+            }
+        });
         AliasMenu.add(ModificarAlia);
 
         EliminarAlia.setText("Eliminar");
@@ -162,6 +175,18 @@ public class framePrueba extends javax.swing.JFrame {
             card.show(mainPanel, "listarExpresion");
         }
     }//GEN-LAST:event_SizeMenuBusquedaMouseClicked
+
+    private void NuevaAliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevaAliaActionPerformed
+        // TODO add your handling code here:
+        int x = (this.getWidth()/2) - (v.getWidth()/2);
+        int y = (this.getHeight()/2) - (v.getHeight()/2);
+        v.setLocation(x, y);
+        v.setVisible(true);
+    }//GEN-LAST:event_NuevaAliaActionPerformed
+
+    private void ModificarAliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarAliaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ModificarAliaActionPerformed
 
     /**
      * @param args the command line arguments
