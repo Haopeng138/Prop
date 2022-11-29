@@ -15,8 +15,11 @@ public class framePrueba extends javax.swing.JFrame {
     /**
      * Creates new form framePrueba
      */
+    VentAñadirAliaPrin v;
     
     public framePrueba() {
+        v = new VentAñadirAliaPrin();
+        this.add(v);
         initComponents();
     }
 
@@ -32,10 +35,10 @@ public class framePrueba extends javax.swing.JFrame {
 
         mainPanel = new javax.swing.JPanel();
         IniciPanel = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTree1 = new javax.swing.JTree();
         SizeMenu = new javax.swing.JScrollPane();
         SizeMenuBusqueda = new javax.swing.JList<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTree1 = new javax.swing.JTree();
         MenuBarPrincipal = new javax.swing.JMenuBar();
         FileMenu = new javax.swing.JMenu();
         NuevoDoc = new javax.swing.JMenuItem();
@@ -54,14 +57,26 @@ public class framePrueba extends javax.swing.JFrame {
         IniciPanel.setLayout(IniciPanelLayout);
         IniciPanelLayout.setHorizontalGroup(
             IniciPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 415, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         IniciPanelLayout.setVerticalGroup(
             IniciPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 428, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         mainPanel.add(IniciPanel, "card2");
+
+        SizeMenuBusqueda.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Listar por autor", "Listar por autor y título", "Listar por prefijo", "Listar por similitud", "Listar por expresión booleana" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        SizeMenuBusqueda.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SizeMenuBusquedaMouseClicked(evt);
+            }
+        });
+        SizeMenu.setViewportView(SizeMenuBusqueda);
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Principal");
         javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Documentos");
@@ -85,18 +100,6 @@ public class framePrueba extends javax.swing.JFrame {
         jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         jScrollPane1.setViewportView(jTree1);
 
-        SizeMenuBusqueda.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Listar por autor", "Listar por autor y título", "Listar por prefijo", "Listar por similitud", "Listar por expresión booleana" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        SizeMenuBusqueda.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                SizeMenuBusquedaMouseClicked(evt);
-            }
-        });
-        SizeMenu.setViewportView(SizeMenuBusqueda);
-
         FileMenu.setText("File");
 
         NuevoDoc.setText("Nuevo");
@@ -110,9 +113,19 @@ public class framePrueba extends javax.swing.JFrame {
         AliasMenu.setText("Alias");
 
         NuevaAlia.setText("Añadir");
+        NuevaAlia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NuevaAliaActionPerformed(evt);
+            }
+        });
         AliasMenu.add(NuevaAlia);
 
         ModificarAlia.setText("Modificar");
+        ModificarAlia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModificarAliaActionPerformed(evt);
+            }
+        });
         AliasMenu.add(ModificarAlia);
 
         EliminarAlia.setText("Eliminar");
@@ -130,11 +143,12 @@ public class framePrueba extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(SizeMenu)
                     .addComponent(jScrollPane1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -144,9 +158,9 @@ public class framePrueba extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(SizeMenu)))
+                        .addComponent(SizeMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -178,11 +192,23 @@ public class framePrueba extends javax.swing.JFrame {
             card.show(mainPanel, "listarSimilitud");
         }
         
-        if ("Listar por expresión".equals((String)SizeMenuBusqueda.getSelectedValue()) ) { 
+        if ("Listar por expresión booleana".equals((String)SizeMenuBusqueda.getSelectedValue()) ) { 
             mainPanel.add(new ListarPorExpresion(), "listarExpresion");
             card.show(mainPanel, "listarExpresion");
         }
     }//GEN-LAST:event_SizeMenuBusquedaMouseClicked
+
+    private void NuevaAliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevaAliaActionPerformed
+        // TODO add your handling code here:
+        int x = (this.getWidth()/2) - (v.getWidth()/2);
+        int y = (this.getHeight()/2) - (v.getHeight()/2);
+        v.setLocation(x, y);
+        v.setVisible(true);
+    }//GEN-LAST:event_NuevaAliaActionPerformed
+
+    private void ModificarAliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarAliaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ModificarAliaActionPerformed
 
     /**
      * @param args the command line arguments

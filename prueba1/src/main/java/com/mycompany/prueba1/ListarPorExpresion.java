@@ -5,9 +5,6 @@
 package com.mycompany.prueba1;
 
 import java.awt.Color;
-import javax.swing.JOptionPane;
-import static javax.swing.JOptionPane.showMessageDialog;
-
 /**
  *
  * @author flors
@@ -17,7 +14,10 @@ public class ListarPorExpresion extends javax.swing.JPanel {
     /**
      * Creates new form ListarPorExpresion
      */
+    VentAñadirAliaExpre v;
     public ListarPorExpresion() {
+        v = new VentAñadirAliaExpre();
+        this.add(v);
         initComponents();
     }
     private boolean firstA = true;
@@ -104,14 +104,14 @@ public class ListarPorExpresion extends javax.swing.JPanel {
                     .addComponent(NombreAutor)
                     .addComponent(AliasExist, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Expresion, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(TextAlias)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 387, Short.MAX_VALUE)
                         .addComponent(ButtonAñadir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ButtonBuscar)))
+                        .addComponent(ButtonBuscar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(TextAlias)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -189,24 +189,15 @@ public class ListarPorExpresion extends javax.swing.JPanel {
 
     private void ButtonAñadirMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonAñadirMousePressed
         // TODO add your handling code here:
-        if ("".equals(Expresion.getText()) && !"".equals(NombreAutor.getText())) {
-            JOptionPane.showMessageDialog(null, "Introduce una expresión!!!");
-        }
-        
-        if ("".equals(Expresion.getText()) && "".equals(NombreAutor.getText())) {
-            JOptionPane.showMessageDialog(null, "Introduce una expresión!!!\nIntroduce una alia!!!");
-        }
-        
-        if (!"".equals(Expresion.getText()) && "".equals(NombreAutor.getText())) {
-            JOptionPane.showMessageDialog(null, "Introduce una alia!!!");
-        }
     }//GEN-LAST:event_ButtonAñadirMousePressed
 
     private void ButtonAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAñadirActionPerformed
         // TODO add your handling code here:
-        VentAñadirAliaPrin v = new VentAñadirAliaPrin();
-        this.add(v);
+        int x = (this.getWidth()/2) - (v.getWidth()/2);
+        int y = (this.getHeight()/2) - (v.getHeight()/2);
+        v.setLocation(x, y);
         v.show();
+        
     }//GEN-LAST:event_ButtonAñadirActionPerformed
 
 
