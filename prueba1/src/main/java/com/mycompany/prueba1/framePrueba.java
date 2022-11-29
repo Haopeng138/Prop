@@ -5,6 +5,7 @@
 package com.mycompany.prueba1;
 
 import java.awt.CardLayout;
+import com.mycompany.prueba1.Prueba1;
 
 /**
  *
@@ -15,11 +16,17 @@ public class framePrueba extends javax.swing.JFrame {
     /**
      * Creates new form framePrueba
      */
-    VentAñadirAliaPrin v;
+    VentAñadirAliaPrin aA;
+    VentEliminarAliaPrin eA;
+    VentModificarAliaPrin mA;
     
     public framePrueba() {
-        v = new VentAñadirAliaPrin();
-        this.add(v);
+        aA = new VentAñadirAliaPrin();
+        eA = new VentEliminarAliaPrin();
+        mA = new VentModificarAliaPrin();
+        this.add(aA);
+        this.add(eA);
+        this.add(mA);
         initComponents();
     }
 
@@ -108,6 +115,11 @@ public class framePrueba extends javax.swing.JFrame {
         AliasMenu.add(ModificarAlia);
 
         EliminarAlia.setText("Eliminar");
+        EliminarAlia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarAliaActionPerformed(evt);
+            }
+        });
         AliasMenu.add(EliminarAlia);
 
         MenuBarPrincipal.add(AliasMenu);
@@ -143,6 +155,7 @@ public class framePrueba extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void SizeMenuBusquedaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SizeMenuBusquedaMouseClicked
@@ -178,15 +191,34 @@ public class framePrueba extends javax.swing.JFrame {
 
     private void NuevaAliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevaAliaActionPerformed
         // TODO add your handling code here:
-        int x = (this.getWidth()/2) - (v.getWidth()/2);
-        int y = (this.getHeight()/2) - (v.getHeight()/2);
-        v.setLocation(x, y);
-        v.setVisible(true);
+        int x = (this.getWidth()/2) - (aA.getWidth()/2);
+        int y = (this.getHeight()/2) - (aA.getHeight()/2);
+        aA.setLocation(x, y);
+        if (mA.isVisible()) mA.setVisible(false);
+        if (eA.isVisible()) eA.setVisible(false);
+        aA.setVisible(true);
     }//GEN-LAST:event_NuevaAliaActionPerformed
 
     private void ModificarAliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarAliaActionPerformed
         // TODO add your handling code here:
+        int x = (this.getWidth()/2) - (mA.getWidth()/2);
+        int y = (this.getHeight()/2) - (mA.getWidth()/2);
+        mA.setLocation(x, y);
+        if (aA.isVisible()) aA.setVisible(false);
+        if (eA.isVisible()) eA.setVisible(false);
+        mA.setVisible(true);
     }//GEN-LAST:event_ModificarAliaActionPerformed
+
+    private void EliminarAliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarAliaActionPerformed
+        // TODO add your handling code here:
+        
+        //if (mA.isVisible()) mA.setVisible(false);
+        //if (aA.isVisible()) aA.setVisible(false);
+        //eA.setVisible(true);
+        //this.setEnabled(false);
+        Prueba1.p.setVisible(true);
+        this.setEnabled(false);
+    }//GEN-LAST:event_EliminarAliaActionPerformed
 
     /**
      * @param args the command line arguments
