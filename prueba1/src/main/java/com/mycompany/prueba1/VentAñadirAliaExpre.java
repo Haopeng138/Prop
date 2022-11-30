@@ -4,10 +4,6 @@
  */
 package com.mycompany.prueba1;
 
-/**
- *
- * @author flors
- */
 public class VentAñadirAliaExpre extends javax.swing.JFrame {
 
     /**

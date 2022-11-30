@@ -4,10 +4,6 @@
  */
 package com.mycompany.prueba1;
 
-/**
- *
- * @author flors
- */
 public class VentAñadirAliaPrin extends javax.swing.JFrame {
 
     /**
@@ -95,6 +91,8 @@ public class VentAñadirAliaPrin extends javax.swing.JFrame {
                     .addComponent(ButtonEliminar))
                 .addGap(12, 12, 12))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel1, jLabel5, jTextField1});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

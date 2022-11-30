@@ -114,7 +114,7 @@ public class PanelInfoDoc extends javax.swing.JPanel {
                             .addComponent(jButton2)
                             .addComponent(jButton1)
                             .addComponent(jButton4))
-                        .addContainerGap())
+                        .addGap(12, 12, 12))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))

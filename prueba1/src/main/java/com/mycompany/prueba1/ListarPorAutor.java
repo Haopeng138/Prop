@@ -6,10 +6,6 @@ package com.mycompany.prueba1;
 
 import java.awt.Color;
 
-/**
- *
- * @author flors
- */
 public class ListarPorAutor extends javax.swing.JPanel {
 
     /**

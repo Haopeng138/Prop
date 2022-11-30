@@ -5,10 +5,7 @@
 package com.mycompany.prueba1;
 
 import java.awt.Color;
-/**
- *
- * @author flors
- */
+
 public class ListarPorExpresion extends javax.swing.JPanel {
 
     /**

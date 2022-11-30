@@ -6,20 +6,12 @@ package com.mycompany.prueba1;
 
 import java.awt.CardLayout;
 
-/**
- *
- * @author flors
- */
 public class framePrueba extends javax.swing.JFrame {
 
     /**
      * Creates new form framePrueba
      */
-    VentAñadirAliaPrin v;
-    
     public framePrueba() {
-        v = new VentAñadirAliaPrin();
-        this.add(v);
         initComponents();
     }
 
@@ -145,10 +137,10 @@ public class framePrueba extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(SizeMenu)
+                    .addComponent(SizeMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                     .addComponent(jScrollPane1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)
+                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -200,10 +192,6 @@ public class framePrueba extends javax.swing.JFrame {
 
     private void NuevaAliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevaAliaActionPerformed
         // TODO add your handling code here:
-        int x = (this.getWidth()/2) - (v.getWidth()/2);
-        int y = (this.getHeight()/2) - (v.getHeight()/2);
-        v.setLocation(x, y);
-        v.setVisible(true);
     }//GEN-LAST:event_NuevaAliaActionPerformed
 
     private void ModificarAliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarAliaActionPerformed
