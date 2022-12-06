@@ -5,14 +5,15 @@ import Dominio.Expresion.ExpresionException;
 import Dominio.Logica.ControladorBusqueda;
 import Dominio.Utils.BinaryTree;
 import Dominio.Utils.DocumentHeader;
-import Dominio.Utils.DocumentoFromFile;
+import Dominio.Utils.IOHelper;
 import Dominio.Utils.ParseNode;
 import Dominio.Estructura.Autor;
 import Dominio.Estructura.Documento;
 import Dominio.Estructura.Libreria;
 import Dominio.Estructura.Titulo;
 
-import java.nio.file.Path;
+import java.io.File;
+
 import java.util.ArrayList;
 
 public class ControladorDominio {
@@ -27,10 +28,10 @@ public class ControladorDominio {
 
     //// PUNTO 1
 
-    public void createDocumento(Path documento) {
+    public void createDocumento(File documento) {
         Documento doc;
         try {
-            doc = DocumentoFromFile.create(documento);
+            doc = IOHelper.create(documento);
             createDocumento(doc.getAutor(), doc.getTitulo(), doc.getContenido());
         } catch (Exception e) {
             System.out.println("Error importing Document");
@@ -38,7 +39,7 @@ public class ControladorDominio {
         }
     }
 
-    public void createDocumento(String a, String t, String contenido) {
+    private void createDocumento(String a, String t, String contenido) {
         libreria.createDocumento(a, t, contenido);
     }
 
@@ -50,8 +51,13 @@ public class ControladorDominio {
         libreria.removeDocumento(a, t);
     }
 
-    public void exportDocumento(Documento doc, Path path) {
-
+    public void exportDocumento(Documento doc, File path, String name) {
+        try {
+            IOHelper.export(doc, path, name);
+        } catch (Exception e) {
+            System.out.println("Error exporting document");
+            e.printStackTrace();
+        }
     }
     ////
 

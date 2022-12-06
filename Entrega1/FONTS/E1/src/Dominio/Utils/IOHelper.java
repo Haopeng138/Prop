@@ -1,14 +1,17 @@
 package Dominio.Utils;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Scanner;
 
 import Dominio.Estructura.Documento;
 
-public class DocumentoFromFile {
+public class IOHelper {
 
-    public static Documento create(Path documento) throws Exception {
+    public static Documento create(File documento) throws Exception {
         String extension = "";
         int i = documento.toString().lastIndexOf('.');
         if (i > 0) {
@@ -20,10 +23,9 @@ public class DocumentoFromFile {
             return createFromXML(documento);
         } else
             throw new Exception("Invalid document format");
-
     }
 
-    private static Documento createFromXML(Path documento) throws Exception {
+    private static Documento createFromXML(File documento) throws Exception {
         try (Scanner file = new Scanner(documento)) {
             String autor = "";
             String titulo = "";
@@ -52,6 +54,19 @@ public class DocumentoFromFile {
         }
     }
 
+    private static Documento createFromTxT(File documento) throws IOException {
+        try (Scanner file = new Scanner(documento)) {
+            String autor = file.nextLine();
+            String titulo = file.nextLine();
+            String contenido = "";
+            while (file.hasNextLine()) {
+                contenido += file.nextLine() + "\n";
+            }
+
+            return new Documento(autor, titulo, contenido);
+        }
+    }
+
     private static String getTextBetweenTags(String tag, String line, Scanner file) {
         int start = line.indexOf('>') + 1;
         if (line.endsWith("</" + tag + ">")) {
@@ -69,17 +84,37 @@ public class DocumentoFromFile {
         return text;
     }
 
-    private static Documento createFromTxT(Path documento) throws IOException {
-        try (Scanner file = new Scanner(documento)) {
-            String autor = file.nextLine();
-            String titulo = file.nextLine();
-            String contenido = "";
-            while (file.hasNextLine()) {
-                contenido += file.nextLine() + "\n";
-            }
+    public static void export(Documento doc, File path, String name) throws Exception {
+        String extension = "";
+        int i = name.toString().lastIndexOf('.');
+        if (i > 0) {
+            extension = name.toString().substring(i + 1);
+        }
+        if (extension.equals("txt")) {
+            exportToTxT(doc, path, name);
+            return;
+        } else if (extension.equals("xml")) {
+            exportToXML(doc, path, name);
+            return;
+        } else
+            throw new Exception("Invalid document format");
+    }
 
-            return new Documento(autor, titulo, contenido);
+    private static void exportToTxT(Documento doc, File path, String name) throws IOException {
+        File file = new File(path, name);
+        try (FileWriter myWriter = new FileWriter(file)) {
+            myWriter.write(doc.getAutor() + '\n');
+            myWriter.write(doc.getTitulo() + '\n');
+            myWriter.write(doc.getContenido());
         }
     }
 
+    private static void exportToXML(Documento doc, File path, String name) throws IOException {
+        File file = new File(path, name);
+        try (FileWriter myWriter = new FileWriter(file)) {
+            myWriter.write("<Autor>" + doc.getAutor() + "</Autor>" + '\n');
+            myWriter.write("<Titulo>" + doc.getTitulo() + "<Titulo>" + '\n');
+            myWriter.write("<Contenido>" + doc.getContenido() + "<Contenido>");
+        }
+    }
 }
