@@ -7,7 +7,7 @@ import Dominio.Utils.ParseNode;
 
 public class ControladorExpresiones {
 
-    HashMap<String, Expresion> expresiones; // prob better to hashMap by alias
+    HashMap<String, Expresion> expresiones;
 
     public ControladorExpresiones() {
         this.expresiones = new HashMap<String, Expresion>();
@@ -75,5 +75,9 @@ public class ControladorExpresiones {
             return null;
         }
         return expresiones.get(alias).getExpresion();
+    }
+
+    public HashMap<String, Expresion> getExpresiones() {
+        return expresiones;
     }
 }
