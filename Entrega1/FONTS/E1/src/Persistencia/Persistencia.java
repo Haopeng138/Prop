@@ -16,6 +16,11 @@ import Dominio.Expresion.ExpresionException;
 
 public class Persistencia {
 
+    /**
+     * @param libreria     la libreria con los documentos a persistir
+     * @param cExpresiones El controlador de expresiones con la expresiones a
+     *                     persistir
+     */
     public static void persist(Libreria libreria, ControladorExpresiones cExpresiones) throws IOException {
 
         File directory = getDirectory();
@@ -26,6 +31,10 @@ public class Persistencia {
 
     }
 
+    /**
+     * @param libreria     la libreria a la que recuperar los documentos
+     * @param cExpresiones El controlador al que recuperar las expresiones
+     */
     public static void recoverState(Libreria libreria, ControladorExpresiones cExpresiones)
             throws IOException {
         File directory = getDirectory();
@@ -48,6 +57,10 @@ public class Persistencia {
         return directory;
     }
 
+    /**
+     * @param libreria  la libreria con los documentos a persistir
+     * @param directory El directorio al que crear los ficheros
+     */
     private static void persistDocumentos(Libreria libreria, File directory) {
         ArrayList<Autor> autores = libreria.getAutores();
         autores.forEach(a -> libreria.getTitles(a.getName()).forEach(t -> {
@@ -55,6 +68,12 @@ public class Persistencia {
         }));
     }
 
+    /**
+     * @param a         El nombre del autor
+     * @param t         El titulo
+     * @param libreria  La libreria en la que buscar el documento
+     * @param directory El directorio donde crear el fichero
+     */
     private static void createFile(Autor a, Titulo t, Libreria libreria, File directory) {
         String autor = a.getName();
         String titulo = t.getName();
@@ -69,6 +88,10 @@ public class Persistencia {
         }
     }
 
+    /**
+     * @param cExpresiones El controlador con las expresiones
+     * @param directory    El directorio donde crear el fichero
+     */
     private static void persistExpresiones(ControladorExpresiones cExpresiones, File directory) throws IOException {
         File f = new File(directory, "expresiones");
         try (FileWriter writer = new FileWriter(f)) {
@@ -82,6 +105,10 @@ public class Persistencia {
         }
     }
 
+    /**
+     * @param cExpresiones El controlador en el que recuperar las expresiones
+     * @param directory    El directorio des del que recuperar las expresiones
+     */
     private static void recoverExpresiones(ControladorExpresiones cExpresiones, File directory)
             throws FileNotFoundException {
         File exprF = new File(directory, "expresiones");
@@ -99,6 +126,10 @@ public class Persistencia {
         exprF.delete();
     }
 
+    /**
+     * @param libreria  La libreria en la que buscar el documento
+     * @param directory El directorio des del que recuperar las expresiones
+     */
     private static void recoverDocumentos(Libreria libreria, File directory) throws IOException {
         File[] documents = directory.listFiles();
 

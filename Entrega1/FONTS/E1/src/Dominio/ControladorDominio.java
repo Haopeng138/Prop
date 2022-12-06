@@ -28,6 +28,9 @@ public class ControladorDominio {
 
     //// PUNTO 1
 
+    /**
+     * @param documento El documento a importar
+     */
     public void createDocumento(File documento) {
         Documento doc;
         try {
@@ -51,6 +54,11 @@ public class ControladorDominio {
         libreria.removeDocumento(a, t);
     }
 
+    /**
+     * @param doc  El documento a exportar
+     * @param path El path al que exportarlo
+     * @param name El nombre que dar al documento
+     */
     public void exportDocumento(Documento doc, File path, String name) {
         try {
             IOHelper.export(doc, path, name);
@@ -62,6 +70,10 @@ public class ControladorDominio {
     ////
 
     //// PUNTO 2
+    /**
+     * @param a El nombre de un autor
+     * @return Listado de titulos del autor
+     */
     public ArrayList<Titulo> getTitles(String a) {
         return libreria.getTitles(a);
     }

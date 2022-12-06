@@ -3,14 +3,15 @@ package Dominio.Utils;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.Scanner;
 
 import Dominio.Estructura.Documento;
 
 public class IOHelper {
 
+    /**
+     * @param documento El documento a importar
+     */
     public static Documento create(File documento) throws Exception {
         String extension = "";
         int i = documento.toString().lastIndexOf('.');
@@ -25,6 +26,9 @@ public class IOHelper {
             throw new Exception("Invalid document format");
     }
 
+    /**
+     * @param documento El documento en formato XML a importar
+     */
     private static Documento createFromXML(File documento) throws Exception {
         try (Scanner file = new Scanner(documento)) {
             String autor = "";
@@ -54,6 +58,9 @@ public class IOHelper {
         }
     }
 
+    /**
+     * @param documento El documento en formato txt a importar
+     */
     private static Documento createFromTxT(File documento) throws IOException {
         try (Scanner file = new Scanner(documento)) {
             String autor = file.nextLine();
@@ -84,6 +91,11 @@ public class IOHelper {
         return text;
     }
 
+    /**
+     * @param doc  El documento a exportar
+     * @param path El path al que exportarlo
+     * @param name El nombre que dar al documento
+     */
     public static void export(Documento doc, File path, String name) throws Exception {
         String extension = "";
         int i = name.toString().lastIndexOf('.');
@@ -100,6 +112,11 @@ public class IOHelper {
             throw new Exception("Invalid document format");
     }
 
+    /**
+     * @param doc  El documento a exportar
+     * @param path El path al que exportarlo
+     * @param name El nombre que dar al documento
+     */
     private static void exportToTxT(Documento doc, File path, String name) throws IOException {
         File file = new File(path, name);
         try (FileWriter myWriter = new FileWriter(file)) {
@@ -109,6 +126,11 @@ public class IOHelper {
         }
     }
 
+    /**
+     * @param doc  El documento a exportar
+     * @param path El path al que exportarlo
+     * @param name El nombre que dar al documento
+     */
     private static void exportToXML(Documento doc, File path, String name) throws IOException {
         File file = new File(path, name);
         try (FileWriter myWriter = new FileWriter(file)) {
