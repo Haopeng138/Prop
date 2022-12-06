@@ -16,15 +16,6 @@ import Dominio.Expresion.ExpresionException;
 
 public class Persistencia {
 
-    public static void main(String args[]) {
-        try {
-            persist(null, null);
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    }
-
     public static void persist(Libreria libreria, ControladorExpresiones cExpresiones) throws IOException {
 
         File directory = getDirectory();
@@ -115,6 +106,7 @@ public class Persistencia {
             String[] header = document.getName().split("|");
             String content = Files.readString(document.toPath());
             libreria.createDocumento(header[0], header[1], content);
+            document.delete();
         }
 
     }
