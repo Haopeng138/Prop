@@ -8,14 +8,14 @@ package com.mycompany.prueba1;
  *
  * @author linhaopeng
  */
-public class DocumentoItem extends javax.swing.JPanel {
+public class ItemDocumento extends javax.swing.JPanel {
 
     /**
      * Creates new form DocumentManage
      * @param autor
      * @param titulo
      */
-    public DocumentoItem(String autor,String titulo) {
+    public ItemDocumento(String autor,String titulo) {
         initComponents();
         NombreAutor.setText(autor);
         Titulo.setText(titulo);

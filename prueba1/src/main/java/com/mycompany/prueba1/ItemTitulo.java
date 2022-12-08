@@ -8,12 +8,12 @@ package com.mycompany.prueba1;
  *
  * @author linhaopeng
  */
-public class TituloItem extends javax.swing.JPanel {
+public class ItemTitulo extends javax.swing.JPanel {
 
     /**
      * Creates new form TituloItem
      */
-    public TituloItem() {
+    public ItemTitulo() {
         initComponents();
     }
 

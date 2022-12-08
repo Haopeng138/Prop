@@ -57,21 +57,12 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="SizeMenu" min="-2" pref="165" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="PanelBusquedas" pref="698" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
+                      <Component id="ListaItems" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="PanelBusquedas" pref="698" max="32767" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <Component id="ListaItems" max="32767" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                      <Component id="tituloItem1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -85,8 +76,6 @@
                   <Group type="102" attributes="0">
                       <Component id="PanelBusquedas" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="tituloItem1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="126" max="-2" attributes="0"/>
                       <Component id="ListaItems" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -130,12 +119,7 @@
     </Container>
     <Container class="javax.swing.JPanel" name="ListaItems">
 
-      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
-        <Property name="columns" type="int" value="0"/>
-        <Property name="rows" type="int" value="1"/>
-      </Layout>
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
     </Container>
-    <Component class="com.mycompany.prueba1.TituloItem" name="tituloItem1">
-    </Component>
   </SubComponents>
 </Form>

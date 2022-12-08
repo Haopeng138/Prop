@@ -8,15 +8,13 @@ package com.mycompany.prueba1;
  *
  * @author linhaopeng
  */
-public class AutorItem extends javax.swing.JPanel {
-    
+public class ItemContenido extends javax.swing.JPanel {
+
     /**
-     * Creates new form AutorItem
-     * @param Autor
+     * Creates new form ContenidoItem
      */
-    public AutorItem(String Autor) {
+    public ItemContenido() {
         initComponents();
-        NombreAutor.setText(Autor);
     }
 
     /**
@@ -28,45 +26,44 @@ public class AutorItem extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        AutorLabel = new javax.swing.JLabel();
-        NombreAutor = new javax.swing.JLabel();
-        ButtonVerObras = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jButton1 = new javax.swing.JButton();
 
-        AutorLabel.setText("Autor :");
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
 
-        NombreAutor.setText("jLabel2");
-
-        ButtonVerObras.setText("Ver Sus Obras");
+        jButton1.setText("Editar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(AutorLabel)
-                .addGap(18, 18, 18)
-                .addComponent(NombreAutor)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 391, Short.MAX_VALUE)
-                .addComponent(ButtonVerObras)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AutorLabel)
-                    .addComponent(NombreAutor)
-                    .addComponent(ButtonVerObras))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel AutorLabel;
-    private javax.swing.JButton ButtonVerObras;
-    private javax.swing.JLabel NombreAutor;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }
