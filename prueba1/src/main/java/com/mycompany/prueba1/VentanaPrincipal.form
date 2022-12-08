@@ -61,7 +61,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="PanelBusquedas" pref="698" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Component id="ListaItems" max="32767" attributes="0"/>
+                      <Component id="PanelItems" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -74,9 +74,9 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="SizeMenu" pref="421" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Component id="PanelBusquedas" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="ListaItems" min="-2" max="-2" attributes="0"/>
+                      <Component id="PanelBusquedas" min="-2" pref="151" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="PanelItems" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -117,9 +117,11 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
     </Container>
-    <Container class="javax.swing.JPanel" name="ListaItems">
+    <Container class="javax.swing.JPanel" name="PanelItems">
 
-      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout">
+        <Property name="axis" type="int" value="1"/>
+      </Layout>
     </Container>
   </SubComponents>
 </Form>

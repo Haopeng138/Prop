@@ -140,7 +140,7 @@ public class framePrueba extends javax.swing.JFrame {
         
         CardLayout card =  (CardLayout)mainPanel.getLayout();
         if ("Listar por autor".equals((String)SizeMenuBusqueda.getSelectedValue()) ) {    
-            mainPanel.add(new ListarPorAutor(), "listarAutor");
+            mainPanel.add(new ListarPorAutor(this), "listarAutor");
             card.show(mainPanel, "listarAutor");
         }
         
@@ -196,7 +196,7 @@ public class framePrueba extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                ListarPorAutor a = new ListarPorAutor();
+                ListarPorAutor a = new ListarPorAutor(this);
                 new framePrueba().setVisible(true);
                 a.setVisible(true);
             }

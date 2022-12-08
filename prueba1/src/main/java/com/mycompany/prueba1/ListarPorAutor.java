@@ -11,12 +11,14 @@ import java.awt.Color;
  * @author flors
  */
 public class ListarPorAutor extends javax.swing.JPanel {
-
+    private final VentanaPrincipal ventanaPrincipal;
     /**
      * Creates new form ListarAutor
+     * @param ventanaPrincipal
      */
-    public ListarPorAutor() {
+    public ListarPorAutor(VentanaPrincipal ventanaPrincipal) {
         initComponents();
+        this.ventanaPrincipal = ventanaPrincipal;
     }
 
     private boolean first = true;
@@ -45,6 +47,11 @@ public class ListarPorAutor extends javax.swing.JPanel {
         ButtonBuscar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         ButtonBuscar.setLabel("Buscar");
         ButtonBuscar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        ButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonBuscarActionPerformed(evt);
+            }
+        });
 
         NombreAutor.setForeground(new java.awt.Color(102, 102, 102));
         NombreAutor.setText("Introduce un nombre de autor");
@@ -103,6 +110,11 @@ public class ListarPorAutor extends javax.swing.JPanel {
             NombreAutor.setEnabled(false);
         }
     }//GEN-LAST:event_formMousePressed
+
+    private void ButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBuscarActionPerformed
+        // TODO add your handling code here:
+        ventanaPrincipal.autorlist();
+    }//GEN-LAST:event_ButtonBuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

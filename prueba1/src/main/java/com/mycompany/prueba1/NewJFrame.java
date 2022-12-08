@@ -20,7 +20,6 @@ public class NewJFrame extends javax.swing.JFrame {
     public NewJFrame() {
         initComponents();
         JPanel newPanel = new JPanel();
-        
         newPanel.setLayout(new BoxLayout(newPanel, BoxLayout.Y_AXIS));
         for(int i = 0; i< 30; i++ ){
             newPanel.add(new ItemAutor("autor"+i));
