@@ -4,10 +4,6 @@
  */
 package com.mycompany.prueba1;
 
-/**
- *
- * @author flors
- */
 public class ListarPorPrefijo extends javax.swing.JPanel {
 
     /**

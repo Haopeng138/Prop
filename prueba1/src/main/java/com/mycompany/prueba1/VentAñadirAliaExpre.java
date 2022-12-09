@@ -1,17 +1,13 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.prueba1;
 
-/**
- *
- * @author flors
- */
-public class VentAñadirAliaExpre extends javax.swing.JInternalFrame {
+public class VentAñadirAliaExpre extends javax.swing.JFrame {
 
     /**
-     * Creates new form VentAñadirAlia1
+     * Creates new form VentAñadirAliaExpre
      */
     public VentAñadirAliaExpre() {
         initComponents();
@@ -31,9 +27,9 @@ public class VentAñadirAliaExpre extends javax.swing.JInternalFrame {
         ButtunGuardar = new javax.swing.JButton();
         ButtonCancelar = new javax.swing.JButton();
 
-        setPreferredSize(new java.awt.Dimension(400, 140));
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        TextInfoAlia.setText("Asigne una alia para la expresión:");
+        TextInfoAlia.setText("Asigne una alia para la expresión booleana:");
 
         ButtunGuardar.setText("Guardar");
 
@@ -46,7 +42,7 @@ public class VentAñadirAliaExpre extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TextInfoAlia, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
+                    .addComponent(TextInfoAlia, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
                     .addComponent(TextAlia))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -56,9 +52,6 @@ public class VentAñadirAliaExpre extends javax.swing.JInternalFrame {
                 .addComponent(ButtonCancelar)
                 .addGap(7, 7, 7))
         );
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {ButtonCancelar, ButtunGuardar});
-
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -73,11 +66,43 @@ public class VentAñadirAliaExpre extends javax.swing.JInternalFrame {
                 .addGap(12, 12, 12))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {ButtonCancelar, ButtunGuardar});
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(VentAñadirAliaExpre.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(VentAñadirAliaExpre.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(VentAñadirAliaExpre.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(VentAñadirAliaExpre.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new VentAñadirAliaExpre().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonCancelar;

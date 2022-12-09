@@ -4,10 +4,6 @@
  */
 package com.mycompany.prueba1;
 
-/**
- *
- * @author flors
- */
 public class ListarPorSimilitud extends javax.swing.JPanel {
 
     /**
