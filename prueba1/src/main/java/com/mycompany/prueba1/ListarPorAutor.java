@@ -7,14 +7,13 @@ package com.mycompany.prueba1;
 import java.awt.Color;
 
 public class ListarPorAutor extends javax.swing.JPanel {
-    private final VentanaPrincipal ventanaPrincipal;
+    //private final VentanaPrincipal ventanaPrincipal;
     /**
      * Creates new form ListarAutor
-     * @param ventanaPrincipal
      */
-    public ListarPorAutor(VentanaPrincipal ventanaPrincipal) {
+    public ListarPorAutor() {
         initComponents();
-        this.ventanaPrincipal = ventanaPrincipal;
+        //this.ventanaPrincipal = ventanaPrincipal;
     }
 
     private boolean first = true;
@@ -109,7 +108,7 @@ public class ListarPorAutor extends javax.swing.JPanel {
 
     private void ButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBuscarActionPerformed
         // TODO add your handling code here:
-        ventanaPrincipal.autorlist();
+        //ventanaPrincipal.autorlist();
     }//GEN-LAST:event_ButtonBuscarActionPerformed
 
 

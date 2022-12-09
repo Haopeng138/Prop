@@ -5,7 +5,6 @@
 package com.mycompany.prueba1;
 
 import java.awt.CardLayout;
-import com.mycompany.prueba1.Prueba1;
 
 public class framePrueba extends javax.swing.JFrame {
 
@@ -182,7 +181,7 @@ public class framePrueba extends javax.swing.JFrame {
         
         CardLayout card = (CardLayout)mainPanel.getLayout();
         if ("Listar por autor".equals((String)SizeMenuBusqueda.getSelectedValue()) ) {    
-            mainPanel.add(new ListarPorAutor(this), "listarAutor");
+            mainPanel.add(new ListarPorAutor(), "listarAutor");
             card.show(mainPanel, "listarAutor");
         }
         
@@ -234,7 +233,9 @@ public class framePrueba extends javax.swing.JFrame {
         //if (aA.isVisible()) aA.setVisible(false);
         //eA.setVisible(true);
         //this.setEnabled(false);
-        Prueba1.p.setVisible(true);
+        
+        //TODO
+        //Prueba1.p.setVisible(true);
         this.setEnabled(false);
     }//GEN-LAST:event_EliminarAliaActionPerformed
 
@@ -269,9 +270,9 @@ public class framePrueba extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                ListarPorAutor a = new ListarPorAutor(this);
+                //ListarPorAutor a = new ListarPorAutor(this);
                 new framePrueba().setVisible(true);
-                a.setVisible(true);
+                //a.setVisible(true);
             }
         });
     }

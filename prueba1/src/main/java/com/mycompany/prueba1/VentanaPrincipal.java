@@ -15,7 +15,7 @@ import javax.swing.JScrollPane;
  */
 public final class VentanaPrincipal extends javax.swing.JFrame {
 
-    private final ListarPorAutor listaAutor = new ListarPorAutor(this);
+    private final ListarPorAutor listaAutor = new ListarPorAutor();
     private final ListarPorAutorYTitulo listaAutorTitulo = new ListarPorAutorYTitulo();
     private final ListarPorExpresion listaExpresion = new ListarPorExpresion();
     private final ListarPorPrefijo listaPrefijo = new ListarPorPrefijo();
