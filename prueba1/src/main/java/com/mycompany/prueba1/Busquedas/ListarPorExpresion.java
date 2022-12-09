@@ -14,8 +14,8 @@ public class ListarPorExpresion extends javax.swing.JPanel {
      */
     VentAñadirAliaExpre v;
     public ListarPorExpresion() {
-        v = new VentAñadirAliaExpre();
-        this.add(v);
+        //v = new VentAñadirAliaExpre();
+        //this.add(v);
         initComponents();
     }
     private boolean firstA = true;

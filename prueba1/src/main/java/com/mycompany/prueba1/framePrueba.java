@@ -24,12 +24,14 @@ public class framePrueba extends javax.swing.JFrame {
     VentModificarAliaPrin mA;
     
     public framePrueba() {
+        /* Can´t add windows to fram
+        
         aA = new VentAñadirAliaPrin();
         eA = new VentEliminarAliaPrin();
         mA = new VentModificarAliaPrin();
         this.add(aA);
         this.add(eA);
-        this.add(mA);
+        this.add(mA);*/
         initComponents();
     }
 

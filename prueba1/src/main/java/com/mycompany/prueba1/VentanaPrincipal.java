@@ -5,8 +5,8 @@
 package com.mycompany.prueba1;
 
 import com.mycompany.prueba1.VentanaSecundaria.VentNuevoDocumentoFrame;
-import com.mycompany.prueba1.Busquedas.ListarPorSimilitud;
 import com.mycompany.prueba1.Busquedas.ListarPorAutor;
+import com.mycompany.prueba1.Busquedas.ListarPorSimilitud;
 import com.mycompany.prueba1.Busquedas.ListarPorPrefijo;
 import com.mycompany.prueba1.Busquedas.ListarPorExpresion;
 import com.mycompany.prueba1.Busquedas.ListarPorAutorYTitulo;
