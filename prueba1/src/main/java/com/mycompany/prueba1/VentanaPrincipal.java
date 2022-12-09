@@ -4,6 +4,13 @@
  */
 package com.mycompany.prueba1;
 
+import com.mycompany.prueba1.VentanaSecundaria.VentNuevoDocumentoFrame;
+import com.mycompany.prueba1.Busquedas.ListarPorSimilitud;
+import com.mycompany.prueba1.Busquedas.ListarPorAutor;
+import com.mycompany.prueba1.Busquedas.ListarPorPrefijo;
+import com.mycompany.prueba1.Busquedas.ListarPorExpresion;
+import com.mycompany.prueba1.Busquedas.ListarPorAutorYTitulo;
+import com.mycompany.prueba1.Items.ItemAutor;
 import java.awt.CardLayout;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
@@ -20,7 +27,7 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
     private final ListarPorExpresion listaExpresion = new ListarPorExpresion();
     private final ListarPorPrefijo listaPrefijo = new ListarPorPrefijo();
     private final ListarPorSimilitud listaSimilitud = new ListarPorSimilitud();
-    private NuevoDocumentoFrame newDocument ;
+    private VentNuevoDocumentoFrame newDocument ;
     
     /**
      * Creates new form framePrueba
@@ -164,7 +171,7 @@ public final class VentanaPrincipal extends javax.swing.JFrame {
     private void NuevoDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevoDocActionPerformed
         // TODO add your handling code here:
        if(newDocument == null){
-           newDocument = new NuevoDocumentoFrame();
+           newDocument = new VentNuevoDocumentoFrame();
            newDocument.show();
        }else{
            System.out.println("Ya hay una ventana abierta");

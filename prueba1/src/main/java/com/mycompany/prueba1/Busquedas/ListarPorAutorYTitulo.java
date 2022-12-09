@@ -2,17 +2,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package com.mycompany.prueba1;
+package com.mycompany.prueba1.Busquedas;
 
-public class ListarPorSimilitud extends javax.swing.JPanel {
+import java.awt.Color;
+
+public class ListarPorAutorYTitulo extends javax.swing.JPanel {
 
     /**
-     * Creates new form ListarPorSimilitud
+     * Creates new form ListarPorAutorYTitulo
      */
-    public ListarPorSimilitud() {
+    public ListarPorAutorYTitulo() {
         initComponents();
     }
 
+    private boolean firstA = true;
+    private boolean firstT = true;
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -24,31 +29,23 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
 
         TipoBusqueda = new javax.swing.JLabel();
         ButtonBuscar = new javax.swing.JButton();
-        Titulo = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
         NombreAutor = new javax.swing.JTextField();
+        Titulo = new javax.swing.JTextField();
 
-        TipoBusqueda.setText("BÚSQUEDA POR SIMILITUD");
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                formMousePressed(evt);
+            }
+        });
+
+        TipoBusqueda.setText("BÚSQUEDA POR NOMBRE DE AUTOR Y TÍTULO");
         TipoBusqueda.setToolTipText("");
 
         ButtonBuscar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         ButtonBuscar.setLabel("Buscar");
         ButtonBuscar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        Titulo.setText("Introduce un título");
-        Titulo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TituloActionPerformed(evt);
-            }
-        });
-
-        jTextField1.setText("Introduce un número");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-
+        NombreAutor.setForeground(new java.awt.Color(102, 102, 102));
         NombreAutor.setText("Introduce un nombre de autor");
         NombreAutor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -61,20 +58,27 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
             }
         });
 
+        Titulo.setForeground(new java.awt.Color(102, 102, 102));
+        Titulo.setText("Introduce un título");
+        Titulo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                TituloMousePressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1)
-                    .addComponent(NombreAutor, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
-                    .addComponent(Titulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(NombreAutor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
+                    .addComponent(Titulo, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(ButtonBuscar))
-                    .addComponent(TipoBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(TipoBusqueda, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -87,32 +91,50 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ButtonBuscar)
-                .addContainerGap(238, Short.MAX_VALUE))
+                .addContainerGap(255, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {ButtonBuscar, NombreAutor, Titulo, jTextField1});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {ButtonBuscar, NombreAutor, Titulo});
 
     }// </editor-fold>//GEN-END:initComponents
-
-    private void NombreAutorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NombreAutorMouseClicked
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_NombreAutorMouseClicked
 
     private void NombreAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreAutorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_NombreAutorActionPerformed
 
-    private void TituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TituloActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TituloActionPerformed
+    private void NombreAutorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NombreAutorMouseClicked
+          // TODO add your handling code here:
+          if (firstA) {
+              firstA = false;
+              NombreAutor.setEnabled(true);
+              NombreAutor.setText("");
+              NombreAutor.setForeground(new Color(0, 0, 0));
+          }
+        
+    }//GEN-LAST:event_NombreAutorMouseClicked
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+        
+        
+        if ("".equals(Titulo.getText())) {
+            Titulo.setText("Introduce un título");
+            Titulo.setForeground(new Color(102, 102, 102));
+            firstT = true;
+            Titulo.setEnabled(false);
+        }
+    }//GEN-LAST:event_formMousePressed
+
+    private void TituloMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TituloMousePressed
+        // TODO add your handling code here:
+        if (firstT) {
+            firstT = false;
+            Titulo.setEnabled(true);
+            Titulo.setText("");
+            Titulo.setForeground(new Color(0, 0, 0));
+        }
+    }//GEN-LAST:event_TituloMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -120,6 +142,5 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
     private javax.swing.JTextField NombreAutor;
     private javax.swing.JLabel TipoBusqueda;
     private javax.swing.JTextField Titulo;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

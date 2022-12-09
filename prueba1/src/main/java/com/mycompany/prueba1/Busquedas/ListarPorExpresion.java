@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package com.mycompany.prueba1;
+package com.mycompany.prueba1.Busquedas;
 
+import com.mycompany.prueba1.VentanaSecundaria.VentAñadirAliaExpre;
 import java.awt.Color;
 
 public class ListarPorExpresion extends javax.swing.JPanel {

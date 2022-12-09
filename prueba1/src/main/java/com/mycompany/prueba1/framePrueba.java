@@ -4,6 +4,14 @@
  */
 package com.mycompany.prueba1;
 
+import com.mycompany.prueba1.VentanaSecundaria.VentAñadirAliaPrin;
+import com.mycompany.prueba1.VentanaSecundaria.VentEliminarAliaPrin;
+import com.mycompany.prueba1.VentanaSecundaria.VentModificarAliaPrin;
+import com.mycompany.prueba1.Busquedas.ListarPorSimilitud;
+import com.mycompany.prueba1.Busquedas.ListarPorAutor;
+import com.mycompany.prueba1.Busquedas.ListarPorPrefijo;
+import com.mycompany.prueba1.Busquedas.ListarPorExpresion;
+import com.mycompany.prueba1.Busquedas.ListarPorAutorYTitulo;
 import java.awt.CardLayout;
 
 public class framePrueba extends javax.swing.JFrame {
