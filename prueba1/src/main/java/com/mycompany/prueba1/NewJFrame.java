@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.prueba1;
-import com.mycompany.prueba1.Prueba1;
 /**
  *
  * @author usuario
@@ -82,8 +81,8 @@ public class NewJFrame extends javax.swing.JFrame {
     private void ButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCancelarActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        Prueba1.j.setEnabled(true);
-        Prueba1.j.setVisible(true);
+        //Prueba1.j.setEnabled(true);
+        //Prueba1.j.setVisible(true);
     }//GEN-LAST:event_ButtonCancelarActionPerformed
 
     /**
