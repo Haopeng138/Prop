@@ -5,9 +5,6 @@
 package com.mycompany.prueba1;
 
 import java.awt.Color;
-import javax.swing.JOptionPane;
-import static javax.swing.JOptionPane.showMessageDialog;
-
 /**
  *
  * @author flors
@@ -17,7 +14,10 @@ public class ListarPorExpresion extends javax.swing.JPanel {
     /**
      * Creates new form ListarPorExpresion
      */
+    VentAñadirAliaExpre v;
     public ListarPorExpresion() {
+        v = new VentAñadirAliaExpre();
+        this.add(v);
         initComponents();
     }
     private boolean firstA = true;
@@ -40,11 +40,6 @@ public class ListarPorExpresion extends javax.swing.JPanel {
         NombreAutor = new javax.swing.JTextField();
         TextAlias = new javax.swing.JLabel();
         ButtonAñadir = new javax.swing.JButton();
-        VentanaAñadirAlia = new javax.swing.JInternalFrame();
-        TextInfoAlia = new javax.swing.JLabel();
-        TextAlia = new javax.swing.JTextField();
-        ButtunGuardar = new javax.swing.JButton();
-        ButtonCancelar = new javax.swing.JButton();
 
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -92,44 +87,11 @@ public class ListarPorExpresion extends javax.swing.JPanel {
                 ButtonAñadirMousePressed(evt);
             }
         });
-
-        VentanaAñadirAlia.setVisible(true);
-
-        TextInfoAlia.setText("Asigne una alia para la expresión:");
-
-        ButtunGuardar.setText("Guardar");
-
-        ButtonCancelar.setText("Cancelar");
-
-        javax.swing.GroupLayout VentanaAñadirAliaLayout = new javax.swing.GroupLayout(VentanaAñadirAlia.getContentPane());
-        VentanaAñadirAlia.getContentPane().setLayout(VentanaAñadirAliaLayout);
-        VentanaAñadirAliaLayout.setHorizontalGroup(
-            VentanaAñadirAliaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(VentanaAñadirAliaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(VentanaAñadirAliaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TextAlia)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, VentanaAñadirAliaLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(ButtunGuardar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ButtonCancelar))
-                    .addComponent(TextInfoAlia, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        VentanaAñadirAliaLayout.setVerticalGroup(
-            VentanaAñadirAliaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(VentanaAñadirAliaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(TextInfoAlia)
-                .addGap(18, 18, 18)
-                .addComponent(TextAlia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(VentanaAñadirAliaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ButtonCancelar)
-                    .addComponent(ButtunGuardar))
-                .addContainerGap(12, Short.MAX_VALUE))
-        );
+        ButtonAñadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonAñadirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -151,10 +113,6 @@ public class ListarPorExpresion extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(ButtonBuscar)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(90, 90, 90)
-                .addComponent(VentanaAñadirAlia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,9 +131,7 @@ public class ListarPorExpresion extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ButtonBuscar)
                     .addComponent(ButtonAñadir))
-                .addGap(18, 18, 18)
-                .addComponent(VentanaAñadirAlia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(197, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {AliasExist, Expresion, NombreAutor});
@@ -228,32 +184,25 @@ public class ListarPorExpresion extends javax.swing.JPanel {
 
     private void ButtonAñadirMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonAñadirMousePressed
         // TODO add your handling code here:
-        if ("".equals(Expresion.getText()) && !"".equals(NombreAutor.getText())) {
-            JOptionPane.showMessageDialog(null, "Introduce una expresión!!!");
-        }
-        
-        if ("".equals(Expresion.getText()) && "".equals(NombreAutor.getText())) {
-            JOptionPane.showMessageDialog(null, "Introduce una expresión!!!\nIntroduce una alia!!!");
-        }
-        
-        if (!"".equals(Expresion.getText()) && "".equals(NombreAutor.getText())) {
-            JOptionPane.showMessageDialog(null, "Introduce una alia!!!");
-        }
     }//GEN-LAST:event_ButtonAñadirMousePressed
+
+    private void ButtonAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAñadirActionPerformed
+        // TODO add your handling code here:
+        int x = (this.getWidth()/2) - (v.getWidth()/2);
+        int y = (this.getHeight()/2) - (v.getHeight()/2);
+        v.setLocation(x, y);
+        v.show();
+        
+    }//GEN-LAST:event_ButtonAñadirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> AliasExist;
     private javax.swing.JButton ButtonAñadir;
     private javax.swing.JButton ButtonBuscar;
-    private javax.swing.JButton ButtonCancelar;
-    private javax.swing.JButton ButtunGuardar;
     private javax.swing.JTextField Expresion;
     private javax.swing.JTextField NombreAutor;
-    private javax.swing.JTextField TextAlia;
     private javax.swing.JLabel TextAlias;
-    private javax.swing.JLabel TextInfoAlia;
     private javax.swing.JLabel TipoBusqueda;
-    private javax.swing.JInternalFrame VentanaAñadirAlia;
     // End of variables declaration//GEN-END:variables
 }

@@ -95,7 +95,7 @@ public class Autores {
         autores.remove(a);
     }
 
-    // TOdo: eliminar aqui ?
+    // Todo: eliminar aqui ?
     public void remove(String a) {
         autores.remove(new Autor(a));
     }
