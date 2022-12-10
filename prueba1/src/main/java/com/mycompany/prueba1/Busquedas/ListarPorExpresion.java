@@ -4,19 +4,24 @@
  */
 package com.mycompany.prueba1.Busquedas;
 
+import com.mycompany.prueba1.DocumentHeaderDemo;
 import com.mycompany.prueba1.VentanaSecundaria.VentAñadirAliaExpre;
+import com.mycompany.prueba1.framePrincipal;
 import java.awt.Color;
+import java.util.ArrayList;
 
 public class ListarPorExpresion extends javax.swing.JPanel {
-
+     private final framePrincipal framePrincipal;
     /**
      * Creates new form ListarPorExpresion
      */
+     
     VentAñadirAliaExpre v;
-    public ListarPorExpresion() {
+    public ListarPorExpresion(framePrincipal framePrincipal) {
+        initComponents();
+        this.framePrincipal = framePrincipal;
         //v = new VentAñadirAliaExpre();
         //this.add(v);
-        initComponents();
     }
     private boolean firstA = true;
     private boolean firstE = true;
@@ -58,6 +63,11 @@ public class ListarPorExpresion extends javax.swing.JPanel {
         ButtonBuscar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         ButtonBuscar.setLabel("Buscar");
         ButtonBuscar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        ButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonBuscarActionPerformed(evt);
+            }
+        });
 
         Expresion.setForeground(new java.awt.Color(102, 102, 102));
         Expresion.setText("Introduce una expresión booleana");
@@ -98,18 +108,18 @@ public class ListarPorExpresion extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TipoBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)
+                    .addComponent(TipoBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE)
                     .addComponent(NombreAutor)
                     .addComponent(AliasExist, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Expresion, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 387, Short.MAX_VALUE)
-                        .addComponent(ButtonAñadir)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ButtonBuscar))
+                    .addComponent(Expresion, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(TextAlias)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(ButtonAñadir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ButtonBuscar)))
                 .addContainerGap())
         );
 
@@ -118,7 +128,7 @@ public class ListarPorExpresion extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addContainerGap()
                 .addComponent(TipoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(TextAlias, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -130,9 +140,9 @@ public class ListarPorExpresion extends javax.swing.JPanel {
                 .addComponent(Expresion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ButtonBuscar)
-                    .addComponent(ButtonAñadir))
-                .addContainerGap(246, Short.MAX_VALUE))
+                    .addComponent(ButtonAñadir)
+                    .addComponent(ButtonBuscar))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {AliasExist, Expresion, NombreAutor});
@@ -197,6 +207,16 @@ public class ListarPorExpresion extends javax.swing.JPanel {
         v.show();
         
     }//GEN-LAST:event_ButtonAñadirActionPerformed
+
+    private void ButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBuscarActionPerformed
+        // TODO add your handling code here:
+        ArrayList<DocumentHeaderDemo> documentHeaders = new ArrayList<DocumentHeaderDemo>();
+        documentHeaders.add(new DocumentHeaderDemo("auto","tile"));
+        documentHeaders.add(new DocumentHeaderDemo("autosgf","tilfdgsfde"));
+        documentHeaders.add(new DocumentHeaderDemo("autogfdsg","tgfdigdfgle"));
+        documentHeaders.add(new DocumentHeaderDemo("autgfdso","tigsdfgsdfle"));
+        framePrincipal.documentlist(documentHeaders);
+    }//GEN-LAST:event_ButtonBuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

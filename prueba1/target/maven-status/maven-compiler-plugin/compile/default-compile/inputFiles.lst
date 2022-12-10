@@ -1,5 +1,4 @@
 /Users/linhaopeng/Desktop/Prop/subgrup-prop41.2/prueba1/src/main/java/com/mycompany/prueba1/PanelInfoDoc.java
-/Users/linhaopeng/Desktop/Prop/subgrup-prop41.2/prueba1/src/main/java/com/mycompany/prueba1/VentanaPrincipal.java
 /Users/linhaopeng/Desktop/Prop/subgrup-prop41.2/prueba1/src/main/java/com/mycompany/prueba1/Items/ItemDocumento.java
 /Users/linhaopeng/Desktop/Prop/subgrup-prop41.2/prueba1/src/main/java/com/mycompany/prueba1/VentanaSecundaria/VentAñadirAliaPrin.java
 /Users/linhaopeng/Desktop/Prop/subgrup-prop41.2/prueba1/src/main/java/com/mycompany/prueba1/Busquedas/ListarPorAutorYTitulo.java
@@ -16,7 +15,7 @@
 /Users/linhaopeng/Desktop/Prop/subgrup-prop41.2/prueba1/src/main/java/com/mycompany/prueba1/NewJFrame.java
 /Users/linhaopeng/Desktop/Prop/subgrup-prop41.2/prueba1/src/main/java/com/mycompany/prueba1/Busquedas/ListarPorPrefijo.java
 /Users/linhaopeng/Desktop/Prop/subgrup-prop41.2/prueba1/src/main/java/com/mycompany/prueba1/Items/ItemContenido.java
-/Users/linhaopeng/Desktop/Prop/subgrup-prop41.2/prueba1/src/main/java/com/mycompany/prueba1/framePrueba.java
+/Users/linhaopeng/Desktop/Prop/subgrup-prop41.2/prueba1/src/main/java/com/mycompany/prueba1/framePrincipal.java
 /Users/linhaopeng/Desktop/Prop/subgrup-prop41.2/prueba1/src/main/java/com/mycompany/prueba1/Busquedas/ListarPorSimilitud.java
 /Users/linhaopeng/Desktop/Prop/subgrup-prop41.2/prueba1/src/main/java/com/mycompany/prueba1/VentanaSecundaria/VentModificarAliaPrin.java
 /Users/linhaopeng/Desktop/Prop/subgrup-prop41.2/prueba1/src/main/java/com/mycompany/prueba1/Items/ItemTitulo.java

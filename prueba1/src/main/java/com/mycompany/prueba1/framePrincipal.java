@@ -12,10 +12,24 @@ import com.mycompany.prueba1.Busquedas.ListarPorAutor;
 import com.mycompany.prueba1.Busquedas.ListarPorPrefijo;
 import com.mycompany.prueba1.Busquedas.ListarPorExpresion;
 import com.mycompany.prueba1.Busquedas.ListarPorAutorYTitulo;
+import com.mycompany.prueba1.Items.ItemAutor;
+import com.mycompany.prueba1.Items.ItemContenido;
+import com.mycompany.prueba1.Items.ItemDocumento;
+import com.mycompany.prueba1.Items.ItemTitulo;
+import com.mycompany.prueba1.VentanaSecundaria.VentNuevoDocumentoFrame;
 import java.awt.CardLayout;
+import java.util.ArrayList;
+import javax.swing.BoxLayout;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.SwingUtilities;
 
-public class framePrueba extends javax.swing.JFrame {
+public class framePrincipal extends javax.swing.JFrame {
 
+    //Ventanas
+    private VentNuevoDocumentoFrame newDocument;
+    
     /**
      * Creates new form framePrueba
      */
@@ -23,19 +37,89 @@ public class framePrueba extends javax.swing.JFrame {
     VentEliminarAliaPrin eA;
     VentModificarAliaPrin mA;
     
-    public framePrueba() {
+    /*
+    // TODO: Return type change after merge with CDominio 
+    
+    //Similud & Expresion
+    ArrayList<String> documentheaders;
+    
+    //Prefijo 
+    ArrayList<String> authors;
+    
+    //Titulos
+    ArrayList<String> titulos;
+    
+    //Contenido 
+    String contenido;
+    */
+    public framePrincipal() {
         /* Can´t add windows to fram
-        
         aA = new VentAñadirAliaPrin();
         eA = new VentEliminarAliaPrin();
         mA = new VentModificarAliaPrin();
         this.add(aA);
         this.add(eA);
         this.add(mA);*/
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH); 
         initComponents();
     }
 
+    public void autorlist(ArrayList<String> authors){
+        PanelItems.removeAll();
+        JPanel tmpPanel = new JPanel();
+        tmpPanel.setLayout(new BoxLayout(tmpPanel, BoxLayout.Y_AXIS));
+        for(int i = 0; i< authors.size(); i++ ){
+            tmpPanel.add(new ItemAutor(authors.get(i)));
+        }
+        JScrollPane pane = new JScrollPane(tmpPanel);
+        PanelItems.add(pane);
+        PanelItems.setVisible(true);
+        SwingUtilities.updateComponentTreeUI(this);
+  
+    }
     
+    public void contentlist(String content){
+        PanelItems.removeAll();
+        JPanel tmpPanel = new JPanel();
+        tmpPanel.setLayout(new BoxLayout(tmpPanel, BoxLayout.Y_AXIS));
+        tmpPanel.add(new ItemContenido(content));
+        JScrollPane pane = new JScrollPane(tmpPanel);
+        PanelItems.add(pane);
+        PanelItems.setVisible(true);
+        SwingUtilities.updateComponentTreeUI(this);
+    }
+    
+    public void titlelist(ArrayList<String> titles){
+        PanelItems.removeAll();
+        JPanel tmpPanel = new JPanel();
+        tmpPanel.setLayout(new BoxLayout(tmpPanel, BoxLayout.Y_AXIS));
+        for(int i = 0; i< titles.size(); i++ ){
+            tmpPanel.add(new ItemTitulo(titles.get(i)));
+        }
+        JScrollPane pane = new JScrollPane(tmpPanel);
+        PanelItems.add(pane);
+        PanelItems.setVisible(true);
+        SwingUtilities.updateComponentTreeUI(this);
+    }
+    
+    /**
+     *
+     * @param documentHeaders
+     */
+    public void documentlist(ArrayList<DocumentHeaderDemo> documentHeaders){
+        PanelItems.removeAll();
+        JPanel tmpPanel = new JPanel();
+        tmpPanel.setLayout(new BoxLayout(tmpPanel, BoxLayout.Y_AXIS));
+        for(int i = 0; i< documentHeaders.size(); i++ ){
+            String author = documentHeaders.get(i).author;
+            String title = documentHeaders.get(i).title;
+            tmpPanel.add(new ItemDocumento(author,title));
+        }
+        JScrollPane pane = new JScrollPane(tmpPanel);
+        PanelItems.add(pane);
+        PanelItems.setVisible(true);
+        SwingUtilities.updateComponentTreeUI(this);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -45,12 +129,12 @@ public class framePrueba extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        mainPanel = new javax.swing.JPanel();
-        IniciPanel = new javax.swing.JPanel();
+        PanelBusquedas = new javax.swing.JPanel();
         SizeMenu = new javax.swing.JScrollPane();
         SizeMenuBusqueda = new javax.swing.JList<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTree1 = new javax.swing.JTree();
+        PanelItems = new javax.swing.JPanel();
         MenuBarPrincipal = new javax.swing.JMenuBar();
         FileMenu = new javax.swing.JMenu();
         NuevoDoc = new javax.swing.JMenuItem();
@@ -63,20 +147,7 @@ public class framePrueba extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        mainPanel.setLayout(new java.awt.CardLayout());
-
-        javax.swing.GroupLayout IniciPanelLayout = new javax.swing.GroupLayout(IniciPanel);
-        IniciPanel.setLayout(IniciPanelLayout);
-        IniciPanelLayout.setHorizontalGroup(
-            IniciPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        IniciPanelLayout.setVerticalGroup(
-            IniciPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        mainPanel.add(IniciPanel, "card2");
+        PanelBusquedas.setLayout(new java.awt.CardLayout());
 
         SizeMenuBusqueda.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Listar por autor", "Listar por autor y título", "Listar por prefijo", "Listar por similitud", "Listar por expresión booleana" };
@@ -112,9 +183,16 @@ public class framePrueba extends javax.swing.JFrame {
         jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         jScrollPane1.setViewportView(jTree1);
 
+        PanelItems.setLayout(new javax.swing.BoxLayout(PanelItems, javax.swing.BoxLayout.Y_AXIS));
+
         FileMenu.setText("File");
 
         NuevoDoc.setText("Nuevo");
+        NuevoDoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NuevoDocActionPerformed(evt);
+            }
+        });
         FileMenu.add(NuevoDoc);
 
         CargarDoc.setText("Cargar");
@@ -141,11 +219,6 @@ public class framePrueba extends javax.swing.JFrame {
         AliasMenu.add(ModificarAlia);
 
         EliminarAlia.setText("Eliminar");
-        EliminarAlia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EliminarAliaActionPerformed(evt);
-            }
-        });
         AliasMenu.add(EliminarAlia);
 
         MenuBarPrincipal.add(AliasMenu);
@@ -161,58 +234,60 @@ public class framePrueba extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(SizeMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane1)
+                    .addComponent(SizeMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(PanelBusquedas, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
+                    .addComponent(PanelItems, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(SizeMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(PanelBusquedas, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(SizeMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
+                    .addComponent(PanelItems, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void SizeMenuBusquedaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SizeMenuBusquedaMouseClicked
 
         //ListarPorAutor.setVisible(true);// TODO add your handling code here:
         
-        CardLayout card = (CardLayout)mainPanel.getLayout();
+        CardLayout card = (CardLayout)PanelBusquedas.getLayout();
         if ("Listar por autor".equals((String)SizeMenuBusqueda.getSelectedValue()) ) {    
-            mainPanel.add(new ListarPorAutor(), "listarAutor");
-            card.show(mainPanel, "listarAutor");
+            PanelBusquedas.add(new ListarPorAutor(this), "listarAutor");
+            card.show(PanelBusquedas, "listarAutor");
         }
         
         if ("Listar por autor y título".equals((String)SizeMenuBusqueda.getSelectedValue()) ) {
-            mainPanel.add(new ListarPorAutorYTitulo(), "listarAutorTitulo");
-            card.show(mainPanel, "listarAutorTitulo");
+            PanelBusquedas.add(new ListarPorAutorYTitulo(this), "listarAutorTitulo");
+            card.show(PanelBusquedas, "listarAutorTitulo");
         }
         
         if ("Listar por prefijo".equals((String)SizeMenuBusqueda.getSelectedValue()) ) {
-            mainPanel.add(new ListarPorPrefijo(), "listarPrefijo");
-            card.show(mainPanel, "listarPrefijo");
+            PanelBusquedas.add(new ListarPorPrefijo(this), "listarPrefijo");
+            card.show(PanelBusquedas, "listarPrefijo");
         }
         
         if ("Listar por similitud".equals((String)SizeMenuBusqueda.getSelectedValue()) ) {
-            mainPanel.add(new ListarPorSimilitud(), "listarSimilitud");
-            card.show(mainPanel, "listarSimilitud");
+            PanelBusquedas.add(new ListarPorSimilitud(this), "listarSimilitud");
+            card.show(PanelBusquedas, "listarSimilitud");
         }
         
         if ("Listar por expresión booleana".equals((String)SizeMenuBusqueda.getSelectedValue()) ) {
-            mainPanel.add(new ListarPorExpresion(), "listarExpresion");
-            card.show(mainPanel, "listarExpresion");
+            PanelBusquedas.add(new ListarPorExpresion(this), "listarExpresion");
+            card.show(PanelBusquedas, "listarExpresion");
         }
     }//GEN-LAST:event_SizeMenuBusquedaMouseClicked
 
@@ -249,6 +324,17 @@ public class framePrueba extends javax.swing.JFrame {
         this.setEnabled(false);
     }//GEN-LAST:event_EliminarAliaActionPerformed
 
+    private void NuevoDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevoDocActionPerformed
+        // TODO add your handling code here:
+         if(newDocument == null){
+           newDocument = new VentNuevoDocumentoFrame();
+           newDocument.show();
+       }else{
+           System.out.println("Ya hay una ventana abierta");
+       }
+              
+    }//GEN-LAST:event_NuevoDocActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -266,14 +352,21 @@ public class framePrueba extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(framePrueba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(framePrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(framePrueba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(framePrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(framePrueba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(framePrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(framePrueba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(framePrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         
         /* Create and display the form */
@@ -281,7 +374,8 @@ public class framePrueba extends javax.swing.JFrame {
 
             public void run() {
                 //ListarPorAutor a = new ListarPorAutor(this);
-                new framePrueba().setVisible(true);
+                new framePrincipal().setVisible(true);
+                
                 //a.setVisible(true);
             }
         });
@@ -293,15 +387,15 @@ public class framePrueba extends javax.swing.JFrame {
     private javax.swing.JMenuItem EliminarAlia;
     private javax.swing.JMenu FileMenu;
     private javax.swing.JMenu HelpMenu;
-    private javax.swing.JPanel IniciPanel;
     private javax.swing.JMenuBar MenuBarPrincipal;
     private javax.swing.JMenuItem ModificarAlia;
     private javax.swing.JMenuItem NuevaAlia;
     private javax.swing.JMenuItem NuevoDoc;
+    private javax.swing.JPanel PanelBusquedas;
+    private javax.swing.JPanel PanelItems;
     private javax.swing.JScrollPane SizeMenu;
     private javax.swing.JList<String> SizeMenuBusqueda;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTree jTree1;
-    private javax.swing.JPanel mainPanel;
     // End of variables declaration//GEN-END:variables
 }

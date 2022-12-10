@@ -12,9 +12,11 @@ public class ItemContenido extends javax.swing.JPanel {
 
     /**
      * Creates new form ContenidoItem
+     * @param content
      */
-    public ItemContenido() {
+    public ItemContenido(String content) {
         initComponents();
+        jTextArea1.setText(content);
     }
 
     /**

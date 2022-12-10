@@ -4,13 +4,19 @@
  */
 package com.mycompany.prueba1.Busquedas;
 
-public class ListarPorSimilitud extends javax.swing.JPanel {
+import com.mycompany.prueba1.DocumentHeaderDemo;
+import com.mycompany.prueba1.framePrincipal;
+import java.util.ArrayList;
 
+public class ListarPorSimilitud extends javax.swing.JPanel {
+    private final framePrincipal framePrincipal;
     /**
      * Creates new form ListarPorSimilitud
+     * @param framePrincipal
      */
-    public ListarPorSimilitud() {
+    public ListarPorSimilitud(framePrincipal framePrincipal) {
         initComponents();
+        this.framePrincipal = framePrincipal;
     }
 
     /**
@@ -34,6 +40,11 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
         ButtonBuscar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         ButtonBuscar.setLabel("Buscar");
         ButtonBuscar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        ButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonBuscarActionPerformed(evt);
+            }
+        });
 
         Titulo.setText("Introduce un título");
         Titulo.addActionListener(new java.awt.event.ActionListener() {
@@ -69,8 +80,8 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextField1)
-                    .addComponent(NombreAutor, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
-                    .addComponent(Titulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
+                    .addComponent(NombreAutor, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE)
+                    .addComponent(Titulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(ButtonBuscar))
@@ -80,7 +91,7 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addContainerGap()
                 .addComponent(TipoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(NombreAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -90,7 +101,7 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ButtonBuscar)
-                .addContainerGap(238, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {ButtonBuscar, NombreAutor, Titulo, jTextField1});
@@ -113,6 +124,16 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void ButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBuscarActionPerformed
+        // TODO add your handling code here:
+        ArrayList<DocumentHeaderDemo> documentHeaders = new ArrayList<DocumentHeaderDemo>();
+        documentHeaders.add(new DocumentHeaderDemo("auto","tile"));
+        documentHeaders.add(new DocumentHeaderDemo("autosgf","tilfdgsfde"));
+        documentHeaders.add(new DocumentHeaderDemo("autogfdsg","tgfdigdfgle"));
+        documentHeaders.add(new DocumentHeaderDemo("autgfdso","tigsdfgsdfle"));
+        framePrincipal.documentlist(documentHeaders);
+    }//GEN-LAST:event_ButtonBuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

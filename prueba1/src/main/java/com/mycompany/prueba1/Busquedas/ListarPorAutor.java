@@ -4,16 +4,20 @@
  */
 package com.mycompany.prueba1.Busquedas;
 
+import com.mycompany.prueba1.framePrincipal;
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ListarPorAutor extends javax.swing.JPanel {
-    //private final VentanaPrincipal ventanaPrincipal;
+    private final framePrincipal framePrincipal;
     /**
      * Creates new form ListarAutor
+     * @param framePrincipal
      */
-    public ListarPorAutor() {
+    public ListarPorAutor(framePrincipal framePrincipal) {
         initComponents();
-        //this.ventanaPrincipal = ventanaPrincipal;
+        this.framePrincipal = framePrincipal;
     }
 
     private boolean first = true;
@@ -60,26 +64,26 @@ public class ListarPorAutor extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(TipoBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 429, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 436, Short.MAX_VALUE)
                         .addComponent(ButtonBuscar))
-                    .addComponent(NombreAutor))
+                    .addComponent(NombreAutor, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(TipoBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addContainerGap()
                 .addComponent(TipoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(NombreAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ButtonBuscar)
-                .addContainerGap(353, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {ButtonBuscar, NombreAutor});
@@ -108,7 +112,8 @@ public class ListarPorAutor extends javax.swing.JPanel {
 
     private void ButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBuscarActionPerformed
         // TODO add your handling code here:
-        //ventanaPrincipal.autorlist();
+        ArrayList<String> titulos = new ArrayList<>(Arrays.asList("La nave", "tres cuerpos", "sobrevivir"));
+        framePrincipal.titlelist(titulos);
     }//GEN-LAST:event_ButtonBuscarActionPerformed
 
 

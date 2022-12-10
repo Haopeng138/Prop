@@ -12,9 +12,11 @@ public class ItemTitulo extends javax.swing.JPanel {
 
     /**
      * Creates new form TituloItem
+     * @param titulo
      */
-    public ItemTitulo() {
+    public ItemTitulo(String titulo) {
         initComponents();
+        jLabel2.setText(titulo);
     }
 
     /**

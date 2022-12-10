@@ -4,13 +4,19 @@
  */
 package com.mycompany.prueba1.Busquedas;
 
-public class ListarPorPrefijo extends javax.swing.JPanel {
+import com.mycompany.prueba1.framePrincipal;
+import java.util.ArrayList;
+import java.util.Arrays;
 
+public class ListarPorPrefijo extends javax.swing.JPanel {
+    private final framePrincipal framePrincipal;
     /**
      * Creates new form ListarPorTitulo
+     * @param framePrincipal
      */
-    public ListarPorPrefijo() {
+    public ListarPorPrefijo(framePrincipal framePrincipal) {
         initComponents();
+        this.framePrincipal = framePrincipal;
     }
 
     /**
@@ -32,6 +38,11 @@ public class ListarPorPrefijo extends javax.swing.JPanel {
         ButtonBuscar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         ButtonBuscar.setLabel("Buscar");
         ButtonBuscar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        ButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonBuscarActionPerformed(evt);
+            }
+        });
 
         NombreAutor.setText("Introduce un prefijo");
 
@@ -46,24 +57,30 @@ public class ListarPorPrefijo extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(ButtonBuscar))
-                    .addComponent(NombreAutor, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE))
+                    .addComponent(NombreAutor, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addContainerGap()
                 .addComponent(TipoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(NombreAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ButtonBuscar)
-                .addContainerGap(256, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {ButtonBuscar, NombreAutor});
 
     }// </editor-fold>//GEN-END:initComponents
+
+    private void ButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBuscarActionPerformed
+        // TODO add your handling code here:
+        ArrayList<String> authors = new ArrayList<>(Arrays.asList("Buenos Aires", "Córdoba", "La Plata"));
+        framePrincipal.autorlist(authors);
+    }//GEN-LAST:event_ButtonBuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
