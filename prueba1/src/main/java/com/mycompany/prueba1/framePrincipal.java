@@ -120,6 +120,10 @@ public class framePrincipal extends javax.swing.JFrame {
         PanelItems.setVisible(true);
         SwingUtilities.updateComponentTreeUI(this);
     }
+    
+    public void closeNewDocument(){
+       newDocument = null;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -327,7 +331,7 @@ public class framePrincipal extends javax.swing.JFrame {
     private void NuevoDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevoDocActionPerformed
         // TODO add your handling code here:
          if(newDocument == null){
-           newDocument = new VentNuevoDocumentoFrame();
+           newDocument = new VentNuevoDocumentoFrame(this);
            newDocument.show();
        }else{
            System.out.println("Ya hay una ventana abierta");
