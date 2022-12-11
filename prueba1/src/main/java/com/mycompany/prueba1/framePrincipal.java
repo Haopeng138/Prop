@@ -18,12 +18,19 @@ import com.mycompany.prueba1.Items.ItemDocumento;
 import com.mycompany.prueba1.Items.ItemTitulo;
 import com.mycompany.prueba1.VentanaSecundaria.VentNuevoDocumentoFrame;
 import java.awt.CardLayout;
+import java.io.File;
+import java.io.FileFilter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BoxLayout;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class framePrincipal extends javax.swing.JFrame {
 
@@ -200,6 +207,11 @@ public class framePrincipal extends javax.swing.JFrame {
         FileMenu.add(NuevoDoc);
 
         CargarDoc.setText("Cargar");
+        CargarDoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CargarDocActionPerformed(evt);
+            }
+        });
         FileMenu.add(CargarDoc);
 
         MenuBarPrincipal.add(FileMenu);
@@ -338,6 +350,22 @@ public class framePrincipal extends javax.swing.JFrame {
        }
               
     }//GEN-LAST:event_NuevoDocActionPerformed
+
+    private void CargarDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarDocActionPerformed
+        // TODO add your handling code here:
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setAcceptAllFileFilterUsed(false);
+        FileNameExtensionFilter restrict = new FileNameExtensionFilter(".txt files", "txt");
+        FileNameExtensionFilter restrict2 = new FileNameExtensionFilter(" .xml files", "xml");
+        fileChooser.setFileFilter(restrict);
+        fileChooser.setFileFilter(restrict2); 
+        int returnValue = fileChooser.showOpenDialog(null);
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            // TODO: Hacer logica de insert aqui
+            System.out.print(selectedFile.toString());
+        }
+    }//GEN-LAST:event_CargarDocActionPerformed
 
     /**
      * @param args the command line arguments
