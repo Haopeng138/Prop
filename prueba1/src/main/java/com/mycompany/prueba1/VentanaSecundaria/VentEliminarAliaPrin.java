@@ -4,13 +4,28 @@
  */
 package com.mycompany.prueba1.VentanaSecundaria;
 
-public class VentEliminarAliaPrin extends javax.swing.JFrame {
+import com.mycompany.prueba1.framePrincipal;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import javax.swing.WindowConstants;
 
+public class VentEliminarAliaPrin extends javax.swing.JFrame {
+    private framePrincipal framePrincipal;
     /**
      * Creates new form VentEliminarAliaPrin
+     * @param framePrincipal
      */
-    public VentEliminarAliaPrin() {
+    public VentEliminarAliaPrin(framePrincipal framePrincipal) {
         initComponents();
+        this.framePrincipal = framePrincipal;
+        this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                dispose();
+                framePrincipal.closeEliminarAlia();
+            }
+        });
     }
 
     /**
@@ -38,6 +53,11 @@ public class VentEliminarAliaPrin extends javax.swing.JFrame {
         jLabel5.setText("Nombre de alia:");
 
         ButtonCancelar1.setText("Cancelar");
+        ButtonCancelar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonCancelar1ActionPerformed(evt);
+            }
+        });
 
         ButtonEliminar.setText("Eliminar");
 
@@ -96,40 +116,13 @@ public class VentEliminarAliaPrin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentEliminarAliaPrin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentEliminarAliaPrin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentEliminarAliaPrin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentEliminarAliaPrin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void ButtonCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCancelar1ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        framePrincipal.closeEliminarAlia();
+    }//GEN-LAST:event_ButtonCancelar1ActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VentEliminarAliaPrin().setVisible(true);
-            }
-        });
-    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonCancelar1;

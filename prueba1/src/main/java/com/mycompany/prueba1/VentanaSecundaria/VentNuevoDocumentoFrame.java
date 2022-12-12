@@ -5,7 +5,10 @@
 package com.mycompany.prueba1.VentanaSecundaria;
 
 import com.mycompany.prueba1.framePrincipal;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
+import javax.swing.WindowConstants;
 
 /**
  *
@@ -20,6 +23,14 @@ public class VentNuevoDocumentoFrame extends javax.swing.JFrame {
     public VentNuevoDocumentoFrame(framePrincipal framePrincipal) {
         initComponents();
         this.framePrincipal = framePrincipal;
+        this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                dispose();
+                framePrincipal.closeNewDocument();
+            }
+        });
     }
 
     /**
@@ -42,7 +53,7 @@ public class VentNuevoDocumentoFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Save");
+        jButton1.setText("Guardar");
 
         jLabel1.setText("Autor");
 
@@ -64,7 +75,7 @@ public class VentNuevoDocumentoFrame extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        Cancel.setText("Cancel");
+        Cancel.setText("Cancelar");
         Cancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CancelActionPerformed(evt);
@@ -90,9 +101,9 @@ public class VentNuevoDocumentoFrame extends javax.swing.JFrame {
                 .addContainerGap(59, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Cancel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Cancel)
                 .addContainerGap())
         );
         layout.setVerticalGroup(

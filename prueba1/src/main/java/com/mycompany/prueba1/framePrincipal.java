@@ -35,14 +35,14 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class framePrincipal extends javax.swing.JFrame {
 
     //Ventanas
-    private VentNuevoDocumentoFrame newDocument;
-    
+    private VentNuevoDocumentoFrame newDocumentFrame;
+    private VentAñadirAliaPrin añadirAliaPrinFrame;
+    private VentEliminarAliaPrin eliminarAliaPrinFrame;
+    private VentModificarAliaPrin modificarAliaPrinFrame;
     /**
      * Creates new form framePrueba
      */
-    VentAñadirAliaPrin aA;
-    VentEliminarAliaPrin eA;
-    VentModificarAliaPrin mA;
+   
     
     /*
     // TODO: Return type change after merge with CDominio 
@@ -129,7 +129,19 @@ public class framePrincipal extends javax.swing.JFrame {
     }
     
     public void closeNewDocument(){
-       newDocument = null;
+       newDocumentFrame = null;
+    }
+    
+    public void closeAñadirAlia(){
+        añadirAliaPrinFrame = null;
+    }
+    
+    public void closeEliminarAlia(){
+        eliminarAliaPrinFrame = null;
+    }
+    
+    public void closeModificarAlia(){
+        modificarAliaPrinFrame = null;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -235,6 +247,11 @@ public class framePrincipal extends javax.swing.JFrame {
         AliasMenu.add(ModificarAlia);
 
         EliminarAlia.setText("Eliminar");
+        EliminarAlia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarAliaActionPerformed(evt);
+            }
+        });
         AliasMenu.add(EliminarAlia);
 
         MenuBarPrincipal.add(AliasMenu);
@@ -309,42 +326,48 @@ public class framePrincipal extends javax.swing.JFrame {
 
     private void NuevaAliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevaAliaActionPerformed
         // TODO add your handling code here:
-        int x = (this.getWidth()/2) - (aA.getWidth()/2);
-        int y = (this.getHeight()/2) - (aA.getHeight()/2);
-        aA.setLocation(x, y);
-        if (mA.isVisible()) mA.setVisible(false);
-        if (eA.isVisible()) eA.setVisible(false);
-        aA.setVisible(true);
+        if (añadirAliaPrinFrame == null){
+            añadirAliaPrinFrame = new VentAñadirAliaPrin(this);
+            añadirAliaPrinFrame.show();
+            int x = (this.getWidth()/2) - (añadirAliaPrinFrame.getWidth()/2);
+            int y = (this.getHeight()/2) - (añadirAliaPrinFrame.getHeight()/2);
+            añadirAliaPrinFrame.setLocation(x, y);
+        }
+        /*
+        if (modificarAliaPrinFrame.isVisible()) modificarAliaPrinFrame.setVisible(false);
+        if (eliminarAliaPrinFrame.isVisible()) eliminarAliaPrinFrame.setVisible(false);
+        añadirAliaPrinFrame.setVisible(true);*/
     }//GEN-LAST:event_NuevaAliaActionPerformed
 
     private void ModificarAliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarAliaActionPerformed
         // TODO add your handling code here:
-        int x = (this.getWidth()/2) - (mA.getWidth()/2);
-        int y = (this.getHeight()/2) - (mA.getWidth()/2);
-        mA.setLocation(x, y);
-        if (aA.isVisible()) aA.setVisible(false);
-        if (eA.isVisible()) eA.setVisible(false);
-        mA.setVisible(true);
+        if (modificarAliaPrinFrame == null){
+            modificarAliaPrinFrame = new VentModificarAliaPrin(this);
+            modificarAliaPrinFrame.show();
+            int x = (this.getWidth()/2) - (modificarAliaPrinFrame.getWidth()/2);
+            int y = (this.getHeight()/2) - (modificarAliaPrinFrame.getWidth()/2);
+            modificarAliaPrinFrame.setLocation(x, y);
+        }
     }//GEN-LAST:event_ModificarAliaActionPerformed
 
     private void EliminarAliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarAliaActionPerformed
-        // TODO add your handling code here:
-
-        //if (mA.isVisible()) mA.setVisible(false);
-        //if (aA.isVisible()) aA.setVisible(false);
-        //eA.setVisible(true);
-        //this.setEnabled(false);
-        
-        //TODO
-        //Prueba1.p.setVisible(true);
-        this.setEnabled(false);
+        if (eliminarAliaPrinFrame == null){
+            eliminarAliaPrinFrame = new VentEliminarAliaPrin(this);
+            eliminarAliaPrinFrame.show();
+            int x = (this.getWidth()/2) - (eliminarAliaPrinFrame.getWidth()/2);
+            int y = (this.getHeight()/2) - (eliminarAliaPrinFrame.getWidth()/2);
+            eliminarAliaPrinFrame.setLocation(x, y);
+        }
     }//GEN-LAST:event_EliminarAliaActionPerformed
 
     private void NuevoDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevoDocActionPerformed
         // TODO add your handling code here:
-         if(newDocument == null){
-           newDocument = new VentNuevoDocumentoFrame(this);
-           newDocument.show();
+         if(newDocumentFrame == null){
+            newDocumentFrame = new VentNuevoDocumentoFrame(this);
+            newDocumentFrame.show();
+            int x = (this.getWidth()/2) - (newDocumentFrame.getWidth()/2);
+            int y = (this.getHeight()/2) - (newDocumentFrame.getWidth()/2);
+            newDocumentFrame.setLocation(x, y);
        }else{
            System.out.println("Ya hay una ventana abierta");
        }
