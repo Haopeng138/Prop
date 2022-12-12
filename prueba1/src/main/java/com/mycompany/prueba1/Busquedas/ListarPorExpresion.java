@@ -6,18 +6,18 @@ package com.mycompany.prueba1.Busquedas;
 
 import com.mycompany.prueba1.DocumentHeaderDemo;
 import com.mycompany.prueba1.VentanaSecundaria.VentAñadirAliaExpre;
-import com.mycompany.prueba1.framePrincipal;
+import com.mycompany.prueba1.FramePrincipal;
 import java.awt.Color;
 import java.util.ArrayList;
 
 public class ListarPorExpresion extends javax.swing.JPanel {
-     private final framePrincipal framePrincipal;
+     private final FramePrincipal framePrincipal;
     /**
      * Creates new form ListarPorExpresion
      */
      
     VentAñadirAliaExpre v;
-    public ListarPorExpresion(framePrincipal framePrincipal) {
+    public ListarPorExpresion(FramePrincipal framePrincipal) {
         initComponents();
         this.framePrincipal = framePrincipal;
         //v = new VentAñadirAliaExpre();

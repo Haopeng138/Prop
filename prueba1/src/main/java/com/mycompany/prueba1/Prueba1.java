@@ -12,7 +12,7 @@ package com.mycompany.prueba1;
 public class Prueba1 {
 
     public static void main(String[] args) {
-        framePrincipal j = new framePrincipal();
+        FramePrincipal j = new FramePrincipal();
         j.setVisible(true);
         System.out.println("Hello World!");
     }

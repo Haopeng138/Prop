@@ -4,7 +4,7 @@
  */
 package com.mycompany.prueba1.VentanaSecundaria;
 
-import com.mycompany.prueba1.framePrincipal;
+import com.mycompany.prueba1.FramePrincipal;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
@@ -15,12 +15,12 @@ import javax.swing.WindowConstants;
  * @author linhaopeng
  */
 public class VentNuevoDocumentoFrame extends javax.swing.JFrame {
-    private framePrincipal framePrincipal;
+    private FramePrincipal framePrincipal;
     /**
      * Creates new form NewDocument
      * @param framePrincipal
      */
-    public VentNuevoDocumentoFrame(framePrincipal framePrincipal) {
+    public VentNuevoDocumentoFrame(FramePrincipal framePrincipal) {
         initComponents();
         this.framePrincipal = framePrincipal;
         this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);

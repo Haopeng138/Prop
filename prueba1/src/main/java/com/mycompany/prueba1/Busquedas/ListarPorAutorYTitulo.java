@@ -4,16 +4,16 @@
  */
 package com.mycompany.prueba1.Busquedas;
 
-import com.mycompany.prueba1.framePrincipal;
+import com.mycompany.prueba1.FramePrincipal;
 import java.awt.Color;
 
 public class ListarPorAutorYTitulo extends javax.swing.JPanel {
-    private final framePrincipal framePrincipal;
+    private final FramePrincipal framePrincipal;
     /**
      * Creates new form ListarPorAutorYTitulo
      * @param framePrincipal
      */
-    public ListarPorAutorYTitulo(framePrincipal framePrincipal) {
+    public ListarPorAutorYTitulo(FramePrincipal framePrincipal) {
         initComponents();
         this.framePrincipal = framePrincipal;
     }

@@ -16,6 +16,8 @@ import com.mycompany.prueba1.Items.ItemAutor;
 import com.mycompany.prueba1.Items.ItemContenido;
 import com.mycompany.prueba1.Items.ItemDocumento;
 import com.mycompany.prueba1.Items.ItemTitulo;
+import com.mycompany.prueba1.VentanaSecundaria.VentInfoAlia;
+import com.mycompany.prueba1.VentanaSecundaria.VentInfoDoc;
 import com.mycompany.prueba1.VentanaSecundaria.VentNuevoDocumentoFrame;
 import java.awt.CardLayout;
 import java.io.File;
@@ -31,8 +33,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.tree.DefaultMutableTreeNode;
 
-public class framePrincipal extends javax.swing.JFrame {
+public class FramePrincipal extends javax.swing.JFrame {
 
     //Ventanas
     private VentNuevoDocumentoFrame newDocumentFrame;
@@ -59,7 +62,7 @@ public class framePrincipal extends javax.swing.JFrame {
     //Contenido 
     String contenido;
     */
-    public framePrincipal() {
+    public FramePrincipal() {
         /* Can´t add windows to fram
         aA = new VentAñadirAliaPrin();
         eA = new VentEliminarAliaPrin();
@@ -204,6 +207,11 @@ public class framePrincipal extends javax.swing.JFrame {
         treeNode2.add(treeNode3);
         treeNode1.add(treeNode2);
         jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jTree1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTree1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTree1);
 
         PanelItems.setLayout(new javax.swing.BoxLayout(PanelItems, javax.swing.BoxLayout.Y_AXIS));
@@ -390,6 +398,26 @@ public class framePrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_CargarDocActionPerformed
 
+    private void jTree1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTree1MouseClicked
+        // TODO add your handling code here:
+        DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) jTree1.getSelectionPath().getLastPathComponent();
+        System.out.print(selectedNode.getUserObject().toString());
+        DefaultMutableTreeNode parent = (DefaultMutableTreeNode)selectedNode.getParent();
+        String opt = parent.getUserObject().toString();
+        switch (opt) {
+            case "Documentos":
+                VentInfoAlia infoAlia = new VentInfoAlia(this);
+                infoAlia.show();
+                break;
+            case "Alias":
+                VentInfoDoc infoDoc = new VentInfoDoc();
+                infoDoc.show();
+                break;
+            default:
+                break;
+        }
+    }//GEN-LAST:event_jTree1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -407,14 +435,22 @@ public class framePrincipal extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(framePrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FramePrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(framePrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FramePrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(framePrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FramePrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(framePrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FramePrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -429,7 +465,7 @@ public class framePrincipal extends javax.swing.JFrame {
 
             public void run() {
                 //ListarPorAutor a = new ListarPorAutor(this);
-                new framePrincipal().setVisible(true);
+                new FramePrincipal().setVisible(true);
                 
                 //a.setVisible(true);
             }

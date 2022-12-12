@@ -4,18 +4,18 @@
  */
 package com.mycompany.prueba1.VentanaSecundaria;
 
-import com.mycompany.prueba1.framePrincipal;
+import com.mycompany.prueba1.FramePrincipal;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.WindowConstants;
 
 public class VentAñadirAliaPrin extends javax.swing.JFrame {
-    private framePrincipal framePrincipal;
+    private FramePrincipal framePrincipal;
     /**
      * Creates new form VentAñadirAliaPrin
      * @param framePrincipal
      */
-    public VentAñadirAliaPrin(framePrincipal framePrincipal) {
+    public VentAñadirAliaPrin(FramePrincipal framePrincipal) {
         initComponents();
         this.framePrincipal = framePrincipal;
         this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);

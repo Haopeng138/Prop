@@ -33,7 +33,6 @@ public class ItemDocumento extends javax.swing.JPanel {
         AutorLabel = new javax.swing.JLabel();
         TituloLabel = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         NombreAutor = new javax.swing.JLabel();
         Titulo = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
@@ -43,13 +42,6 @@ public class ItemDocumento extends javax.swing.JPanel {
         TituloLabel.setText("Titulo:");
 
         jButton1.setText("Borrar");
-
-        jButton2.setText("Edit");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
 
         NombreAutor.setText("jLabel3");
 
@@ -70,10 +62,8 @@ public class ItemDocumento extends javax.swing.JPanel {
                 .addComponent(TituloLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Titulo)
-                .addGap(126, 126, 126)
+                .addGap(204, 204, 204)
                 .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
                 .addContainerGap())
@@ -87,16 +77,11 @@ public class ItemDocumento extends javax.swing.JPanel {
                     .addComponent(NombreAutor)
                     .addComponent(Titulo)
                     .addComponent(TituloLabel)
-                    .addComponent(jButton2)
                     .addComponent(jButton1)
                     .addComponent(jButton3))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -105,7 +90,6 @@ public class ItemDocumento extends javax.swing.JPanel {
     private javax.swing.JLabel Titulo;
     private javax.swing.JLabel TituloLabel;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     // End of variables declaration//GEN-END:variables
 }

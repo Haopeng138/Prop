@@ -4,17 +4,17 @@
  */
 package com.mycompany.prueba1.Busquedas;
 
-import com.mycompany.prueba1.framePrincipal;
+import com.mycompany.prueba1.FramePrincipal;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class ListarPorPrefijo extends javax.swing.JPanel {
-    private final framePrincipal framePrincipal;
+    private final FramePrincipal framePrincipal;
     /**
      * Creates new form ListarPorTitulo
      * @param framePrincipal
      */
-    public ListarPorPrefijo(framePrincipal framePrincipal) {
+    public ListarPorPrefijo(FramePrincipal framePrincipal) {
         initComponents();
         this.framePrincipal = framePrincipal;
     }
