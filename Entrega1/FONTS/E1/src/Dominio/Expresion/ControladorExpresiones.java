@@ -65,7 +65,7 @@ public class ControladorExpresiones {
             return null;
         }
         Expresion expresion = expresiones.get(alias);
-        return Parser.parse(expresion.getExpresion());
+        return expresion.parse();
 
     }
 
