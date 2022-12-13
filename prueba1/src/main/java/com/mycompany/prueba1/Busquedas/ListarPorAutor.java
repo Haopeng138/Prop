@@ -112,7 +112,7 @@ public class ListarPorAutor extends javax.swing.JPanel {
 
     private void ButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBuscarActionPerformed
         // TODO add your handling code here:
-        ArrayList<String> titulos = new ArrayList<>(Arrays.asList("La nave", "tres cuerpos", "sobrevivir"));
+        ArrayList<String> titulos = new ArrayList<>(Arrays.asList("La nave", "tres cuerpos", "sobrevivir","34","4234","La nave", "tres cuerpos", "sobrevivir","34","4234","La nave", "tres cuerpos", "sobrevivir","34","4234","La nave", "tres cuerpos", "sobrevivir","34","4234"));
         framePrincipal.titlelist(titulos);
     }//GEN-LAST:event_ButtonBuscarActionPerformed
 

@@ -405,11 +405,11 @@ public class FramePrincipal extends javax.swing.JFrame {
         DefaultMutableTreeNode parent = (DefaultMutableTreeNode)selectedNode.getParent();
         String opt = parent.getUserObject().toString();
         switch (opt) {
-            case "Documentos":
+            case "Alias":
                 VentInfoAlia infoAlia = new VentInfoAlia(this);
                 infoAlia.show();
                 break;
-            case "Alias":
+            case "Documentos":
                 VentInfoDoc infoDoc = new VentInfoDoc();
                 infoDoc.show();
                 break;
