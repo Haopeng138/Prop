@@ -20,10 +20,6 @@ public class BusquedaPorSimilitud {
     public static ArrayList<DocumentHeader> buscar(DocumentHeader header, int K, Libreria libreria) {
 
         TreeMap<Autor, HashSet<Titulo>> index = libreria.getIdx();
-        // We should get indexs!!!! :)
-        // getFrecResult for a document means getting all comparisons!
-        // We need to go through index, as we need to also check for those who have been
-        // deleted and such
         ArrayList<Similitud> res = new ArrayList<Similitud>();
         index.forEach((a, sT) -> sT.forEach(t -> {
             DocumentHeader toCompare = new DocumentHeader(a, t);
