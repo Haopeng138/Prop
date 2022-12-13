@@ -7,6 +7,7 @@ package com.mycompany.prueba1.VentanaSecundaria;
 import com.mycompany.prueba1.FramePrincipal;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
 public class VentAñadirAliaPrin extends javax.swing.JFrame {
@@ -40,7 +41,7 @@ public class VentAñadirAliaPrin extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         ButtonCancelar1 = new javax.swing.JButton();
-        ButtonEliminar = new javax.swing.JButton();
+        ButtonAñadir = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
@@ -59,7 +60,12 @@ public class VentAñadirAliaPrin extends javax.swing.JFrame {
             }
         });
 
-        ButtonEliminar.setText("Añadir");
+        ButtonAñadir.setText("Añadir");
+        ButtonAñadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonAñadirActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Expresión booleana:");
 
@@ -76,7 +82,7 @@ public class VentAñadirAliaPrin extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(ButtonEliminar)
+                        .addComponent(ButtonAñadir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(ButtonCancelar1))
                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -108,7 +114,7 @@ public class VentAñadirAliaPrin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ButtonCancelar1)
-                    .addComponent(ButtonEliminar))
+                    .addComponent(ButtonAñadir))
                 .addGap(12, 12, 12))
         );
 
@@ -118,16 +124,51 @@ public class VentAñadirAliaPrin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCancelar1ActionPerformed
-        // TODO add your handling code here:
+
         dispose();
         framePrincipal.closeAñadirAlia();
     }//GEN-LAST:event_ButtonCancelar1ActionPerformed
 
+    private void ButtonAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAñadirActionPerformed
+        // TODO add your handling code here:
+         if ("".equals(jTextArea1.getText()) && "".equals(jTextField1.getText())) {
+            
+            JOptionPane.showMessageDialog(null, "Introduce una expresión booleana!!!\nIntroduce una alia!!!");
+        }
+        
+        else if ("".equals(jTextArea1.getText())) {
+            JOptionPane.showMessageDialog(null, "Introduce una expresión booleana!!!");
+        }
+        
+        else if ("".equals(jTextField1.getText())) {
+            JOptionPane.showMessageDialog(null, "Introduce una alia!!!");
+        }
+        
+        else {
+            //TODO: change principal
+            /*
+            if (Prueba1.framePrincipal.añadirAlia(jTextField1.getText())) {
+                Prueba1.framePrincipal.setVisible(true);
+                Prueba1.framePrincipal.setEnabled(true);
+                this.dispose();
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "Alia ya existe!!!");
+            }*/
+        }
+
+    }//GEN-LAST:event_ButtonAñadirActionPerformed
+
+    public void clear() {
+        jTextField1.setText("");
+        jTextArea1.setText("");
+    }
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ButtonAñadir;
     private javax.swing.JButton ButtonCancelar1;
-    private javax.swing.JButton ButtonEliminar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

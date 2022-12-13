@@ -108,7 +108,7 @@ public class ListarPorAutorYTitulo extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void NombreAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreAutorActionPerformed
-        // TODO add your handling code here:
+        // TODO falta cosas:
     }//GEN-LAST:event_NombreAutorActionPerformed
 
     private void NombreAutorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NombreAutorMouseClicked

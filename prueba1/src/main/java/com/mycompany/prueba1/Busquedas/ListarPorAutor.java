@@ -91,7 +91,7 @@ public class ListarPorAutor extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void NombreAutorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NombreAutorMousePressed
-        // TODO add your handling code here:
+
         if (first) {
             first = false;
             NombreAutor.setText("");
@@ -101,7 +101,7 @@ public class ListarPorAutor extends javax.swing.JPanel {
     }//GEN-LAST:event_NombreAutorMousePressed
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
-        // TODO add your handling code here:
+       
         if ("".equals(NombreAutor.getText())) {
             NombreAutor.setText("Introduce un nombre de autor");
             NombreAutor.setForeground(new Color(102, 102, 102));
@@ -111,7 +111,7 @@ public class ListarPorAutor extends javax.swing.JPanel {
     }//GEN-LAST:event_formMousePressed
 
     private void ButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBuscarActionPerformed
-        // TODO add your handling code here:
+        // TODO change titles  arrays
         ArrayList<String> titulos = new ArrayList<>(Arrays.asList("La nave", "tres cuerpos", "sobrevivir","34","4234","La nave", "tres cuerpos", "sobrevivir","34","4234","La nave", "tres cuerpos", "sobrevivir","34","4234","La nave", "tres cuerpos", "sobrevivir","34","4234"));
         framePrincipal.titlelist(titulos);
     }//GEN-LAST:event_ButtonBuscarActionPerformed

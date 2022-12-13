@@ -8,6 +8,7 @@ import com.mycompany.prueba1.FramePrincipal;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
 /**
@@ -32,6 +33,14 @@ public class VentNuevoDocumentoFrame extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void clear() {
+        NombreAutor.setText("");
+        jTextArea1.setText("");
+        Titulo.setText("");
+    }
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -42,7 +51,7 @@ public class VentNuevoDocumentoFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        ButtonGuardar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         NombreAutor = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -53,7 +62,12 @@ public class VentNuevoDocumentoFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Guardar");
+        ButtonGuardar.setText("Guardar");
+        ButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonGuardarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Autor");
 
@@ -101,7 +115,7 @@ public class VentNuevoDocumentoFrame extends javax.swing.JFrame {
                 .addContainerGap(59, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(ButtonGuardar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Cancel)
                 .addContainerGap())
@@ -121,7 +135,7 @@ public class VentNuevoDocumentoFrame extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(ButtonGuardar)
                     .addComponent(Cancel))
                 .addContainerGap())
         );
@@ -143,13 +157,46 @@ public class VentNuevoDocumentoFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_TituloActionPerformed
 
+    private void ButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonGuardarActionPerformed
+       
+         if ("".equals(jTextArea1.getText()) && "".equals(Titulo.getText()) && "".equals(NombreAutor.getText())) {
+            
+            JOptionPane.showMessageDialog(null, "Introduce un título!!!\nIntroduce un autor!!!\nIntroduce un contenido!!!");
+        }
+        
+        else if ("".equals(jTextArea1.getText())) {
+            JOptionPane.showMessageDialog(null, "Introduce un contenido!!!");
+        }
+        
+        else if ("".equals(Titulo.getText())) {
+            JOptionPane.showMessageDialog(null, "Introduce un título!!!");
+        }
+        
+        else if ("".equals(NombreAutor.getText())) {
+            JOptionPane.showMessageDialog(null, "Introduce un autor!!!");
+        }
+        
+        else {
+            /*
+            if (Prueba1.framePrincipal.añadirDocumento(jTextField1.getText())) {
+                Prueba1.framePrincipal.setVisible(true);
+                Prueba1.framePrincipal.setEnabled(true);
+                this.dispose();
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "Alia ya existe!!!");
+            }*/
+        }
+
+    }//GEN-LAST:event_ButtonGuardarActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ButtonGuardar;
     private javax.swing.JButton Cancel;
     private javax.swing.JTextField NombreAutor;
     private javax.swing.JTextField Titulo;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

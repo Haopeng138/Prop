@@ -27,6 +27,19 @@ public class VentModificarAliaPrin extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void AñadirA(String a) {
+        jComboBox1.addItem(a);
+    }
+    
+    public void eliminarA(String a) {
+        jComboBox1.removeItem(a);
+    }
+    
+    public void clear() {
+        jTextArea1.setText("");
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -60,6 +73,11 @@ public class VentModificarAliaPrin extends javax.swing.JFrame {
         });
 
         ButtonEliminar.setText("Modificar");
+        ButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonEliminarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Expresión booleana:");
 
@@ -118,10 +136,16 @@ public class VentModificarAliaPrin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCancelar1ActionPerformed
-        // TODO add your handling code here:
+
         dispose();
         framePrincipal.closeModificarAlia();
     }//GEN-LAST:event_ButtonCancelar1ActionPerformed
+
+    private void ButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonEliminarActionPerformed
+    
+        dispose();
+        framePrincipal.closeModificarAlia();
+    }//GEN-LAST:event_ButtonEliminarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonCancelar1;

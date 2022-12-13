@@ -24,6 +24,7 @@ import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BoxLayout;
@@ -34,6 +35,8 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeNode;
 
 public class FramePrincipal extends javax.swing.JFrame {
 
@@ -471,7 +474,69 @@ public class FramePrincipal extends javax.swing.JFrame {
             }
         });
     }
-
+    
+    //** TODO:review
+    /*
+    public void openAñadirAliaExp() {
+        Prueba1.vE.setVisible(true);
+        this.setEnabled(false);
+    }*/
+    
+    public boolean añadirAlia(String a) {
+        DefaultMutableTreeNode alia = new DefaultMutableTreeNode(a);
+        DefaultTreeModel modelo = (DefaultTreeModel)jTree1.getModel();
+        DefaultMutableTreeNode c = (DefaultMutableTreeNode) jTree1.getModel().getRoot();
+        DefaultMutableTreeNode d = (DefaultMutableTreeNode) c.getChildAt(1);
+        if (d.getIndex(alia) != -1) {
+            
+            return false;
+        }
+        else {
+                d.add(alia);
+                eliminarAliaPrinFrame.AñadirA(a);
+                modificarAliaPrinFrame.AñadirA(a);
+                modelo.reload();
+        }
+        return true;
+    }
+    
+    public boolean añadirDocumento(String a) {
+        DefaultMutableTreeNode documento = new DefaultMutableTreeNode(a);
+        DefaultTreeModel modelo = (DefaultTreeModel)jTree1.getModel();
+        DefaultMutableTreeNode c = (DefaultMutableTreeNode) jTree1.getModel().getRoot();
+        DefaultMutableTreeNode d = (DefaultMutableTreeNode) c.getChildAt(0);
+        if (d.getIndex(documento) != -1) {
+            
+            return false;
+        }
+        else {
+                d.add(documento);
+                eliminarAliaPrinFrame.AñadirA(a);
+                modificarAliaPrinFrame.AñadirA(a);
+                modelo.reload();
+        }
+        return true;
+    }
+    
+    
+    
+    public void eliminarA(String a, int idx) {
+        DefaultMutableTreeNode alia = null;
+        
+        DefaultTreeModel modelo = (DefaultTreeModel)jTree1.getModel();
+        DefaultMutableTreeNode c = (DefaultMutableTreeNode) jTree1.getModel().getRoot();
+        
+        DefaultMutableTreeNode d = (DefaultMutableTreeNode) c.getChildAt(idx);
+        Enumeration<TreeNode> e = d.children();
+        while (e.hasMoreElements()) {
+            DefaultMutableTreeNode ali = (DefaultMutableTreeNode) e.nextElement();
+            String g = ali.toString();
+            if (g.equals(a)) alia = ali;
+            System.out.println(g);
+        }
+        d.remove(alia);
+        modelo.reload();
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu AliasMenu;
     private javax.swing.JMenuItem CargarDoc;

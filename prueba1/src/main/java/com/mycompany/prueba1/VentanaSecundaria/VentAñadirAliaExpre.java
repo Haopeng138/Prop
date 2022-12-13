@@ -4,6 +4,8 @@
  */
 package com.mycompany.prueba1.VentanaSecundaria;
 
+import javax.swing.JOptionPane;
+
 public class VentAñadirAliaExpre extends javax.swing.JFrame {
 
     /**
@@ -32,8 +34,18 @@ public class VentAñadirAliaExpre extends javax.swing.JFrame {
         TextInfoAlia.setText("Asigne una alia para la expresión booleana:");
 
         ButtunGuardar.setText("Guardar");
+        ButtunGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtunGuardarActionPerformed(evt);
+            }
+        });
 
         ButtonCancelar.setText("Cancelar");
+        ButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -68,6 +80,31 @@ public class VentAñadirAliaExpre extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void ButtunGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtunGuardarActionPerformed
+
+         if ("".equals(TextAlia.getText())) {
+            JOptionPane.showMessageDialog(null, "Introduce una alia!!");
+        }
+        else {
+             /** TODO: cambiar por framePrincipal 
+            if (Prueba1.framePrincipal.añadirAlia(TextAlia.getText())) {
+                Prueba1.framePrincipal.setVisible(true);
+                Prueba1.framePrincipal.setEnabled(true);
+                this.dispose();
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "Alia ya existe!!!");
+            }
+            */
+            this.dispose();
+        }
+
+    }//GEN-LAST:event_ButtunGuardarActionPerformed
+
+    private void ButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCancelarActionPerformed
+        // TODO cancelar :
+    }//GEN-LAST:event_ButtonCancelarActionPerformed
 
     /**
      * @param args the command line arguments
