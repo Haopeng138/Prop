@@ -3,13 +3,15 @@ import Dominio.ControladorDominio;
 import com.mycompany.prueba1.FramePrincipal;
 
 public class ControladorInterficie {
-    ControladorDominio ctrl_domini;
+    private ControladorDominio ctrl_domini;
+    private FramePrincipal framePrincipal;
     public ControladorInterficie() {
-        ctrl_domini = new ControladorDominio();
+        this.ctrl_domini = new ControladorDominio();
     };
 
-    FramePrincipal framePrincipal;
+
     public void inicial() {
-        framePrincipal = new FramePrincipal();
+         this.framePrincipal = new FramePrincipal();
+         this.framePrincipal.setVisible(true);
     }
 }
