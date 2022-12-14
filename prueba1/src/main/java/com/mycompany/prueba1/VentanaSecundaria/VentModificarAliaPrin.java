@@ -7,6 +7,7 @@ package com.mycompany.prueba1.VentanaSecundaria;
 import com.mycompany.prueba1.FramePrincipal;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 import javax.swing.WindowConstants;
 
 public class VentModificarAliaPrin extends javax.swing.JFrame {
@@ -18,6 +19,11 @@ public class VentModificarAliaPrin extends javax.swing.JFrame {
     public VentModificarAliaPrin(FramePrincipal framePrincipal) {
         initComponents();
         this.framePrincipal = framePrincipal;
+        ArrayList<String> combo = framePrincipal.getAlias();
+        ComboAlias.removeAllItems();
+        for (String c :combo){
+            ComboAlias.addItem(c);
+        }
         this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         this.addWindowListener(new WindowAdapter() {
             @Override
@@ -29,11 +35,11 @@ public class VentModificarAliaPrin extends javax.swing.JFrame {
     }
     
     public void AñadirA(String a) {
-        jComboBox1.addItem(a);
+        ComboAlias.addItem(a);
     }
     
     public void eliminarA(String a) {
-        jComboBox1.removeItem(a);
+        ComboAlias.removeItem(a);
     }
     
     public void clear() {
@@ -53,11 +59,11 @@ public class VentModificarAliaPrin extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         ButtonCancelar1 = new javax.swing.JButton();
-        ButtonEliminar = new javax.swing.JButton();
+        ButtonModificar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        ComboAlias = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,10 +78,10 @@ public class VentModificarAliaPrin extends javax.swing.JFrame {
             }
         });
 
-        ButtonEliminar.setText("Modificar");
-        ButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
+        ButtonModificar.setText("Modificar");
+        ButtonModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonEliminarActionPerformed(evt);
+                ButtonModificarActionPerformed(evt);
             }
         });
 
@@ -94,7 +100,7 @@ public class VentModificarAliaPrin extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(ButtonEliminar)
+                        .addComponent(ButtonModificar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(ButtonCancelar1))
                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -105,7 +111,7 @@ public class VentModificarAliaPrin extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(ComboAlias, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -116,7 +122,7 @@ public class VentModificarAliaPrin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ComboAlias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -126,11 +132,11 @@ public class VentModificarAliaPrin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ButtonCancelar1)
-                    .addComponent(ButtonEliminar))
+                    .addComponent(ButtonModificar))
                 .addGap(12, 12, 12))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jComboBox1, jLabel1, jLabel5});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {ComboAlias, jLabel1, jLabel5});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -141,16 +147,16 @@ public class VentModificarAliaPrin extends javax.swing.JFrame {
         framePrincipal.closeModificarAlia();
     }//GEN-LAST:event_ButtonCancelar1ActionPerformed
 
-    private void ButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonEliminarActionPerformed
+    private void ButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonModificarActionPerformed
     
         dispose();
         framePrincipal.closeModificarAlia();
-    }//GEN-LAST:event_ButtonEliminarActionPerformed
+    }//GEN-LAST:event_ButtonModificarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonCancelar1;
-    private javax.swing.JButton ButtonEliminar;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton ButtonModificar;
+    private javax.swing.JComboBox<String> ComboAlias;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

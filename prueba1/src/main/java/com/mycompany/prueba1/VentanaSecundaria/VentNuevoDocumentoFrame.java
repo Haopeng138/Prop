@@ -7,7 +7,6 @@ package com.mycompany.prueba1.VentanaSecundaria;
 import com.mycompany.prueba1.FramePrincipal;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
@@ -177,15 +176,13 @@ public class VentNuevoDocumentoFrame extends javax.swing.JFrame {
         }
         
         else {
-            /*
-            if (Prueba1.framePrincipal.añadirDocumento(jTextField1.getText())) {
-                Prueba1.framePrincipal.setVisible(true);
-                Prueba1.framePrincipal.setEnabled(true);
+   
+            if (framePrincipal.añadirDocumento(Titulo.getText())) {
                 this.dispose();
             }
             else {
                 JOptionPane.showMessageDialog(null, "Alia ya existe!!!");
-            }*/
+            }
         }
 
     }//GEN-LAST:event_ButtonGuardarActionPerformed

@@ -112,7 +112,7 @@ public class ListarPorAutorYTitulo extends javax.swing.JPanel {
     }//GEN-LAST:event_NombreAutorActionPerformed
 
     private void NombreAutorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NombreAutorMouseClicked
-          // TODO add your handling code here:
+    
           if (firstA) {
               firstA = false;
               NombreAutor.setEnabled(true);
@@ -123,7 +123,7 @@ public class ListarPorAutorYTitulo extends javax.swing.JPanel {
     }//GEN-LAST:event_NombreAutorMouseClicked
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
-        // TODO add your handling code here:
+       
         
         
         if ("".equals(Titulo.getText())) {
@@ -135,7 +135,7 @@ public class ListarPorAutorYTitulo extends javax.swing.JPanel {
     }//GEN-LAST:event_formMousePressed
 
     private void TituloMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TituloMousePressed
-        // TODO add your handling code here:
+       
         if (firstT) {
             firstT = false;
             Titulo.setEnabled(true);

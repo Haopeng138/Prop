@@ -7,6 +7,7 @@ package com.mycompany.prueba1.VentanaSecundaria;
 import com.mycompany.prueba1.FramePrincipal;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 import javax.swing.WindowConstants;
 
 public class VentEliminarAliaPrin extends javax.swing.JFrame {
@@ -18,6 +19,12 @@ public class VentEliminarAliaPrin extends javax.swing.JFrame {
     public VentEliminarAliaPrin(FramePrincipal framePrincipal) {
         initComponents();
         this.framePrincipal = framePrincipal;
+        ArrayList<String> combo = framePrincipal.getAlias();
+        ComboAlias.removeAllItems();
+        for (String c :combo){
+            ComboAlias.addItem(c);
+        }
+  
         this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         this.addWindowListener(new WindowAdapter() {
             @Override
@@ -27,8 +34,11 @@ public class VentEliminarAliaPrin extends javax.swing.JFrame {
             }
         });
     }
+    
     public void AñadirA(String a) {
-        jComboBox1.addItem(a);
+        this.dispose();
+        ComboAlias.addItem(a);
+       
     }
 
     /**
@@ -47,7 +57,7 @@ public class VentEliminarAliaPrin extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        ComboAlias = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -96,7 +106,7 @@ public class VentEliminarAliaPrin extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(ComboAlias, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -107,7 +117,7 @@ public class VentEliminarAliaPrin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ComboAlias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
@@ -119,7 +129,7 @@ public class VentEliminarAliaPrin extends javax.swing.JFrame {
                 .addGap(12, 12, 12))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jComboBox1, jLabel1, jLabel5});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {ComboAlias, jLabel1, jLabel5});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -132,15 +142,16 @@ public class VentEliminarAliaPrin extends javax.swing.JFrame {
 
     private void ButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonEliminarActionPerformed
        
-        /* TODO: change to principal 
-        Prueba1.framePrincipal.eliminarA((String)jComboBox1.getSelectedItem(), 1);
         
-        jComboBox1.remove(jComboBox1.getSelectedIndex());
-        Prueba1.mA.eliminarA((String)jComboBox1.getSelectedItem());
+        framePrincipal.eliminarA((String)ComboAlias.getSelectedItem().toString(),1,(String)ComboAlias.getSelectedItem());
+        framePrincipal.closeEliminarAlia();
+        //ComboAlias.remove(ComboAlias.getSelectedIndex());
+      
+        //Prueba1.mA.eliminarA((String)jComboBox1.getSelectedItem());
         
-        Prueba1.framePrincipal.setVisible(true);
-        Prueba1.framePrincipal.setEnabled(true);
-        this.dispose();*/
+        //Prueba1.framePrincipal.setVisible(true);
+        //Prueba1.framePrincipal.setEnabled(true);
+        this.dispose();
 
     }//GEN-LAST:event_ButtonEliminarActionPerformed
 
@@ -150,7 +161,7 @@ public class VentEliminarAliaPrin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonCancelar1;
     private javax.swing.JButton ButtonEliminar;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> ComboAlias;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

@@ -131,30 +131,26 @@ public class VentAñadirAliaPrin extends javax.swing.JFrame {
 
     private void ButtonAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAñadirActionPerformed
         // TODO add your handling code here:
-         if ("".equals(jTextArea1.getText()) && "".equals(jTextField1.getText())) {
-            
+         System.out.print("algo");
+        if ("".equals(jTextArea1.getText()) && "".equals(jTextField1.getText())) {
             JOptionPane.showMessageDialog(null, "Introduce una expresión booleana!!!\nIntroduce una alia!!!");
         }
-        
         else if ("".equals(jTextArea1.getText())) {
             JOptionPane.showMessageDialog(null, "Introduce una expresión booleana!!!");
         }
-        
         else if ("".equals(jTextField1.getText())) {
             JOptionPane.showMessageDialog(null, "Introduce una alia!!!");
         }
-        
         else {
-            //TODO: change principal
-            /*
-            if (Prueba1.framePrincipal.añadirAlia(jTextField1.getText())) {
-                Prueba1.framePrincipal.setVisible(true);
-                Prueba1.framePrincipal.setEnabled(true);
+            if (framePrincipal.añadirAlia(jTextField1.getText())) {
+                //framePrincipal.setVisible(true);
+                //framePrincipal.setEnabled(true);
+                
                 this.dispose();
             }
             else {
                 JOptionPane.showMessageDialog(null, "Alia ya existe!!!");
-            }*/
+            }
         }
 
     }//GEN-LAST:event_ButtonAñadirActionPerformed

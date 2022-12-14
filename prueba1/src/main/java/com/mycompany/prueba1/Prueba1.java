@@ -14,6 +14,5 @@ public class Prueba1 {
     public static void main(String[] args) {
         FramePrincipal j = new FramePrincipal();
         j.setVisible(true);
-        System.out.println("Hello World!");
     }
 }

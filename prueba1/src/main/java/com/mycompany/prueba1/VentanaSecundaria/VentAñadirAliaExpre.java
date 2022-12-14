@@ -4,14 +4,17 @@
  */
 package com.mycompany.prueba1.VentanaSecundaria;
 
+import com.mycompany.prueba1.FramePrincipal;
 import javax.swing.JOptionPane;
 
 public class VentAñadirAliaExpre extends javax.swing.JFrame {
-
+    private FramePrincipal framePrincipal;
     /**
      * Creates new form VentAñadirAliaExpre
+     * @param framePrincipal
      */
-    public VentAñadirAliaExpre() {
+    public VentAñadirAliaExpre(FramePrincipal framePrincipal) {
+        this.framePrincipal = framePrincipal;
         initComponents();
     }
 
@@ -87,59 +90,25 @@ public class VentAñadirAliaExpre extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Introduce una alia!!");
         }
         else {
-             /** TODO: cambiar por framePrincipal 
-            if (Prueba1.framePrincipal.añadirAlia(TextAlia.getText())) {
-                Prueba1.framePrincipal.setVisible(true);
-                Prueba1.framePrincipal.setEnabled(true);
+          
+            if (framePrincipal.añadirAlia(TextAlia.getText())) {
+                //framePrincipal.setVisible(true);
+                //framePrincipal.setEnabled(true);
                 this.dispose();
             }
             else {
                 JOptionPane.showMessageDialog(null, "Alia ya existe!!!");
             }
-            */
-            this.dispose();
         }
 
     }//GEN-LAST:event_ButtunGuardarActionPerformed
 
     private void ButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCancelarActionPerformed
         // TODO cancelar :
+        dispose();
+        framePrincipal.closeAñadirAliaExpre();
     }//GEN-LAST:event_ButtonCancelarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentAñadirAliaExpre.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentAñadirAliaExpre.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentAñadirAliaExpre.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentAñadirAliaExpre.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VentAñadirAliaExpre().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonCancelar;
