@@ -2,15 +2,20 @@ package Dominio.Expresion;
 
 import java.util.HashMap;
 
-import Dominio.Utils.BinaryTree;
-import Dominio.Utils.ParseNode;
-
 public class ControladorExpresiones {
 
     HashMap<String, Expresion> expresiones;
 
     public ControladorExpresiones() {
         this.expresiones = new HashMap<String, Expresion>();
+    }
+
+    public HashMap<String, Expresion> getExpresiones() {
+        return expresiones;
+    }
+
+    public ControladorExpresiones(HashMap<String, Expresion> expresiones) {
+        this.expresiones = expresiones;
     }
 
     public Expresion get(String alias) {
@@ -59,25 +64,11 @@ public class ControladorExpresiones {
         return true;
     }
 
-    public BinaryTree<ParseNode> parseFromAlias(String alias) throws Exception {
-
-        if (!expresiones.containsKey(alias)) {
-            return null;
-        }
-        Expresion expresion = expresiones.get(alias);
-        return expresion.parse();
-
-    }
-
     public String getAsString(String alias) {
         if (!expresiones.containsKey(alias)) {
             System.out.println("Expresion no encontrada");
             return null;
         }
         return expresiones.get(alias).getExpresion();
-    }
-
-    public HashMap<String, Expresion> getExpresiones() {
-        return expresiones;
     }
 }

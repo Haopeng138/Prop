@@ -5,47 +5,69 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
-import Dominio.Estructura.Autor;
-import Dominio.Estructura.Libreria;
-import Dominio.Estructura.Titulo;
-import Dominio.Expresion.ControladorExpresiones;
+import Dominio.Estructura.Documento;
+import Dominio.Expresion.Expresion;
 import Dominio.Expresion.ExpresionException;
 
 public class Persistencia {
 
     /**
-     * @param libreria     la libreria con los documentos a persistir
-     * @param cExpresiones El controlador de expresiones con la expresiones a
-     *                     persistir
+     * @param documentos  Los documentos a persistir
+     * @param expresiones Las expresiones a persistir
      */
-    public static void persist(Libreria libreria, ControladorExpresiones cExpresiones) throws IOException {
+    public static void persist(Documento[] documentos, HashMap<String, Expresion> expresiones) throws IOException {
 
         File directory = getDirectory();
 
-        persistDocumentos(libreria, directory);
+        persistDocumentos(documentos, directory);
 
-        persistExpresiones(cExpresiones, directory);
+        persistExpresiones(expresiones, directory);
 
     }
 
     /**
-     * @param libreria     la libreria a la que recuperar los documentos
-     * @param cExpresiones El controlador al que recuperar las expresiones
+     * This method should be called before recoverDocumentos, because the file is
+     * deleted at the end
+     * 
+     * @return Las expresiones a recuperar
      */
-    public static void recoverState(Libreria libreria, ControladorExpresiones cExpresiones)
-            throws IOException {
-        File directory = getDirectory();
+    public static HashMap<String, Expresion> recoverExpresiones() throws FileNotFoundException {
+        File exprF = new File(getDirectory(), "expresiones");
+        HashMap<String, Expresion> expresiones = new HashMap<>();
 
-        // it is important that expresiones are recovered first, as if it is not the
-        // case, expresiones will try to be recovered as a document
+        try (Scanner reader = new Scanner(exprF)) {
+            while (reader.hasNextLine()) {
+                String[] expresion = reader.nextLine().trim().split("|");
+                try {
+                    expresiones.put(expresion[0], new Expresion(expresion[1]));
+                } catch (ExpresionException e) {
+                    // This can't happen, as the expressions saved must have been checked before
+                }
 
-        recoverExpresiones(cExpresiones, directory);
+            }
+        }
+        exprF.delete();
 
-        recoverDocumentos(libreria, directory);
+        return expresiones;
+    }
 
+    /**
+     * @return Los documentos a recuperar
+     */
+    public static Documento[] recoverDocumentos() throws IOException {
+        File[] fileDocuments = getDirectory().listFiles();
+        Documento[] documentos = new Documento[fileDocuments.length];
+
+        for (int i = 0; i < documentos.length; i++) {
+            String[] header = fileDocuments[i].getName().trim().split("|");
+            String content = Files.readString(fileDocuments[i].toPath());
+            documentos[i] = new Documento(header[0], header[1], content);
+            fileDocuments[i].delete();
+        }
+        return documentos;
     }
 
     private static File getDirectory() {
@@ -58,46 +80,28 @@ public class Persistencia {
     }
 
     /**
-     * @param libreria  la libreria con los documentos a persistir
-     * @param directory El directorio al que crear los ficheros
+     * @param documentos Los documentos a persistir
+     * @param directory  El directorio al que crear los ficheros
      */
-    private static void persistDocumentos(Libreria libreria, File directory) {
-        ArrayList<Autor> autores = libreria.getAutores();
-        autores.forEach(a -> libreria.getTitles(a.getName()).forEach(t -> {
-            createFile(a, t, libreria, directory);
-        }));
-    }
-
-    /**
-     * @param a         El nombre del autor
-     * @param t         El titulo
-     * @param libreria  La libreria en la que buscar el documento
-     * @param directory El directorio donde crear el fichero
-     */
-    private static void createFile(Autor a, Titulo t, Libreria libreria, File directory) {
-        String autor = a.getName();
-        String titulo = t.getName();
-        File f = new File(directory, autor + '|' + titulo);
-        try {
-            f.createNewFile();
-            try (FileWriter writer = new FileWriter(f)) {
-                writer.write(libreria.getContent(autor, titulo));
-            }
-        } catch (IOException e) {
-            throw new RuntimeException();
+    private static void persistDocumentos(Documento[] documentos, File directory) {
+        for (Documento documento : documentos) {
+            String autor = documento.getAutor();
+            String titulo = documento.getTitulo();
+            String contenido = documento.getContenido();
+            createFile(autor, titulo, contenido, directory);
         }
     }
 
     /**
-     * @param cExpresiones El controlador con las expresiones
-     * @param directory    El directorio donde crear el fichero
+     * @param expresiones Las expresiones a persistir
+     * @param directory   El directorio donde crear el fichero
      */
-    private static void persistExpresiones(ControladorExpresiones cExpresiones, File directory) throws IOException {
+    private static void persistExpresiones(HashMap<String, Expresion> expresiones, File directory) throws IOException {
         File f = new File(directory, "expresiones");
         try (FileWriter writer = new FileWriter(f)) {
-            cExpresiones.getExpresiones().forEach((a, e) -> {
+            expresiones.forEach((alias, expresion) -> {
                 try {
-                    writer.write(a + '|' + e.getExpresion() + '\n');
+                    writer.write(alias + '|' + expresion.getExpresion() + '\n');
                 } catch (IOException e1) {
                     throw new RuntimeException();
                 }
@@ -106,39 +110,20 @@ public class Persistencia {
     }
 
     /**
-     * @param cExpresiones El controlador en el que recuperar las expresiones
-     * @param directory    El directorio des del que recuperar las expresiones
+     * @param autor     El nombre del autor
+     * @param titulo    El titulo
+     * @param contenido El contenido del documento
+     * @param directory El directorio donde crear el fichero
      */
-    private static void recoverExpresiones(ControladorExpresiones cExpresiones, File directory)
-            throws FileNotFoundException {
-        File exprF = new File(directory, "expresiones");
-        try (Scanner reader = new Scanner(exprF)) {
-            while (reader.hasNextLine()) {
-                String[] expresion = reader.nextLine().split("|");
-                try {
-                    cExpresiones.add(expresion[0], expresion[1]);
-                } catch (ExpresionException e) {
-                    // This can't happen.
-                }
-
+    private static void createFile(String autor, String titulo, String contenido, File directory) {
+        File f = new File(directory, autor + '|' + titulo);
+        try {
+            f.createNewFile();
+            try (FileWriter writer = new FileWriter(f)) {
+                writer.write(contenido);
             }
+        } catch (IOException e) {
+            throw new RuntimeException();
         }
-        exprF.delete();
-    }
-
-    /**
-     * @param libreria  La libreria en la que buscar el documento
-     * @param directory El directorio des del que recuperar las expresiones
-     */
-    private static void recoverDocumentos(Libreria libreria, File directory) throws IOException {
-        File[] documents = directory.listFiles();
-
-        for (File document : documents) {
-            String[] header = document.getName().split("|");
-            String content = Files.readString(document.toPath());
-            libreria.createDocumento(header[0], header[1], content);
-            document.delete();
-        }
-
     }
 }
