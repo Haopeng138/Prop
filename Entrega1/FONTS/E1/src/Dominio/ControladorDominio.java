@@ -42,7 +42,7 @@ public class ControladorDominio {
         }
     }
 
-    private void createDocumento(String a, String t, String contenido) {
+    public void createDocumento(String a, String t, String contenido) {
         libreria.createDocumento(a, t, contenido);
     }
 
