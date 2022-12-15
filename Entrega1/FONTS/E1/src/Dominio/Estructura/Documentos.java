@@ -7,9 +7,9 @@ public class Documentos {
     /**
      * Atributos de clase Documento
      */
-    public class InfoModificado {
-        public Double frecuencia;
-        public Boolean modif = false;
+    private class InfoModificado {
+        private Double frecuencia;
+        private Boolean modif = false;
 
         public InfoModificado() {
             this.frecuencia = 0.0;
