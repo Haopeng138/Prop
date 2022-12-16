@@ -20,6 +20,12 @@ import Dominio.Estructura.Libreria;
 public class BusquedaPorExpresion {
     private Libreria libreria;
 
+    /**
+     * @param expresion La expresion con la que buscar
+     * @param libreria La libreria de documentos
+     * @return Los documentos que cumplen la expresion
+     * @throws Exception 
+     */
     public ArrayList<DocumentHeader> buscar(String expresion, Libreria libreria) throws Exception {
         this.libreria = libreria;
         TreeMap<Autor, HashSet<Titulo>> indice = libreria.getIdx();
@@ -30,6 +36,11 @@ public class BusquedaPorExpresion {
         return documentHeaders;
     }
 
+    /**
+     * @param expr La expresion con la que hacer la busqueda
+     * @return Un arbol de busqueda
+     * @throws Exception
+     */
     private BinaryTree<ParseNode> parse(String expr) throws Exception {
         int ptr = 0;
         BinaryTree<ParseNode> root = new BinaryTree<ParseNode>();

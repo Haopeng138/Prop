@@ -4,17 +4,25 @@ public class Titulo {
     private String name;
 
     public Titulo() {
-
     }
 
+    /**
+     * @param name El nombre del titulo
+     */
     public Titulo(String name) {
         this.name = name;
     }
 
+    /**
+     * @param name El nombre del titulo
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * @return
+     */
     public String getName() {
         return name;
     }

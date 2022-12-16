@@ -23,6 +23,10 @@ public class ControladorDominio {
     Libreria libreria;
     ControladorExpresiones cExpresiones;
 
+    /**
+     * Creadora, trata de recuperar el estado, y si no crea una nueva libreria y
+     * controlador de expresiones
+     */
     public ControladorDominio() {
         try {
             HashMap<String, Expresion> expresiones = Persistencia.recoverExpresiones();
@@ -61,14 +65,28 @@ public class ControladorDominio {
         }
     }
 
+    /**
+     * @param a         El nombre del autor del documento a crear
+     * @param t         El titulo del documento a crear
+     * @param contenido El contenido del documento a crear
+     */
     private void createDocumento(String a, String t, String contenido) {
         libreria.createDocumento(a, t, contenido);
     }
 
+    /**
+     * @param a         El nombre del autor del documento a modificar
+     * @param t         El titulo del autor del documento a modificar
+     * @param contenido El nuevo contenido del documento
+     */
     public void modifyDocumento(String a, String t, String contenido) {
         libreria.modifyDocumento(a, t, contenido);
     }
 
+    /**
+     * @param a El nombre del autor del documento a borrar
+     * @param t El titulo del documento a borrar
+     */
     public void removeDocumento(String a, String t) {
         libreria.removeDocumento(a, t);
     }
@@ -89,6 +107,21 @@ public class ControladorDominio {
     ////
 
     //// PUNTO 2
+
+    /**
+     * @return Los documentos que estan en la libreria
+     */
+    public Documento[] getDocumentos() {
+        return libreria.getDocumentos();
+    }
+
+    /**
+     * @return Los headers de los documentos que estan en la libreria
+     */
+    public DocumentHeader[] getDocumentHeaders() {
+        return libreria.getDocumentHeaders();
+    }
+
     /**
      * @param a El nombre de un autor
      * @return Listado de titulos del autor
@@ -106,8 +139,16 @@ public class ControladorDominio {
     }
 
     /**
-     * @param autorName  nombre del autor
-     * @param tituloName nombre del t
+     * @param autor
+     * @return el numero de documentos que tiene un autor
+     */
+    public int getNumDocumentos(Autor autor) {
+        return libreria.getNumDocumentos(autor);
+    }
+
+    /**
+     * @param autorName  nombre del autor del documento a obtener el contenido
+     * @param tituloName titulo del documento a obtener el contenido
      * @return
      */
     public String getContent(String a, String t) {
@@ -117,8 +158,10 @@ public class ControladorDominio {
     //// PUNTO 3
 
     /**
-     * @param e Una expresión
-     * @return un conjunto de documentos
+     * @param a El autor del documento a buscar similitud
+     * @param t El titulo del documento a buscar similitud
+     * @param k El numero de documentos a devolver
+     * @return Los k documentos mas similares
      */
     public ArrayList<DocumentHeader> busquedaPorSimilitud(String a, String t, int k) {
         return ControladorBusqueda.buscarPorSimilitud(new DocumentHeader(a, t), k, libreria);
@@ -126,7 +169,7 @@ public class ControladorDominio {
 
     /**
      * @param e Una expresión
-     * @return un conjunto de documentos
+     * @return El conjunto de documentos que cumplen la expresion
      */
     public ArrayList<DocumentHeader> busquedaPorExpresion(String alias) {
         try {
@@ -139,28 +182,45 @@ public class ControladorDominio {
 
     //// PUNTO 4
 
+    /**
+     * @param alias     El alias de la expresion a crear
+     * @param expresion La expresion
+     * @throws ExpresionException Si la expresion es invalida
+     */
     public void addExpresion(String alias, String expresion) throws ExpresionException {
         cExpresiones.add(alias, expresion);
     }
 
-    public Boolean updateAlias(String oldAlias, String newAlias) {
-        return cExpresiones.updateAlias(oldAlias, newAlias);
-    }
-
+    /**
+     * @param alias El alias de la expresion a modificar
+     * @param expresion La nueva expresion
+     * @return Si ha modificado la expresion
+     */
     public Boolean updateExpresion(String alias, String expresion) {
         return cExpresiones.updateExpresion(alias, expresion);
     }
 
+    /**
+     * @param alias El alias de la expresion a borrar
+     * @return Si la ha borrado
+     */
     public Boolean removeExpresion(String alias) {
         return cExpresiones.remove(alias);
     }
 
+    /**
+     * @param alias El alias de la expresion a recuperar
+     * @return La expresion
+     */
     public String getExpresion(String alias) {
         return cExpresiones.getAsString(alias);
     }
 
     // Persistencia
 
+    /**
+     * El metodo que se llama al cerrar la aplicacion para mantener el estado
+     */
     public void persist() {
         Documento[] documentos = libreria.getDocumentos();
         HashMap<String, Expresion> expresiones = cExpresiones.getExpresiones();

@@ -130,11 +130,19 @@ public class Autores {
     }
 
     /**
+     * @param autor El autor al que consultar
+     * @return El numero de documentos que tiene el autor
+     */
+    public int getNumDocumentos(Autor autor) {
+        return autores.get(autor).size();
+    }
+
+    /**
      * Metodo que devuelve el indice del documento
      *
-     * @param header
+     * @param header El header del documento
      * @return Posicion en la que se indexa el documento
-     * @throws Exception
+     * @throws Exception Si no se encuentra el documento
      */
     public Integer getDocumentIdx(DocumentHeader header) throws Exception {
         if (!this.has(header.getAutor())) {
