@@ -5,10 +5,14 @@ import Dominio.Expresion.ExpresionException;
 import Dominio.Logica.ControladorBusqueda;
 import Dominio.Utils.BinaryTree;
 import Dominio.Utils.DocumentHeader;
+import Dominio.Utils.IOHelper;
 import Dominio.Utils.ParseNode;
 import Dominio.Estructura.Autor;
+import Dominio.Estructura.Documento;
 import Dominio.Estructura.Libreria;
 import Dominio.Estructura.Titulo;
+
+import java.io.File;
 
 import java.util.ArrayList;
 
@@ -23,6 +27,21 @@ public class ControladorDominio {
     }
 
     //// PUNTO 1
+
+    /**
+     * @param documento El documento a importar
+     */
+    public void createDocumento(File documento) {
+        Documento doc;
+        try {
+            doc = IOHelper.create(documento);
+            createDocumento(doc.getAutor(), doc.getTitulo(), doc.getContenido());
+        } catch (Exception e) {
+            System.out.println("Error importing Document");
+            e.printStackTrace();
+        }
+    }
+
     public void createDocumento(String a, String t, String contenido) {
         libreria.createDocumento(a, t, contenido);
     }
@@ -34,9 +53,27 @@ public class ControladorDominio {
     public void removeDocumento(String a, String t) {
         libreria.removeDocumento(a, t);
     }
+
+    /**
+     * @param doc  El documento a exportar
+     * @param path El path al que exportarlo
+     * @param name El nombre que dar al documento
+     */
+    public void exportDocumento(Documento doc, File path, String name) {
+        try {
+            IOHelper.export(doc, path, name);
+        } catch (Exception e) {
+            System.out.println("Error exporting document");
+            e.printStackTrace();
+        }
+    }
     ////
 
     //// PUNTO 2
+    /**
+     * @param a El nombre de un autor
+     * @return Listado de titulos del autor
+     */
     public ArrayList<Titulo> getTitles(String a) {
         return libreria.getTitles(a);
     }
