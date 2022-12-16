@@ -179,6 +179,7 @@ public class VentNuevoDocumentoFrame extends javax.swing.JFrame {
    
             if (framePrincipal.añadirDocumento(Titulo.getText())) {
                 this.dispose();
+                framePrincipal.closeNewDocument();
             }
             else {
                 JOptionPane.showMessageDialog(null, "Alia ya existe!!!");
