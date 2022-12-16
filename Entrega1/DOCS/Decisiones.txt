@@ -6,3 +6,11 @@ Decisiones:
 
 3-Dos alias diferentes pueden tener la misma expresion
 
+4-Solo se puede modificar el contenido de un documento
+
+5-No puede cambiar la alia de una expresión booleana guardada
+
+6-Para cada busqueda tienen sus criterios de ordenación:
+
+    - Busqueda por autor:
+        -
