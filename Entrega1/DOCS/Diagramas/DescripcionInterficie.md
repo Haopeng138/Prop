@@ -131,84 +131,143 @@ Contiene el titulo de un documento
 ### ItemAlia:
 Contiene la alia con su expresión asociada 
 #### Atributos: 
-- Alia(JTextField): 
-### public void eliminar():
+- Alia(JTextField): la alia de la expresión
 
-Eliminar la alia con su expresión asociada
+#### Métodos:
+- public void eliminar(): Eliminar la alia con su expresión asociada
 
-### public void modificar():
-[comment]: <> (//TODO)
+- public void modificar(): Modifica la expresión de la alia
 
-
-
-## ItemDocumentoCompleto:
-
+### ItemDocumentoCompleto:
 Contiene toda la información de un documento : autor, título y contenido
+#### Atributos:
+- Autor(JTextField): el nombre del autor del documento
+- Titulo(JTextField): el título del documento
+- Contenido(JTextArea): el contenido del documento
 
-### public void eliminar():
+#### Métodos:
+- public void eliminar(): Eliminar el documento
 
-Eliminar el documento
+- public void exportar(): Exportar el documento como xml o txt 
 
-### public void exportar():
+- public void guardar(): Almacenar los cambios realizados
 
-Exportar el documento como xml y txt 
-
-### public void guardar():
-
-Almacenar los cambios realizados
-
-## PanelDirectory
-
+### PanelDirectory
 Contiene dos carpetas , una de todos los documentos y otra de todas las alia
+#### Atributos:
+- DirectorioAlia(JTree): el árbol hijo del directorio principal, donde contiene las alias
+- DirectorioDocumento(JTree): el árbol hijo del directorio principal, donde contiene los documentos
 
-### public void selectAlia():
+#### Métodos:
+- public void selectAlia(): Según la alia seleccionada renderiza el panel item(itemAlia) 
 
-Según la alia seleccionada renderiza el panel item(itemAlia) 
+- public void selectDoc(): Según el documento seleccionado renderiza el panel item(itemDocumentoCompleto)
 
-### public void selectDoc():
+### Menu
+Contiene dos menus diferentes (File y Alias)
 
-Según el documento seleccionado renderiza el panel item(itemDocumentoCompleto)
+### File
+#### Métodos:
+- public void NuevoDocumento(): Abre una ventana secundaria para crear un documento
 
-## Menu
-
-Contiene dos menus diferentes
-
-## File
-
-### public void NuevoDocumento():
-
-Abre una ventana secundaria para crear un documento
-
-### public void cargar():
-
-Carga un archivo .txt o .xml que cumple con los formatos
+- public void cargar(): Carga un archivo .txt o .xml que cumple con los formatos
 
 
-## Alias 
+### Alias
+#### Métodos:
+- public void AñadirAlias(): Añade una nueva alia asociada a una nueva expresión 
 
-### public void AñadirAlias():
+- public void ModificarAlias(): Modifica la expresión de una alia existente
 
-
-### public void ModificarAlias():
-
-
-### public void EliminarAlias():
-
+- public void EliminarAlias(): Elimina una alia existente 
 
 ---
 
 //TODO: 
 
-# Ventanas secundarias
+## Ventanas secundarias
 
-## VentanaNuevoDocumento
+### VentanaNuevoDocumento
+La ventana para crear un nuevo documento
+#### Atributos:
+- Autor(JTextField): el nombre del autor del documento
+- Titulo(JTextField): el título del documento
+- Contenido(JTextArea): el contenido del documento
 
-## VentanaDocumentoInfo
+#### Métodos:
+- public void Guardar(): guardar el nuevo documento creado
+- public void Cancelar(): salir de la ventana sin crear el documento
 
-## VentanaAliaExpresion
 
-## VentanaAñadirAlia
+### VentanaDocumentoInfo
+La ventana de mostrar la información de un documento
+#### Atributos: 
+- Autor(JTextField): el nombre del autor del documento
+- Titulo(JTextField): el título del documento
+- Contenido(JTextArea): el contenido del documento
 
-## VentanaEliminaAlia
+#### Métodos:
+- public void Eliminar(): Elimina el documento
+- public void Exportar(): Exporta el documento en el formato .txt o .xml
+- public void Guardar(): Guarda el documento 
+- public void Cancelar(): Sale de la ventana y no se efectua las acciones
 
-## VentanaModificarAlia
+### VentanaAliaExpresion
+La ventana para mostrar la expresión con su alia correspondiente
+#### Atributos:
+- Alia(JTextField): el nombre de la alia
+
+#### Métodos:
+- public void Guardar(): asociar la expresión a la alia y guardarla
+- public void Cancelar(): deshacer la acción de crear una alia para asociar a una expresión
+
+### VentanaAñadirAlia
+La ventana de añadir una alia con una expresión
+#### Atributos:
+- Alia(JTextField): la alia asociada a la expresión
+- Expresion(JTextArea): la expresión nueva que quiere crear
+
+#### Métodos:
+- public void Añadir(): crear una nueva expresión asociada a una nueva alia
+- public void Cancelar(): deshacer la acción de crear una nueva expresión
+
+
+### VentanaEliminaAlia
+La ventana de eliminar una alia existente
+
+#### Atributos:
+- Alias(JCombobox): el conjunto de alias 
+- Expresion(JTextArea): la expresión de la alia seleccionada
+
+#### Métodos:
+- public void Eliminar(): Eliminar la alia seleccionada
+- public void Cancelar(): Deshacer la acción de eliminar una alia existente
+
+
+### VentanaModificarAlia
+La ventana de modificar la expresión de una alia existente
+
+#### Atributos:
+- Alias(JCombobox): el conjunto de alias
+- Expresion(JTextArea): la expresión de la alia seleccionada
+
+#### Métodos:
+- public void Modificar(): Modifica la expresión de la alia seleccionada
+- public void Cancelar(): Deshacer la acción de modificar
+
+### VentanaExportatr
+La ventana para exportar un documento
+
+#### Métodos:
+- public void selectPath(): seleciona la Path donde opta exportar el documento
+- public void ExportTxt(): exporta el documento en el formato TXT
+- public void ExportXML(): exporta el documento en el formato XML
+
+### VentanaTitulos
+La ventana que mostra todos los títulos de un autor
+
+#### Atributos:
+- NombreAutor(JTextField): el nombre del autor
+
+#### Métodos:
+- public void Salir(): Cerrar la ventana
