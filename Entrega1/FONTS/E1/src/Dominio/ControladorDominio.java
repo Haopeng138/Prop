@@ -1,20 +1,22 @@
 package Dominio;
 
 import Dominio.Expresion.ControladorExpresiones;
+import Dominio.Expresion.Expresion;
 import Dominio.Expresion.ExpresionException;
 import Dominio.Logica.ControladorBusqueda;
-import Dominio.Utils.BinaryTree;
 import Dominio.Utils.DocumentHeader;
 import Dominio.Utils.IOHelper;
-import Dominio.Utils.ParseNode;
 import Dominio.Estructura.Autor;
 import Dominio.Estructura.Documento;
 import Dominio.Estructura.Libreria;
 import Dominio.Estructura.Titulo;
 
-import java.io.File;
+import Persistencia.Persistencia;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ControladorDominio {
 
@@ -22,8 +24,25 @@ public class ControladorDominio {
     ControladorExpresiones cExpresiones;
 
     public ControladorDominio() {
-        libreria = new Libreria();
-        cExpresiones = new ControladorExpresiones();
+        try {
+            HashMap<String, Expresion> expresiones = Persistencia.recoverExpresiones();
+            if (expresiones.size() > 0) {
+                cExpresiones = new ControladorExpresiones(expresiones);
+            } else {
+                cExpresiones = new ControladorExpresiones();
+            }
+
+            Documento[] documentos = Persistencia.recoverDocumentos();
+            if (documentos.length > 0) {
+                libreria = new Libreria(documentos);
+            } else {
+                libreria = new Libreria();
+            }
+
+        } catch (IOException e) {
+            System.out.println("unable to recover previous state");
+            e.printStackTrace();
+        }
     }
 
     //// PUNTO 1
@@ -110,11 +129,8 @@ public class ControladorDominio {
      * @return un conjunto de documentos
      */
     public ArrayList<DocumentHeader> busquedaPorExpresion(String alias) {
-
-        BinaryTree<ParseNode> bTree;
         try {
-            bTree = cExpresiones.parseFromAlias(alias);
-            return ControladorBusqueda.buscarPorExpresion(bTree, libreria);
+            return ControladorBusqueda.buscarPorExpresion(cExpresiones.getAsString(alias), libreria);
         } catch (Exception e) {
             System.out.println("No se ha podido construir el arbol de busqueda de la expresion");
             return null;
@@ -142,4 +158,18 @@ public class ControladorDominio {
     public String getExpresion(String alias) {
         return cExpresiones.getAsString(alias);
     }
+
+    // Persistencia
+
+    public void persist() {
+        Documento[] documentos = libreria.getDocumentos();
+        HashMap<String, Expresion> expresiones = cExpresiones.getExpresiones();
+        try {
+            Persistencia.persist(documentos, expresiones);
+        } catch (IOException e) {
+            System.out.println("Persistence failed!!!");
+            throw new RuntimeException();
+        }
+    }
+
 }

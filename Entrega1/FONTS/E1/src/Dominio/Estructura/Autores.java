@@ -39,6 +39,7 @@ public class Autores {
 
     /**
      * Metodo que añade un autor al conjunto de autores
+     * 
      * @param a autor
      */
     public void add(Autor a) {
@@ -50,6 +51,7 @@ public class Autores {
 
     /**
      * Metodo que añade un autor al conjunto de autores
+     * 
      * @param a nombre del autor
      */
     public void add(String a) {
@@ -61,6 +63,7 @@ public class Autores {
 
     /**
      * Metodo que añade un titulo al conjunto de titulos de un autor
+     * 
      * @param header El header de un documento autor y titulo
      *
      */
@@ -95,7 +98,6 @@ public class Autores {
         autores.remove(a);
     }
 
-    // Todo: eliminar aqui ?
     public void remove(String a) {
         autores.remove(new Autor(a));
     }

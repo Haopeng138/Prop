@@ -17,6 +17,35 @@ public class Libreria {
         documentos = new Documentos();
     }
 
+    public Libreria(Documento[] documentos) {
+
+        for (Documento documento : documentos) {
+            String autor = documento.getAutor();
+            if (!autores.has(autor)) {
+                autores.add(autor);
+            }
+            this.autores.addTitleToAutor(new DocumentHeader(autor, documento.getTitulo()));
+            this.documentos.add(documento);
+        }
+    }
+
+    public Documento[] getDocumentos() {
+        ArrayList<Documento> documentos = new ArrayList<>();
+        autores.getIdx().forEach((autor, setTitulos) -> {
+            setTitulos.forEach(titulo -> {
+                DocumentHeader header = new DocumentHeader(autor, titulo);
+                try {
+                    int docIdx = autores.getDocumentIdx(header);
+                    documentos.add(this.documentos.getDocumento(docIdx));
+                } catch (Exception e) {
+                    // This can never happen, as indices are directly from the index.
+                }
+            });
+        });
+        Documento[] docs = new Documento[documentos.size()];
+        docs = documentos.toArray(docs);
+        return docs;
+    }
 
     public void createDocumento(String a, String t, String contenido) {
         if (a == "") {
@@ -28,12 +57,10 @@ public class Libreria {
 
         Autor autor = new Autor(a);
         Titulo titulo = new Titulo(t);
-        if (autores.has(autor)) {
-            autores.addTitleToAutor(new DocumentHeader(autor, titulo));
-        } else {
+        if (!autores.has(autor)) {
             autores.add(autor);
-            autores.addTitleToAutor(new DocumentHeader(autor, titulo));
         }
+        autores.addTitleToAutor(new DocumentHeader(autor, titulo));
 
         Documento documento = new Documento(a, t, contenido);
         documentos.add(documento);

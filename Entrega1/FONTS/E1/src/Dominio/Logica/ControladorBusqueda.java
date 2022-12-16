@@ -4,9 +4,7 @@ import java.util.*;
 
 import Dominio.Estructura.Autor;
 import Dominio.Estructura.Libreria;
-import Dominio.Utils.BinaryTree;
 import Dominio.Utils.DocumentHeader;
-import Dominio.Utils.ParseNode;
 
 public class ControladorBusqueda {
 
@@ -14,10 +12,10 @@ public class ControladorBusqueda {
         return BusquedaPorPrefijo.buscar(autores, prefix);
     }
 
-    public static ArrayList<DocumentHeader> buscarPorExpresion(BinaryTree<ParseNode> bTree, Libreria libreria) {
+    public static ArrayList<DocumentHeader> buscarPorExpresion(String expresion, Libreria libreria) {
         try {
             BusquedaPorExpresion busquedaPorExpresion = new BusquedaPorExpresion();
-            return busquedaPorExpresion.buscar(bTree, libreria);
+            return busquedaPorExpresion.buscar(expresion, libreria);
         } catch (Exception e) {
             System.out.println("Ha habido un error en la busqueda por expresion");
             e.printStackTrace();
