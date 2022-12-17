@@ -27,7 +27,6 @@ public class VentInfoAlia extends javax.swing.JFrame {
             @Override
             public void windowClosing(WindowEvent e) {
                 dispose();
-                framePrincipal.closeAñadirAlia();
             }
         });
     }

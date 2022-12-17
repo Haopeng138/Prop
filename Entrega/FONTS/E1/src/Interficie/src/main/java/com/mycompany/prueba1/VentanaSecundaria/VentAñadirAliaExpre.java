@@ -4,18 +4,33 @@
  */
 package com.mycompany.prueba1.VentanaSecundaria;
 
+import com.mycompany.prueba1.Busquedas.ListarPorExpresion;
 import com.mycompany.prueba1.FramePrincipal;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
+import javax.swing.WindowConstants;
 
 public class VentAñadirAliaExpre extends javax.swing.JFrame {
     private FramePrincipal framePrincipal;
+    private ListarPorExpresion listaPorExpresion;
     /**
      * Creates new form VentAñadirAliaExpre
      * @param framePrincipal
+     * @param listaPorExpresion
      */
-    public VentAñadirAliaExpre(FramePrincipal framePrincipal) {
+    public VentAñadirAliaExpre(FramePrincipal framePrincipal,ListarPorExpresion listaPorExpresion) {
         this.framePrincipal = framePrincipal;
         initComponents();
+        this.listaPorExpresion = listaPorExpresion;
+        this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                dispose();
+                listaPorExpresion.closeAñadirAliaExpre();
+            }
+        });
     }
 
     /**
@@ -106,7 +121,7 @@ public class VentAñadirAliaExpre extends javax.swing.JFrame {
     private void ButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCancelarActionPerformed
         // TODO cancelar :
         dispose();
-        framePrincipal.closeAñadirAliaExpre();
+        listaPorExpresion.closeAñadirAliaExpre();
     }//GEN-LAST:event_ButtonCancelarActionPerformed
 
 

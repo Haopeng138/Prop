@@ -27,7 +27,7 @@ public class VentInfoDoc extends javax.swing.JFrame {
             @Override
             public void windowClosing(WindowEvent e) {
                 dispose();
-                framePrincipal.closeAñadirAlia();
+                
             }
         });
     }
@@ -70,6 +70,11 @@ public class VentInfoDoc extends javax.swing.JFrame {
         jTextField2.setEditable(false);
 
         ButtonSalir.setText("Salir");
+        ButtonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonSalirActionPerformed(evt);
+            }
+        });
 
         ButtonGuardar.setText("Guardar");
 
@@ -145,6 +150,11 @@ public class VentInfoDoc extends javax.swing.JFrame {
         VentSelectFormato selectForm = new VentSelectFormato(this.framePrincipal);
         selectForm.setVisible(true);
     }//GEN-LAST:event_ButtonExportarActionPerformed
+
+    private void ButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSalirActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_ButtonSalirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -18,7 +18,6 @@ import com.mycompany.prueba1.Items.ItemDocumento;
 import com.mycompany.prueba1.Items.ItemTitulo;
 import com.mycompany.prueba1.Items.PanelInfoAlia;
 import com.mycompany.prueba1.Items.PanelInfoDoc;
-import com.mycompany.prueba1.VentanaSecundaria.VentAñadirAliaExpre;
 import com.mycompany.prueba1.VentanaSecundaria.VentNuevoDocumentoFrame;
 import java.awt.CardLayout;
 import java.io.File;
@@ -42,7 +41,6 @@ public class FramePrincipal extends javax.swing.JFrame {
     private VentAñadirAliaPrin añadirAliaPrinFrame;
     private VentEliminarAliaPrin eliminarAliaPrinFrame;
     private VentModificarAliaPrin modificarAliaPrinFrame;
-    private VentAñadirAliaExpre añadirAliaExpreFrame;
 
     
     public FramePrincipal() {
@@ -88,7 +86,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         PanelItems.removeAll();
         JPanel tmpPanel = new JPanel();
         tmpPanel.setLayout(new BoxLayout(tmpPanel, BoxLayout.Y_AXIS));
-        tmpPanel.add(new ItemContenido(content));
+        tmpPanel.add(new ItemContenido(this,content));
         JScrollPane pane = new JScrollPane(tmpPanel);
         PanelItems.add(pane);
         PanelItems.setVisible(true);
@@ -142,10 +140,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     public void closeModificarAlia(){
         modificarAliaPrinFrame = null;
     }
-    
-    public void closeAñadirAliaExpre(){
-        añadirAliaExpreFrame = null;
-    }
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -477,7 +472,7 @@ public class FramePrincipal extends javax.swing.JFrame {
                 //System.out.print("Algo");
                 //modificarAliaPrinFrame.AñadirA(a);
                 //System.out.print("Algo");
-                modelo.reload();
+                //modelo.reload();
                 
         }
         return true;
@@ -495,7 +490,10 @@ public class FramePrincipal extends javax.swing.JFrame {
                 d.add(documento);
                 //eliminarAliaPrinFrame.AñadirA(a);
                 //modificarAliaPrinFrame.AñadirA(a);
+                
                 modelo.reload();
+                
+                
         }
         return true;
     }

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 public class ListarPorExpresion extends javax.swing.JPanel {
      private final FramePrincipal framePrincipal;
+     private VentAñadirAliaExpre ventAñadirAliaExpre;
     /**
      * Creates new form ListarPorExpresion
      */
@@ -26,6 +27,9 @@ public class ListarPorExpresion extends javax.swing.JPanel {
     private boolean firstA = true;
     private boolean firstE = true;
     
+    public void closeAñadirAliaExpre(){
+        ventAñadirAliaExpre = null;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -201,14 +205,14 @@ public class ListarPorExpresion extends javax.swing.JPanel {
 
     private void ButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonGuardarActionPerformed
         // TODO add your handling code here:
-        VentAñadirAliaExpre ventAñadirAliaExpre = new VentAñadirAliaExpre(this.framePrincipal); 
+        ventAñadirAliaExpre = new VentAñadirAliaExpre(this.framePrincipal,this); 
         ventAñadirAliaExpre.setVisible(true);
         
     }//GEN-LAST:event_ButtonGuardarActionPerformed
 
     private void ButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBuscarActionPerformed
         // TODO add your handling code here:
-        ArrayList<DocumentHeaderDemo> documentHeaders = new ArrayList<DocumentHeaderDemo>();
+        ArrayList<DocumentHeaderDemo> documentHeaders = new ArrayList<>();
         documentHeaders.add(new DocumentHeaderDemo("auto","tile"));
         documentHeaders.add(new DocumentHeaderDemo("autosgf","tilfdgsfde"));
         documentHeaders.add(new DocumentHeaderDemo("autogfdsg","tgfdigdfgle"));

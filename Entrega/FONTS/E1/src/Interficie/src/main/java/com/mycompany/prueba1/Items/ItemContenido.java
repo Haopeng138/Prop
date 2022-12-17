@@ -4,19 +4,24 @@
  */
 package com.mycompany.prueba1.Items;
 
+import com.mycompany.prueba1.FramePrincipal;
+
 /**
  *
  * @author linhaopeng
  */
 public class ItemContenido extends javax.swing.JPanel {
-
+    private FramePrincipal framePrincipal;
     /**
      * Creates new form ContenidoItem
+     * @param framePrincipal
      * @param content
      */
-    public ItemContenido(String content) {
+    public ItemContenido(FramePrincipal framePrincipal,String content) {
+        this.framePrincipal = framePrincipal;
         initComponents();
         jTextArea1.setText(content);
+        
     }
 
     /**

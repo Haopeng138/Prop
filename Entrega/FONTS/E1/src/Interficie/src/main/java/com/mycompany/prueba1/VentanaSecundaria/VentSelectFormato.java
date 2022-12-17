@@ -5,6 +5,9 @@
 package com.mycompany.prueba1.VentanaSecundaria;
 
 import com.mycompany.prueba1.FramePrincipal;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import javax.swing.WindowConstants;
 
 /**
  *
@@ -19,6 +22,14 @@ public class VentSelectFormato extends javax.swing.JFrame {
     public VentSelectFormato(FramePrincipal framePrincipal) {
         this.framePrincipal = framePrincipal;
         initComponents();
+        this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                dispose();
+               
+            }
+        });
     }
 
     /**

@@ -15,10 +15,12 @@ public class ItemDocumento extends javax.swing.JPanel {
     private FramePrincipal framePrincipal;
     /**
      * Creates new form DocumentManage
+     * @param framePrincipal
      * @param autor
      * @param titulo
      */
-    public ItemDocumento(FramePrincipal framePrincipa,String autor,String titulo) {
+    public ItemDocumento(FramePrincipal framePrincipal,String autor,String titulo) {
+        this.framePrincipal = framePrincipal;
         initComponents();
         NombreAutor.setText(autor);
         Titulo.setText(titulo);

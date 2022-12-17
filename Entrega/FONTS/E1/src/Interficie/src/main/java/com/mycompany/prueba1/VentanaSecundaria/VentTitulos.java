@@ -6,11 +6,14 @@ package com.mycompany.prueba1.VentanaSecundaria;
 
 import com.mycompany.prueba1.FramePrincipal;
 import com.mycompany.prueba1.Items.ItemTitulo;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
+import javax.swing.WindowConstants;
 
 /**
  *
@@ -28,6 +31,14 @@ public class VentTitulos extends javax.swing.JFrame {
         initComponents();
         this.framePrincipal = framePrincipal;
         titllist(titles);
+        this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                dispose();
+ 
+            }
+        });
     }
     
     private void titllist(ArrayList<String> titles){
@@ -53,16 +64,16 @@ public class VentTitulos extends javax.swing.JFrame {
     private void initComponents() {
 
         PanelItems = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        ButtonSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         PanelItems.setLayout(new javax.swing.BoxLayout(PanelItems, javax.swing.BoxLayout.Y_AXIS));
 
-        jButton1.setText("Salir");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        ButtonSalir.setText("Salir");
+        ButtonSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                ButtonSalirActionPerformed(evt);
             }
         });
 
@@ -76,7 +87,7 @@ public class VentTitulos extends javax.swing.JFrame {
                     .addComponent(PanelItems, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 341, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
+                        .addComponent(ButtonSalir)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -85,21 +96,22 @@ public class VentTitulos extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(PanelItems, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(ButtonSalir)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void ButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSalirActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+       dispose();
+    }//GEN-LAST:event_ButtonSalirActionPerformed
 
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ButtonSalir;
     private javax.swing.JPanel PanelItems;
-    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }
