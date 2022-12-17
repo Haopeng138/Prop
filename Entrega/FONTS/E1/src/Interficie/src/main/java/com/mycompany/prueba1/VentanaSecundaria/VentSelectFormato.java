@@ -27,7 +27,6 @@ public class VentSelectFormato extends javax.swing.JFrame {
             @Override
             public void windowClosing(WindowEvent e) {
                 dispose();
-               
             }
         });
     }
@@ -61,6 +60,11 @@ public class VentSelectFormato extends javax.swing.JFrame {
         ButtonAceptar.setText("Aceptar");
 
         ButtonCancelar.setText("Cancelar");
+        ButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -104,6 +108,11 @@ public class VentSelectFormato extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void ButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCancelarActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_ButtonCancelarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -21,8 +21,11 @@ public class ListarPorExpresion extends javax.swing.JPanel {
     public ListarPorExpresion(FramePrincipal framePrincipal) {
         initComponents();
         this.framePrincipal = framePrincipal;
-        //v = new VentAñadirAliaExpre();
-        //this.add(v);
+        ArrayList<String> combo = framePrincipal.getAlias();
+        AliasExist.removeAllItems();
+        for (String c :combo){
+            AliasExist.addItem(c);
+        }
     }
     private boolean firstA = true;
     private boolean firstE = true;
@@ -156,8 +159,8 @@ public class ListarPorExpresion extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void AliasExistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AliasExistActionPerformed
-                // TODO add your handling code here:
-                AliasExist.removeAll();
+        // TODO add your handling code here:
+        AliasExist.removeAll();
     }//GEN-LAST:event_AliasExistActionPerformed
 
     private void NombreAutorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NombreAutorMousePressed

@@ -15,6 +15,8 @@ import java.util.Arrays;
  */
 public class ItemAutor extends javax.swing.JPanel {
     private FramePrincipal framePrincipal;
+    
+    private VentTitulos titulosframe = null;
     /**
      * Creates new form AutorItem
      * @param framePrincipal
@@ -25,7 +27,7 @@ public class ItemAutor extends javax.swing.JPanel {
         NombreAutor.setText(Autor);
         this.framePrincipal = framePrincipal;
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -78,14 +80,17 @@ public class ItemAutor extends javax.swing.JPanel {
     private void ButtonVerObrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonVerObrasActionPerformed
         // TODO add your handling code here:
         ArrayList<String> titulos = new ArrayList<>(Arrays.asList("La nave", "tres cuerpos", "sobrevivir","34","4234","La nave", "tres cuerpos", "sobrevivir","34","4234","La nave", "tres cuerpos", "sobrevivir","34","4234","La nave", "tres cuerpos", "sobrevivir","34","4234"));
-               
-        VentTitulos titulosframe = new VentTitulos(this.framePrincipal,"autor1",titulos);
-        titulosframe.setVisible(true);
         
-        //Center the frame
-        titulosframe.setLocationRelativeTo(null);
+        if (titulosframe == null ){
+            titulosframe = new VentTitulos(this.framePrincipal,"autor1",titulos);
+            titulosframe.setVisible(true);
+            //Center the frame
+            titulosframe.setLocationRelativeTo(null);
+        }
+        
+        
     }//GEN-LAST:event_ButtonVerObrasActionPerformed
-
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AutorLabel;

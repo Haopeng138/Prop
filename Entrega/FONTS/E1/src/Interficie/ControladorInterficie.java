@@ -14,4 +14,7 @@ public class ControladorInterficie {
          this.framePrincipal = new FramePrincipal();
          this.framePrincipal.setVisible(true);
     }
+    public void getDocument(){
+        ctrl_domini.getDocumentos();
+    }
 }
