@@ -12,11 +12,17 @@ public class Libreria {
     Autores autores;
     Documentos documentos;
 
+    /**
+     * Constructora
+     */
     public Libreria() {
         autores = new Autores();
         documentos = new Documentos();
     }
 
+    /**
+     * @param documentos Los documentos que añadir a la libreria
+     */
     public Libreria(Documento[] documentos) {
 
         for (Documento documento : documentos) {
@@ -29,6 +35,9 @@ public class Libreria {
         }
     }
 
+    /**
+     * @return Los documentos que estan en la libreria
+     */
     public Documento[] getDocumentos() {
         ArrayList<Documento> documentos = new ArrayList<>();
         autores.getIdx().forEach((autor, setTitulos) -> {
@@ -47,6 +56,34 @@ public class Libreria {
         return docs;
     }
 
+    /**
+     * @return Los documentHeaders de los documentos que estan en la libreria
+     */
+    public DocumentHeader[] getDocumentHeaders() {
+        ArrayList<DocumentHeader> documentHeaders = new ArrayList<>();
+        autores.getIdx().forEach((autor, setTitulos) -> {
+            setTitulos.forEach(titulo -> {
+                documentHeaders.add(new DocumentHeader(autor, titulo));
+            });
+        });
+        DocumentHeader[] headers = new DocumentHeader[documentHeaders.size()];
+        headers = documentHeaders.toArray(headers);
+        return headers;
+    }
+
+    /**
+     * @param autor El autor al que consultar su numero de documentos
+     * @return El numero de documentos del autor
+     */
+    public int getNumDocumentos(Autor autor) {
+        return autores.getNumDocumentos(autor);
+    }
+
+    /**
+     * @param a El nombre del autor del que crear el documento
+     * @param t El titulo del documento a crear
+     * @param contenido El contenido del documento a crear
+     */
     public void createDocumento(String a, String t, String contenido) {
         if (a == "") {
             System.out.println("El autor no puede ser vacio");
@@ -66,6 +103,11 @@ public class Libreria {
         documentos.add(documento);
     }
 
+    /**
+     * @param a El nombre del autor del documento que recuperar
+     * @param t El titulo del documento que recuperar
+     * @return El documento
+     */
     public Documento getDocumento(String a, String t) {
         DocumentHeader header = new DocumentHeader(a, t);
         try {
@@ -77,6 +119,10 @@ public class Libreria {
         }
     }
 
+    /**
+     * @param header El header del documento a recupear
+     * @return El documento
+     */
     public Documento getDocumento(DocumentHeader header) {
         try {
             int idx = autores.getDocumentIdx(header);
@@ -87,6 +133,10 @@ public class Libreria {
         }
     }
 
+    /**
+     * @param a El autor del documento a borrar
+     * @param t El titulo del documento a borrar
+     */
     public void removeDocumento(String a, String t) {
         DocumentHeader header = new DocumentHeader(a, t);
         try {
@@ -98,6 +148,11 @@ public class Libreria {
         }
     }
 
+    /**
+     * @param a El autor del documento a modificar
+     * @param t El titulo del documento a modificar
+     * @param contenido El nuevo contenido
+     */
     public void modifyDocumento(String a, String t, String contenido) {
         DocumentHeader header = new DocumentHeader(a, t);
         try {
@@ -109,6 +164,11 @@ public class Libreria {
         }
     }
 
+    /**
+     * @param a El nombre del autor del documento que recuperar el contenido
+     * @param t El titulo del documento que recuperar el contenido
+     * @return El contenido del documento
+     */
     public String getContent(String a, String t) {
         try {
             DocumentHeader header = new DocumentHeader(a, t);
@@ -120,22 +180,40 @@ public class Libreria {
         }
     }
 
+    /**
+     * @return Los autores que hay en la libreria
+     */
     public ArrayList<Autor> getAutores() {
         return autores.getAutores();
     }
 
+    /**
+     * @return Un set ordenado de los autores que hay en la libreria
+     */
     public TreeSet<Autor> getOrderedAutores() {
         return autores.getOrderedAutores();
     }
 
+    /**
+     * @param a El autor a consultar sus titulo
+     * @return Los titulos del autor
+     */
     public ArrayList<Titulo> getTitles(String a) {
         return autores.getTitles(a);
     }
 
+    /**
+     * @return Un indice de autor, [titulos]
+     */
     public TreeMap<Autor, HashSet<Titulo>> getIdx() {
         return autores.getIdx();
     }
 
+    /**
+     * @param documentHeader El header de un documento
+     * @param word Una palabra
+     * @return Si el documento tiene la palabra
+     */
     public Boolean tienePalabra(DocumentHeader documentHeader, String word) {
         try {
             int idx = autores.getDocumentIdx(documentHeader);
@@ -147,6 +225,11 @@ public class Libreria {
         }
     }
 
+    /**
+     * @param documentHeader El header del documento
+     * @param toMatch Una String
+     * @return Si el documento contiene esta string
+     */
     public Boolean tieneString(DocumentHeader documentHeader, String toMatch) {
         try {
             int idx = autores.getDocumentIdx(documentHeader);
@@ -158,6 +241,11 @@ public class Libreria {
         }
     }
 
+    /**
+     * @param header El header del documento
+     * @param toCompare El header de otro documento
+     * @return La similitud entre ambos documentos
+     */
     public double computeSimilarity(DocumentHeader header, DocumentHeader toCompare) {
         try {
             int idx1 = autores.getDocumentIdx(header);
@@ -171,4 +259,5 @@ public class Libreria {
             return -1;
         }
     }
+
 }
