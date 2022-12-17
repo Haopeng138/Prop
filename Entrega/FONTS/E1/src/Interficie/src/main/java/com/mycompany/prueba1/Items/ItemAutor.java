@@ -4,19 +4,26 @@
  */
 package com.mycompany.prueba1.Items;
 
+import com.mycompany.prueba1.FramePrincipal;
+import com.mycompany.prueba1.VentanaSecundaria.VentTitulos;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  *
  * @author linhaopeng
  */
 public class ItemAutor extends javax.swing.JPanel {
-    
+    private FramePrincipal framePrincipal;
     /**
      * Creates new form AutorItem
+     * @param framePrincipal
      * @param Autor
      */
-    public ItemAutor(String Autor) {
+    public ItemAutor(FramePrincipal framePrincipal,String Autor) {
         initComponents();
         NombreAutor.setText(Autor);
+        this.framePrincipal = framePrincipal;
     }
 
     /**
@@ -37,6 +44,11 @@ public class ItemAutor extends javax.swing.JPanel {
         NombreAutor.setText("jLabel2");
 
         ButtonVerObras.setText("Ver Sus Obras");
+        ButtonVerObras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonVerObrasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -62,6 +74,17 @@ public class ItemAutor extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void ButtonVerObrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonVerObrasActionPerformed
+        // TODO add your handling code here:
+        ArrayList<String> titulos = new ArrayList<>(Arrays.asList("La nave", "tres cuerpos", "sobrevivir","34","4234","La nave", "tres cuerpos", "sobrevivir","34","4234","La nave", "tres cuerpos", "sobrevivir","34","4234","La nave", "tres cuerpos", "sobrevivir","34","4234"));
+               
+        VentTitulos titulosframe = new VentTitulos(this.framePrincipal,"autor1",titulos);
+        titulosframe.setVisible(true);
+        
+        //Center the frame
+        titulosframe.setLocationRelativeTo(null);
+    }//GEN-LAST:event_ButtonVerObrasActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

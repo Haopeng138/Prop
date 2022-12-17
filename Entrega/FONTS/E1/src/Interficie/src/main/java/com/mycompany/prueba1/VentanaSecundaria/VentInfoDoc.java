@@ -48,10 +48,10 @@ public class VentInfoDoc extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        ButtonSalir = new javax.swing.JButton();
+        ButtonGuardar = new javax.swing.JButton();
+        ButtonExportar = new javax.swing.JButton();
+        ButtonEliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -69,13 +69,18 @@ public class VentInfoDoc extends javax.swing.JFrame {
 
         jTextField2.setEditable(false);
 
-        jButton1.setText("Salir");
+        ButtonSalir.setText("Salir");
 
-        jButton2.setText("Guardar");
+        ButtonGuardar.setText("Guardar");
 
-        jButton3.setText("Exportar");
+        ButtonExportar.setText("Exportar");
+        ButtonExportar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonExportarActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("Eliminar");
+        ButtonEliminar.setText("Eliminar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -96,13 +101,13 @@ public class VentInfoDoc extends javax.swing.JFrame {
                             .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton4)
+                        .addComponent(ButtonEliminar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3)
+                        .addComponent(ButtonExportar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)
+                        .addComponent(ButtonGuardar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)))
+                        .addComponent(ButtonSalir)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -122,10 +127,10 @@ public class VentInfoDoc extends javax.swing.JFrame {
                         .addComponent(jScrollPane1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton3)
-                            .addComponent(jButton2)
-                            .addComponent(jButton1)
-                            .addComponent(jButton4))
+                            .addComponent(ButtonExportar)
+                            .addComponent(ButtonGuardar)
+                            .addComponent(ButtonSalir)
+                            .addComponent(ButtonEliminar))
                         .addGap(12, 12, 12))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
@@ -135,12 +140,18 @@ public class VentInfoDoc extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void ButtonExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonExportarActionPerformed
+        // TODO add your handling code here:
+        VentSelectFormato selectForm = new VentSelectFormato(this.framePrincipal);
+        selectForm.setVisible(true);
+    }//GEN-LAST:event_ButtonExportarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton ButtonEliminar;
+    private javax.swing.JButton ButtonExportar;
+    private javax.swing.JButton ButtonGuardar;
+    private javax.swing.JButton ButtonSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

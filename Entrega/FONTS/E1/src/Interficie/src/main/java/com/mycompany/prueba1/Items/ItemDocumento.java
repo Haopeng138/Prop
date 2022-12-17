@@ -4,18 +4,21 @@
  */
 package com.mycompany.prueba1.Items;
 
+import com.mycompany.prueba1.FramePrincipal;
+import com.mycompany.prueba1.VentanaSecundaria.VentInfoDoc;
+
 /**
  *
  * @author linhaopeng
  */
 public class ItemDocumento extends javax.swing.JPanel {
-
+    private FramePrincipal framePrincipal;
     /**
      * Creates new form DocumentManage
      * @param autor
      * @param titulo
      */
-    public ItemDocumento(String autor,String titulo) {
+    public ItemDocumento(FramePrincipal framePrincipa,String autor,String titulo) {
         initComponents();
         NombreAutor.setText(autor);
         Titulo.setText(titulo);
@@ -35,7 +38,7 @@ public class ItemDocumento extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         NombreAutor = new javax.swing.JLabel();
         Titulo = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        ButtonVer = new javax.swing.JButton();
 
         AutorLabel.setText("Autor:");
 
@@ -47,7 +50,12 @@ public class ItemDocumento extends javax.swing.JPanel {
 
         Titulo.setText("jLabel4");
 
-        jButton3.setText("Ver");
+        ButtonVer.setText("Ver");
+        ButtonVer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonVerActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -63,7 +71,7 @@ public class ItemDocumento extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Titulo)
                 .addGap(204, 204, 204)
-                .addComponent(jButton3)
+                .addComponent(ButtonVer)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
                 .addContainerGap())
@@ -78,18 +86,26 @@ public class ItemDocumento extends javax.swing.JPanel {
                     .addComponent(Titulo)
                     .addComponent(TituloLabel)
                     .addComponent(jButton1)
-                    .addComponent(jButton3))
+                    .addComponent(ButtonVer))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void ButtonVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonVerActionPerformed
+        // TODO add your handling code here:
+        VentInfoDoc infoDoc = new VentInfoDoc(this.framePrincipal);
+        infoDoc.setVisible(true);
+        //Center the frame
+        infoDoc.setLocationRelativeTo(null);
+    }//GEN-LAST:event_ButtonVerActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AutorLabel;
+    private javax.swing.JButton ButtonVer;
     private javax.swing.JLabel NombreAutor;
     private javax.swing.JLabel Titulo;
     private javax.swing.JLabel TituloLabel;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     // End of variables declaration//GEN-END:variables
 }

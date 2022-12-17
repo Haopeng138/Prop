@@ -16,9 +16,9 @@ import com.mycompany.prueba1.Items.ItemAutor;
 import com.mycompany.prueba1.Items.ItemContenido;
 import com.mycompany.prueba1.Items.ItemDocumento;
 import com.mycompany.prueba1.Items.ItemTitulo;
+import com.mycompany.prueba1.Items.PanelInfoAlia;
+import com.mycompany.prueba1.Items.PanelInfoDoc;
 import com.mycompany.prueba1.VentanaSecundaria.VentAñadirAliaExpre;
-import com.mycompany.prueba1.VentanaSecundaria.VentInfoAlia;
-import com.mycompany.prueba1.VentanaSecundaria.VentInfoDoc;
 import com.mycompany.prueba1.VentanaSecundaria.VentNuevoDocumentoFrame;
 import java.awt.CardLayout;
 import java.io.File;
@@ -43,34 +43,9 @@ public class FramePrincipal extends javax.swing.JFrame {
     private VentEliminarAliaPrin eliminarAliaPrinFrame;
     private VentModificarAliaPrin modificarAliaPrinFrame;
     private VentAñadirAliaExpre añadirAliaExpreFrame;
-    /**
-     * Creates new form framePrueba
-     */
-   
+
     
-    /*
-    // TODO: Return type change after merge with CDominio 
-    
-    //Similud & Expresion
-    ArrayList<String> documentheaders;
-    
-    //Prefijo 
-    ArrayList<String> authors;
-    
-    //Titulos
-    ArrayList<String> titulos;
-    
-    //Contenido 
-    String contenido;
-    */
     public FramePrincipal() {
-        /* Can´t add windows to fram
-        aA = new VentAñadirAliaPrin();
-        eA = new VentEliminarAliaPrin();
-        mA = new VentModificarAliaPrin();
-        this.add(aA);
-        this.add(eA);
-        this.add(mA);*/
         this.setExtendedState(JFrame.MAXIMIZED_BOTH); 
         initComponents();
     }
@@ -100,7 +75,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         JPanel tmpPanel = new JPanel();
         tmpPanel.setLayout(new BoxLayout(tmpPanel, BoxLayout.Y_AXIS));
         for(int i = 0; i< authors.size(); i++ ){
-            tmpPanel.add(new ItemAutor(authors.get(i)));
+            tmpPanel.add(new ItemAutor(this,authors.get(i)));
         }
         JScrollPane pane = new JScrollPane(tmpPanel);
         PanelItems.add(pane);
@@ -125,7 +100,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         JPanel tmpPanel = new JPanel();
         tmpPanel.setLayout(new BoxLayout(tmpPanel, BoxLayout.Y_AXIS));
         for(int i = 0; i< titles.size(); i++ ){
-            tmpPanel.add(new ItemTitulo(titles.get(i)));
+            tmpPanel.add(new ItemTitulo(this,titles.get(i)));
         }
         JScrollPane pane = new JScrollPane(tmpPanel);
         PanelItems.add(pane);
@@ -144,7 +119,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         for(int i = 0; i< documentHeaders.size(); i++ ){
             String author = documentHeaders.get(i).author;
             String title = documentHeaders.get(i).title;
-            tmpPanel.add(new ItemDocumento(author,title));
+            tmpPanel.add(new ItemDocumento(this,author,title));
         }
         JScrollPane pane = new JScrollPane(tmpPanel);
         PanelItems.add(pane);
@@ -428,18 +403,21 @@ public class FramePrincipal extends javax.swing.JFrame {
        
         DefaultMutableTreeNode parent = (DefaultMutableTreeNode)selectedNode.getParent();
         String opt = parent.getUserObject().toString();
+        PanelItems.removeAll();
         switch (opt) {
             case "Alias":
-                VentInfoAlia infoAlia = new VentInfoAlia(this);
-                infoAlia.show();
+                PanelInfoAlia infoAlia = new PanelInfoAlia(this);
+                PanelItems.add(infoAlia);
                 break;
             case "Documentos":
-                VentInfoDoc infoDoc = new VentInfoDoc(this);
-                infoDoc.show();
+                PanelInfoDoc infoDoc = new PanelInfoDoc(this);
+                PanelItems.add(infoDoc);
                 break;
             default:
                 break;
         }
+        PanelItems.setVisible(true);
+        SwingUtilities.updateComponentTreeUI(this);
     }//GEN-LAST:event_jTree1MouseClicked
 
     /**
@@ -523,7 +501,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     }
     
     
-    public void eliminarA(String a, int idx,String jcombo) {
+    public void eliminarA(String a, int idx) {
         DefaultMutableTreeNode alia = null;
         DefaultTreeModel modelo = (DefaultTreeModel)jTree1.getModel();
         DefaultMutableTreeNode c = (DefaultMutableTreeNode) jTree1.getModel().getRoot();

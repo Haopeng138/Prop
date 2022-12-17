@@ -3,8 +3,8 @@
   <component name="CompilerConfiguration">
     <option name="USE_RELEASE_OPTION" value="false" />
     <excludeFromCompile>
-      <file url="file://$PROJECT_DIR$/Entrega1/FONTS/E1/test/Dominio/Logica/BusquedaPorExpresionTest.java" />
-      <file url="file://$PROJECT_DIR$/Entrega1/FONTS/E1/test/Dominio/Expresion/ParserTest.java" />
+      <file url="file://$PROJECT_DIR$/Entrega/FONTS/E1/test/Dominio/Logica/BusquedaPorExpresionTest.java" />
+      <file url="file://$PROJECT_DIR$/Entrega/FONTS/E1/test/Dominio/Expresion/ParserTest.java" />
     </excludeFromCompile>
     <bytecodeTargetLevel target="11" />
   </component>

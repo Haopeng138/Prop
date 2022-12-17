@@ -4,15 +4,23 @@
  */
 package com.mycompany.prueba1.Items;
 
-public class PanelInfoAlia extends javax.swing.JPanel {
+import com.mycompany.prueba1.FramePrincipal;
+import javax.swing.JOptionPane;
 
+public class PanelInfoAlia extends javax.swing.JPanel {
+    private FramePrincipal framePrincipal;
     /**
      * Creates new form PanelInfoAlia
+     * @param framePrincipal
      */
-    public PanelInfoAlia() {
+    public PanelInfoAlia(FramePrincipal framePrincipal) {
+        this.framePrincipal = framePrincipal;
         initComponents();
     }
 
+    public void setText(String doc) {
+        jTextField1.setText(doc);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,6 +42,11 @@ public class PanelInfoAlia extends javax.swing.JPanel {
         jLabel5.setText("Nombre de alia:");
 
         ButtonCancelar1.setText("Cancelar");
+        ButtonCancelar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonCancelar1ActionPerformed(evt);
+            }
+        });
 
         ButtonEliminar.setText("Modificar");
 
@@ -46,6 +59,11 @@ public class PanelInfoAlia extends javax.swing.JPanel {
         jTextField1.setEditable(false);
 
         ButtonEliminar1.setText("Eliminar");
+        ButtonEliminar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonEliminar1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -97,6 +115,21 @@ public class PanelInfoAlia extends javax.swing.JPanel {
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {ButtonCancelar1, ButtonEliminar, ButtonEliminar1});
 
     }// </editor-fold>//GEN-END:initComponents
+
+    private void ButtonCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCancelar1ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_ButtonCancelar1ActionPerformed
+
+    private void ButtonEliminar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonEliminar1ActionPerformed
+        // TODO add your handling code here:
+        int reply = JOptionPane.showConfirmDialog(null, "Seguro que quieres eliminar?", "", JOptionPane.YES_NO_OPTION);
+        if (reply == JOptionPane.YES_OPTION) {
+            String d = jTextField1.getText();
+            framePrincipal.eliminarA(d, 1);
+            this.setVisible(false);
+        } 
+    }//GEN-LAST:event_ButtonEliminar1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

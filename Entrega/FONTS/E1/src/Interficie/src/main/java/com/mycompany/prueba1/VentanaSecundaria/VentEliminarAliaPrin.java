@@ -143,7 +143,7 @@ public class VentEliminarAliaPrin extends javax.swing.JFrame {
     private void ButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonEliminarActionPerformed
        
         
-        framePrincipal.eliminarA((String)ComboAlias.getSelectedItem().toString(),1,(String)ComboAlias.getSelectedItem());
+        framePrincipal.eliminarA((String)ComboAlias.getSelectedItem().toString(),1);
         framePrincipal.closeEliminarAlia();
         //ComboAlias.remove(ComboAlias.getSelectedIndex());
       

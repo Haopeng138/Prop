@@ -4,19 +4,25 @@
  */
 package com.mycompany.prueba1.Items;
 
+import com.mycompany.prueba1.FramePrincipal;
+import com.mycompany.prueba1.VentanaSecundaria.VentInfoDoc;
+
 /**
  *
  * @author linhaopeng
  */
 public class ItemTitulo extends javax.swing.JPanel {
-
+    private FramePrincipal framePrincipal;
     /**
      * Creates new form TituloItem
+     * @param framePrincipal
      * @param titulo
      */
-    public ItemTitulo(String titulo) {
+    public ItemTitulo(FramePrincipal framePrincipal,String titulo) {
+        
         initComponents();
         jLabel2.setText(titulo);
+        this.framePrincipal = framePrincipal;
     }
 
     /**
@@ -31,7 +37,7 @@ public class ItemTitulo extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        ButtonVer = new javax.swing.JButton();
 
         jLabel1.setText("Titulo:");
 
@@ -44,10 +50,10 @@ public class ItemTitulo extends javax.swing.JPanel {
             }
         });
 
-        jButton3.setText("Ver");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        ButtonVer.setText("Ver");
+        ButtonVer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                ButtonVerActionPerformed(evt);
             }
         });
 
@@ -61,7 +67,7 @@ public class ItemTitulo extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 361, Short.MAX_VALUE)
-                .addComponent(jButton3)
+                .addComponent(ButtonVer)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
                 .addContainerGap())
@@ -74,7 +80,7 @@ public class ItemTitulo extends javax.swing.JPanel {
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
                     .addComponent(jButton1)
-                    .addComponent(jButton3))
+                    .addComponent(ButtonVer))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -83,14 +89,18 @@ public class ItemTitulo extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void ButtonVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonVerActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+        VentInfoDoc infoDoc = new VentInfoDoc(this.framePrincipal);
+        infoDoc.setVisible(true);
+        //Center the frame
+        infoDoc.setLocationRelativeTo(null);
+    }//GEN-LAST:event_ButtonVerActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ButtonVer;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables

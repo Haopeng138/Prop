@@ -4,19 +4,27 @@
  */
 package com.mycompany.prueba1.Items;
 
+import com.mycompany.prueba1.FramePrincipal;
+import com.mycompany.prueba1.VentanaSecundaria.VentSelectFormato;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author flors
  */
-
-// TODO: Eliminar esta clase, se ha pasado como frame
 public class PanelInfoDoc extends javax.swing.JPanel {
-
+    private FramePrincipal framePrincipal;
     /**
      * Creates new form PanelInfoDoc
+     * @param framePrincipal
      */
-    public PanelInfoDoc() {
+    public PanelInfoDoc(FramePrincipal framePrincipal) {
+        this.framePrincipal = framePrincipal;
         initComponents();
+    }
+    
+    public void setText(String doc) {
+        Titulo.setText(doc);
     }
 
     /**
@@ -31,14 +39,14 @@ public class PanelInfoDoc extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        Titulo = new javax.swing.JTextField();
+        NombreAutor = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        Contenido = new javax.swing.JTextArea();
+        ButtonCancelar = new javax.swing.JButton();
+        ButtonGuardar = new javax.swing.JButton();
+        ButtonExportar = new javax.swing.JButton();
+        ButtonEliminar = new javax.swing.JButton();
 
         jLabel1.setText("Título:");
 
@@ -46,21 +54,46 @@ public class PanelInfoDoc extends javax.swing.JPanel {
 
         jLabel3.setText("Contenido:");
 
-        jTextField1.setEditable(false);
+        Titulo.setEditable(false);
+        Titulo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TituloActionPerformed(evt);
+            }
+        });
 
-        jTextField2.setEditable(false);
+        NombreAutor.setEditable(false);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        Contenido.setColumns(20);
+        Contenido.setRows(5);
+        jScrollPane1.setViewportView(Contenido);
 
-        jButton1.setText("Salir");
+        ButtonCancelar.setText("Cancelar");
+        ButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonCancelarActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Guardar");
+        ButtonGuardar.setText("Guardar");
+        ButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonGuardarActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Exportar");
+        ButtonExportar.setText("Exportar");
+        ButtonExportar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonExportarActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("Eliminar");
+        ButtonEliminar.setText("Eliminar");
+        ButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -76,22 +109,22 @@ public class PanelInfoDoc extends javax.swing.JPanel {
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField2)
+                            .addComponent(NombreAutor)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addComponent(Titulo, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton4)
+                        .addComponent(ButtonEliminar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3)
+                        .addComponent(ButtonExportar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)
+                        .addComponent(ButtonGuardar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)))
+                        .addComponent(ButtonCancelar)))
                 .addContainerGap())
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton1, jButton2, jButton3, jButton4});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {ButtonCancelar, ButtonEliminar, ButtonExportar, ButtonGuardar});
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel1, jLabel2, jLabel3});
 
@@ -101,45 +134,85 @@ public class PanelInfoDoc extends javax.swing.JPanel {
                 .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(NombreAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton3)
-                            .addComponent(jButton2)
-                            .addComponent(jButton1)
-                            .addComponent(jButton4))
-                        .addGap(12, 12, 12))
+                            .addComponent(ButtonExportar)
+                            .addComponent(ButtonGuardar)
+                            .addComponent(ButtonCancelar)
+                            .addComponent(ButtonEliminar))
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton1, jButton2, jButton3, jButton4});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {ButtonCancelar, ButtonEliminar, ButtonExportar, ButtonGuardar});
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel1, jLabel2, jLabel3, jTextField2});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {NombreAutor, jLabel1, jLabel2, jLabel3});
 
     }// </editor-fold>//GEN-END:initComponents
 
+    private void ButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCancelarActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_ButtonCancelarActionPerformed
+
+    private void ButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonEliminarActionPerformed
+        // TODO add your handling code here:
+        
+        int reply = JOptionPane.showConfirmDialog(null, "Seguro que quieres eliminar?", "", JOptionPane.YES_NO_OPTION);
+        if (reply == JOptionPane.YES_OPTION) {
+            String d = Titulo.getText();
+            framePrincipal.eliminarA(d, 0);
+            this.setVisible(false);
+        } 
+    }//GEN-LAST:event_ButtonEliminarActionPerformed
+
+    private void ButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonGuardarActionPerformed
+        // TODO add your handling code here:
+        int reply = JOptionPane.showConfirmDialog(null, "Seguro que quieres guardar?", "", JOptionPane.YES_NO_OPTION);
+        if (reply == JOptionPane.YES_OPTION) {
+            JOptionPane.showMessageDialog(null, "HELLO");
+        } 
+        else {
+        JOptionPane.showMessageDialog(null, "GOODBYE");
+        }
+    }//GEN-LAST:event_ButtonGuardarActionPerformed
+
+    private void TituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TituloActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TituloActionPerformed
+
+    private void ButtonExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonExportarActionPerformed
+        // TODO add your handling code here:
+        VentSelectFormato selectForm = new VentSelectFormato(this.framePrincipal);
+        selectForm.setVisible(true);
+        
+        //Center the frame
+        selectForm.setLocationRelativeTo(null);
+    }//GEN-LAST:event_ButtonExportarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton ButtonCancelar;
+    private javax.swing.JButton ButtonEliminar;
+    private javax.swing.JButton ButtonExportar;
+    private javax.swing.JButton ButtonGuardar;
+    private javax.swing.JTextArea Contenido;
+    private javax.swing.JTextField NombreAutor;
+    private javax.swing.JTextField Titulo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }
