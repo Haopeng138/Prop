@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-import Dominio.Utils.DocumentHeader;
+import Utils.DocumentHeader;
 
 public class Autores {
     /**

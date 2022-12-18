@@ -1,7 +1,7 @@
 package Dominio.Logica;
 
 import Dominio.Estructura.Libreria;
-import Dominio.Utils.DocumentHeader;
+import Utils.DocumentHeader;
 import org.junit.Before;
 import org.junit.Test;
 

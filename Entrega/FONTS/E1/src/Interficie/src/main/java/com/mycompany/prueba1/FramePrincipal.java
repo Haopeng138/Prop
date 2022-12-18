@@ -394,23 +394,28 @@ public class FramePrincipal extends javax.swing.JFrame {
 
     private void jTree1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTree1MouseClicked
         // TODO change for panel
-        DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) jTree1.getSelectionPath().getLastPathComponent();
-       
-        DefaultMutableTreeNode parent = (DefaultMutableTreeNode)selectedNode.getParent();
-        String opt = parent.getUserObject().toString();
+        DefaultMutableTreeNode selected = (DefaultMutableTreeNode) jTree1.getSelectionPath().getLastPathComponent();
+        String doc = null;
+        String alia = null;
         PanelItems.removeAll();
-        switch (opt) {
-            case "Alias":
-                PanelInfoAlia infoAlia = new PanelInfoAlia(this);
-                PanelItems.add(infoAlia);
-                break;
-            case "Documentos":
-                PanelInfoDoc infoDoc = new PanelInfoDoc(this);
-                PanelItems.add(infoDoc);
-                break;
-            default:
-                break;
+        PanelInfoDoc infoDoc = new PanelInfoDoc(this);
+        PanelInfoAlia infoAlia = new PanelInfoAlia(this);
+        //System.out.print(selected.getUserObject().toString());
+        if (selected.getChildCount()== 0 && "Documentos".equals(selected.getParent().toString())) {
+            doc = selected.getUserObject().toString();
+            infoDoc.setText("autor",doc,"contenido");
+            PanelItems.add(infoDoc);
+             
+        } else if (selected.getChildCount()== 0 && "Alias".equals(selected.getParent().toString())) {
+            alia = selected.getUserObject().toString();
+            infoAlia.setText(alia,"expreiosn");
+            System.out.print(alia);
+            
+            PanelItems.add(infoAlia);     
+            
         }
+        
+     
         PanelItems.setVisible(true);
         SwingUtilities.updateComponentTreeUI(this);
     }//GEN-LAST:event_jTree1MouseClicked

@@ -1,3 +1,4 @@
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
@@ -20,11 +21,15 @@ public class PanelInfoDoc extends javax.swing.JPanel {
      */
     public PanelInfoDoc(FramePrincipal framePrincipal) {
         this.framePrincipal = framePrincipal;
+
         initComponents();
     }
     
-    public void setText(String doc) {
-        Titulo.setText(doc);
+    public void setText(String autor,String titulo,String contenido) {
+    
+        NombreAutor.setText(autor);
+        Titulo.setText(titulo);
+        Contenido.setText(contenido);
     }
 
     /**

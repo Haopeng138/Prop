@@ -1,6 +1,6 @@
 package Dominio.Estructura;
 
-import Dominio.Utils.DocumentHeader;
+import Utils.DocumentHeader;
 import org.junit.Before;
 import org.junit.Test;
 

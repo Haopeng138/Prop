@@ -1,4 +1,4 @@
-package Dominio.Utils;
+package Utils;
 
 import Dominio.Estructura.Autor;
 import Dominio.Estructura.Titulo;

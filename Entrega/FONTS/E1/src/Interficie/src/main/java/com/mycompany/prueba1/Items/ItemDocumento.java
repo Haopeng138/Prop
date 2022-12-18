@@ -42,8 +42,10 @@ public class ItemDocumento extends javax.swing.JPanel {
         Titulo = new javax.swing.JLabel();
         ButtonVer = new javax.swing.JButton();
 
+        AutorLabel.setLabelFor(NombreAutor);
         AutorLabel.setText("Autor:");
 
+        TituloLabel.setLabelFor(Titulo);
         TituloLabel.setText("Titulo:");
 
         jButton1.setText("Borrar");
@@ -68,11 +70,11 @@ public class ItemDocumento extends javax.swing.JPanel {
                 .addComponent(AutorLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(NombreAutor)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(TituloLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Titulo)
-                .addGap(204, 204, 204)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 204, Short.MAX_VALUE)
                 .addComponent(ButtonVer)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)

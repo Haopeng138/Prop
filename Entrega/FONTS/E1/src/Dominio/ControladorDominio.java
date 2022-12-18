@@ -4,7 +4,7 @@ import Dominio.Expresion.ControladorExpresiones;
 import Dominio.Expresion.Expresion;
 import Dominio.Expresion.ExpresionException;
 import Dominio.Logica.ControladorBusqueda;
-import Dominio.Utils.DocumentHeader;
+import Utils.DocumentHeader;
 import Dominio.Utils.IOHelper;
 import Dominio.Estructura.Autor;
 import Dominio.Estructura.Documento;
@@ -70,7 +70,7 @@ public class ControladorDominio {
      * @param t         El titulo del documento a crear
      * @param contenido El contenido del documento a crear
      */
-    private void createDocumento(String a, String t, String contenido) {
+    public void createDocumento(String a, String t, String contenido) {
         libreria.createDocumento(a, t, contenido);
     }
 
@@ -147,8 +147,8 @@ public class ControladorDominio {
     }
 
     /**
-     * @param autorName  nombre del autor del documento a obtener el contenido
-     * @param tituloName titulo del documento a obtener el contenido
+     * @param a  nombre del autor del documento a obtener el contenido
+     * @param t titulo del documento a obtener el contenido
      * @return
      */
     public String getContent(String a, String t) {
@@ -168,7 +168,7 @@ public class ControladorDominio {
     }
 
     /**
-     * @param e Una expresión
+     * @param alias Alias de una expresión
      * @return El conjunto de documentos que cumplen la expresion
      */
     public ArrayList<DocumentHeader> busquedaPorExpresion(String alias) {

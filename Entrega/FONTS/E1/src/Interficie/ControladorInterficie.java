@@ -1,6 +1,9 @@
 package Interficie;
+
 import Dominio.ControladorDominio;
+import Utils.DocumentHeader;
 import com.mycompany.prueba1.FramePrincipal;
+
 
 public class ControladorInterficie {
     private ControladorDominio ctrl_domini;
@@ -15,6 +18,8 @@ public class ControladorInterficie {
          this.framePrincipal.setVisible(true);
     }
     public void getDocument(){
-        ctrl_domini.getDocumentos();
+
+        DocumentHeader[] documentHeaders = ctrl_domini.getDocumentHeaders();
+
     }
 }

@@ -21,7 +21,7 @@
               <Component id="AutorLabel" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="NombreAutor" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="391" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="32767" attributes="0"/>
               <Component id="ButtonVerObras" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>

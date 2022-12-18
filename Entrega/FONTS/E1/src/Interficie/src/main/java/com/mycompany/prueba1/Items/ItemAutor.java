@@ -61,7 +61,7 @@ public class ItemAutor extends javax.swing.JPanel {
                 .addComponent(AutorLabel)
                 .addGap(18, 18, 18)
                 .addComponent(NombreAutor)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 391, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(ButtonVerObras)
                 .addContainerGap())
         );

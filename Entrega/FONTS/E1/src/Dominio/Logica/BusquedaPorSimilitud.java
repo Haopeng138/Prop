@@ -3,7 +3,7 @@ package Dominio.Logica;
 import Dominio.Estructura.Autor;
 import Dominio.Estructura.Libreria;
 import Dominio.Estructura.Titulo;
-import Dominio.Utils.DocumentHeader;
+import Utils.DocumentHeader;
 import java.util.*;
 
 public class BusquedaPorSimilitud {

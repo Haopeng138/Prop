@@ -21,11 +21,11 @@
               <Component id="AutorLabel" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="NombreAutor" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="79" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="TituloLabel" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="Titulo" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="204" max="-2" attributes="0"/>
+              <EmptySpace pref="204" max="32767" attributes="0"/>
               <Component id="ButtonVer" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
@@ -53,11 +53,17 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="AutorLabel">
       <Properties>
+        <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="NombreAutor"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Autor:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="TituloLabel">
       <Properties>
+        <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="Titulo"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Titulo:"/>
       </Properties>
     </Component>

@@ -15,11 +15,13 @@ public class PanelInfoAlia extends javax.swing.JPanel {
      */
     public PanelInfoAlia(FramePrincipal framePrincipal) {
         this.framePrincipal = framePrincipal;
+
         initComponents();
     }
 
-    public void setText(String doc) {
-        jTextField1.setText(doc);
+    public void setText(String alia,String expresion) {
+        aliaName.setText(alia);
+        expresionName.setText(expresion);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,8 +37,8 @@ public class PanelInfoAlia extends javax.swing.JPanel {
         ButtonEliminar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jTextField1 = new javax.swing.JTextField();
+        expresionName = new javax.swing.JTextArea();
+        aliaName = new javax.swing.JTextField();
         ButtonEliminar1 = new javax.swing.JButton();
 
         jLabel5.setText("Nombre de alia:");
@@ -52,11 +54,11 @@ public class PanelInfoAlia extends javax.swing.JPanel {
 
         jLabel1.setText("Expresión booleana:");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        expresionName.setColumns(20);
+        expresionName.setRows(5);
+        jScrollPane1.setViewportView(expresionName);
 
-        jTextField1.setEditable(false);
+        aliaName.setEditable(false);
 
         ButtonEliminar1.setText("Eliminar");
         ButtonEliminar1.addActionListener(new java.awt.event.ActionListener() {
@@ -75,7 +77,7 @@ public class PanelInfoAlia extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1))
+                        .addComponent(aliaName))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -96,7 +98,7 @@ public class PanelInfoAlia extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(aliaName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,7 +112,7 @@ public class PanelInfoAlia extends javax.swing.JPanel {
                 .addGap(12, 12, 12))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel1, jLabel5, jTextField1});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {aliaName, jLabel1, jLabel5});
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {ButtonCancelar1, ButtonEliminar, ButtonEliminar1});
 
@@ -125,7 +127,7 @@ public class PanelInfoAlia extends javax.swing.JPanel {
         // TODO add your handling code here:
         int reply = JOptionPane.showConfirmDialog(null, "Seguro que quieres eliminar?", "", JOptionPane.YES_NO_OPTION);
         if (reply == JOptionPane.YES_OPTION) {
-            String d = jTextField1.getText();
+            String d = aliaName.getText();
             framePrincipal.eliminarA(d, 1);
             this.setVisible(false);
         } 
@@ -136,10 +138,10 @@ public class PanelInfoAlia extends javax.swing.JPanel {
     private javax.swing.JButton ButtonCancelar1;
     private javax.swing.JButton ButtonEliminar;
     private javax.swing.JButton ButtonEliminar1;
+    private javax.swing.JTextField aliaName;
+    private javax.swing.JTextArea expresionName;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

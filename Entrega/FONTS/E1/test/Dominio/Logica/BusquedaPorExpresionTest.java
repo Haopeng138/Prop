@@ -3,7 +3,7 @@ package Dominio.Logica;
 import Dominio.Estructura.Libreria;
 import Dominio.Expresion.Expresion;
 import Dominio.Utils.BinaryTree;
-import Dominio.Utils.DocumentHeader;
+import Utils.DocumentHeader;
 import Dominio.Utils.ParseNode;
 import org.junit.Before;
 import org.junit.Test;

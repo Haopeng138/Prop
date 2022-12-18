@@ -210,6 +210,7 @@ public class ListarPorExpresion extends javax.swing.JPanel {
         // TODO add your handling code here:
         ventAñadirAliaExpre = new VentAñadirAliaExpre(this.framePrincipal,this); 
         ventAñadirAliaExpre.setVisible(true);
+        ventAñadirAliaExpre.setLocationRelativeTo(null);
         
     }//GEN-LAST:event_ButtonGuardarActionPerformed
 
