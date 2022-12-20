@@ -1,5 +1,5 @@
 .DS_Store
 ./prueba1/target
-.class
+*.class
 /Interficie/target/
 /Entrega/FONTS/E1/src/Interficie/target/

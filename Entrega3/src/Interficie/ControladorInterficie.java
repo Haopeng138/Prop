@@ -14,7 +14,7 @@ public class ControladorInterficie {
 
 
     public void inicial() {
-         this.framePrincipal = new FramePrincipal();
+         this.framePrincipal = new FramePrincipal(this);
          this.framePrincipal.setVisible(true);
          this.framePrincipal.añadirDocumento("ctrlintr");
     }
