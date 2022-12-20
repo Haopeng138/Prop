@@ -145,9 +145,7 @@ public class ControladorDominio {
     public ArrayList<String[]> busquedaPorSimilitud(String a, String t, int k) {
         ArrayList<DocumentHeader> headers = ControladorBusqueda.buscarPorSimilitud(new DocumentHeader(a, t), k,
                 libreria);
-        return new ArrayList<String[]>(headers.stream()
-                .map(header -> new String[] { header.getAutor().getName(), header.getTitulo().getName() })
-                .collect(Collectors.toList()));
+        return buildAgnosticHeaders(headers);
     }
 
     /**
@@ -158,13 +156,18 @@ public class ControladorDominio {
         try {
             ArrayList<DocumentHeader> headers = ControladorBusqueda.buscarPorExpresion(cExpresiones.getAsString(alias),
                     libreria);
-            return new ArrayList<String[]>(headers.stream()
-                    .map(header -> new String[] { header.getAutor().getName(), header.getTitulo().getName() })
-                    .collect(Collectors.toList()));
+            return buildAgnosticHeaders(headers);
+
         } catch (Exception e) {
             System.out.println("No se ha podido construir el arbol de busqueda de la expresion");
             return null;
         }
+    }
+
+    private ArrayList<String[]> buildAgnosticHeaders(ArrayList<DocumentHeader> headers) {
+        return new ArrayList<String[]>(headers.stream()
+                .map(header -> new String[] { header.getAutor().getName(), header.getTitulo().getName() })
+                .collect(Collectors.toList()));
     }
 
     //// PUNTO 4
