@@ -22,16 +22,19 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="TipoBusqueda" pref="508" max="32767" attributes="0"/>
+                  <Component id="TipoBusqueda" pref="606" max="32767" attributes="0"/>
                   <Component id="NombreAutor" alignment="0" max="32767" attributes="0"/>
                   <Component id="AliasExist" alignment="0" max="32767" attributes="0"/>
-                  <Component id="Expresion" alignment="0" pref="508" max="32767" attributes="0"/>
+                  <Component id="Expresion" alignment="0" pref="606" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Component id="TextAlias" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="tipoOrdenacion" min="-2" pref="80" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="criterioOrdenar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="ButtonGuardar" linkSize="4" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="ButtonBuscar" linkSize="4" min="-2" max="-2" attributes="0"/>
@@ -54,12 +57,16 @@
               <Component id="NombreAutor" linkSize="3" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="Expresion" linkSize="3" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="ButtonGuardar" linkSize="5" min="-2" max="-2" attributes="0"/>
                   <Component id="ButtonBuscar" linkSize="5" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="criterioOrdenar" linkSize="6" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tipoOrdenacion" linkSize="6" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -134,6 +141,24 @@
         <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ButtonGuardarMousePressed"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ButtonGuardarActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="tipoOrdenacion">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ordenar por:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="criterioOrdenar">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="2">
+            <StringItem index="0" value="autor A-Z"/>
+            <StringItem index="1" value="t&#xed;tulo A-Z"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>
