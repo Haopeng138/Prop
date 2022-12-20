@@ -113,16 +113,18 @@ public class ControladorDominio {
      * @param a El nombre de un autor
      * @return Listado de titulos del autor
      */
-    public ArrayList<Titulo> getTitles(String a) {
-        return libreria.getTitles(a);
+    public ArrayList<String> getTitles(String a) {
+        ArrayList<Titulo> titulos = libreria.getTitles(a);
+        return new ArrayList<String>(titulos.stream().map(titulo -> titulo.getName()).collect(Collectors.toList()));
     }
 
     /**
      * @param pre El prefijo de un autor
      * @return Listado de autores que comienza por el pre
      */
-    public ArrayList<Autor> obtenerAutoresPrefijo(String pre) {
-        return ControladorBusqueda.buscarPorPrefijo(libreria.getOrderedAutores(), pre);
+    public ArrayList<String> obtenerAutoresPrefijo(String pre) {
+        ArrayList<Autor> autores = ControladorBusqueda.buscarPorPrefijo(libreria.getOrderedAutores(), pre);
+        return new ArrayList<String>(autores.stream().map(autor -> autor.getName()).collect(Collectors.toList()));
     }
 
     /**
@@ -140,17 +142,25 @@ public class ControladorDominio {
      * @param e Una expresión
      * @return un conjunto de documentos
      */
-    public ArrayList<DocumentHeader> busquedaPorSimilitud(String a, String t, int k) {
-        return ControladorBusqueda.buscarPorSimilitud(new DocumentHeader(a, t), k, libreria);
+    public ArrayList<String[]> busquedaPorSimilitud(String a, String t, int k) {
+        ArrayList<DocumentHeader> headers = ControladorBusqueda.buscarPorSimilitud(new DocumentHeader(a, t), k,
+                libreria);
+        return new ArrayList<String[]>(headers.stream()
+                .map(header -> new String[] { header.getAutor().getName(), header.getTitulo().getName() })
+                .collect(Collectors.toList()));
     }
 
     /**
      * @param e Una expresión
      * @return un conjunto de documentos
      */
-    public ArrayList<DocumentHeader> busquedaPorExpresion(String alias) {
+    public ArrayList<String[]> busquedaPorExpresion(String alias) {
         try {
-            return ControladorBusqueda.buscarPorExpresion(cExpresiones.getAsString(alias), libreria);
+            ArrayList<DocumentHeader> headers = ControladorBusqueda.buscarPorExpresion(cExpresiones.getAsString(alias),
+                    libreria);
+            return new ArrayList<String[]>(headers.stream()
+                    .map(header -> new String[] { header.getAutor().getName(), header.getTitulo().getName() })
+                    .collect(Collectors.toList()));
         } catch (Exception e) {
             System.out.println("No se ha podido construir el arbol de busqueda de la expresion");
             return null;
