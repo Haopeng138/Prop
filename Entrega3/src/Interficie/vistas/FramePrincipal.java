@@ -461,7 +461,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         else {
                 d.add(documento);
                 modelo.reload();
-                
+                ctrlInterficie.createDocumento("alia","gafg","gsfdgsdf");
         }
         return true;
     }

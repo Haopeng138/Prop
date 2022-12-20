@@ -4,7 +4,7 @@ import Dominio.Expresion.ControladorExpresiones;
 import Dominio.Expresion.Expresion;
 import Dominio.Expresion.ExpresionException;
 import Dominio.Logica.ControladorBusqueda;
-import Utils.DocumentHeader;
+import Dominio.Utils.DocumentHeader;
 import Dominio.Utils.IOHelper;
 import Dominio.Estructura.Autor;
 import Dominio.Estructura.Documento;

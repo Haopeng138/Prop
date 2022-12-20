@@ -1,15 +1,15 @@
 package Interficie;
 
 import Dominio.ControladorDominio;
-import Utils.DocumentHeader;
+import Dominio.Utils.DocumentHeader;
 import Interficie.vistas.FramePrincipal;
 
 
 public class ControladorInterficie {
-    private ControladorDominio ctrl_domini;
+    private ControladorDominio ctrl_dominio;
     private FramePrincipal framePrincipal;
     public ControladorInterficie() {
-        this.ctrl_domini = new ControladorDominio();
+        this.ctrl_dominio = new ControladorDominio();
     };
 
 
@@ -20,11 +20,13 @@ public class ControladorInterficie {
     }
     public void getDocument(){
 
-        DocumentHeader[] documentHeaders = ctrl_domini.getDocumentHeaders();
+        DocumentHeader[] documentHeaders = ctrl_dominio.getDocumentHeaders();
         for (DocumentHeader documentHeader : documentHeaders) {
             this.framePrincipal.añadirDocumento(documentHeader.getTitulo().getName());
         }
-
-
+    }
+    
+    public void createDocumento(String autor,String titulo,String contenido){
+        ctrl_dominio.createDocumento(autor, titulo, contenido);
     }
 }

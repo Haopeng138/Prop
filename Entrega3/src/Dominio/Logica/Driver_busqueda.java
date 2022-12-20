@@ -3,7 +3,7 @@ package Dominio.Logica;
 import Dominio.ControladorDominio;
 import Dominio.Estructura.*;
 import Dominio.Expresion.ExpresionException;
-import Utils.DocumentHeader;
+import Dominio.Utils.DocumentHeader;
 
 import java.io.File;
 import java.io.FileNotFoundException;
