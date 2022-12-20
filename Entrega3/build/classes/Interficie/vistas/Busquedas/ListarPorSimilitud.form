@@ -20,10 +20,13 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jTextField1" max="32767" attributes="0"/>
-                  <Component id="NombreAutor" alignment="0" pref="508" max="32767" attributes="0"/>
-                  <Component id="Titulo" alignment="1" pref="508" max="32767" attributes="0"/>
+                  <Component id="NombreAutor" alignment="0" pref="621" max="32767" attributes="0"/>
+                  <Component id="Titulo" alignment="1" pref="621" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="tipoOrdenacion" min="-2" pref="80" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="criterioOrdenar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="ButtonBuscar" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="TipoBusqueda" alignment="0" max="32767" attributes="0"/>
@@ -43,9 +46,15 @@
               <Component id="Titulo" linkSize="1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jTextField1" linkSize="1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="ButtonBuscar" linkSize="1" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                      <Component id="criterioOrdenar" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tipoOrdenacion" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="ButtonBuscar" linkSize="1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -91,6 +100,25 @@
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="NombreAutorMouseClicked"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NombreAutorActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="tipoOrdenacion">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ordenar por:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="criterioOrdenar">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="3">
+            <StringItem index="0" value="similaridad descendente"/>
+            <StringItem index="1" value="autor A-Z"/>
+            <StringItem index="2" value="t&#xed;tulo A-Z"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>
