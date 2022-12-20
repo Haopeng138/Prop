@@ -1,0 +1,10 @@
+Ejecutables del proyecto
+
+Dentro de la carpeta "out" se puede distinguir tres carpetas:
+
+- artifacts:
+    - Están los ejecutables(.jar)
+- production:
+    - Están los archivos compilados(.class)
+- test:
+    - Están los test compilados(.class)

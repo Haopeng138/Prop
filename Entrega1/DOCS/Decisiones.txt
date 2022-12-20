@@ -1,8 +1,0 @@
-Decisiones:
-
-1-Buscar por prefijos : cada vez que se da un enter
-
-2-Buscar por expresiones : Alta de expresiones explicita
-
-3-Dos alias diferentes pueden tener la misma expresion
-

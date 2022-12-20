@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Driver_Busqueda:jar">
+    <output-path>$PROJECT_DIR$/Entrega1/EXE/out/artifacts/Driver_Busqueda_jar</output-path>
+    <root id="archive" name="Driver_Busqueda.jar">
+      <element id="module-output" name="Prop" />
+    </root>
+  </artifact>
+</component>
