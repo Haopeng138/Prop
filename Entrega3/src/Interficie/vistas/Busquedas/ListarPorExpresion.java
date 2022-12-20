@@ -17,7 +17,7 @@ public class ListarPorExpresion extends javax.swing.JPanel {
      * Creates new form ListarPorExpresion
      */
      
-    VentAñadirAliaExpre v;
+    
     public ListarPorExpresion(FramePrincipal framePrincipal) {
         initComponents();
         this.framePrincipal = framePrincipal;

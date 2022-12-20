@@ -3,8 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/flors/Desktop/subgrup-prop41.2/Entrega3/src/Interficie/vistas/FramePrincipal.java</file>
-            <file>file:/C:/Users/flors/Desktop/subgrup-prop41.2/Entrega3/src/Interficie/vistas/Busquedas/ListarPorSimilitud.java</file>
+            <file>file:/Users/linhaopeng/Desktop/Prop/subgrup-prop41.2/Entrega3/src/Entrega3.java</file>
+            <file>file:/Users/linhaopeng/Desktop/Prop/subgrup-prop41.2/Entrega3/src/Interficie/ControladorInterficie.java</file>
+            <file>file:/Users/linhaopeng/Desktop/Prop/subgrup-prop41.2/Entrega3/src/Interficie/vistas/Busquedas/ListarPorAutor.java</file>
+            <file>file:/Users/linhaopeng/Desktop/Prop/subgrup-prop41.2/Entrega3/src/Interficie/vistas/FramePrincipal.java</file>
+            <file>file:/Users/linhaopeng/Desktop/Prop/subgrup-prop41.2/Entrega3/src/Interficie/vistas/Busquedas/ListarPorExpresion.java</file>
+            <file>file:/Users/linhaopeng/Desktop/Prop/subgrup-prop41.2/Entrega3/src/Dominio/ControladorDominio.java</file>
         </group>
     </open-files>
 </project-private>

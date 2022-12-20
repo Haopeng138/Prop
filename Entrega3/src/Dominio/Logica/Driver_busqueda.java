@@ -57,11 +57,12 @@ public class Driver_busqueda {
                             exp = scan.nextLine();
                             dominio.addExpresion(alias, exp);
                             valido = true;
-                            ArrayList<DocumentHeader> resExp = dominio.busquedaPorExpresion(alias);
+                            ArrayList<String[]> resExp = dominio.busquedaPorExpresion(alias);
                             for (int i = 0; i < resExp.size(); ++i) {
-                                DocumentHeader d = resExp.get(i);
+                                // TODO review
+                                /*DocumentHeader d = resExp.get(i);
                                 System.out.println("Autor : " + d.getAutor());
-                                System.out.println("Titulo : " + d.getTitulo());
+                                System.out.println("Titulo : " + d.getTitulo());*/
                                 System.out.println();
                             }
                             System.out.println("Los documentos con la expresión " + exp);
@@ -77,7 +78,7 @@ public class Driver_busqueda {
                     System.out.println("Introduce un prefijo ");
                     String pre;
                     pre = scan.nextLine();
-                    ArrayList<Autor> resAutores = dominio.obtenerAutoresPrefijo(pre);
+                    ArrayList<String> resAutores = dominio.obtenerAutoresPrefijo(pre);
                     for (int i = 0; i < resAutores.size(); ++i) {
                         String autor = String.valueOf(resAutores.get(i));
                         System.out.println(autor);
@@ -94,10 +95,10 @@ public class Driver_busqueda {
                     String titulo = scan.nextLine();
                     System.out.println("La K : ");
                     int K = Integer.parseInt(scan.nextLine());
-                    ArrayList<DocumentHeader> resDocs = dominio.busquedaPorSimilitud(autor, titulo, K);
+                    ArrayList<String[]> resDocs = dominio.busquedaPorSimilitud(autor, titulo, K);
                     for (int i = 0; i < resDocs.size(); ++i) {
-                        Autor a = resDocs.get(i).getAutor();
-                        Titulo t = resDocs.get(i).getTitulo();
+                        String a = resDocs.get(i)[0];
+                        String t = resDocs.get(i)[1];
                         System.out.println("Autor: " + a + " con su libro " + t);
                     }
                     System.out.println("Los documentos más similiares escrito");
