@@ -1,4 +1,0 @@
-com.mycompany.prueba1.VentanaSecundaria.VentModificarAliaPrin
-com.mycompany.prueba1.VentanaSecundaria.VentModificarAliaPrin$3
-com.mycompany.prueba1.VentanaSecundaria.VentModificarAliaPrin$1
-com.mycompany.prueba1.VentanaSecundaria.VentModificarAliaPrin$2

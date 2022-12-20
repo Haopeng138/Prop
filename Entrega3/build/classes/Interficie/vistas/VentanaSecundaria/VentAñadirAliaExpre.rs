@@ -1,4 +1,0 @@
-com.mycompany.prueba1.VentanaSecundaria.VentAñadirAliaExpre$1
-com.mycompany.prueba1.VentanaSecundaria.VentAñadirAliaExpre$2
-com.mycompany.prueba1.VentanaSecundaria.VentAñadirAliaExpre$3
-com.mycompany.prueba1.VentanaSecundaria.VentAñadirAliaExpre

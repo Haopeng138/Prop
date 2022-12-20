@@ -11,5 +11,6 @@ public class Entrega3 {
     public static void main(String[] args) {
         ControladorInterficie controladorInterficie = new ControladorInterficie();
         controladorInterficie.inicial();
+        System.out.println(System.getProperty("java.version"));
     }
 }

@@ -1,6 +1,0 @@
-com.mycompany.prueba1.VentanaSecundaria.VentNuevoDocumentoFrame$4
-com.mycompany.prueba1.VentanaSecundaria.VentNuevoDocumentoFrame$3
-com.mycompany.prueba1.VentanaSecundaria.VentNuevoDocumentoFrame$2
-com.mycompany.prueba1.VentanaSecundaria.VentNuevoDocumentoFrame$1
-com.mycompany.prueba1.VentanaSecundaria.VentNuevoDocumentoFrame
-com.mycompany.prueba1.VentanaSecundaria.VentNuevoDocumentoFrame$5

@@ -1,3 +1,0 @@
-com.mycompany.prueba1.VentanaSecundaria.VentSelectFormato
-com.mycompany.prueba1.VentanaSecundaria.VentSelectFormato$1
-com.mycompany.prueba1.VentanaSecundaria.VentSelectFormato$2

@@ -1,4 +1,0 @@
-com.mycompany.prueba1.VentanaSecundaria.VentEliminarAliaPrin$3
-com.mycompany.prueba1.VentanaSecundaria.VentEliminarAliaPrin$2
-com.mycompany.prueba1.VentanaSecundaria.VentEliminarAliaPrin$1
-com.mycompany.prueba1.VentanaSecundaria.VentEliminarAliaPrin

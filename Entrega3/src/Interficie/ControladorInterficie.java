@@ -21,8 +21,8 @@ public class ControladorInterficie {
     public void getDocument(){
 
         DocumentHeader[] documentHeaders = ctrl_domini.getDocumentHeaders();
-        for( int i = 0; i < documentHeaders.length; i++){
-            this.framePrincipal.añadirDocumento(documentHeaders[i].getTitulo().getName());
+        for (DocumentHeader documentHeader : documentHeaders) {
+            this.framePrincipal.añadirDocumento(documentHeader.getTitulo().getName());
         }
 
 
