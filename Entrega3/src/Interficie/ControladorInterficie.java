@@ -25,7 +25,11 @@ public class ControladorInterficie {
             this.framePrincipal.añadirDocumento(documentHeader.getTitulo().getName());
         }
     }
-    
+
+    public void updateExpresion(String alias, String expresion) {
+
+    }
+
     public void createDocumento(String autor,String titulo,String contenido){
         ctrl_dominio.createDocumento(autor, titulo, contenido);
     }
