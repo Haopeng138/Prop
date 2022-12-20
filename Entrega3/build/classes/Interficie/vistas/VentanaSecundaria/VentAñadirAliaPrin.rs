@@ -1,0 +1,4 @@
+com.mycompany.prueba1.VentanaSecundaria.VentAñadirAliaPrin
+com.mycompany.prueba1.VentanaSecundaria.VentAñadirAliaPrin$1
+com.mycompany.prueba1.VentanaSecundaria.VentAñadirAliaPrin$2
+com.mycompany.prueba1.VentanaSecundaria.VentAñadirAliaPrin$3

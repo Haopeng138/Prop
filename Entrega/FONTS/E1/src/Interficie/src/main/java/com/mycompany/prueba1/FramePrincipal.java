@@ -483,8 +483,8 @@ public class FramePrincipal extends javax.swing.JFrame {
         return true;
     }
     
-    public boolean añadirDocumento(String a) {
-        DefaultMutableTreeNode documento = new DefaultMutableTreeNode(a);
+    public boolean añadirDocumento(String doc) {
+        DefaultMutableTreeNode documento = new DefaultMutableTreeNode(doc);
         DefaultTreeModel modelo = (DefaultTreeModel)jTree1.getModel();
         DefaultMutableTreeNode c = (DefaultMutableTreeNode) jTree1.getModel().getRoot();
         DefaultMutableTreeNode d = (DefaultMutableTreeNode) c.getChildAt(0);
@@ -493,11 +493,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         }
         else {
                 d.add(documento);
-                //eliminarAliaPrinFrame.AñadirA(a);
-                //modificarAliaPrinFrame.AñadirA(a);
-                
                 modelo.reload();
-                
                 
         }
         return true;
