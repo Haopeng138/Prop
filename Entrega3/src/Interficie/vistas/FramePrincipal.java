@@ -296,6 +296,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void SizeMenuBusquedaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SizeMenuBusquedaMouseClicked
@@ -412,9 +413,7 @@ public class FramePrincipal extends javax.swing.JFrame {
             alia = selected.getUserObject().toString();
             infoAlia.setText(alia,"expreiosn");
             System.out.print(alia);
-            
             PanelItems.add(infoAlia);     
-            
         }
         
      
@@ -433,20 +432,21 @@ public class FramePrincipal extends javax.swing.JFrame {
         DefaultMutableTreeNode alia = new DefaultMutableTreeNode(a);
         DefaultTreeModel modelo = (DefaultTreeModel)jTree1.getModel();
         DefaultMutableTreeNode c = (DefaultMutableTreeNode) jTree1.getModel().getRoot();
+        if (c.getChildCount() == 1 && c.getChildAt(0).toString() == "Documentos") {
+            c.add(new DefaultMutableTreeNode("Alias"));
+        }
+        else if (c.getChildCount() == 1 && c.getChildAt(0).toString() == "Alias") {
+            c.add(new DefaultMutableTreeNode("Documentos"));
+        }
         DefaultMutableTreeNode d = (DefaultMutableTreeNode) c.getChildAt(1);
         
         if (d.getIndex(alia) != -1) {
             return false;
         }
         else {
-                d.add(alia);
-                //eliminarAliaPrinFrame.AñadirA(a);
-                //System.out.print("Algo");
-                //modificarAliaPrinFrame.AñadirA(a);
-                //System.out.print("Algo");
-                //modelo.reload();
-                
+                d.add(alia);               
         }
+        modelo.reload();
         return true;
     }
     
@@ -461,7 +461,6 @@ public class FramePrincipal extends javax.swing.JFrame {
         else {
                 d.add(documento);
                 modelo.reload();
-                
         }
         return true;
     }
@@ -479,9 +478,9 @@ public class FramePrincipal extends javax.swing.JFrame {
             if (g.equals(a)) alia = ali;
             System.out.println(g);
         }
-        
         d.remove(alia);
-        //modificarAliaPrinFrame.eliminarA(jcombo);
+        if (d.getChildCount() == 0) c.remove(d);
+        
         modelo.reload();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables

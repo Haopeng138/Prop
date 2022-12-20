@@ -24,7 +24,9 @@ public class ControladorInterficie {
         for (DocumentHeader documentHeader : documentHeaders) {
             this.framePrincipal.añadirDocumento(documentHeader.getTitulo().getName());
         }
-
-
+    }
+    
+    public void updateExpresion(String alias, String expresion) {
+        
     }
 }
