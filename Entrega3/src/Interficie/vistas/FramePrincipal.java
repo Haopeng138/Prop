@@ -4,7 +4,6 @@
  */
 package Interficie.vistas;
 
-import Dominio.Expresion.ExpresionException;
 import Interficie.ControladorInterficie;
 import Interficie.vistas.VentanaSecundaria.VentAñadirAliaPrin;
 import Interficie.vistas.VentanaSecundaria.VentEliminarAliaPrin;
@@ -43,6 +42,15 @@ public class FramePrincipal extends javax.swing.JFrame {
     public FramePrincipal(ControladorInterficie ctrInterficie) {
         this.ctrlInterficie = ctrInterficie;
         this.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                ctrlInterficie.persit();
+                System.out.println("Se ha hecho persistencia");
+                System.exit(0);
+               
+            }
+        });
         initComponents();
     }
     
@@ -411,7 +419,11 @@ public class FramePrincipal extends javax.swing.JFrame {
         //System.out.print(selected.getUserObject().toString());
         if (selected.getChildCount()== 0 && "Documentos".equals(selected.getParent().toString())) {
             doc = selected.getUserObject().toString();
-            infoDoc.setText("autor",doc,"contenido");
+            String[] header = doc.trim().split("|");
+            String autor = header[1];
+            String titulo = header[0];
+            String contenido = getContenidoPorAutorTitulo(autor,titulo);
+            infoDoc.setText("autor",doc,contenido);
             PanelItems.add(infoDoc);
              
         } else if (selected.getChildCount()== 0 && "Alias".equals(selected.getParent().toString())) {
@@ -454,9 +466,23 @@ public class FramePrincipal extends javax.swing.JFrame {
         modelo.reload();
         return true;
     }
+    public void cargarDocumento(String autor,String titulo){
+        DefaultMutableTreeNode documento = new DefaultMutableTreeNode(titulo+"|"+autor);
+        DefaultTreeModel modelo = (DefaultTreeModel)jTree1.getModel();
+        DefaultMutableTreeNode c = (DefaultMutableTreeNode) jTree1.getModel().getRoot();
+        DefaultMutableTreeNode d = (DefaultMutableTreeNode) c.getChildAt(0);
+        if (d.getIndex(documento) != -1) {
+            
+        }
+        else {
+            d.add(documento);
+            modelo.reload();   
+        }
+     
+    }
     
-    public boolean añadirDocumento(String doc) {
-        DefaultMutableTreeNode documento = new DefaultMutableTreeNode(doc);
+    public boolean añadirDocumento(String titulo,String autor,String contenido) {
+        DefaultMutableTreeNode documento = new DefaultMutableTreeNode(titulo+"|"+autor);
         DefaultTreeModel modelo = (DefaultTreeModel)jTree1.getModel();
         DefaultMutableTreeNode c = (DefaultMutableTreeNode) jTree1.getModel().getRoot();
         DefaultMutableTreeNode d = (DefaultMutableTreeNode) c.getChildAt(0);
@@ -466,7 +492,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         else {
                 d.add(documento);
                 modelo.reload();
-                ctrlInterficie.createDocumento("alia","gafg","gsfdgsdf");
+                ctrlInterficie.createDocumento(titulo,autor,contenido);
         }
         return true;
     }

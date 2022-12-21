@@ -35,7 +35,7 @@ public class VentNuevoDocumentoFrame extends javax.swing.JFrame {
     
     public void clear() {
         NombreAutor.setText("");
-        jTextArea1.setText("");
+        Contenido.setText("");
         Titulo.setText("");
     }
 
@@ -56,7 +56,7 @@ public class VentNuevoDocumentoFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         Titulo = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        Contenido = new javax.swing.JTextArea();
         Cancel = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
@@ -85,9 +85,9 @@ public class VentNuevoDocumentoFrame extends javax.swing.JFrame {
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        Contenido.setColumns(20);
+        Contenido.setRows(5);
+        jScrollPane1.setViewportView(Contenido);
 
         Cancel.setText("Cancelar");
         Cancel.addActionListener(new java.awt.event.ActionListener() {
@@ -102,28 +102,30 @@ public class VentNuevoDocumentoFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(216, Short.MAX_VALUE)
-                .addComponent(ButtonGuardar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Cancel)
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 210, Short.MAX_VALUE)
+                        .addComponent(ButtonGuardar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Cancel))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel1))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(NombreAutor, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
+                                .addComponent(Titulo))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(NombreAutor, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
-                        .addComponent(Titulo))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,12 +169,12 @@ public class VentNuevoDocumentoFrame extends javax.swing.JFrame {
 
     private void ButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonGuardarActionPerformed
 
-        if ("".equals(jTextArea1.getText()) && "".equals(Titulo.getText()) && "".equals(NombreAutor.getText())) {
+        if ("".equals(Contenido.getText()) && "".equals(Titulo.getText()) && "".equals(NombreAutor.getText())) {
 
             JOptionPane.showMessageDialog(null, "Introduce un título!!!\nIntroduce un autor!!!\nIntroduce un contenido!!!");
         }
 
-        else if ("".equals(jTextArea1.getText())) {
+        else if ("".equals(Contenido.getText())) {
             JOptionPane.showMessageDialog(null, "Introduce un contenido!!!");
         }
 
@@ -186,12 +188,12 @@ public class VentNuevoDocumentoFrame extends javax.swing.JFrame {
 
         else {
 
-            if (framePrincipal.añadirDocumento(Titulo.getText())) {
+            if (framePrincipal.añadirDocumento(Titulo.getText(),NombreAutor.getText(),Contenido.getText())) {
                 this.dispose();
                 framePrincipal.closeNewDocument();
             }
             else {
-                JOptionPane.showMessageDialog(null, "Alia ya existe!!!");
+                JOptionPane.showMessageDialog(null, "Documento ya existe!!!");
             }
         }
     }//GEN-LAST:event_ButtonGuardarActionPerformed
@@ -201,12 +203,12 @@ public class VentNuevoDocumentoFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonGuardar;
     private javax.swing.JButton Cancel;
+    private javax.swing.JTextArea Contenido;
     private javax.swing.JTextField NombreAutor;
     private javax.swing.JTextField Titulo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }

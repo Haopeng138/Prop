@@ -68,7 +68,7 @@ public class ControladorDominio {
 
     public ArrayList<String[]> getAllDocuments(){
         DocumentHeader[] documentHeaders = libreria.getDocumentHeaders();
-        ArrayList<DocumentHeader> headers = (ArrayList<DocumentHeader>) Arrays.asList(documentHeaders);
+        ArrayList<DocumentHeader> headers = new ArrayList<> (Arrays.asList(documentHeaders));
         return buildAgnosticHeaders(headers);
     }
 

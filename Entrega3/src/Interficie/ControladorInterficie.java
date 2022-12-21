@@ -15,9 +15,12 @@ public class ControladorInterficie {
 
 
     public void inicial() {
-         this.framePrincipal = new FramePrincipal(this);
-         this.framePrincipal.setVisible(true);
-         this.framePrincipal.añadirDocumento("ctrlintr");
+        this.framePrincipal = new FramePrincipal(this);
+        ArrayList<String[]> documents = ctrl_dominio.getAllDocuments();
+        for(String[] doc:documents){
+            this.framePrincipal.cargarDocumento(doc[0], doc[1]);
+        }
+        this.framePrincipal.setVisible(true);
     }
     public void getDocument(){
 
@@ -57,5 +60,8 @@ public class ControladorInterficie {
             throw new Exception("Error añadiendo alia");
         }
 
+    }
+    public void persit(){
+        ctrl_dominio.persist();
     }
 }
