@@ -73,6 +73,18 @@ public class ControladorDominio {
         return buildAgnosticHeaders(headers);
     }
 
+    public ArrayList<String[]> getAllExpresions(){
+        HashMap<String,Expresion> expresiones = cExpresiones.getExpresiones();
+        ArrayList<String[]> expresions = new ArrayList<>();
+        for (String i : expresiones.keySet()) {
+            String alia = i;
+            String expresion = expresiones.get(i).toString();
+            String[] aliaexp = {alia,expresion};
+            expresions.add(aliaexp);
+        }
+        return expresions;
+    }
+
     //// PUNTO 1
 
     /**
