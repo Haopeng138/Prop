@@ -154,7 +154,7 @@ public class ControladorDominio {
      * @param alias Alias de una expresión
      * @return un conjunto de documentos
      */
-    public ArrayList<String[]> busquedaPorExpresion(String alias) {
+    public ArrayList<String[]> busquedaPorExpresion(String alias){
         try {
             ArrayList<DocumentHeader> headers = ControladorBusqueda.buscarPorExpresion(cExpresiones.getAsString(alias),
                     libreria);

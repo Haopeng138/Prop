@@ -1,6 +1,7 @@
 package Interficie;
 
 import Dominio.ControladorDominio;
+import Dominio.Expresion.ExpresionException;
 import Interficie.vistas.FramePrincipal;
 import java.util.ArrayList;
 
@@ -47,5 +48,14 @@ public class ControladorInterficie {
     
     public void modifyDocument(String autor,String titulo,String contenido){
         ctrl_dominio.modifyDocumento(autor, titulo, contenido);
+    }
+
+    public void addExpresion(String alia,String expresion) throws Exception {
+        try {
+            ctrl_dominio.addExpresion(alia,expresion);
+        }catch (ExpresionException e){
+            throw new Exception("Error añadiendo alia");
+        }
+
     }
 }

@@ -4,6 +4,7 @@
  */
 package Interficie.vistas;
 
+import Dominio.Expresion.ExpresionException;
 import Interficie.ControladorInterficie;
 import Interficie.vistas.VentanaSecundaria.VentAñadirAliaPrin;
 import Interficie.vistas.VentanaSecundaria.VentEliminarAliaPrin;
@@ -24,12 +25,7 @@ import java.awt.CardLayout;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Enumeration;
-import javax.swing.BoxLayout;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
@@ -496,7 +492,13 @@ public class FramePrincipal extends javax.swing.JFrame {
     
     public void buscarPorAlia(String alia) {
         ArrayList<String[]> documents = ctrlInterficie.busquedaPorExpresion(alia);
-        documentlist(documents);
+        JOptionPane.showMessageDialog(null,"No se ha encontrado documentos,revisa la expresion");
+        if(documents != null){
+            documentlist(documents);
+        }else{
+            JOptionPane.showMessageDialog(null,"No se ha encontrado documentos,revisa la expresion");
+        }
+
     }
     
     public void buscarPorSimilitud(String autor,String titulo,int k){
@@ -514,6 +516,10 @@ public class FramePrincipal extends javax.swing.JFrame {
     
     public void modifyDocument(String autor,String titulo,String contenido){
         ctrlInterficie.modifyDocument(autor,titulo,contenido);
+    }
+    
+    public void addExpresion(String alia,String expresion) throws Exception {
+        ctrlInterficie.addExpresion(alia,expresion);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu AliasMenu;

@@ -142,33 +142,27 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
 
     private void ButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBuscarActionPerformed
         // TODO add your handling code here:
-        String error = null;
-        String autor = null;
-        String titulo = null;
+        String error = "";
+        String autor;
+        String titulo;
         int k = 0;
-        if(!NombreAutor.getText().equals("Introduce un nombre de autor") || !"".equals(NombreAutor.getText())){
-            autor = NombreAutor.getText();
-        }else{
+        if(NombreAutor.getText().equals("Introduce un nombre de autor") || "".equals(NombreAutor.getText())){
             error += "No se ha introducido autor \n";
         }
-        
-        if(!Titulo.getText().equals("Introduce un titulo") || !"".equals(Titulo.getText())){
-            titulo = NombreAutor.getText();
-        }else{
+        if(Titulo.getText().equals("Introduce un titulo") || "".equals(Titulo.getText())){
             error += "No se ha introducido titulo \n";
         }
-        
         if(NumeroK.getText().equals("Introduce un titulo") || "".equals(NumeroK.getText()) || !verificarK(NumeroK.getText())){
            error += "No se ha introducido numero correctamente \n";
-        }else{
-           k = Integer.parseInt(NumeroK.getText()) ;
-            
         }
-        
-        if(error == null){
+
+        if("".equals(error)){
+            autor = NombreAutor.getText();
+            titulo = NombreAutor.getText();
+            k = Integer.parseInt(NumeroK.getText()) ;
             framePrincipal.buscarPorSimilitud(autor,titulo,k);
         }else{
-            JOptionPane.showMessageDialog(null, error);
+            JOptionPane.showMessageDialog(null,error);
         }
         
         

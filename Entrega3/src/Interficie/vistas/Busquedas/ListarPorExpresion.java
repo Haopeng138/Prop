@@ -7,6 +7,8 @@ package Interficie.vistas.Busquedas;
 
 import Interficie.vistas.VentanaSecundaria.VentAñadirAliaExpre;
 import Interficie.vistas.FramePrincipal;
+
+import javax.swing.*;
 import java.awt.Color;
 import java.util.ArrayList;
 
@@ -33,7 +35,10 @@ public class ListarPorExpresion extends javax.swing.JPanel {
     }
     private boolean firstA = true;
     private boolean firstE = true;
-    
+
+    public String getExpresion(){
+        return Expresion.getText();
+    }
     public void closeAñadirAliaExpre(){
         ventAñadirAliaExpre = null;
     }
@@ -211,7 +216,7 @@ public class ListarPorExpresion extends javax.swing.JPanel {
         }
         
         if ("".equals(Expresion.getText())) {
-            Expresion.setText("Introduce un nombre de autor");
+            Expresion.setText("Introduce una expresion");
             Expresion.setForeground(new Color(102, 102, 102));
             firstE = true;
             Expresion.setEnabled(false);
@@ -234,20 +239,38 @@ public class ListarPorExpresion extends javax.swing.JPanel {
 
     private void ButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBuscarActionPerformed
         // TODO add your handling code here:
-        String alia;
+        String alia=null;
         if(AliasExist.getSelectedItem().toString().equals("Selecciona una alia existente")){
-            alia = NombreAlia.getText();
-        }else{
-            if (!AliasExist.getSelectedItem().toString().equals("Introduce un nombre de autor")){
-                 alia = AliasExist.getSelectedItem().toString();
+            if (!NombreAlia.getText().equals("Introduce una alia")
+                    && !NombreAlia.getText().equals("")
+                    && !Expresion.getText().equals("Introduce una expresion")
+                    && !Expresion.getText().equals("")) {
+                //
+                String expresion = Expresion.getText();
+                alia = NombreAlia.getText();
+                try {
+                    this.framePrincipal.addExpresion(alia, expresion);
+                    System.out.println(alia);
+                    this.framePrincipal.buscarPorAlia(alia);
+                } catch (Exception e) {
+                    System.out.println("entro en excep");
+                    if (e.getMessage().equals("Error añadiendo alia")) {
+                        JOptionPane.showMessageDialog(null, e.getMessage());
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Error no clasificado");
+                    }
+
+                }
             }else{
-                alia = null;
+                JOptionPane.showMessageDialog(null, "Introduce alia y expresion");
             }
-           
+
+        }else{
+            alia = AliasExist.getSelectedItem().toString();
+            this.framePrincipal.buscarPorAlia(alia);
         }
-        System.out.print(alia);
-       
-        framePrincipal.buscarPorAlia(alia);
+
+
     }//GEN-LAST:event_ButtonBuscarActionPerformed
 
 
