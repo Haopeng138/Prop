@@ -28,7 +28,7 @@
               <EmptySpace pref="204" max="32767" attributes="0"/>
               <Component id="ButtonVer" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+              <Component id="ButtonEliminar" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -42,7 +42,7 @@
                   <Component id="NombreAutor" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="Titulo" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="TituloLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="ButtonEliminar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="ButtonVer" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
@@ -67,10 +67,13 @@
         <Property name="text" type="java.lang.String" value="Titulo:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="ButtonEliminar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Borrar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ButtonEliminarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="NombreAutor">
       <Properties>

@@ -91,7 +91,9 @@ public class ItemTitulo extends javax.swing.JPanel {
 
     private void ButtonVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonVerActionPerformed
         // TODO add your handling code here:
-        VentInfoDoc infoDoc = new VentInfoDoc(this.framePrincipal);
+        String autor = "todo";
+        String titulo = "todo";
+        VentInfoDoc infoDoc = new VentInfoDoc(this.framePrincipal,autor,titulo);
         infoDoc.setVisible(true);
         //Center the frame
         infoDoc.setLocationRelativeTo(null);

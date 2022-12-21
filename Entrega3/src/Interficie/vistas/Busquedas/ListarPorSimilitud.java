@@ -4,7 +4,7 @@
  */
 package Interficie.vistas.Busquedas;
 
-import Interficie.vistas.DocumentHeaderDemo;
+
 import Interficie.vistas.FramePrincipal;
 import java.util.ArrayList;
 
@@ -18,6 +18,10 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
         initComponents();
         this.framePrincipal = framePrincipal;
     }
+    
+    private boolean firstA = true;
+    private boolean firstE = true;
+    private boolean firstK = true;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -49,28 +53,13 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
         });
 
         Titulo.setText("Introduce un título");
-        Titulo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TituloActionPerformed(evt);
-            }
-        });
 
         jTextField1.setText("Introduce un número");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
 
         NombreAutor.setText("Introduce un nombre de autor");
         NombreAutor.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                NombreAutorMouseClicked(evt);
-            }
-        });
-        NombreAutor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NombreAutorActionPerformed(evt);
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                NombreAutorMousePressed(evt);
             }
         });
 
@@ -105,7 +94,7 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(NombreAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -117,38 +106,23 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {ButtonBuscar, NombreAutor, Titulo, jTextField1});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {ButtonBuscar, NombreAutor, jTextField1});
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {criterioOrdenar, tipoOrdenacion});
 
     }// </editor-fold>//GEN-END:initComponents
 
-    private void NombreAutorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NombreAutorMouseClicked
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_NombreAutorMouseClicked
-
-    private void NombreAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreAutorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NombreAutorActionPerformed
-
-    private void TituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TituloActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TituloActionPerformed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
     private void ButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBuscarActionPerformed
         // TODO add your handling code here:
-        ArrayList<DocumentHeaderDemo> documentHeaders = new ArrayList<DocumentHeaderDemo>();
-        documentHeaders.add(new DocumentHeaderDemo("auto","tile"));
-        documentHeaders.add(new DocumentHeaderDemo("autosgf","tilfdgsfde"));
-        documentHeaders.add(new DocumentHeaderDemo("autogfdsg","tgfdigdfgle"));
-        documentHeaders.add(new DocumentHeaderDemo("autgfdso","tigsdfgsdfle"));
-        framePrincipal.documentlist(documentHeaders);
+        String autor = "cosa";
+        String titulo = "titulo";
+        int k = 2;
+        framePrincipal.buscarPorSimilitud(autor,titulo,k);
     }//GEN-LAST:event_ButtonBuscarActionPerformed
+
+    private void NombreAutorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NombreAutorMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NombreAutorMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

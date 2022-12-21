@@ -1,8 +1,8 @@
 package Interficie;
 
 import Dominio.ControladorDominio;
-import Dominio.Utils.DocumentHeader;
 import Interficie.vistas.FramePrincipal;
+import java.util.ArrayList;
 
 
 public class ControladorInterficie {
@@ -20,10 +20,6 @@ public class ControladorInterficie {
     }
     public void getDocument(){
 
-        DocumentHeader[] documentHeaders = ctrl_dominio.getDocumentHeaders();
-        for (DocumentHeader documentHeader : documentHeaders) {
-            this.framePrincipal.añadirDocumento(documentHeader.getTitulo().getName());
-        }
     }
 
     public void updateExpresion(String alias, String expresion) {
@@ -32,5 +28,24 @@ public class ControladorInterficie {
 
     public void createDocumento(String autor,String titulo,String contenido){
         ctrl_dominio.createDocumento(autor, titulo, contenido);
+    }
+    
+    public ArrayList<String[]> busquedaPorExpresion(String alia){
+        return ctrl_dominio.busquedaPorExpresion(alia);
+    }    
+    public ArrayList<String[]> busquedaPorSimilitud(String autor,String titulo,int k){
+        return ctrl_dominio.busquedaPorSimilitud(autor,titulo,k);
+    }
+    
+    public String busquedaPorAutorTitulo(String autor, String titulo){
+        return ctrl_dominio.getContent(autor, titulo);
+    }
+    
+    public void removeDocument(String autor,String titulo){
+        ctrl_dominio.removeDocumento(autor, titulo);
+    }
+    
+    public void modifyDocument(String autor,String titulo,String contenido){
+        ctrl_dominio.modifyDocumento(autor, titulo, contenido);
     }
 }
