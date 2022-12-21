@@ -419,11 +419,12 @@ public class FramePrincipal extends javax.swing.JFrame {
         //System.out.print(selected.getUserObject().toString());
         if (selected.getChildCount()== 0 && "Documentos".equals(selected.getParent().toString())) {
             doc = selected.getUserObject().toString();
-            String[] header = doc.trim().split("|");
+
+            String[] header = doc.split("\\|");
             String autor = header[1];
             String titulo = header[0];
             String contenido = getContenidoPorAutorTitulo(autor,titulo);
-            infoDoc.setText("autor",doc,contenido);
+            infoDoc.setText(autor,titulo,contenido);
             PanelItems.add(infoDoc);
              
         } else if (selected.getChildCount()== 0 && "Alias".equals(selected.getParent().toString())) {

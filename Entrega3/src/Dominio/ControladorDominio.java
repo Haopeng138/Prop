@@ -42,6 +42,7 @@ public class ControladorDominio {
                                 }
                             })
                             .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)));
+
             if (expresiones.size() > 0) {
                 cExpresiones = new ControladorExpresiones(expresiones);
             } else {
@@ -52,7 +53,7 @@ public class ControladorDominio {
             Documento[] documentos = Stream.of(documentosAgnostic).map(
                             documento -> new Documento(documento[0], documento[1], documento[2]))
                     .toArray(Documento[]::new);
-
+            System.out.println(documentos);
             if (documentos.length > 0) {
                 libreria = new Libreria(documentos);
             } else {
