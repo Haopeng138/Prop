@@ -143,7 +143,7 @@ public class VentAñadirAliaPrin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Introduce una alia!!!");
         }
         else {
-            if (framePrincipal.añadirAlia(jTextField1.getText())) {
+            if (framePrincipal.añadirAlia(jTextField1.getText(),"expresion tmp")) {
                 //framePrincipal.setVisible(true);
                 //framePrincipal.setEnabled(true);
                 

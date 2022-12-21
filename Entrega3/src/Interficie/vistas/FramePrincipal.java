@@ -433,7 +433,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         this.setEnabled(false);
     }*/
     
-    public boolean añadirAlia(String a) {
+    public boolean añadirAlia(String a,String expresion) {
         DefaultMutableTreeNode alia = new DefaultMutableTreeNode(a);
         DefaultTreeModel modelo = (DefaultTreeModel)jTree1.getModel();
         DefaultMutableTreeNode c = (DefaultMutableTreeNode) jTree1.getModel().getRoot();
@@ -503,7 +503,11 @@ public class FramePrincipal extends javax.swing.JFrame {
     
     public void buscarPorSimilitud(String autor,String titulo,int k){
         ArrayList<String[]> documents = ctrlInterficie.busquedaPorSimilitud(autor,titulo,k);
-        documentlist(documents);
+        if(documents != null){
+            documentlist(documents);
+        }else {
+            JOptionPane.showMessageDialog(null, "No se ha encontrado documentos,revisa la expresion");
+        }
     }
     
     public String getContenidoPorAutorTitulo(String autor,String titulo){

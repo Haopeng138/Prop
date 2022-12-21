@@ -16,6 +16,7 @@ import Persistencia.Persistencia;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -63,6 +64,12 @@ public class ControladorDominio {
             cExpresiones = new ControladorExpresiones();
             libreria = new Libreria();
         }
+    }
+
+    public ArrayList<String[]> getAllDocuments(){
+        DocumentHeader[] documentHeaders = libreria.getDocumentHeaders();
+        ArrayList<DocumentHeader> headers = (ArrayList<DocumentHeader>) Arrays.asList(documentHeaders);
+        return buildAgnosticHeaders(headers);
     }
 
     //// PUNTO 1
