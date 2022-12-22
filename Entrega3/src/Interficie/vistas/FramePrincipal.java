@@ -54,12 +54,6 @@ public class FramePrincipal extends javax.swing.JFrame {
     private String autorList;
 
 
-    public FramePrincipal(ControladorInterficie ctrInterficie) {
-        this.ctrlInterficie = ctrInterficie;
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        initComponents();
-    }
-
     //Métodos de ordenación
     //Ordenación de los títulos por tamaño descendente del contenido
     public ArrayList<String> ordenaDecreContent (String nameAutor) {
@@ -121,9 +115,9 @@ public class FramePrincipal extends javax.swing.JFrame {
         }
         return autOrdenado;
     }
-    
-    
-    
+
+
+
     public FramePrincipal(ControladorInterficie ctrInterficie) {
         this.ctrlInterficie = ctrInterficie;
         this.setExtendedState(JFrame.MAXIMIZED_BOTH); 
