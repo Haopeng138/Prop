@@ -667,6 +667,14 @@ public class FramePrincipal extends javax.swing.JFrame {
         return ctrlInterficie.getTitles(autor);
     }
     
+    public void export(String autor,String titulo,File path,String type){
+        if(type.equals("txt")){
+            ctrlInterficie.exportTxt(autor,titulo,path);
+        }else{
+            ctrlInterficie.exportXml(autor,titulo,path);
+        }
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu AliasMenu;

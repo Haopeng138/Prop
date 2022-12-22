@@ -9,8 +9,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -18,12 +18,17 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class VentSelectFormato extends javax.swing.JFrame {
     private FramePrincipal framePrincipal;
+    private String autor;
+    private String titulo;
     /**
      * Creates new form VentSelectFormato
      * @param framePrincipal
      */
-    public VentSelectFormato(FramePrincipal framePrincipal) {
+    public VentSelectFormato(FramePrincipal framePrincipal,String autor,String titulo) {
         this.framePrincipal = framePrincipal;
+        formatoTXT.setSelected(true);
+        this.autor = autor;
+        this.titulo = titulo;
         initComponents();
         this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         this.addWindowListener(new WindowAdapter() {
@@ -167,6 +172,17 @@ public class VentSelectFormato extends javax.swing.JFrame {
 
     private void ButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAceptarActionPerformed
         // TODO add your handling code here:
+        if(!"".equals(path.getText())){
+            File file = new File(path.getText());
+            if(formatoTXT.isSelected()){
+                this.framePrincipal.export(autor, titulo,file, "txt");
+            }else if (formatoXML.isSelected()){
+                this.framePrincipal.export(autor, titulo,file, "xml");
+            }else{
+                JOptionPane.showMessageDialog(null, "No has seleccionado ningún formato");
+            }
+            
+        }
        
     }//GEN-LAST:event_ButtonAceptarActionPerformed
 

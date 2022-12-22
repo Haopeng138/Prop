@@ -134,9 +134,13 @@ public class ControladorDominio {
         libreria.removeDocumento(a, t);
     }
 
-    public void export(String autor, String titulo, File path) {
+    public void exportTxt(String autor, String titulo, File path) {
         Documento doc = libreria.getDocumento(autor, titulo);
-        exportDocumento(doc, path, titulo);
+        exportDocumento(doc, path, titulo+".txt");
+    }
+    public void exportXml(String autor, String titulo, File path) {
+        Documento doc = libreria.getDocumento(autor, titulo);
+        exportDocumento(doc, path, titulo+".xml");
     }
 
     /**

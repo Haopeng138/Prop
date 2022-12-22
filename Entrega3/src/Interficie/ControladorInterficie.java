@@ -152,4 +152,11 @@ public class ControladorInterficie {
             return new String[]{autor, titulo};
         }
     }
+    
+    public void exportTxt(String autor,String titulo,File path){
+        ctrl_dominio.exportTxt(autor, titulo, path);
+    }
+    public void exportXml(String autor,String titulo,File path){
+        ctrl_dominio.exportXml(autor, titulo, path);
+    }
 }
