@@ -24,15 +24,30 @@ import Interficie.vistas.VentanaSecundaria.VentNuevoDocumentoFrame;
 import java.awt.CardLayout;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
+
+class ContentSizeD implements Comparator<String> {
+    @Override
+    public int compare(String cont1, String cont2) {
+        if (cont1.length() < cont2.length()) return 1;
+        else return -1;
+    }
+}
 
 public class FramePrincipal extends javax.swing.JFrame {
     private ControladorInterficie ctrlInterficie;
@@ -42,7 +57,72 @@ public class FramePrincipal extends javax.swing.JFrame {
     private VentEliminarAliaPrin eliminarAliaPrinFrame;
     private VentModificarAliaPrin modificarAliaPrinFrame;
     private String autorList;
+    
+    
+    //Métodos de ordenación
+    //Ordenación de los títulos por tamaño descendente del contenido
+    public ArrayList<String> ordenaDecreContent (String nameAutor) {
+        ArrayList<String> titulos = getTitulos(nameAutor);
+        if (titulos == null) return null;
         
+        HashMap<String,Integer> TitCont = new HashMap<>();
+        LinkedHashMap<String, Integer> sortedMap = new LinkedHashMap<>();
+        ArrayList<Integer> list = new ArrayList<>();
+        
+        for (int i = 0; i < titulos.size(); ++i) {
+            String cont = getContenidoPorAutorTitulo(nameAutor, titulos.get(i));
+            TitCont.put(titulos.get(i), cont.length());
+        }
+        for (Map.Entry<String, Integer> entry : TitCont.entrySet()) {
+            list.add(entry.getValue());
+        }
+        
+        Collections.sort(list);
+        Collections.reverse(list);
+       
+        ArrayList<String> titOrdenado = new ArrayList<>();
+        for (int size : list) {
+            for (Entry<String, Integer> entry : TitCont.entrySet()) {
+                if (entry.getValue().equals(size)) {
+                    titOrdenado.add(entry.getKey());
+                }
+            }
+        }
+        //System.out.println("Sort Decreixent per TAMANY CONTINGUT: ");
+        //for (int i = 0; i < titOrdenado.size(); ++i) System.out.println(titOrdenado.get(i));//para mostrar los titulos ordenados por criteri
+        return titOrdenado;
+    }
+    
+    //Ordenación de los nombres de autor por la relevancia descendente(por números de documentos)
+    public void ordenaRelevanciaAutor (String prefijo) {
+        ArrayList<String> autores = buscarPorPrefijo(prefijo);
+        HashMap<String,Integer> autNumTit = new HashMap<>();
+        LinkedHashMap<String, Integer> sortedMap = new LinkedHashMap<>();
+        ArrayList<Integer> list = new ArrayList<>();
+        
+        for (int i = 0; i < autores.size(); ++i) {
+            ArrayList<String> titulos = getTitulos(autores.get(i));
+            autNumTit.put(autores.get(i), titulos.size());
+        }
+        for (Map.Entry<String, Integer> entry : autNumTit.entrySet()) {
+            list.add(entry.getValue());
+        }
+        
+        Collections.sort(list);
+        Collections.reverse(list);
+       
+        for (int size : list) {
+            for (Entry<String, Integer> entry : autNumTit.entrySet()) {
+                if (entry.getValue().equals(size)) {
+                    sortedMap.put(entry.getKey(), size);
+                }
+            }
+        }
+        //System.out.println("Sort Decreixent per RELEVANCIA: ");
+        //System.out.println(sortedMap.keySet());//para mostrar los titulos ordenados por criteri
+    }
+    
+    
     
     public FramePrincipal(ControladorInterficie ctrInterficie) {
         this.ctrlInterficie = ctrInterficie;
@@ -175,6 +255,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         PanelBusquedas = new javax.swing.JPanel();
         PanelItems = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
         MenuBarPrincipal = new javax.swing.JMenuBar();
         FileMenu = new javax.swing.JMenu();
         NuevoDoc = new javax.swing.JMenuItem();
@@ -221,6 +302,14 @@ public class FramePrincipal extends javax.swing.JFrame {
         PanelBusquedas.setLayout(new java.awt.CardLayout());
 
         PanelItems.setLayout(new javax.swing.BoxLayout(PanelItems, javax.swing.BoxLayout.Y_AXIS));
+
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        PanelItems.add(jButton1);
 
         FileMenu.setText("File");
 
@@ -300,7 +389,7 @@ public class FramePrincipal extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(jLabel1))
-                            .addComponent(PanelBusquedas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(PanelBusquedas, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(PanelItems, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -443,6 +532,12 @@ public class FramePrincipal extends javax.swing.JFrame {
         PanelItems.setVisible(true);
         SwingUtilities.updateComponentTreeUI(this);
     }//GEN-LAST:event_jTree1MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String a = "a";
+        ArrayList<String> tit = ordenaDecreContent(a);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     public String getExpresion(String alia) {
         return ctrlInterficie.getExpresion(alia);
@@ -628,7 +723,8 @@ public class FramePrincipal extends javax.swing.JFrame {
     }
     
     public ArrayList<String> getTitulos(String autor) {
-        if (buscarPorPrefijo(autor).isEmpty()) return null;
+        ArrayList<String> autores = buscarPorPrefijo(autor);
+        if (autores.isEmpty() || ! autores.contains(autor)) return null;
         return ctrlInterficie.getTitles(autor);
     }
     
@@ -646,6 +742,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel PanelItems;
     private javax.swing.JScrollPane SizeMenu;
     private javax.swing.JList<String> SizeMenuBusqueda;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTree jTree1;

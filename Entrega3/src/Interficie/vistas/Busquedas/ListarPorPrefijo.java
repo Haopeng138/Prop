@@ -8,6 +8,7 @@ import Interficie.vistas.FramePrincipal;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import javax.swing.JOptionPane;
 
 public class ListarPorPrefijo extends javax.swing.JPanel {
@@ -111,7 +112,7 @@ public class ListarPorPrefijo extends javax.swing.JPanel {
                 prefijo = "";
             }
             ArrayList<String> autores = framePrincipal.buscarPorPrefijo(prefijo);
-            
+            Collections.sort(autores);
             framePrincipal.autorlist(autores);
         }
     }//GEN-LAST:event_ButtonBuscarActionPerformed
