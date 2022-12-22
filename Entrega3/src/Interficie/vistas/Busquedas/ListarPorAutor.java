@@ -67,6 +67,11 @@ public class ListarPorAutor extends javax.swing.JPanel {
         tipoOrdenacion.setText("Ordenar por:");
 
         criterioOrdenar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "título A-Z", "tamaño descendente" }));
+        criterioOrdenar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                criterioOrdenarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -130,16 +135,38 @@ public class ListarPorAutor extends javax.swing.JPanel {
     private void ButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBuscarActionPerformed
         // TODO change titles  arrays
         String autor = NombreAutor.getText();
+       
         if ("".equals(autor) || "Introduce un nombre de autor".equals(autor)) JOptionPane.showMessageDialog(null, "Introduce un nombre de autor!!!");
         else {
             ArrayList<String> titulos = framePrincipal.getTitulos(autor);
+            System.out.println(titulos);
+            if (titulos == null) JOptionPane.showMessageDialog(null, "No existe este autor");
+            else {
+                Collections.sort(titulos);
+                framePrincipal.titlelist(titulos, autor);
+            }
+        }
+        
+    }//GEN-LAST:event_ButtonBuscarActionPerformed
+
+    private void criterioOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criterioOrdenarActionPerformed
+        // TODO add your handling code here:
+        String autor = NombreAutor.getText();
+        ArrayList<String> titulos = new ArrayList<> ();
+        if("tamaño descendente".equals(criterioOrdenar.getSelectedItem().toString())){
+            titulos = framePrincipal.ordenaDecreContent(autor);
+            if (titulos == null) JOptionPane.showMessageDialog(null, "No existe este autor");
+            System.out.println(titulos);
+            framePrincipal.titlelist(titulos, autor);
+        }
+        else {
+            titulos = framePrincipal.getTitulos(autor);
             Collections.sort(titulos);
             System.out.println(titulos);
             if (titulos == null) JOptionPane.showMessageDialog(null, "No existe este autor");
             else framePrincipal.titlelist(titulos, autor);
         }
-        
-    }//GEN-LAST:event_ButtonBuscarActionPerformed
+    }//GEN-LAST:event_criterioOrdenarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

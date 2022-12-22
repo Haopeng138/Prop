@@ -61,8 +61,10 @@ public class FramePrincipal extends javax.swing.JFrame {
     
     //Métodos de ordenación
     //Ordenación de los títulos por tamaño descendente del contenido
-    public void ordenaDecreContent (String nameAutor) {
+    public ArrayList<String> ordenaDecreContent (String nameAutor) {
         ArrayList<String> titulos = getTitulos(nameAutor);
+        if (titulos == null) return null;
+        
         HashMap<String,Integer> TitCont = new HashMap<>();
         LinkedHashMap<String, Integer> sortedMap = new LinkedHashMap<>();
         ArrayList<Integer> list = new ArrayList<>();
@@ -78,21 +80,45 @@ public class FramePrincipal extends javax.swing.JFrame {
         Collections.sort(list);
         Collections.reverse(list);
        
+        ArrayList<String> titOrdenado = new ArrayList<>();
         for (int size : list) {
             for (Entry<String, Integer> entry : TitCont.entrySet()) {
+                if (entry.getValue().equals(size)) {
+                    titOrdenado.add(entry.getKey());
+                }
+            }
+        }
+        //System.out.println("Sort Decreixent per TAMANY CONTINGUT: ");
+        //for (int i = 0; i < titOrdenado.size(); ++i) System.out.println(titOrdenado.get(i));//para mostrar los titulos ordenados por criteri
+        return titOrdenado;
+    }
+    
+    //Ordenación de los nombres de autor por la relevancia descendente(por números de documentos)
+    public void ordenaRelevanciaAutor (String prefijo) {
+        ArrayList<String> autores = buscarPorPrefijo(prefijo);
+        HashMap<String,Integer> autNumTit = new HashMap<>();
+        LinkedHashMap<String, Integer> sortedMap = new LinkedHashMap<>();
+        ArrayList<Integer> list = new ArrayList<>();
+        
+        for (int i = 0; i < autores.size(); ++i) {
+            ArrayList<String> titulos = getTitulos(autores.get(i));
+            autNumTit.put(autores.get(i), titulos.size());
+        }
+        for (Map.Entry<String, Integer> entry : autNumTit.entrySet()) {
+            list.add(entry.getValue());
+        }
+        
+        Collections.sort(list);
+        Collections.reverse(list);
+       
+        for (int size : list) {
+            for (Entry<String, Integer> entry : autNumTit.entrySet()) {
                 if (entry.getValue().equals(size)) {
                     sortedMap.put(entry.getKey(), size);
                 }
             }
         }
-        //System.out.println("Sort Decreixent per tamany del contingut: ");
-        //System.out.println(sortedMap.keySet());//para mostrar los titulos ordenados por criteri
-    }
-    
-    //Ordenación de los nombres de autor por la relevancia descendente(por números de documentos)
-    public void ordenaRelevanciaAutor (String prefijo) {
-        
-        //System.out.println("Sort Decreixent per tamany del contingut: ");
+        //System.out.println("Sort Decreixent per RELEVANCIA: ");
         //System.out.println(sortedMap.keySet());//para mostrar los titulos ordenados por criteri
     }
     
@@ -362,7 +388,7 @@ public class FramePrincipal extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(jLabel1))
-                            .addComponent(PanelBusquedas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(PanelBusquedas, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(PanelItems, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -508,9 +534,8 @@ public class FramePrincipal extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String a = "aut";
-        
-        ordenaDecreContent(a);
+        String a = "a";
+        ArrayList<String> tit = ordenaDecreContent(a);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public String getExpresion(String alia) {
@@ -697,7 +722,9 @@ public class FramePrincipal extends javax.swing.JFrame {
     }
     
     public ArrayList<String> getTitulos(String autor) {
-        if (buscarPorPrefijo(autor).isEmpty()) return null;
+        System.out.println("AAAAAAAAAAAAAAAA");
+        ArrayList<String> autores = buscarPorPrefijo(autor);
+        if (autores.isEmpty() || ! autores.contains(autor)) return null;
         return ctrlInterficie.getTitles(autor);
     }
     
