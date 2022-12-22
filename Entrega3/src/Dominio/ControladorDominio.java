@@ -51,7 +51,7 @@ public class ControladorDominio {
 
             String[][] documentosAgnostic = Persistencia.recoverDocumentos();
             Documento[] documentos = Stream.of(documentosAgnostic).map(
-                            documento -> new Documento(documento[0], documento[1], documento[2]))
+                    documento -> new Documento(documento[0], documento[1], documento[2]))
                     .toArray(Documento[]::new);
             System.out.println(documentos);
             if (documentos.length > 0) {
@@ -101,16 +101,37 @@ public class ControladorDominio {
         }
     }
 
-    public void createDocumento(String a, String t, String contenido) {
-        libreria.createDocumento(a, t, contenido);
+    /**
+     * @param a         El autor del documento
+     * @param t         El titulo del documento
+     * @param contenido El contenido del documento
+     * @return True si se ha creado, False si ya existia un documento con el mismo
+     *         autor y titulo
+     */
+    public boolean createDocumento(String a, String t, String contenido) {
+        return libreria.createDocumento(a, t, contenido);
     }
 
+    /**
+     * @param a         El autor del documento
+     * @param t         El titulo del documento
+     * @param contenido El contenido del documento
+     */
     public void modifyDocumento(String a, String t, String contenido) {
         libreria.modifyDocumento(a, t, contenido);
     }
 
+    /**
+     * @param a El autor del documento
+     * @param t El titulo del documento
+     */
     public void removeDocumento(String a, String t) {
         libreria.removeDocumento(a, t);
+    }
+
+    public void export(String autor, String titulo, File path) {
+        Documento doc = libreria.getDocumento(autor, titulo);
+        exportDocumento(doc, path, titulo);
     }
 
     /**
@@ -118,7 +139,7 @@ public class ControladorDominio {
      * @param path El path al que exportarlo
      * @param name El nombre que dar al documento
      */
-    public void exportDocumento(Documento doc, File path, String name) {
+    private void exportDocumento(Documento doc, File path, String name) {
         try {
             IOHelper.export(doc, path, name);
         } catch (Exception e) {
@@ -159,7 +180,7 @@ public class ControladorDominio {
     //// PUNTO 3
 
     /**
-     * @param  a Nombre autor
+     * @param a Nombre autor
      * @param t Titulo
      * @param k numero de documentos que quiere
      * @return un conjunto de documentos
@@ -216,7 +237,7 @@ public class ControladorDominio {
         Documento[] documentos = libreria.getDocumentos();
 
         String[][] documentosAgnostic = Stream.of(documentos).map(
-                        documento -> new String[] { documento.getAutor(), documento.getTitulo(), documento.getContenido() })
+                documento -> new String[] { documento.getAutor(), documento.getTitulo(), documento.getContenido() })
                 .toArray(String[][]::new);
 
         HashMap<String, Expresion> expresiones = cExpresiones.getExpresiones();

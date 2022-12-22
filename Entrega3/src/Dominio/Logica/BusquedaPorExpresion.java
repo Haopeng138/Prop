@@ -22,9 +22,9 @@ public class BusquedaPorExpresion {
 
     /**
      * @param expresion La expresion con la que buscar
-     * @param libreria La libreria de documentos
+     * @param libreria  La libreria de documentos
      * @return Los documentos que cumplen la expresion
-     * @throws Exception 
+     * @throws Exception
      */
     public ArrayList<DocumentHeader> buscar(String expresion, Libreria libreria) throws Exception {
         this.libreria = libreria;
