@@ -115,7 +115,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         }
         JScrollPane pane = new JScrollPane(tmpPanel);
         PanelItems.add(pane);
-        PanelItems.setVisible(true);
+        PanelItems.setVisible(true); 
         SwingUtilities.updateComponentTreeUI(this);
         
     }
@@ -622,8 +622,12 @@ public class FramePrincipal extends javax.swing.JFrame {
         ctrlInterficie.addExpresion(alia,expresion);
     }
     
+    public ArrayList<String> buscarPorPrefijo(String prefijo) {
+        return ctrlInterficie.busquedaPorPrefijo(prefijo);
+    }
+    
     public ArrayList<String> getTitulos(String autor) {
-        if (ctrlInterficie.busquedaPorPrefijo(autor).isEmpty()) return null;
+        if (buscarPorPrefijo(autor).isEmpty()) return null;
         return ctrlInterficie.getTitles(autor);
     }
     
