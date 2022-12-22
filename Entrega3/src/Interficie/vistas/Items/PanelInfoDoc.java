@@ -189,12 +189,14 @@ public class PanelInfoDoc extends javax.swing.JPanel {
         String autor = NombreAutor.getText();
         String cont = Contenido.getText();
         if (cont.equals(framePrincipal.getContent(autor, titulo))) JOptionPane.showMessageDialog(null, "No has cambiado el contenido!!!");
-        int reply = JOptionPane.showConfirmDialog(null, "Seguro que quieres guardar?", "", JOptionPane.YES_NO_OPTION);
-        if (reply == JOptionPane.YES_OPTION) {
+        else {
+            int reply = JOptionPane.showConfirmDialog(null, "Seguro que quieres guardar?", "", JOptionPane.YES_NO_OPTION);
+            if (reply == JOptionPane.YES_OPTION) {
             
-            framePrincipal.modificarDoc(titulo, autor, cont);
-            this.setVisible(false);
-        } 
+                framePrincipal.modificarDoc(titulo, autor, cont);
+                //this.setVisible(false);
+            }
+        }
     }//GEN-LAST:event_ButtonGuardarActionPerformed
 
     private void TituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TituloActionPerformed

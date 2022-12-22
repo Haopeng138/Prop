@@ -21,6 +21,7 @@ public class VentModificarAliaPrin extends javax.swing.JFrame {
         initComponents();
         this.framePrincipal = framePrincipal;
         ArrayList<String> combo = framePrincipal.getAlias();
+        
         ComboAlias.removeAllItems();
         for (String c :combo){
             ComboAlias.addItem(c);

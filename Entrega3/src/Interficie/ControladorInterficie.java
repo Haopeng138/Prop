@@ -34,9 +34,12 @@ public class ControladorInterficie {
     }
     
     public ArrayList<String[]> getAllDocs() {
-        System.out.println("interfaz estoy");
         return ctrl_dominio.getAllDocuments();
        
+    }
+    
+    public ArrayList<String> getTitles(String autor) {
+        return ctrl_dominio.getTitles(autor);
     }
     
     public ArrayList<String[]> busquedaPorExpresion(String alia){
@@ -78,5 +81,9 @@ public class ControladorInterficie {
 
     public String getExpresion(String alia) {
         return ctrl_dominio.getExpresion(alia);
+    }
+    
+    public ArrayList<String> busquedaPorPrefijo(String prefijo) {
+        return ctrl_dominio.obtenerAutoresPrefijo(prefijo);
     }
 }
