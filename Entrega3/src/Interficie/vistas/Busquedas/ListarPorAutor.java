@@ -6,6 +6,7 @@ package Interficie.vistas.Busquedas;
 
 import Interficie.vistas.FramePrincipal;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -17,12 +18,12 @@ public class ListarPorAutor extends javax.swing.JPanel {
      * Creates new form ListarAutor
      * @param framePrincipal
      */
+    
+    
     public ListarPorAutor(FramePrincipal framePrincipal) {
         initComponents();
         this.framePrincipal = framePrincipal;
     }
-    
-
 
     private boolean first = true;
     /**
@@ -63,6 +64,16 @@ public class ListarPorAutor extends javax.swing.JPanel {
         NombreAutor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 NombreAutorMousePressed(evt);
+            }
+        });
+        NombreAutor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NombreAutorActionPerformed(evt);
+            }
+        });
+        NombreAutor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                NombreAutorKeyPressed(evt);
             }
         });
 
@@ -141,7 +152,7 @@ public class ListarPorAutor extends javax.swing.JPanel {
         if ("".equals(autor) || "Introduce un nombre de autor".equals(autor)) JOptionPane.showMessageDialog(null, "Introduce un nombre de autor!!!");
         else {
             ArrayList<String> titulos = framePrincipal.getTitulos(autor);
-            if (titulos.isEmpty()) JOptionPane.showMessageDialog(null, "No existe este autor");
+            if (titulos == null) JOptionPane.showMessageDialog(null, "No existe este autor");
             else {
                 Collections.sort(titulos);
                 framePrincipal.titlelist(titulos, autor);
@@ -161,9 +172,20 @@ public class ListarPorAutor extends javax.swing.JPanel {
             titulos = framePrincipal.getTitulos(autor);
             Collections.sort(titulos);
         }
-        if (titulos.isEmpty()) JOptionPane.showMessageDialog(null, "No existe este autor");
+        if (titulos == null) JOptionPane.showMessageDialog(null, "No existe este autor");
         else framePrincipal.titlelist(titulos, autor);
     }//GEN-LAST:event_criterioOrdenarActionPerformed
+
+    private void NombreAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreAutorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NombreAutorActionPerformed
+
+    private void NombreAutorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NombreAutorKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            ButtonBuscar.doClick();
+        }
+    }//GEN-LAST:event_NombreAutorKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

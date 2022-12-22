@@ -48,7 +48,8 @@ public class FramePrincipal extends javax.swing.JFrame {
     private VentEliminarAliaPrin eliminarAliaPrinFrame;
     private VentModificarAliaPrin modificarAliaPrinFrame;
     private String autorList;
-    private int indexPanelPrefijo = -1;    
+    private int indexPanelPrefijo = -1; 
+    private boolean isPanelPrefijo = false;
     
     public FramePrincipal(ControladorInterficie ctrInterficie) {
         this.ctrlInterficie = ctrInterficie;
@@ -268,12 +269,8 @@ public class FramePrincipal extends javax.swing.JFrame {
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Principal");
         javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Documentos");
-        javax.swing.tree.DefaultMutableTreeNode treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("D1");
-        treeNode2.add(treeNode3);
         treeNode1.add(treeNode2);
         treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Alias");
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("A1");
-        treeNode2.add(treeNode3);
         treeNode1.add(treeNode2);
         jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         jTree1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -367,7 +364,7 @@ public class FramePrincipal extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(jLabel1))
-                            .addComponent(PanelBusquedas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(PanelBusquedas, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(PanelItems, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -398,24 +395,28 @@ public class FramePrincipal extends javax.swing.JFrame {
             PanelBusquedas.add(new ListarPorAutorYTitulo(this), "listarAutorTitulo");
             card.show(PanelBusquedas, "listarAutorTitulo");
             ++indexPanelPrefijo;
+            isPanelPrefijo = false;
         }
         
         if ("Listar por prefijo".equals((String)SizeMenuBusqueda.getSelectedValue()) ) {
             PanelBusquedas.add(new ListarPorPrefijo(this), "listarPrefijo");
             card.show(PanelBusquedas, "listarPrefijo");
             ++indexPanelPrefijo;
+            isPanelPrefijo = true;
         }
         
         if ("Listar por similitud".equals((String)SizeMenuBusqueda.getSelectedValue()) ) {
             PanelBusquedas.add(new ListarPorSimilitud(this), "listarSimilitud");
             card.show(PanelBusquedas, "listarSimilitud");
             ++indexPanelPrefijo;
+            isPanelPrefijo = false;
         }
         
         if ("Listar por expresión booleana".equals((String)SizeMenuBusqueda.getSelectedValue()) ) {
             PanelBusquedas.add(new ListarPorExpresion(this), "listarExpresion");
             card.show(PanelBusquedas, "listarExpresion");
             ++indexPanelPrefijo;
+            isPanelPrefijo = false;
         }
     }//GEN-LAST:event_SizeMenuBusquedaMouseClicked
 
@@ -753,11 +754,21 @@ public class FramePrincipal extends javax.swing.JFrame {
     }
     
     public void reload() {
+        if (isPanelPrefijo) {
+            ListarPorPrefijo panel =(ListarPorPrefijo)PanelBusquedas.getComponent(indexPanelPrefijo);
         
-        ListarPorPrefijo panel =(ListarPorPrefijo)PanelBusquedas.getComponent(indexPanelPrefijo);
-        panel.reload();
-        System.out.println(PanelItems.getComponent(0));
+            JScrollPane panelItems = (JScrollPane) PanelItems.getComponent(0);
+            JViewport view = (JViewport) panelItems.getComponent(0);
         
+            JPanel panelTit = (JPanel) view.getComponent(0);
+            BoxLayout box = (BoxLayout)panelTit.getLayout();
+            panelTit = (JPanel) box.getTarget();
+            for (int i = 0; i < panelTit.getComponentCount(); ++i) {
+                ItemAutor autor = (ItemAutor) panelTit.getComponent(i);
+                autor.closeItemTitulo();
+            }
+            panel.reload();
+        }
         
         
     }
