@@ -30,7 +30,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -41,13 +40,6 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
 
-class ContentSizeD implements Comparator<String> {
-    @Override
-    public int compare(String cont1, String cont2) {
-        if (cont1.length() < cont2.length()) return 1;
-        else return -1;
-    }
-}
 
 public class FramePrincipal extends javax.swing.JFrame {
     private ControladorInterficie ctrlInterficie;
@@ -87,8 +79,6 @@ public class FramePrincipal extends javax.swing.JFrame {
                 }
             }
         }
-        //System.out.println("Sort Decreixent per TAMANY CONTINGUT: ");
-        //for (int i = 0; i < titOrdenado.size(); ++i) System.out.println(titOrdenado.get(i));//para mostrar los titulos ordenados por criteri
         return titOrdenado;
     }
     
@@ -118,8 +108,6 @@ public class FramePrincipal extends javax.swing.JFrame {
                 }
             }
         }
-        //System.out.println("Sort Decreixent per RELEVANCIA: ");
-        //System.out.println(sortedMap.keySet());//para mostrar los titulos ordenados por criteri
         return autOrdenado;
     }
     
