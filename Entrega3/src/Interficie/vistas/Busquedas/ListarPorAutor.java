@@ -8,8 +8,12 @@ import Interficie.vistas.FramePrincipal;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 public class ListarPorAutor extends javax.swing.JPanel {
+    
+    ArrayList<String> titulos = new ArrayList<>(Arrays.asList("La nave", "tres cuerpos", "sobrevivir","34","4234","La nave", "tres cuerpos", "sobrevivir","34","4234","La nave", "tres cuerpos", "sobrevivir","34","4234","La nave", "tres cuerpos", "sobrevivir","34","4234"));
+    
     private final FramePrincipal framePrincipal;
     /**
      * Creates new form ListarAutor
@@ -65,6 +69,11 @@ public class ListarPorAutor extends javax.swing.JPanel {
         tipoOrdenacion.setText("Ordenar por:");
 
         criterioOrdenar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "título A-Z", "tamaño descendente" }));
+        criterioOrdenar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                criterioOrdenarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -105,6 +114,7 @@ public class ListarPorAutor extends javax.swing.JPanel {
 
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void NombreAutorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NombreAutorMousePressed
 
         if (first) {
@@ -127,9 +137,20 @@ public class ListarPorAutor extends javax.swing.JPanel {
 
     private void ButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBuscarActionPerformed
         // TODO change titles  arrays
-        ArrayList<String> titulos = new ArrayList<>(Arrays.asList("La nave", "tres cuerpos", "sobrevivir","34","4234","La nave", "tres cuerpos", "sobrevivir","34","4234","La nave", "tres cuerpos", "sobrevivir","34","4234","La nave", "tres cuerpos", "sobrevivir","34","4234"));
+        Collections.sort(titulos);
         framePrincipal.titlelist(titulos);
     }//GEN-LAST:event_ButtonBuscarActionPerformed
+
+    private void criterioOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criterioOrdenarActionPerformed
+        // TODO add your handling code here:
+        String aut = NombreAutor.getText();
+        ArrayList<Integer> sizeDoc = new ArrayList<Integer>();
+        
+        for (int i = 0; i < titulos.size(); ++i) {
+            String cont = framePrincipal.getContent(aut, titulos.get(i));
+            
+        }
+    }//GEN-LAST:event_criterioOrdenarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
