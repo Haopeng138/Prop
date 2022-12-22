@@ -1,10 +1,13 @@
 package Interficie;
 
 import Dominio.ControladorDominio;
-import Dominio.Expresion.ExpresionException;
 import Interficie.vistas.FramePrincipal;
 import java.io.File;
+
+import java.io.FileNotFoundException;
+import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 
 public class ControladorInterficie {
@@ -36,14 +39,31 @@ public class ControladorInterficie {
 
     }
 
-
+    private String getExtension(String fileName){
+        String extension = "";
+        int i = fileName.lastIndexOf('.');
+        if (i > 0) {
+            extension = fileName.substring(i+1);
+        }
+        return extension;
+    }
 
     public void createDocumento(String autor,String titulo,String contenido){
         ctrl_dominio.createDocumento(autor, titulo, contenido);
+
     }
     
-    public void createDocumento(File documento) {
+    public void createDocumento(File documento) throws Exception {
+        System.out.println(getExtension(documento.toString()));
         ctrl_dominio.createDocumento(documento);
+        String[] tmp;
+
+        if(getExtension(documento.toString()).equals("txt")){
+            tmp = getAutorTituloFromTxt(documento);
+        }else {
+            tmp = getAutorTituloFromXML(documento);
+        }
+        this.framePrincipal.cargarDocument(tmp[0],tmp[1]);
     }
 
     public ArrayList<String[]> getAllDocs() {
@@ -78,7 +98,7 @@ public class ControladorInterficie {
     public void addExpresion(String alia,String expresion) throws Exception {
         try {
             ctrl_dominio.addExpresion(alia,expresion);
-        }catch (ExpresionException e){
+        }catch (Exception e){
             throw new Exception("Error añadiendo alia");
         }
 
@@ -101,5 +121,35 @@ public class ControladorInterficie {
 
     public ArrayList<String> busquedaPorPrefijo(String prefijo) {
         return ctrl_dominio.obtenerAutoresPrefijo(prefijo);
+    }
+    
+    private String[] getAutorTituloFromXML(File documento) throws Exception {
+        String content = Files.readString(documento.toPath());
+        int startAutor = content.indexOf("<Autor>");
+        int endAutor = content.indexOf("</Autor>");
+        String autor = "";
+        if (startAutor != -1 && endAutor != -1) {
+            autor = content.substring(startAutor + 8, endAutor).trim();
+        }
+        int startTitulo = content.indexOf("<Titulo>");
+        int endTitulo = content.indexOf("</Titulo>");
+        String titulo = "";
+        if (startTitulo != -1 && endTitulo != -1) {
+            titulo = content.substring(startTitulo + 8, endTitulo).trim();
+        }
+        if (autor == "" || titulo == "") {
+            throw new Exception("There is a missing tag");
+        }
+       
+
+        return new String[]{autor, titulo};
+    }
+    
+    private String[] getAutorTituloFromTxt(File documento) throws FileNotFoundException {
+        try (Scanner file = new Scanner(documento)) {
+            String autor = file.nextLine();
+            String titulo = file.nextLine();
+            return new String[]{autor, titulo};
+        }
     }
 }

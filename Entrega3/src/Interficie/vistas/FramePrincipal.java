@@ -407,7 +407,11 @@ public class FramePrincipal extends javax.swing.JFrame {
         int returnValue = fileChooser.showOpenDialog(null);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
-            ctrlInterficie.createDocumento(selectedFile);
+            try{
+                ctrlInterficie.createDocumento(selectedFile);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
             System.out.print(selectedFile.toString());
         }
     }//GEN-LAST:event_CargarDocActionPerformed
@@ -662,6 +666,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         if (ctrlInterficie.busquedaPorPrefijo(autor).isEmpty()) return null;
         return ctrlInterficie.getTitles(autor);
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu AliasMenu;

@@ -65,6 +65,11 @@ public class VentSelectFormato extends javax.swing.JFrame {
         formatoXML.setText("Formato .xml");
 
         ButtonAceptar.setText("Aceptar");
+        ButtonAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonAceptarActionPerformed(evt);
+            }
+        });
 
         ButtonCancelar.setText("Cancelar");
         ButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -159,6 +164,11 @@ public class VentSelectFormato extends javax.swing.JFrame {
             path.setText(fileChooser.getSelectedFile().toString());
         }
     }//GEN-LAST:event_ButtonBrowseActionPerformed
+
+    private void ButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAceptarActionPerformed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_ButtonAceptarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
