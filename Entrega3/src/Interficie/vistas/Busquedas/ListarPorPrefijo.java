@@ -61,6 +61,11 @@ public class ListarPorPrefijo extends javax.swing.JPanel {
         tipoOrdenacion.setText("Ordenar por:");
 
         criterioOrdenar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "autor A-Z", "relevancia" }));
+        criterioOrdenar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                criterioOrdenarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -104,8 +109,6 @@ public class ListarPorPrefijo extends javax.swing.JPanel {
     private void ButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBuscarActionPerformed
         // TODO add your handling code here:
         String prefijo = NombreAutor.getText();
-        System.out.println(prefijo + "hola");
-        
         if ("Introduce un prefijo".equals(prefijo)) JOptionPane.showMessageDialog(null, "Introduce un prefijo!!!");
         else {
             if ("".equals(prefijo)) {
@@ -126,6 +129,28 @@ public class ListarPorPrefijo extends javax.swing.JPanel {
             NombreAutor.setEnabled(true);
         }
     }//GEN-LAST:event_NombreAutorMousePressed
+
+    private void criterioOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criterioOrdenarActionPerformed
+        // TODO add your handling code here:
+        String prefijo = NombreAutor.getText();
+        if ("Introduce un prefijo".equals(prefijo)) JOptionPane.showMessageDialog(null, "Introduce un prefijo!!!");
+        else {
+            if ("".equals(prefijo)) prefijo = "";
+            
+            ArrayList<String> autores = framePrincipal.buscarPorPrefijo(prefijo);
+            if (autores.isEmpty()) JOptionPane.showMessageDialog(null, "No existe ningun autor con este prefijo");
+            else {
+                if("relevancia".equals(criterioOrdenar.getSelectedItem().toString())){
+                    autores = framePrincipal.ordenaRelevanciaAutor(prefijo);
+                    framePrincipal.autorlist(autores);
+                }
+                else {
+                    Collections.sort(autores);
+                    framePrincipal.autorlist(autores);
+                }
+            }
+        }
+    }//GEN-LAST:event_criterioOrdenarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

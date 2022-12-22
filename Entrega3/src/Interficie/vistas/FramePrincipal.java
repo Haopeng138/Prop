@@ -63,8 +63,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     //Ordenación de los títulos por tamaño descendente del contenido
     public ArrayList<String> ordenaDecreContent (String nameAutor) {
         ArrayList<String> titulos = getTitulos(nameAutor);
-        if (titulos == null) return null;
-        
+        if (titulos.isEmpty()) return null;
         HashMap<String,Integer> TitCont = new HashMap<>();
         LinkedHashMap<String, Integer> sortedMap = new LinkedHashMap<>();
         ArrayList<Integer> list = new ArrayList<>();
@@ -94,10 +93,10 @@ public class FramePrincipal extends javax.swing.JFrame {
     }
     
     //Ordenación de los nombres de autor por la relevancia descendente(por números de documentos)
-    public void ordenaRelevanciaAutor (String prefijo) {
+    public ArrayList<String> ordenaRelevanciaAutor (String prefijo) {
         ArrayList<String> autores = buscarPorPrefijo(prefijo);
+        if (autores.isEmpty()) return null;
         HashMap<String,Integer> autNumTit = new HashMap<>();
-        LinkedHashMap<String, Integer> sortedMap = new LinkedHashMap<>();
         ArrayList<Integer> list = new ArrayList<>();
         
         for (int i = 0; i < autores.size(); ++i) {
@@ -111,15 +110,17 @@ public class FramePrincipal extends javax.swing.JFrame {
         Collections.sort(list);
         Collections.reverse(list);
        
+        ArrayList<String> autOrdenado = new ArrayList<>();
         for (int size : list) {
             for (Entry<String, Integer> entry : autNumTit.entrySet()) {
                 if (entry.getValue().equals(size)) {
-                    sortedMap.put(entry.getKey(), size);
+                    autOrdenado.add(entry.getKey());
                 }
             }
         }
         //System.out.println("Sort Decreixent per RELEVANCIA: ");
         //System.out.println(sortedMap.keySet());//para mostrar los titulos ordenados por criteri
+        return autOrdenado;
     }
     
     

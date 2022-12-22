@@ -154,15 +154,13 @@ public class ListarPorAutor extends javax.swing.JPanel {
         ArrayList<String> titulos = new ArrayList<> ();
         if("tamaño descendente".equals(criterioOrdenar.getSelectedItem().toString())){
             titulos = framePrincipal.ordenaDecreContent(autor);
-            if (titulos == null) JOptionPane.showMessageDialog(null, "No existe este autor");
-            framePrincipal.titlelist(titulos, autor);
         }
         else {
             titulos = framePrincipal.getTitulos(autor);
             Collections.sort(titulos);
-            if (titulos == null) JOptionPane.showMessageDialog(null, "No existe este autor");
-            else framePrincipal.titlelist(titulos, autor);
         }
+        if (titulos == null) JOptionPane.showMessageDialog(null, "No existe este autor");
+        else framePrincipal.titlelist(titulos, autor);
     }//GEN-LAST:event_criterioOrdenarActionPerformed
 
 
