@@ -183,6 +183,17 @@ public class VentNuevoDocumentoFrame extends javax.swing.JFrame {
         else if ("".equals(NombreAutor.getText())) {
             JOptionPane.showMessageDialog(null, "Introduce un autor!!!");
         }
+        
+        else if ("".equals(NombreAutor.getText()) && "".equals(Titulo.getText())) {
+            JOptionPane.showMessageDialog(null, "Introduce un autor!!!\nIntroduce un título!!!");
+        }
+        
+        else if ("".equals(NombreAutor.getText()) && "".equals(jTextArea1.getText())) {
+            JOptionPane.showMessageDialog(null, "Introduce un autor!!!\nIntroduce un contenido!!!");
+        }
+        else if ("".equals(Titulo.getText()) && "".equals(jTextArea1.getText())) {
+            JOptionPane.showMessageDialog(null, "Introduce un título!!!\nIntroduce un contenido!!!");
+        }
 
         else {
 
