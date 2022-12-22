@@ -19,8 +19,16 @@ public class ControladorInterficie {
         this.framePrincipal = new FramePrincipal(this);
         ArrayList<String[]> documents = ctrl_dominio.getAllDocuments();
         for(String[] doc:documents){
-            this.framePrincipal.cargarDocumento(doc[0], doc[1]);
-            System.out.println(doc[0]);
+            if(this.framePrincipal.cargarDocument(doc[0],doc[1])){
+                System.out.println(doc[0]);
+            }
+           
+        }
+        ArrayList<String[]> aliasexpresions = ctrl_dominio.getAllExpresions();
+        for(String[] alia:aliasexpresions){
+            if (this.framePrincipal.añadirAlia(alia[0], alia[1])){
+                System.out.println(alia[0]);
+            }
         }
         this.framePrincipal.setVisible(true);
     }
@@ -28,9 +36,7 @@ public class ControladorInterficie {
 
     }
 
-    public void updateExpresion(String alias, String expresion) {
 
-    }
 
     public void createDocumento(String autor,String titulo,String contenido){
         ctrl_dominio.createDocumento(autor, titulo, contenido);

@@ -24,14 +24,19 @@ public class Libreria {
      * @param documentos Los documentos que añadir a la libreria
      */
     public Libreria(Documento[] documentos) {
-
+        autores = new Autores();
+        this.documentos = new Documentos();
         for (Documento documento : documentos) {
+
             String autor = documento.getAutor();
+            System.out.println(autor);
             if (!autores.has(autor)) {
                 autores.add(autor);
             }
+            System.out.println(documento.getTitulo());
             this.autores.addTitleToAutor(new DocumentHeader(autor, documento.getTitulo()));
             this.documentos.add(documento);
+
         }
     }
 

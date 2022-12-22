@@ -175,13 +175,13 @@ public class FramePrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        PanelBusquedas = new javax.swing.JPanel();
         SizeMenu = new javax.swing.JScrollPane();
         SizeMenuBusqueda = new javax.swing.JList<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTree1 = new javax.swing.JTree();
-        PanelItems = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        PanelBusquedas = new javax.swing.JPanel();
+        PanelItems = new javax.swing.JPanel();
         MenuBarPrincipal = new javax.swing.JMenuBar();
         FileMenu = new javax.swing.JMenu();
         NuevoDoc = new javax.swing.JMenuItem();
@@ -193,8 +193,6 @@ public class FramePrincipal extends javax.swing.JFrame {
         HelpMenu = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        PanelBusquedas.setLayout(new java.awt.CardLayout());
 
         SizeMenuBusqueda.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Listar por autor", "Listar por autor y título", "Listar por prefijo", "Listar por similitud", "Listar por expresión booleana" };
@@ -210,12 +208,8 @@ public class FramePrincipal extends javax.swing.JFrame {
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Principal");
         javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Documentos");
-        javax.swing.tree.DefaultMutableTreeNode treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("D1");
-        treeNode2.add(treeNode3);
         treeNode1.add(treeNode2);
         treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Alias");
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("A1");
-        treeNode2.add(treeNode3);
         treeNode1.add(treeNode2);
         jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         jTree1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -433,10 +427,7 @@ public class FramePrincipal extends javax.swing.JFrame {
             String autor = doc[0];
             String titulo = doc[1];
             System.out.println(autor + " " + titulo);
-
-
             String contenido = ctrlInterficie.busquedaPorAutorTitulo(autor, titulo);
-
             infoDoc.setText(autor,titulo,contenido);
             PanelItems.add(infoDoc);
              
@@ -499,6 +490,8 @@ public class FramePrincipal extends javax.swing.JFrame {
         return true;
     }
     
+  
+    
     public boolean añadirDocumento(String titulo, String autor, String cont) {
         String docHeader = autor+"-"+titulo;
 
@@ -529,6 +522,39 @@ public class FramePrincipal extends javax.swing.JFrame {
                 docs.add(documento);
                 modelo.reload();
                 ctrlInterficie.createDocumento(autor,titulo,cont);
+        }
+        return true;
+    }
+    
+    public boolean cargarDocument(String autor,String titulo){
+        String docHeader = autor+"-"+titulo;
+
+        DefaultMutableTreeNode documento = new DefaultMutableTreeNode(docHeader);
+        DefaultTreeModel modelo = (DefaultTreeModel)jTree1.getModel();
+        DefaultMutableTreeNode root = (DefaultMutableTreeNode) jTree1.getModel().getRoot();
+
+        if (root.getChildCount() == 1 && "Alias".equals(root.getChildAt(0).toString())) {
+            root.add(new DefaultMutableTreeNode("Documentos"));
+        }
+        else if (root.getChildCount() == 0) {
+            root.add(new DefaultMutableTreeNode("Documentos"));
+        }
+        int index = 0;
+        for (int i = 0; i < root.getChildCount(); ++i) {
+            if ("Documentos".equals(root.getChildAt(i).toString())) index = i;
+        }
+
+        DefaultMutableTreeNode docs = (DefaultMutableTreeNode) root.getChildAt(index);
+        boolean trobat = false;
+        for (int i = 0; i < docs.getChildCount(); ++i) {
+            if (docs.getChildAt(i).toString().equals(titulo)) trobat = true;
+        }
+        if (trobat) {
+            return false;
+        }
+        else {
+                docs.add(documento);
+                modelo.reload();
         }
         return true;
     }

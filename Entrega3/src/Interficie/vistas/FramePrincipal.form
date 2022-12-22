@@ -171,7 +171,7 @@
         <Component class="javax.swing.JTree" name="jTree1">
           <Properties>
             <Property name="model" type="javax.swing.tree.TreeModel" editor="org.netbeans.modules.form.editors2.TreeModelEditor">
-              <TreeModel code="Principal&#xa; Documentos&#xa;  D1&#xa; Alias&#xa;  A1"/>
+              <TreeModel code="Principal&#xa; Documentos&#xa; Alias&#xa;  "/>
             </Property>
           </Properties>
           <Events>

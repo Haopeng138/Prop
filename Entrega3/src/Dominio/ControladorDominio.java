@@ -50,18 +50,21 @@ public class ControladorDominio {
             }
 
             String[][] documentosAgnostic = Persistencia.recoverDocumentos();
+
             Documento[] documentos = Stream.of(documentosAgnostic).map(
                     documento -> new Documento(documento[0], documento[1], documento[2]))
                     .toArray(Documento[]::new);
-            System.out.println(documentos);
+
             if (documentos.length > 0) {
+
                 libreria = new Libreria(documentos);
+
             } else {
                 libreria = new Libreria();
             }
 
         } catch (Exception e) {
-            System.out.println("unable to recover previous state");
+
             cExpresiones = new ControladorExpresiones();
             libreria = new Libreria();
         }
@@ -78,7 +81,7 @@ public class ControladorDominio {
         ArrayList<String[]> expresions = new ArrayList<>();
         for (String i : expresiones.keySet()) {
             String alia = i;
-            String expresion = expresiones.get(i).toString();
+            String expresion = expresiones.get(i).getExpresion();
             String[] aliaexp = {alia,expresion};
             expresions.add(aliaexp);
         }
