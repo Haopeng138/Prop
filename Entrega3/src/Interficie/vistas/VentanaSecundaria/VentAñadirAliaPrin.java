@@ -7,6 +7,8 @@ package Interficie.vistas.VentanaSecundaria;
 import Interficie.vistas.FramePrincipal;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
@@ -121,6 +123,7 @@ public class VentAñadirAliaPrin extends javax.swing.JFrame {
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel1, jLabel5, jTextField1});
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCancelar1ActionPerformed
@@ -131,7 +134,7 @@ public class VentAñadirAliaPrin extends javax.swing.JFrame {
 
     private void ButtonAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAñadirActionPerformed
         // TODO add your handling code here:
-         System.out.print("algo");
+        
         if ("".equals(jTextArea1.getText()) && "".equals(jTextField1.getText())) {
             JOptionPane.showMessageDialog(null, "Introduce una expresión booleana!!!\nIntroduce una alia!!!");
         }
@@ -142,16 +145,18 @@ public class VentAñadirAliaPrin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Introduce una alia!!!");
         }
         else {
-            if (framePrincipal.añadirAlia(jTextField1.getText())) {
-                //framePrincipal.setVisible(true);
-                //framePrincipal.setEnabled(true);
-                
-                this.dispose();
-                framePrincipal.closeAñadirAlia();
-            }
-            else {
-                JOptionPane.showMessageDialog(null, "Alia ya existe!!!");
-            }
+             try {
+                 
+                 if (framePrincipal.añadirAlia(jTextField1.getText(),jTextArea1.getText())) {
+                     this.dispose();
+                     framePrincipal.closeAñadirAlia();
+                 }
+                 else {
+                     JOptionPane.showMessageDialog(null, "Alia ya existe!!!");
+                 }} catch (Exception ex) {
+                 Logger.getLogger(VentAñadirAliaPrin.class.getName()).log(Level.SEVERE, null, ex);
+             }
+             
         }
 
     }//GEN-LAST:event_ButtonAñadirActionPerformed

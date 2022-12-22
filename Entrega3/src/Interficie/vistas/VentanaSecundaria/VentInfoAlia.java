@@ -56,6 +56,11 @@ public class VentInfoAlia extends javax.swing.JFrame {
         ButtonCancelar1.setText("Cancelar");
 
         ButtonEliminar.setText("Modificar");
+        ButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonEliminarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Expresión booleana:");
 
@@ -110,7 +115,12 @@ public class VentInfoAlia extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void ButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonEliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ButtonEliminarActionPerformed
 
     
 

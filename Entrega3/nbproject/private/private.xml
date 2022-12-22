@@ -3,12 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/flors/Desktop/subgrup-prop41.2/Entrega3/src/Interficie/vistas/VentanaSecundaria/VentSelectFormato.java</file>
-            <file>file:/C:/Users/flors/Desktop/subgrup-prop41.2/Entrega3/src/Interficie/vistas/Busquedas/ListarPorExpresion.java</file>
-            <file>file:/C:/Users/flors/Desktop/subgrup-prop41.2/Entrega3/src/Interficie/vistas/FramePrincipal.java</file>
-            <file>file:/C:/Users/flors/Desktop/subgrup-prop41.2/Entrega3/src/Interficie/vistas/Busquedas/ListarPorPrefijo.java</file>
-            <file>file:/C:/Users/flors/Desktop/subgrup-prop41.2/Entrega3/src/Interficie/vistas/Busquedas/ListarPorSimilitud.java</file>
-            <file>file:/C:/Users/flors/Desktop/subgrup-prop41.2/Entrega3/src/Interficie/vistas/Busquedas/ListarPorAutor.java</file>
+            <file>file:/C:/Users/usuario/Desktop/FIB/5e%20Quadrimestre/PROP/subgrup-prop41.2/Entrega3/src/Interficie/vistas/Items/ItemContenido.java</file>
+            <file>file:/C:/Users/usuario/Desktop/FIB/5e%20Quadrimestre/PROP/subgrup-prop41.2/Entrega3/src/Interficie/vistas/Items/ItemTitulo.java</file>
+            <file>file:/C:/Users/usuario/Desktop/FIB/5e%20Quadrimestre/PROP/subgrup-prop41.2/Entrega3/src/Interficie/vistas/Busquedas/ListarPorAutorYTitulo.java</file>
+            <file>file:/C:/Users/usuario/Desktop/FIB/5e%20Quadrimestre/PROP/subgrup-prop41.2/Entrega3/src/Interficie/vistas/FramePrincipal.java</file>
+            <file>file:/C:/Users/usuario/Desktop/FIB/5e%20Quadrimestre/PROP/subgrup-prop41.2/Entrega3/src/Dominio/ControladorDominio.java</file>
+            <file>file:/C:/Users/usuario/Desktop/FIB/5e%20Quadrimestre/PROP/subgrup-prop41.2/Entrega3/src/Interficie/ControladorInterficie.java</file>
+            <file>file:/C:/Users/usuario/Desktop/FIB/5e%20Quadrimestre/PROP/subgrup-prop41.2/Entrega3/src/Interficie/vistas/Busquedas/ListarPorAutor.java</file>
         </group>
     </open-files>
 </project-private>

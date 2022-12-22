@@ -37,7 +37,7 @@ public class ItemDocumento extends javax.swing.JPanel {
 
         AutorLabel = new javax.swing.JLabel();
         TituloLabel = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        ButtonEliminar = new javax.swing.JButton();
         NombreAutor = new javax.swing.JLabel();
         Titulo = new javax.swing.JLabel();
         ButtonVer = new javax.swing.JButton();
@@ -48,7 +48,12 @@ public class ItemDocumento extends javax.swing.JPanel {
         TituloLabel.setLabelFor(Titulo);
         TituloLabel.setText("Titulo:");
 
-        jButton1.setText("Borrar");
+        ButtonEliminar.setText("Borrar");
+        ButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonEliminarActionPerformed(evt);
+            }
+        });
 
         NombreAutor.setText("jLabel3");
 
@@ -77,7 +82,7 @@ public class ItemDocumento extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 204, Short.MAX_VALUE)
                 .addComponent(ButtonVer)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(ButtonEliminar)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -89,7 +94,7 @@ public class ItemDocumento extends javax.swing.JPanel {
                     .addComponent(NombreAutor)
                     .addComponent(Titulo)
                     .addComponent(TituloLabel)
-                    .addComponent(jButton1)
+                    .addComponent(ButtonEliminar)
                     .addComponent(ButtonVer))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -97,19 +102,29 @@ public class ItemDocumento extends javax.swing.JPanel {
 
     private void ButtonVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonVerActionPerformed
         // TODO add your handling code here:
-        VentInfoDoc infoDoc = new VentInfoDoc(this.framePrincipal);
+        String autor = NombreAutor.getText();
+        String titulo = Titulo.getText();
+        VentInfoDoc infoDoc = new VentInfoDoc(this.framePrincipal,autor,titulo);
         infoDoc.setVisible(true);
         //Center the frame
         infoDoc.setLocationRelativeTo(null);
     }//GEN-LAST:event_ButtonVerActionPerformed
 
+    private void ButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonEliminarActionPerformed
+        // TODO: falta hacer ventana de seguro:
+        
+        String autor = NombreAutor.getText();
+        String titulo = Titulo.getText();
+        this.framePrincipal.removeDocument(autor,titulo);
+    }//GEN-LAST:event_ButtonEliminarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AutorLabel;
+    private javax.swing.JButton ButtonEliminar;
     private javax.swing.JButton ButtonVer;
     private javax.swing.JLabel NombreAutor;
     private javax.swing.JLabel Titulo;
     private javax.swing.JLabel TituloLabel;
-    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }

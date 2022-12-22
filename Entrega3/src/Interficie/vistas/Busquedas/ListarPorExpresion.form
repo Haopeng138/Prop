@@ -22,10 +22,10 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="TipoBusqueda" pref="606" max="32767" attributes="0"/>
-                  <Component id="NombreAutor" alignment="0" max="32767" attributes="0"/>
+                  <Component id="TipoBusqueda" pref="742" max="32767" attributes="0"/>
+                  <Component id="NombreAlia" alignment="0" max="32767" attributes="0"/>
                   <Component id="AliasExist" alignment="0" max="32767" attributes="0"/>
-                  <Component id="Expresion" alignment="0" pref="606" max="32767" attributes="0"/>
+                  <Component id="Expresion" alignment="0" pref="742" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Component id="TextAlias" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -54,19 +54,19 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="AliasExist" linkSize="3" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="NombreAutor" linkSize="3" min="-2" max="-2" attributes="0"/>
+              <Component id="NombreAlia" linkSize="3" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="Expresion" linkSize="3" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="ButtonGuardar" linkSize="5" min="-2" max="-2" attributes="0"/>
                   <Component id="ButtonBuscar" linkSize="5" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
+                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                       <Component id="criterioOrdenar" linkSize="6" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tipoOrdenacion" linkSize="6" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -115,7 +115,7 @@
         <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ExpresionMousePressed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="NombreAutor">
+    <Component class="javax.swing.JTextField" name="NombreAlia">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="66" green="66" red="66" type="rgb"/>
@@ -123,7 +123,7 @@
         <Property name="text" type="java.lang.String" value="Introduce una alia"/>
       </Properties>
       <Events>
-        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="NombreAutorMousePressed"/>
+        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="NombreAliaMousePressed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="TextAlias">

@@ -4,9 +4,11 @@
  */
 package Interficie.vistas.Busquedas;
 
-import Interficie.vistas.DocumentHeaderDemo;
+
 import Interficie.vistas.VentanaSecundaria.VentAñadirAliaExpre;
 import Interficie.vistas.FramePrincipal;
+
+import javax.swing.*;
 import java.awt.Color;
 import java.util.ArrayList;
 
@@ -15,21 +17,28 @@ public class ListarPorExpresion extends javax.swing.JPanel {
      private VentAñadirAliaExpre ventAñadirAliaExpre;
     /**
      * Creates new form ListarPorExpresion
+     * @param framePrincipal
      */
      
-    VentAñadirAliaExpre v;
     public ListarPorExpresion(FramePrincipal framePrincipal) {
         initComponents();
         this.framePrincipal = framePrincipal;
         ArrayList<String> combo = framePrincipal.getAlias();
+        AliasExist.setBounds(159, 81, 189, 41);
         AliasExist.removeAllItems();
+        AliasExist.addItem("Selecciona una alia existente");
+        AliasExist.setSelectedItem("Selecciona una alia existente");
         for (String c :combo){
             AliasExist.addItem(c);
         }
+        
     }
     private boolean firstA = true;
     private boolean firstE = true;
-    
+
+    public String getExpresion(){
+        return Expresion.getText();
+    }
     public void closeAñadirAliaExpre(){
         ventAñadirAliaExpre = null;
     }
@@ -47,7 +56,7 @@ public class ListarPorExpresion extends javax.swing.JPanel {
         TipoBusqueda = new javax.swing.JLabel();
         ButtonBuscar = new javax.swing.JButton();
         Expresion = new javax.swing.JTextField();
-        NombreAutor = new javax.swing.JTextField();
+        NombreAlia = new javax.swing.JTextField();
         TextAlias = new javax.swing.JLabel();
         ButtonGuardar = new javax.swing.JButton();
         tipoOrdenacion = new javax.swing.JLabel();
@@ -86,11 +95,11 @@ public class ListarPorExpresion extends javax.swing.JPanel {
             }
         });
 
-        NombreAutor.setForeground(new java.awt.Color(102, 102, 102));
-        NombreAutor.setText("Introduce una alia");
-        NombreAutor.addMouseListener(new java.awt.event.MouseAdapter() {
+        NombreAlia.setForeground(new java.awt.Color(102, 102, 102));
+        NombreAlia.setText("Introduce una alia");
+        NombreAlia.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                NombreAutorMousePressed(evt);
+                NombreAliaMousePressed(evt);
             }
         });
 
@@ -121,10 +130,10 @@ public class ListarPorExpresion extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TipoBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
-                    .addComponent(NombreAutor)
+                    .addComponent(TipoBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, 742, Short.MAX_VALUE)
+                    .addComponent(NombreAlia)
                     .addComponent(AliasExist, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Expresion, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
+                    .addComponent(Expresion, javax.swing.GroupLayout.DEFAULT_SIZE, 742, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(TextAlias)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -151,20 +160,20 @@ public class ListarPorExpresion extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(AliasExist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(NombreAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(NombreAlia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Expresion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ButtonGuardar)
                     .addComponent(ButtonBuscar)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(criterioOrdenar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(tipoOrdenacion)))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {AliasExist, Expresion, NombreAutor});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {AliasExist, Expresion, NombreAlia});
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {ButtonBuscar, ButtonGuardar});
 
@@ -177,15 +186,15 @@ public class ListarPorExpresion extends javax.swing.JPanel {
         AliasExist.removeAll();
     }//GEN-LAST:event_AliasExistActionPerformed
 
-    private void NombreAutorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NombreAutorMousePressed
+    private void NombreAliaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NombreAliaMousePressed
         // TODO add your handling code here:
         if (firstA) {
               firstA = false;
-              NombreAutor.setEnabled(true);
-              NombreAutor.setText("");
-              NombreAutor.setForeground(new Color(0, 0, 0));
+              NombreAlia.setEnabled(true);
+              NombreAlia.setText("");
+              NombreAlia.setForeground(new Color(0, 0, 0));
           }
-    }//GEN-LAST:event_NombreAutorMousePressed
+    }//GEN-LAST:event_NombreAliaMousePressed
 
     private void ExpresionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExpresionMousePressed
         // TODO add your handling code here:
@@ -199,15 +208,15 @@ public class ListarPorExpresion extends javax.swing.JPanel {
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
         // TODO add your handling code here:
-        if ("".equals(NombreAutor.getText())) {
-            NombreAutor.setText("Introduce una alia");
-            NombreAutor.setForeground(new Color(102, 102, 102));
+        if ("".equals(NombreAlia.getText())) {
+            NombreAlia.setText("Introduce una alia");
+            NombreAlia.setForeground(new Color(102, 102, 102));
             firstA = true;
-            NombreAutor.setEnabled(false);
+            NombreAlia.setEnabled(false);
         }
         
         if ("".equals(Expresion.getText())) {
-            Expresion.setText("Introduce un nombre de autor");
+            Expresion.setText("Introduce una expresion");
             Expresion.setForeground(new Color(102, 102, 102));
             firstE = true;
             Expresion.setEnabled(false);
@@ -230,12 +239,38 @@ public class ListarPorExpresion extends javax.swing.JPanel {
 
     private void ButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBuscarActionPerformed
         // TODO add your handling code here:
-        ArrayList<DocumentHeaderDemo> documentHeaders = new ArrayList<>();
-        documentHeaders.add(new DocumentHeaderDemo("auto","tile"));
-        documentHeaders.add(new DocumentHeaderDemo("autosgf","tilfdgsfde"));
-        documentHeaders.add(new DocumentHeaderDemo("autogfdsg","tgfdigdfgle"));
-        documentHeaders.add(new DocumentHeaderDemo("autgfdso","tigsdfgsdfle"));
-        framePrincipal.documentlist(documentHeaders);
+        String alia=null;
+        if(AliasExist.getSelectedItem().toString().equals("Selecciona una alia existente")){
+            if (!NombreAlia.getText().equals("Introduce una alia")
+                    && !NombreAlia.getText().equals("")
+                    && !Expresion.getText().equals("Introduce una expresion")
+                    && !Expresion.getText().equals("")) {
+                //
+                String expresion = Expresion.getText();
+                alia = NombreAlia.getText();
+                try {
+                    this.framePrincipal.addExpresion(alia, expresion);
+                    System.out.println(alia);
+                    this.framePrincipal.buscarPorAlia(alia);
+                } catch (Exception e) {
+                    System.out.println("entro en excep");
+                    if (e.getMessage().equals("Error añadiendo alia")) {
+                        JOptionPane.showMessageDialog(null, e.getMessage());
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Error no clasificado");
+                    }
+
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Introduce alia y expresion");
+            }
+
+        }else{
+            alia = AliasExist.getSelectedItem().toString();
+            this.framePrincipal.buscarPorAlia(alia);
+        }
+
+
     }//GEN-LAST:event_ButtonBuscarActionPerformed
 
 
@@ -244,7 +279,7 @@ public class ListarPorExpresion extends javax.swing.JPanel {
     private javax.swing.JButton ButtonBuscar;
     private javax.swing.JButton ButtonGuardar;
     private javax.swing.JTextField Expresion;
-    private javax.swing.JTextField NombreAutor;
+    private javax.swing.JTextField NombreAlia;
     private javax.swing.JLabel TextAlias;
     private javax.swing.JLabel TipoBusqueda;
     private javax.swing.JComboBox<String> criterioOrdenar;

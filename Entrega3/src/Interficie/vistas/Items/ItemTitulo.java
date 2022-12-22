@@ -87,11 +87,15 @@ public class ItemTitulo extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        String autor = framePrincipal.getAutorList();
+        framePrincipal.eliminarDoc(jLabel2.getText(), autor);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void ButtonVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonVerActionPerformed
         // TODO add your handling code here:
-        VentInfoDoc infoDoc = new VentInfoDoc(this.framePrincipal);
+        String autor = framePrincipal.getAutorList();
+        VentInfoDoc infoDoc = new VentInfoDoc(this.framePrincipal, autor,jLabel2.getText());
         infoDoc.setVisible(true);
         //Center the frame
         infoDoc.setLocationRelativeTo(null);

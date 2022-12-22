@@ -1,30 +1,89 @@
 package Interficie;
 
 import Dominio.ControladorDominio;
-import Utils.DocumentHeader;
+import Dominio.Expresion.ExpresionException;
 import Interficie.vistas.FramePrincipal;
+import java.io.File;
+import java.util.ArrayList;
 
 
 public class ControladorInterficie {
-    private ControladorDominio ctrl_domini;
+    private ControladorDominio ctrl_dominio;
     private FramePrincipal framePrincipal;
     public ControladorInterficie() {
-        this.ctrl_domini = new ControladorDominio();
+        this.ctrl_dominio = new ControladorDominio();
     };
 
 
     public void inicial() {
          this.framePrincipal = new FramePrincipal(this);
          this.framePrincipal.setVisible(true);
-         this.framePrincipal.añadirDocumento("ctrlintr");
+         //this.framePrincipal.añadirDocumento("ctrlintr");
     }
     public void getDocument(){
 
-        DocumentHeader[] documentHeaders = ctrl_domini.getDocumentHeaders();
-        for (DocumentHeader documentHeader : documentHeaders) {
-            this.framePrincipal.añadirDocumento(documentHeader.getTitulo().getName());
+    }
+
+
+    public void createDocumento(String autor,String titulo,String contenido){
+        ctrl_dominio.createDocumento(autor, titulo, contenido);
+    }
+    
+    public void createDocumento(File documento) {
+        ctrl_dominio.createDocumento(documento);
+    }
+    
+    public ArrayList<String[]> getAllDocs() {
+        return ctrl_dominio.getAllDocuments();
+       
+    }
+    
+    public ArrayList<String> getTitles(String autor) {
+        return ctrl_dominio.getTitles(autor);
+    }
+    
+    public ArrayList<String[]> busquedaPorExpresion(String alia){
+        return ctrl_dominio.busquedaPorExpresion(alia);
+    }    
+    public ArrayList<String[]> busquedaPorSimilitud(String autor,String titulo,int k){
+        return ctrl_dominio.busquedaPorSimilitud(autor,titulo,k);
+    }
+    
+    public String busquedaPorAutorTitulo(String autor, String titulo){
+        return ctrl_dominio.getContent(autor, titulo);
+    }
+    
+    
+    public void removeDocument(String autor,String titulo){
+        ctrl_dominio.removeDocumento(autor, titulo);
+    }
+    
+    public void modifyDocument(String autor,String titulo,String contenido){
+        ctrl_dominio.modifyDocumento(autor, titulo, contenido);
+    }
+
+    public void addExpresion(String alia,String expresion) throws Exception {
+        try {
+            ctrl_dominio.addExpresion(alia,expresion);
+        }catch (ExpresionException e){
+            throw new Exception("Error añadiendo alia");
         }
 
+    }
+    
+    public void removeExpresion(String alia) {
+        ctrl_dominio.removeExpresion(alia);
+    }
+    
+    public void updateExpresion(String alia, String expresion) {
+        ctrl_dominio.updateExpresion(alia, expresion);
+    }
 
+    public String getExpresion(String alia) {
+        return ctrl_dominio.getExpresion(alia);
+    }
+    
+    public ArrayList<String> busquedaPorPrefijo(String prefijo) {
+        return ctrl_dominio.obtenerAutoresPrefijo(prefijo);
     }
 }

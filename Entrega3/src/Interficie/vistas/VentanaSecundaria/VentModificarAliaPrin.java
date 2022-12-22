@@ -8,6 +8,7 @@ import Interficie.vistas.FramePrincipal;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
 public class VentModificarAliaPrin extends javax.swing.JFrame {
@@ -20,10 +21,12 @@ public class VentModificarAliaPrin extends javax.swing.JFrame {
         initComponents();
         this.framePrincipal = framePrincipal;
         ArrayList<String> combo = framePrincipal.getAlias();
+        
         ComboAlias.removeAllItems();
         for (String c :combo){
             ComboAlias.addItem(c);
         }
+        
         this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         this.addWindowListener(new WindowAdapter() {
             @Override
@@ -46,6 +49,7 @@ public class VentModificarAliaPrin extends javax.swing.JFrame {
         jTextArea1.setText("");
     }
 
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -90,6 +94,12 @@ public class VentModificarAliaPrin extends javax.swing.JFrame {
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
+
+        ComboAlias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboAliasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -139,6 +149,7 @@ public class VentModificarAliaPrin extends javax.swing.JFrame {
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {ComboAlias, jLabel1, jLabel5});
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCancelar1ActionPerformed
@@ -148,10 +159,29 @@ public class VentModificarAliaPrin extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonCancelar1ActionPerformed
 
     private void ButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonModificarActionPerformed
-    
-        dispose();
-        framePrincipal.closeModificarAlia();
+        
+        String alia = (String)ComboAlias.getSelectedItem().toString();
+        String expresion = framePrincipal.getExpresion(alia);
+        if ("".equals(jTextArea1.getText())) JOptionPane.showMessageDialog(null, "Introduce una expresión booleana!!!");
+        else if (jTextArea1.getText().equals(expresion)) JOptionPane.showMessageDialog(null, "No has cambiado la expresión booleana!!!");
+        else {
+            int reply = JOptionPane.showConfirmDialog(null, "Seguro que quieres eliminar?", "", JOptionPane.YES_NO_OPTION);
+            if (reply == JOptionPane.YES_OPTION) {
+                framePrincipal.modificarExpresion(alia, jTextArea1.getText());
+            } 
+            dispose();
+            framePrincipal.closeModificarAlia();
+        }
+        
+        
     }//GEN-LAST:event_ButtonModificarActionPerformed
+
+    private void ComboAliasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboAliasActionPerformed
+        // TODO add your handling code here:
+        String alia = (String)ComboAlias.getSelectedItem().toString();
+        String expresion = framePrincipal.getExpresion(alia);
+        jTextArea1.setText(expresion);
+    }//GEN-LAST:event_ComboAliasActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonCancelar1;

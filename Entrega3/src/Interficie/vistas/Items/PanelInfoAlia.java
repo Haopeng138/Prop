@@ -34,7 +34,7 @@ public class PanelInfoAlia extends javax.swing.JPanel {
 
         jLabel5 = new javax.swing.JLabel();
         ButtonCancelar1 = new javax.swing.JButton();
-        ButtonEliminar = new javax.swing.JButton();
+        ButtonModificar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         expresionName = new javax.swing.JTextArea();
@@ -50,7 +50,12 @@ public class PanelInfoAlia extends javax.swing.JPanel {
             }
         });
 
-        ButtonEliminar.setText("Modificar");
+        ButtonModificar.setText("Modificar");
+        ButtonModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonModificarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Expresión booleana:");
 
@@ -75,23 +80,23 @@ public class PanelInfoAlia extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(aliaName))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(ButtonEliminar1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(ButtonEliminar)
+                        .addComponent(ButtonModificar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ButtonCancelar1)))
+                        .addComponent(ButtonCancelar1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(aliaName)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE))))
                 .addContainerGap())
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {ButtonCancelar1, ButtonEliminar, ButtonEliminar1});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {ButtonCancelar1, ButtonEliminar1, ButtonModificar});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,14 +112,14 @@ public class PanelInfoAlia extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ButtonCancelar1)
-                    .addComponent(ButtonEliminar)
+                    .addComponent(ButtonModificar)
                     .addComponent(ButtonEliminar1))
                 .addGap(12, 12, 12))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {aliaName, jLabel1, jLabel5});
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {ButtonCancelar1, ButtonEliminar, ButtonEliminar1});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {ButtonCancelar1, ButtonEliminar1, ButtonModificar});
 
     }// </editor-fold>//GEN-END:initComponents
 
@@ -127,17 +132,32 @@ public class PanelInfoAlia extends javax.swing.JPanel {
         // TODO add your handling code here:
         int reply = JOptionPane.showConfirmDialog(null, "Seguro que quieres eliminar?", "", JOptionPane.YES_NO_OPTION);
         if (reply == JOptionPane.YES_OPTION) {
-            String d = aliaName.getText();
-            framePrincipal.eliminarA(d, 1);
+            String alia = aliaName.getText();
+            framePrincipal.eliminarAlia(alia);
             this.setVisible(false);
         } 
     }//GEN-LAST:event_ButtonEliminar1ActionPerformed
 
+    private void ButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonModificarActionPerformed
+        // TODO add your handling code here:
+        String alia = aliaName.getText();
+        String expresion = expresionName.getText();
+        System.out.println(expresion + " " + framePrincipal.getExpresion(alia));
+        if (expresion.equals(framePrincipal.getExpresion(alia))) JOptionPane.showMessageDialog(null, "No has cambiado la expresión booleana!!!");
+        else {
+            int reply = JOptionPane.showConfirmDialog(null, "Seguro que quieres modificar?", "", JOptionPane.YES_NO_OPTION);
+            if (reply == JOptionPane.YES_OPTION) {
+                framePrincipal.modificarExpresion(alia, expresion);
+            } 
+        }
+        
+    }//GEN-LAST:event_ButtonModificarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonCancelar1;
-    private javax.swing.JButton ButtonEliminar;
     private javax.swing.JButton ButtonEliminar1;
+    private javax.swing.JButton ButtonModificar;
     private javax.swing.JTextField aliaName;
     private javax.swing.JTextArea expresionName;
     private javax.swing.JLabel jLabel1;

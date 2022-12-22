@@ -4,7 +4,7 @@ import java.util.*;
 
 import Dominio.Estructura.Autor;
 import Dominio.Estructura.Libreria;
-import Utils.DocumentHeader;
+import Dominio.Utils.DocumentHeader;
 
 public class ControladorBusqueda {
 

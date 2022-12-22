@@ -49,7 +49,7 @@ public class VentSelectFormato extends javax.swing.JFrame {
         formatoXML = new javax.swing.JRadioButton();
         ButtonAceptar = new javax.swing.JButton();
         ButtonCancelar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        ButtonBrowse = new javax.swing.JButton();
         path = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -73,10 +73,10 @@ public class VentSelectFormato extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Browse...");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        ButtonBrowse.setText("Browse...");
+        ButtonBrowse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                ButtonBrowseActionPerformed(evt);
             }
         });
 
@@ -111,7 +111,7 @@ public class VentSelectFormato extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(path)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1)))))
+                                .addComponent(ButtonBrowse)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -127,7 +127,7 @@ public class VentSelectFormato extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(ButtonBrowse)
                     .addComponent(path, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(18, 18, Short.MAX_VALUE)
@@ -137,9 +137,10 @@ public class VentSelectFormato extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton1, jLabel2, path});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {ButtonBrowse, jLabel2, path});
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCancelarActionPerformed
@@ -147,30 +148,26 @@ public class VentSelectFormato extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_ButtonCancelarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void ButtonBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBrowseActionPerformed
         // TODO add your handling code here:
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setAcceptAllFileFilterUsed(false);
-        FileNameExtensionFilter restrict = new FileNameExtensionFilter(".txt files", "txt");
-        FileNameExtensionFilter restrict2 = new FileNameExtensionFilter(" .xml files", "xml");
-        fileChooser.setFileFilter(restrict);
-        fileChooser.setFileFilter(restrict2); 
+        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         int returnValue = fileChooser.showOpenDialog(null);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
-            File selectedFile = fileChooser.getSelectedFile();
             // TODO: Hacer logica de insert aqui
-            jLabel2.setText(selectedFile.toString());
+            path.setText(fileChooser.getSelectedFile().toString());
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_ButtonBrowseActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonAceptar;
+    private javax.swing.JButton ButtonBrowse;
     private javax.swing.JButton ButtonCancelar;
     private javax.swing.ButtonGroup formato;
     private javax.swing.JRadioButton formatoTXT;
     private javax.swing.JRadioButton formatoXML;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

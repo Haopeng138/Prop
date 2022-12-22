@@ -8,7 +8,7 @@ import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 import Dominio.Utils.BinaryTree;
-import Utils.DocumentHeader;
+import Dominio.Utils.DocumentHeader;
 import Dominio.Utils.ParseNode;
 import Dominio.Utils.ParseNode.NODE_TYPE;
 import Dominio.Utils.ParseNode.OPERATOR;
