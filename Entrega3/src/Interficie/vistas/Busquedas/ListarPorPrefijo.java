@@ -5,6 +5,7 @@
 package Interficie.vistas.Busquedas;
 
 import Interficie.vistas.FramePrincipal;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
 import javax.swing.JOptionPane;
@@ -50,9 +51,9 @@ public class ListarPorPrefijo extends javax.swing.JPanel {
 
         NombreAutor.setForeground(new java.awt.Color(102, 102, 102));
         NombreAutor.setText("Introduce un prefijo");
-        NombreAutor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NombreAutorActionPerformed(evt);
+        NombreAutor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                NombreAutorMousePressed(evt);
             }
         });
 
@@ -101,18 +102,29 @@ public class ListarPorPrefijo extends javax.swing.JPanel {
 
     private void ButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBuscarActionPerformed
         // TODO add your handling code here:
-        ArrayList<String> authors = new ArrayList<>(Arrays.asList("Buenos Aires", "Córdoba", "La Plata"));
-        framePrincipal.autorlist(authors);
+        String prefijo = NombreAutor.getText();
+        System.out.println(prefijo + "hola");
+        
+        if ("Introduce un prefijo".equals(prefijo)) JOptionPane.showMessageDialog(null, "Introduce un prefijo!!!");
+        else {
+            if ("".equals(prefijo)) {
+                prefijo = "";
+            }
+            ArrayList<String> autores = framePrincipal.buscarPorPrefijo(prefijo);
+            
+            framePrincipal.autorlist(autores);
+        }
     }//GEN-LAST:event_ButtonBuscarActionPerformed
 
-    private void NombreAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreAutorActionPerformed
+    private void NombreAutorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NombreAutorMousePressed
         // TODO add your handling code here:
-        String autor = NombreAutor.getText();
-        if ("".equals(autor) || "Introduce un nombre de autor".equals(autor)) JOptionPane.showMessageDialog(null, "Introduce un nombre de autor!!!");
-        else {
-            
+        if (first) {
+            first = false;
+            NombreAutor.setText("");
+            NombreAutor.setForeground(new Color(0, 0, 0));
+            NombreAutor.setEnabled(true);
         }
-    }//GEN-LAST:event_NombreAutorActionPerformed
+    }//GEN-LAST:event_NombreAutorMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
