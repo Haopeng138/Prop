@@ -4,6 +4,7 @@
  */
 package Interficie.vistas;
 
+
 import Interficie.ControladorInterficie;
 import Interficie.vistas.VentanaSecundaria.VentAñadirAliaPrin;
 import Interficie.vistas.VentanaSecundaria.VentEliminarAliaPrin;
@@ -23,15 +24,22 @@ import Interficie.vistas.VentanaSecundaria.VentNuevoDocumentoFrame;
 import java.awt.CardLayout;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
+
 
 public class FramePrincipal extends javax.swing.JFrame {
     private ControladorInterficie ctrlInterficie;
@@ -42,7 +50,70 @@ public class FramePrincipal extends javax.swing.JFrame {
     private VentModificarAliaPrin modificarAliaPrinFrame;
     private String autorList;
 
-    
+
+
+    //Métodos de ordenación
+    //Ordenación de los títulos por tamaño descendente del contenido
+    public ArrayList<String> ordenaDecreContent (String nameAutor) {
+        ArrayList<String> titulos = getTitulos(nameAutor);
+        if (titulos.isEmpty()) return null;
+        HashMap<String,Integer> TitCont = new HashMap<>();
+        LinkedHashMap<String, Integer> sortedMap = new LinkedHashMap<>();
+        ArrayList<Integer> list = new ArrayList<>();
+
+        for (int i = 0; i < titulos.size(); ++i) {
+            String cont = getContenidoPorAutorTitulo(nameAutor, titulos.get(i));
+            TitCont.put(titulos.get(i), cont.length());
+        }
+        for (Map.Entry<String, Integer> entry : TitCont.entrySet()) {
+            list.add(entry.getValue());
+        }
+
+        Collections.sort(list);
+        Collections.reverse(list);
+
+        ArrayList<String> titOrdenado = new ArrayList<>();
+        for (int size : list) {
+            for (Entry<String, Integer> entry : TitCont.entrySet()) {
+                if (entry.getValue().equals(size)) {
+                    titOrdenado.add(entry.getKey());
+                }
+            }
+        }
+        return titOrdenado;
+    }
+
+    //Ordenación de los nombres de autor por la relevancia descendente(por números de documentos)
+    public ArrayList<String> ordenaRelevanciaAutor (String prefijo) {
+        ArrayList<String> autores = buscarPorPrefijo(prefijo);
+        if (autores.isEmpty()) return null;
+        HashMap<String,Integer> autNumTit = new HashMap<>();
+        ArrayList<Integer> list = new ArrayList<>();
+
+        for (int i = 0; i < autores.size(); ++i) {
+            ArrayList<String> titulos = getTitulos(autores.get(i));
+            autNumTit.put(autores.get(i), titulos.size());
+        }
+        for (Map.Entry<String, Integer> entry : autNumTit.entrySet()) {
+            list.add(entry.getValue());
+        }
+
+        Collections.sort(list);
+        Collections.reverse(list);
+
+        ArrayList<String> autOrdenado = new ArrayList<>();
+        for (int size : list) {
+            for (Entry<String, Integer> entry : autNumTit.entrySet()) {
+                if (entry.getValue().equals(size)) {
+                    autOrdenado.add(entry.getKey());
+                }
+            }
+        }
+        return autOrdenado;
+    }
+
+
+
     public FramePrincipal(ControladorInterficie ctrInterficie) {
         this.ctrlInterficie = ctrInterficie;
         this.setExtendedState(JFrame.MAXIMIZED_BOTH); 
@@ -102,8 +173,9 @@ public class FramePrincipal extends javax.swing.JFrame {
   
     }
     
-    public void contentlist(String content){
+    public void contentlist(String autor, String titulo){
         PanelItems.removeAll();
+        String content = getContenidoPorAutorTitulo(autor, titulo);
         JPanel tmpPanel = new JPanel();
         tmpPanel.setLayout(new BoxLayout(tmpPanel, BoxLayout.Y_AXIS));
         tmpPanel.add(new ItemContenido(this,content));
@@ -119,7 +191,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         JPanel tmpPanel = new JPanel();
         tmpPanel.setLayout(new BoxLayout(tmpPanel, BoxLayout.Y_AXIS));
         for(int i = 0; i< titles.size(); i++ ){
-            tmpPanel.add(new ItemTitulo(this,titles.get(i)));
+            tmpPanel.add(new ItemTitulo(this,titles.get(i), autor));
         }
         JScrollPane pane = new JScrollPane(tmpPanel);
         PanelItems.add(pane);
@@ -224,6 +296,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         PanelBusquedas.setLayout(new java.awt.CardLayout());
 
         PanelItems.setLayout(new javax.swing.BoxLayout(PanelItems, javax.swing.BoxLayout.Y_AXIS));
+
 
         FileMenu.setText("File");
 
@@ -494,8 +567,8 @@ public class FramePrincipal extends javax.swing.JFrame {
         return true;
     }
     
-  
-    
+
+
     public boolean añadirDocumento(String titulo, String autor, String cont) {
         String docHeader = autor+"-"+titulo;
 
@@ -529,7 +602,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         }
         return true;
     }
-    
+
     public boolean cargarDocument(String autor,String titulo){
         String docHeader = autor+"-"+titulo;
 
@@ -662,8 +735,14 @@ public class FramePrincipal extends javax.swing.JFrame {
         ctrlInterficie.addExpresion(alia,expresion);
     }
 
+    public ArrayList<String> buscarPorPrefijo(String prefijo) {
+        return ctrlInterficie.busquedaPorPrefijo(prefijo);
+    }
+
+
     public ArrayList<String> getTitulos(String autor) {
-        if (ctrlInterficie.busquedaPorPrefijo(autor).isEmpty()) return null;
+        ArrayList<String> autores = buscarPorPrefijo(autor);
+        if (autores.isEmpty() || ! autores.contains(autor)) return null;
         return ctrlInterficie.getTitles(autor);
     }
     
@@ -674,7 +753,7 @@ public class FramePrincipal extends javax.swing.JFrame {
             ctrlInterficie.exportXml(autor,titulo,path);
         }
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu AliasMenu;

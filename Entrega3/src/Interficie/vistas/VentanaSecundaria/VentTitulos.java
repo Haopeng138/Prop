@@ -27,9 +27,12 @@ public class VentTitulos extends javax.swing.JFrame {
      * @param autor
      * @param titles
      */
+    
+    private String autor;
     public VentTitulos(FramePrincipal framePrincipal,String autor,ArrayList<String> titles) {
         initComponents();
         this.framePrincipal = framePrincipal;
+        this.autor = autor;
         titllist(titles);
         this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         this.addWindowListener(new WindowAdapter() {
@@ -46,7 +49,7 @@ public class VentTitulos extends javax.swing.JFrame {
         JPanel tmpPanel = new JPanel();
         tmpPanel.setLayout(new BoxLayout(tmpPanel, BoxLayout.Y_AXIS));
         for(int i = 0; i< titles.size(); i++ ){
-            tmpPanel.add(new ItemTitulo(this.framePrincipal,titles.get(i)));
+            tmpPanel.add(new ItemTitulo(this.framePrincipal,titles.get(i),autor));
         }
         JScrollPane pane = new JScrollPane(tmpPanel);
         PanelItems.add(pane);
@@ -106,6 +109,7 @@ public class VentTitulos extends javax.swing.JFrame {
 
     private void ButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSalirActionPerformed
         // TODO add your handling code here:
+       
        dispose();
     }//GEN-LAST:event_ButtonSalirActionPerformed
 

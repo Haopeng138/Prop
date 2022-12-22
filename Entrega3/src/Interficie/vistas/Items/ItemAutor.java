@@ -79,10 +79,10 @@ public class ItemAutor extends javax.swing.JPanel {
 
     private void ButtonVerObrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonVerObrasActionPerformed
         // TODO add your handling code here:
-        ArrayList<String> titulos = new ArrayList<>(Arrays.asList("La nave", "tres cuerpos", "sobrevivir","34","4234","La nave", "tres cuerpos", "sobrevivir","34","4234","La nave", "tres cuerpos", "sobrevivir","34","4234","La nave", "tres cuerpos", "sobrevivir","34","4234"));
+        ArrayList<String> titulos = framePrincipal.getTitulos(NombreAutor.getText());
         
         if (titulosframe == null ){
-            titulosframe = new VentTitulos(this.framePrincipal,"autor1",titulos);
+            titulosframe = new VentTitulos(this.framePrincipal,NombreAutor.getText(),titulos);
             titulosframe.setVisible(true);
             //Center the frame
             titulosframe.setLocationRelativeTo(null);
