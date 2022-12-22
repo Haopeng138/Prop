@@ -36,7 +36,7 @@ public class Persistencia {
 
         try (Scanner reader = new Scanner(exprF)) {
             while (reader.hasNextLine()) {
-                String[] expresion = reader.nextLine().trim().split("|");
+                String[] expresion = reader.nextLine().trim().split("___");
                 expresiones.put(expresion[0], expresion[1]);
             }
         }
@@ -53,7 +53,7 @@ public class Persistencia {
         String[][] documentos = new String[fileDocuments.length][3];
 
         for (int i = 0; i < documentos.length; i++) {
-            String[] header = fileDocuments[i].getName().trim().split("|");
+            String[] header = fileDocuments[i].getName().trim().split("___");
             String content = Files.readString(fileDocuments[i].toPath());
             documentos[i][0] = header[0];
             documentos[i][1] = header[1];
@@ -95,7 +95,7 @@ public class Persistencia {
         try (FileWriter writer = new FileWriter(f)) {
             expresiones.forEach((alias, expresion) -> {
                 try {
-                    writer.write(alias + '|' + expresion + '\n');
+                    writer.write(alias + "___" + expresion + '\n');
                 } catch (IOException e1) {
                     throw new RuntimeException();
                 }
@@ -110,7 +110,7 @@ public class Persistencia {
      * @param directory El directorio donde crear el fichero
      */
     private static void createFile(String autor, String titulo, String contenido, File directory) {
-        File f = new File(directory, autor + '|' + titulo);
+        File f = new File(directory, autor + "___" + titulo);
         try {
             f.createNewFile();
             try (FileWriter writer = new FileWriter(f)) {
