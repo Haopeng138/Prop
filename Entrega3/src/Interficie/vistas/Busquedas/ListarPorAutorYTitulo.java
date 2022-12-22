@@ -125,7 +125,12 @@ public class ListarPorAutorYTitulo extends javax.swing.JPanel {
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
        
-        
+        if ("".equals(NombreAutor.getText())) {
+            NombreAutor.setText("Introduce un autor");
+            NombreAutor.setForeground(new Color(102, 102, 102));
+            firstA = true;
+            NombreAutor.setEnabled(false);
+        }
         
         if ("".equals(Titulo.getText())) {
             Titulo.setText("Introduce un título");

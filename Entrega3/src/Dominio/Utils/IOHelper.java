@@ -3,6 +3,7 @@ package Dominio.Utils;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.Scanner;
 
 import Dominio.Estructura.Documento;
@@ -30,31 +31,38 @@ public class IOHelper {
      * @param documento El documento en formato XML a importar
      */
     private static Documento createFromXML(File documento) throws Exception {
-        try (Scanner file = new Scanner(documento)) {
-            String autor = "";
-            String titulo = "";
-            String contenido = "";
-            Boolean autorFound = false;
-            Boolean tituloFound = false;
-            Boolean contenidoFound = false;
-            while (file.hasNextLine()) {
-                String line = file.nextLine();
-                if (line.startsWith("<Autor>") && !autorFound) {
-                    autorFound = true;
-                    autor = getTextBetweenTags("Autor", line, file);
-                } else if (line.startsWith("<Titulo>") && !tituloFound) {
-                    tituloFound = true;
-                    titulo = getTextBetweenTags("Titulo", line, file);
-                } else if (line.startsWith("<Contenido>") && !contenidoFound) {
-                    contenidoFound = true;
-                    contenido = getTextBetweenTags("Contenido", line, file);
-                } else
-                    throw new Exception("Unrecognized tag");
-            }
-            if (!autorFound || !tituloFound || !contenidoFound) {
-                throw new Exception("There is a missing tag");
-            }
-            return new Documento(autor, titulo, contenido);
+        String content = Files.readString(documento.toPath());
+        int startAutor = content.indexOf("<Autor>");
+        int endAutor = content.indexOf("</Autor>");
+        String autor = "";
+        if (startAutor != -1 && endAutor != -1) {
+            autor = content.substring(startAutor + 8, endAutor).trim();
+        }
+        int startTitulo = content.indexOf("<Titulo>");
+        int endTitulo = content.indexOf("</Titulo>");
+        String titulo = "";
+        if (startTitulo != -1 && endTitulo != -1) {
+            titulo = content.substring(startTitulo + 8, endTitulo).trim();
+        }
+        int startContenido = content.indexOf("<Contenido>");
+        int endContenido = content.indexOf("</Contenido>");
+        String contenido = "";
+        if (startContenido != -1 && endContenido != -1) {
+            contenido = content.substring(startContenido + 11, endContenido).trim();
+        }
+
+        if (autor == "" || titulo == "") {
+            throw new Exception("There is a missing tag");
+        }
+        return new Documento(autor, titulo, contenido);
+    }
+
+    public static void main(String[] args) {
+        try {
+            createFromXML(new File("C:\\Users\\mique\\Desktop\\file.xml"));
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
     }
 
@@ -72,23 +80,6 @@ public class IOHelper {
 
             return new Documento(autor, titulo, contenido);
         }
-    }
-
-    private static String getTextBetweenTags(String tag, String line, Scanner file) {
-        int start = line.indexOf('>') + 1;
-        if (line.endsWith("</" + tag + ">")) {
-            int end = line.lastIndexOf('<');
-            return line.substring(start, end);
-        }
-        String text = line.substring(start) + '\n';
-        line = file.nextLine();
-        while (!line.endsWith("</" + tag + ">")) {
-            text += line + '\n';
-            line = file.nextLine();
-        }
-        int end = line.lastIndexOf('<');
-        text += line.substring(0, end);
-        return text;
     }
 
     /**

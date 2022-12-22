@@ -30,10 +30,13 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -49,8 +52,14 @@ public class FramePrincipal extends javax.swing.JFrame {
     private VentEliminarAliaPrin eliminarAliaPrinFrame;
     private VentModificarAliaPrin modificarAliaPrinFrame;
     private String autorList;
-    
-    
+
+
+    public FramePrincipal(ControladorInterficie ctrInterficie) {
+        this.ctrlInterficie = ctrInterficie;
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        initComponents();
+    }
+
     //Métodos de ordenación
     //Ordenación de los títulos por tamaño descendente del contenido
     public ArrayList<String> ordenaDecreContent (String nameAutor) {
@@ -79,6 +88,8 @@ public class FramePrincipal extends javax.swing.JFrame {
                 }
             }
         }
+        //System.out.println("Sort Decreixent per TAMANY CONTINGUT: ");
+        //for (int i = 0; i < titOrdenado.size(); ++i) System.out.println(titOrdenado.get(i));//para mostrar los titulos ordenados por criteri
         return titOrdenado;
     }
     
@@ -88,7 +99,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         if (autores.isEmpty()) return null;
         HashMap<String,Integer> autNumTit = new HashMap<>();
         ArrayList<Integer> list = new ArrayList<>();
-        
+
         for (int i = 0; i < autores.size(); ++i) {
             ArrayList<String> titulos = getTitulos(autores.get(i));
             autNumTit.put(autores.get(i), titulos.size());
@@ -96,10 +107,10 @@ public class FramePrincipal extends javax.swing.JFrame {
         for (Map.Entry<String, Integer> entry : autNumTit.entrySet()) {
             list.add(entry.getValue());
         }
-        
+
         Collections.sort(list);
         Collections.reverse(list);
-       
+
         ArrayList<String> autOrdenado = new ArrayList<>();
         for (int size : list) {
             for (Entry<String, Integer> entry : autNumTit.entrySet()) {
@@ -185,7 +196,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         }
         JScrollPane pane = new JScrollPane(tmpPanel);
         PanelItems.add(pane);
-        PanelItems.setVisible(true); 
+        PanelItems.setVisible(true);
         SwingUtilities.updateComponentTreeUI(this);
         
     }
@@ -378,7 +389,7 @@ public class FramePrincipal extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(jLabel1))
-                            .addComponent(PanelBusquedas, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(PanelBusquedas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(PanelItems, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -482,7 +493,12 @@ public class FramePrincipal extends javax.swing.JFrame {
         int returnValue = fileChooser.showOpenDialog(null);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
-            ctrlInterficie.createDocumento(selectedFile);
+            try{
+                ctrlInterficie.createDocumento(selectedFile);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
             System.out.print(selectedFile.toString());
         }
     }//GEN-LAST:event_CargarDocActionPerformed
@@ -607,6 +623,40 @@ public class FramePrincipal extends javax.swing.JFrame {
         }
         return true;
     }
+
+    public boolean cargarDocument(String autor,String titulo){
+        String docHeader = autor+"-"+titulo;
+
+        DefaultMutableTreeNode documento = new DefaultMutableTreeNode(docHeader);
+        DefaultTreeModel modelo = (DefaultTreeModel)jTree1.getModel();
+        DefaultMutableTreeNode root = (DefaultMutableTreeNode) jTree1.getModel().getRoot();
+
+        if (root.getChildCount() == 1 && "Alias".equals(root.getChildAt(0).toString())) {
+            root.add(new DefaultMutableTreeNode("Documentos"));
+        }
+        else if (root.getChildCount() == 0) {
+            root.add(new DefaultMutableTreeNode("Documentos"));
+        }
+        int index = 0;
+        for (int i = 0; i < root.getChildCount(); ++i) {
+            if ("Documentos".equals(root.getChildAt(i).toString())) index = i;
+        }
+
+        DefaultMutableTreeNode docs = (DefaultMutableTreeNode) root.getChildAt(index);
+        boolean trobat = false;
+        for (int i = 0; i < docs.getChildCount(); ++i) {
+            if (docs.getChildAt(i).toString().equals(titulo)) trobat = true;
+        }
+        if (trobat) {
+            return false;
+        }
+        else {
+            docs.add(documento);
+            modelo.reload();
+        }
+        return true;
+    }
+
     public void removeDocumento(String autor, String titulo) {
         ctrlInterficie.removeDocument(autor, titulo);
     }
@@ -717,6 +767,15 @@ public class FramePrincipal extends javax.swing.JFrame {
         return ctrlInterficie.getTitles(autor);
     }
     
+    public void export(String autor,String titulo,File path,String type){
+        if(type.equals("txt")){
+            ctrlInterficie.exportTxt(autor,titulo,path);
+        }else{
+            ctrlInterficie.exportXml(autor,titulo,path);
+        }
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu AliasMenu;
     private javax.swing.JMenuItem CargarDoc;
