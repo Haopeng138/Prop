@@ -24,7 +24,6 @@ public class VentAñadirAliaExpre extends javax.swing.JFrame {
         
         initComponents();
         this.listaPorExpresion = listaPorExpresion;
-        Expresion.setText(this.listaPorExpresion.getExpresion());
         this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         this.addWindowListener(new WindowAdapter() {
             @Override

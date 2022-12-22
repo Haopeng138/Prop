@@ -67,16 +67,17 @@ public class Autores {
      * @param header El header de un documento autor y titulo
      *
      */
-    public void addTitleToAutor(DocumentHeader header) {
+    public boolean addTitleToAutor(DocumentHeader header) {
         HashMap<Titulo, Integer> titulos = autores.get(header.getAutor());
         if (titulos.get(header.getTitulo()) != null) {
             System.out.format("Ya existe el documento con titulo: %s para el autor %s", header.getTitulo().getName(),
                     header.getAutor().getName());
-            return;
+            return false;
         }
         titulos.put(header.getTitulo(), currentIdx);
         autores.replace(header.getAutor(), titulos);
         currentIdx++;
+        return true;
     }
 
     /**
@@ -189,7 +190,6 @@ public class Autores {
      *
      * @param header pareja autor titulo
      */
-    // Todo elminar aqui ?
     public void removeTitle(DocumentHeader header) {
         HashMap<Titulo, Integer> titulos = autores.get(header.getAutor());
         titulos.remove(header.getTitulo());
