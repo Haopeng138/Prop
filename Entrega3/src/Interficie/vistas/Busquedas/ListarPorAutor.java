@@ -21,6 +21,8 @@ public class ListarPorAutor extends javax.swing.JPanel {
         initComponents();
         this.framePrincipal = framePrincipal;
     }
+    
+
 
     private boolean first = true;
     /**
@@ -139,7 +141,7 @@ public class ListarPorAutor extends javax.swing.JPanel {
         if ("".equals(autor) || "Introduce un nombre de autor".equals(autor)) JOptionPane.showMessageDialog(null, "Introduce un nombre de autor!!!");
         else {
             ArrayList<String> titulos = framePrincipal.getTitulos(autor);
-            if (titulos == null) JOptionPane.showMessageDialog(null, "No existe este autor");
+            if (titulos.isEmpty()) JOptionPane.showMessageDialog(null, "No existe este autor");
             else {
                 Collections.sort(titulos);
                 framePrincipal.titlelist(titulos, autor);
@@ -159,7 +161,7 @@ public class ListarPorAutor extends javax.swing.JPanel {
             titulos = framePrincipal.getTitulos(autor);
             Collections.sort(titulos);
         }
-        if (titulos == null) JOptionPane.showMessageDialog(null, "No existe este autor");
+        if (titulos.isEmpty()) JOptionPane.showMessageDialog(null, "No existe este autor");
         else framePrincipal.titlelist(titulos, autor);
     }//GEN-LAST:event_criterioOrdenarActionPerformed
 

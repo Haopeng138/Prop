@@ -22,6 +22,7 @@ import Interficie.vistas.Items.PanelInfoAlia;
 import Interficie.vistas.Items.PanelInfoDoc;
 import Interficie.vistas.VentanaSecundaria.VentNuevoDocumentoFrame;
 import java.awt.CardLayout;
+import java.awt.Component;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -47,7 +48,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     private VentEliminarAliaPrin eliminarAliaPrinFrame;
     private VentModificarAliaPrin modificarAliaPrinFrame;
     private String autorList;
-        
+    private int indexPanelPrefijo = -1;    
     
     public FramePrincipal(ControladorInterficie ctrInterficie) {
         this.ctrlInterficie = ctrInterficie;
@@ -84,6 +85,35 @@ public class FramePrincipal extends javax.swing.JFrame {
         }
         return titOrdenado;
     }
+    
+    public ArrayList<String> ordenaRelevanciaAutor (String prefijo) {
+        ArrayList<String> autores = buscarPorPrefijo(prefijo);
+        if (autores.isEmpty()) return null;
+        HashMap<String,Integer> autNumTit = new HashMap<>();
+        ArrayList<Integer> list = new ArrayList<>();
+        
+        for (int i = 0; i < autores.size(); ++i) {
+            ArrayList<String> titulos = getTitulos(autores.get(i));
+            autNumTit.put(autores.get(i), titulos.size());
+        }
+        for (Map.Entry<String, Integer> entry : autNumTit.entrySet()) {
+            list.add(entry.getValue());
+        }
+        
+        Collections.sort(list);
+        Collections.reverse(list);
+       
+        ArrayList<String> autOrdenado = new ArrayList<>();
+        for (int size : list) {
+            for (Entry<String, Integer> entry : autNumTit.entrySet()) {
+                if (entry.getValue().equals(size)) {
+                    autOrdenado.add(entry.getKey());
+                }
+            }
+        }
+        return autOrdenado;
+    }
+
 
     
     public ArrayList<String> getAlias(){
@@ -127,6 +157,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         PanelItems.add(pane);
         PanelItems.setVisible(true);
         SwingUtilities.updateComponentTreeUI(this);
+        
   
     }
     
@@ -358,26 +389,33 @@ public class FramePrincipal extends javax.swing.JFrame {
         if ("Listar por autor".equals((String)SizeMenuBusqueda.getSelectedValue()) ) {    
             PanelBusquedas.add(new ListarPorAutor(this), "listarAutor");
             card.show(PanelBusquedas, "listarAutor");
+   
+            ++indexPanelPrefijo;
+           
         }
         
         if ("Listar por autor y título".equals((String)SizeMenuBusqueda.getSelectedValue()) ) {
             PanelBusquedas.add(new ListarPorAutorYTitulo(this), "listarAutorTitulo");
             card.show(PanelBusquedas, "listarAutorTitulo");
+            ++indexPanelPrefijo;
         }
         
         if ("Listar por prefijo".equals((String)SizeMenuBusqueda.getSelectedValue()) ) {
             PanelBusquedas.add(new ListarPorPrefijo(this), "listarPrefijo");
             card.show(PanelBusquedas, "listarPrefijo");
+            ++indexPanelPrefijo;
         }
         
         if ("Listar por similitud".equals((String)SizeMenuBusqueda.getSelectedValue()) ) {
             PanelBusquedas.add(new ListarPorSimilitud(this), "listarSimilitud");
             card.show(PanelBusquedas, "listarSimilitud");
+            ++indexPanelPrefijo;
         }
         
         if ("Listar por expresión booleana".equals((String)SizeMenuBusqueda.getSelectedValue()) ) {
             PanelBusquedas.add(new ListarPorExpresion(this), "listarExpresion");
             card.show(PanelBusquedas, "listarExpresion");
+            ++indexPanelPrefijo;
         }
     }//GEN-LAST:event_SizeMenuBusquedaMouseClicked
 
@@ -479,8 +517,6 @@ public class FramePrincipal extends javax.swing.JFrame {
             System.out.print(alia);
             PanelItems.add(infoAlia);
         }
-        
-     
         PanelItems.setVisible(true);
         SwingUtilities.updateComponentTreeUI(this);
     }//GEN-LAST:event_jTree1MouseClicked
@@ -703,7 +739,8 @@ public class FramePrincipal extends javax.swing.JFrame {
     }
 
     public ArrayList<String> getTitulos(String autor) {
-        if (ctrlInterficie.busquedaPorPrefijo(autor).isEmpty()) return null;
+        ArrayList<String> autores = buscarPorPrefijo(autor);
+        if (autores.isEmpty() || ! autores.contains(autor)) return null;
         return ctrlInterficie.getTitles(autor);
     }
     
@@ -713,6 +750,16 @@ public class FramePrincipal extends javax.swing.JFrame {
         }else{
             ctrlInterficie.exportXml(autor,titulo,path);
         }
+    }
+    
+    public void reload() {
+        
+        ListarPorPrefijo panel =(ListarPorPrefijo)PanelBusquedas.getComponent(indexPanelPrefijo);
+        panel.reload();
+        System.out.println(PanelItems.getComponent(0));
+        
+        
+        
     }
 
 

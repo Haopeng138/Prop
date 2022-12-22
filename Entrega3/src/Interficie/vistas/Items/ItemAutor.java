@@ -91,6 +91,14 @@ public class ItemAutor extends javax.swing.JPanel {
         
     }//GEN-LAST:event_ButtonVerObrasActionPerformed
     
+    
+    public void closeItemTitulo() {
+        if (titulosframe != null) {
+            titulosframe.dispose();
+            titulosframe = null;
+        }
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AutorLabel;

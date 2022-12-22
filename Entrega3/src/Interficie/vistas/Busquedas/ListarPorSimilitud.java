@@ -83,6 +83,11 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
                 NumeroKMousePressed(evt);
             }
         });
+        NumeroK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NumeroKActionPerformed(evt);
+            }
+        });
 
         NombreAutor.setText("Introduce un nombre de autor");
         NombreAutor.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -217,10 +222,14 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
         if ("".equals(NumeroK.getText())) {
             NumeroK.setText("Introduce el numero de documento [0-100]");
             NumeroK.setForeground(new Color(102, 102, 102));
-            firstT = true;
+            firstK = true;
             NumeroK.setEnabled(false);
         }
     }//GEN-LAST:event_formMousePressed
+
+    private void NumeroKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NumeroKActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NumeroKActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

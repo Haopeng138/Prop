@@ -142,16 +142,25 @@ public class ListarPorPrefijo extends javax.swing.JPanel {
             else {
                 if("relevancia".equals(criterioOrdenar.getSelectedItem().toString())){
                     autores = framePrincipal.ordenaRelevanciaAutor(prefijo);
-                    framePrincipal.autorlist(autores);
                 }
-                else {
-                    Collections.sort(autores);
-                    framePrincipal.autorlist(autores);
-                }
+                else Collections.sort(autores);
+                framePrincipal.autorlist(autores);
             }
         }
     }//GEN-LAST:event_criterioOrdenarActionPerformed
-
+     
+    public void reload(){
+        String prefijo = NombreAutor.getText();
+        if ("".equals(prefijo)) prefijo = "";
+        ArrayList<String> autores = framePrincipal.buscarPorPrefijo(prefijo);
+        
+        Collections.sort(autores);
+        
+        framePrincipal.autorlist(autores);
+       
+        
+    }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonBuscar;

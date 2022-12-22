@@ -6,6 +6,7 @@ package Interficie.vistas.Items;
 
 import Interficie.vistas.FramePrincipal;
 import Interficie.vistas.VentanaSecundaria.VentInfoDoc;
+import java.util.ArrayList;
 
 /**
  *
@@ -89,8 +90,10 @@ public class ItemTitulo extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
+        ArrayList<String> titulos = framePrincipal.getTitulos(autor);
         framePrincipal.eliminarDoc(jLabel2.getText(), autor);
+       
+        if (titulos.size() == 1) framePrincipal.reload();
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
