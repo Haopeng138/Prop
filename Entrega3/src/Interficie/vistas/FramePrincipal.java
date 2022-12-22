@@ -24,8 +24,13 @@ import Interficie.vistas.VentanaSecundaria.VentNuevoDocumentoFrame;
 import java.awt.CardLayout;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
@@ -49,6 +54,37 @@ public class FramePrincipal extends javax.swing.JFrame {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH); 
         initComponents();
     }
+    
+    public ArrayList<String> ordenaDecreContent (String nameAutor) {
+        ArrayList<String> titulos = getTitulos(nameAutor);
+        if (titulos == null) return null;
+        
+        HashMap<String,Integer> TitCont = new HashMap<>();
+        LinkedHashMap<String, Integer> sortedMap = new LinkedHashMap<>();
+        ArrayList<Integer> list = new ArrayList<>();
+        
+        for (int i = 0; i < titulos.size(); ++i) {
+            String cont = getContenidoPorAutorTitulo(nameAutor, titulos.get(i));
+            TitCont.put(titulos.get(i), cont.length());
+        }
+        for (Map.Entry<String, Integer> entry : TitCont.entrySet()) {
+            list.add(entry.getValue());
+        }
+        
+        Collections.sort(list);
+        Collections.reverse(list);
+       
+        ArrayList<String> titOrdenado = new ArrayList<>();
+        for (int size : list) {
+            for (Entry<String, Integer> entry : TitCont.entrySet()) {
+                if (entry.getValue().equals(size)) {
+                    titOrdenado.add(entry.getKey());
+                }
+            }
+        }
+        return titOrdenado;
+    }
+
     
     public ArrayList<String> getAlias(){
         ArrayList<String> result = new ArrayList<>();
@@ -96,6 +132,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     
     public void contentlist(String autor, String titulo){
         PanelItems.removeAll();
+        String content = getContenidoPorAutorTitulo(autor, titulo);
         JPanel tmpPanel = new JPanel();
         tmpPanel.setLayout(new BoxLayout(tmpPanel, BoxLayout.Y_AXIS));
         tmpPanel.add(new ItemContenido(this,content));
@@ -111,7 +148,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         JPanel tmpPanel = new JPanel();
         tmpPanel.setLayout(new BoxLayout(tmpPanel, BoxLayout.Y_AXIS));
         for(int i = 0; i< titles.size(); i++ ){
-            tmpPanel.add(new ItemTitulo(this,titles.get(i)));
+            tmpPanel.add(new ItemTitulo(this,titles.get(i), autor));
         }
         JScrollPane pane = new JScrollPane(tmpPanel);
         PanelItems.add(pane);
@@ -403,7 +440,12 @@ public class FramePrincipal extends javax.swing.JFrame {
         int returnValue = fileChooser.showOpenDialog(null);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
-            ctrlInterficie.createDocumento(selectedFile);
+            try{
+                ctrlInterficie.createDocumento(selectedFile);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
             System.out.print(selectedFile.toString());
         }
     }//GEN-LAST:event_CargarDocActionPerformed
@@ -522,6 +564,40 @@ public class FramePrincipal extends javax.swing.JFrame {
         }
         return true;
     }
+
+    public boolean cargarDocument(String autor,String titulo){
+        String docHeader = autor+"-"+titulo;
+
+        DefaultMutableTreeNode documento = new DefaultMutableTreeNode(docHeader);
+        DefaultTreeModel modelo = (DefaultTreeModel)jTree1.getModel();
+        DefaultMutableTreeNode root = (DefaultMutableTreeNode) jTree1.getModel().getRoot();
+
+        if (root.getChildCount() == 1 && "Alias".equals(root.getChildAt(0).toString())) {
+            root.add(new DefaultMutableTreeNode("Documentos"));
+        }
+        else if (root.getChildCount() == 0) {
+            root.add(new DefaultMutableTreeNode("Documentos"));
+        }
+        int index = 0;
+        for (int i = 0; i < root.getChildCount(); ++i) {
+            if ("Documentos".equals(root.getChildAt(i).toString())) index = i;
+        }
+
+        DefaultMutableTreeNode docs = (DefaultMutableTreeNode) root.getChildAt(index);
+        boolean trobat = false;
+        for (int i = 0; i < docs.getChildCount(); ++i) {
+            if (docs.getChildAt(i).toString().equals(titulo)) trobat = true;
+        }
+        if (trobat) {
+            return false;
+        }
+        else {
+            docs.add(documento);
+            modelo.reload();
+        }
+        return true;
+    }
+
     public void removeDocumento(String autor, String titulo) {
         ctrlInterficie.removeDocument(autor, titulo);
     }
