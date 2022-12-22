@@ -722,7 +722,6 @@ public class FramePrincipal extends javax.swing.JFrame {
     }
     
     public ArrayList<String> getTitulos(String autor) {
-        System.out.println("AAAAAAAAAAAAAAAA");
         ArrayList<String> autores = buscarPorPrefijo(autor);
         if (autores.isEmpty() || ! autores.contains(autor)) return null;
         return ctrlInterficie.getTitles(autor);
