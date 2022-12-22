@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 
 public class ListarPorAutor extends javax.swing.JPanel {
     private final FramePrincipal framePrincipal;
+    private String ordenarSelect;
     /**
      * Creates new form ListarAutor
      * @param framePrincipal
@@ -21,9 +22,7 @@ public class ListarPorAutor extends javax.swing.JPanel {
         initComponents();
         this.framePrincipal = framePrincipal;
     }
-    
-
-
+   
     private boolean first = true;
     /**
      * This method is called from within the constructor to initialize the form.
@@ -141,9 +140,16 @@ public class ListarPorAutor extends javax.swing.JPanel {
         if ("".equals(autor) || "Introduce un nombre de autor".equals(autor)) JOptionPane.showMessageDialog(null, "Introduce un nombre de autor!!!");
         else {
             ArrayList<String> titulos = framePrincipal.getTitulos(autor);
-            if (titulos.isEmpty()) JOptionPane.showMessageDialog(null, "No existe este autor");
+            if (titulos == null) JOptionPane.showMessageDialog(null, "No existe este autor");
             else {
-                Collections.sort(titulos);
+                ordenarSelect = criterioOrdenar.getSelectedItem().toString();
+                if("tamaño descendente".equals(ordenarSelect)){
+                    titulos = framePrincipal.ordenaDecreContent(autor);
+                }
+                else {
+                    titulos = framePrincipal.getTitulos(autor);
+                    Collections.sort(titulos);
+                }
                 framePrincipal.titlelist(titulos, autor);
             }
         }
@@ -154,15 +160,18 @@ public class ListarPorAutor extends javax.swing.JPanel {
         // TODO add your handling code here:
         String autor = NombreAutor.getText();
         ArrayList<String> titulos = new ArrayList<> ();
-        if("tamaño descendente".equals(criterioOrdenar.getSelectedItem().toString())){
-            titulos = framePrincipal.ordenaDecreContent(autor);
-        }
+        if (titulos == null) JOptionPane.showMessageDialog(null, "No existe este autor");
         else {
-            titulos = framePrincipal.getTitulos(autor);
-            Collections.sort(titulos);
+            ordenarSelect = criterioOrdenar.getSelectedItem().toString();
+            if("tamaño descendente".equals(ordenarSelect)){
+                titulos = framePrincipal.ordenaDecreContent(autor);
+            }
+            else {
+                titulos = framePrincipal.getTitulos(autor);
+                Collections.sort(titulos);
+            }
+            framePrincipal.titlelist(titulos, autor);
         }
-        if (titulos.isEmpty()) JOptionPane.showMessageDialog(null, "No existe este autor");
-        else framePrincipal.titlelist(titulos, autor);
     }//GEN-LAST:event_criterioOrdenarActionPerformed
 
 
