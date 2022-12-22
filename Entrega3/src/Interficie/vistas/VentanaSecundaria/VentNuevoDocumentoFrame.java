@@ -186,12 +186,12 @@ public class VentNuevoDocumentoFrame extends javax.swing.JFrame {
 
         else {
 
-            if (framePrincipal.añadirDocumento(Titulo.getText())) {
+            if (framePrincipal.añadirDocumento(Titulo.getText(), NombreAutor.getText(), jTextArea1.getText())) {
                 this.dispose();
                 framePrincipal.closeNewDocument();
             }
             else {
-                JOptionPane.showMessageDialog(null, "Alia ya existe!!!");
+                JOptionPane.showMessageDialog(null, "Documento ya existe!!!");
             }
         }
     }//GEN-LAST:event_ButtonGuardarActionPerformed

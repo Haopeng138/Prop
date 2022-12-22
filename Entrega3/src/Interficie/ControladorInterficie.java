@@ -3,6 +3,7 @@ package Interficie;
 import Dominio.ControladorDominio;
 import Dominio.Expresion.ExpresionException;
 import Interficie.vistas.FramePrincipal;
+import java.io.File;
 import java.util.ArrayList;
 
 
@@ -17,18 +18,25 @@ public class ControladorInterficie {
     public void inicial() {
          this.framePrincipal = new FramePrincipal(this);
          this.framePrincipal.setVisible(true);
-         this.framePrincipal.añadirDocumento("ctrlintr");
+         //this.framePrincipal.añadirDocumento("ctrlintr");
     }
     public void getDocument(){
 
     }
 
-    public void updateExpresion(String alias, String expresion) {
-
-    }
 
     public void createDocumento(String autor,String titulo,String contenido){
         ctrl_dominio.createDocumento(autor, titulo, contenido);
+    }
+    
+    public void createDocumento(File documento) {
+        ctrl_dominio.createDocumento(documento);
+    }
+    
+    public ArrayList<String[]> getAllDocs() {
+        System.out.println("interfaz estoy");
+        return ctrl_dominio.getAllDocuments();
+       
     }
     
     public ArrayList<String[]> busquedaPorExpresion(String alia){
@@ -41,6 +49,7 @@ public class ControladorInterficie {
     public String busquedaPorAutorTitulo(String autor, String titulo){
         return ctrl_dominio.getContent(autor, titulo);
     }
+    
     
     public void removeDocument(String autor,String titulo){
         ctrl_dominio.removeDocumento(autor, titulo);
@@ -57,5 +66,17 @@ public class ControladorInterficie {
             throw new Exception("Error añadiendo alia");
         }
 
+    }
+    
+    public void removeExpresion(String alia) {
+        ctrl_dominio.removeExpresion(alia);
+    }
+    
+    public void updateExpresion(String alia, String expresion) {
+        ctrl_dominio.updateExpresion(alia, expresion);
+    }
+
+    public String getExpresion(String alia) {
+        return ctrl_dominio.getExpresion(alia);
     }
 }

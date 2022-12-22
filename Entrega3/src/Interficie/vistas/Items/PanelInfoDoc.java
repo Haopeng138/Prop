@@ -176,21 +176,25 @@ public class PanelInfoDoc extends javax.swing.JPanel {
         
         int reply = JOptionPane.showConfirmDialog(null, "Seguro que quieres eliminar?", "", JOptionPane.YES_NO_OPTION);
         if (reply == JOptionPane.YES_OPTION) {
-            String d = Titulo.getText();
-            framePrincipal.eliminarA(d, 0);
+            String titulo = Titulo.getText();
+            String autor = NombreAutor.getText();
+            framePrincipal.eliminarDoc(titulo, autor);
             this.setVisible(false);
         } 
     }//GEN-LAST:event_ButtonEliminarActionPerformed
 
     private void ButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonGuardarActionPerformed
         // TODO add your handling code here:
+        String titulo = Titulo.getText();
+        String autor = NombreAutor.getText();
+        String cont = Contenido.getText();
+        if (cont.equals(framePrincipal.getContent(autor, titulo))) JOptionPane.showMessageDialog(null, "No has cambiado el contenido!!!");
         int reply = JOptionPane.showConfirmDialog(null, "Seguro que quieres guardar?", "", JOptionPane.YES_NO_OPTION);
         if (reply == JOptionPane.YES_OPTION) {
-            JOptionPane.showMessageDialog(null, "HELLO");
+            
+            framePrincipal.modificarDoc(titulo, autor, cont);
+            this.setVisible(false);
         } 
-        else {
-        JOptionPane.showMessageDialog(null, "GOODBYE");
-        }
     }//GEN-LAST:event_ButtonGuardarActionPerformed
 
     private void TituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TituloActionPerformed

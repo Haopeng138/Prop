@@ -25,6 +25,9 @@ import java.awt.CardLayout;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -339,9 +342,6 @@ public class FramePrincipal extends javax.swing.JFrame {
         if (añadirAliaPrinFrame == null){
             añadirAliaPrinFrame = new VentAñadirAliaPrin(this);
             añadirAliaPrinFrame.show();
-            int x = (this.getWidth()/2) - (añadirAliaPrinFrame.getWidth()/2);
-            int y = (this.getHeight()/2) - (añadirAliaPrinFrame.getHeight()/2);
-            añadirAliaPrinFrame.setLocation(x, y);
         }
         /*
         if (modificarAliaPrinFrame.isVisible()) modificarAliaPrinFrame.setVisible(false);
@@ -354,19 +354,14 @@ public class FramePrincipal extends javax.swing.JFrame {
         if (modificarAliaPrinFrame == null){
             modificarAliaPrinFrame = new VentModificarAliaPrin(this);
             modificarAliaPrinFrame.show();
-            int x = (this.getWidth()/2) - (modificarAliaPrinFrame.getWidth()/2);
-            int y = (this.getHeight()/2) - (modificarAliaPrinFrame.getWidth()/2);
-            modificarAliaPrinFrame.setLocation(x, y);
         }
     }//GEN-LAST:event_ModificarAliaActionPerformed
 
     private void EliminarAliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarAliaActionPerformed
+        
         if (eliminarAliaPrinFrame == null){
             eliminarAliaPrinFrame = new VentEliminarAliaPrin(this);
             eliminarAliaPrinFrame.show();
-            int x = (this.getWidth()/2) - (eliminarAliaPrinFrame.getWidth()/2);
-            int y = (this.getHeight()/2) - (eliminarAliaPrinFrame.getWidth()/2);
-            eliminarAliaPrinFrame.setLocation(x, y);
         }
     }//GEN-LAST:event_EliminarAliaActionPerformed
 
@@ -375,9 +370,6 @@ public class FramePrincipal extends javax.swing.JFrame {
          if(newDocumentFrame == null){
             newDocumentFrame = new VentNuevoDocumentoFrame(this);
             newDocumentFrame.show();
-            int x = (this.getWidth()/2) - (newDocumentFrame.getWidth()/2);
-            int y = (this.getHeight()/2) - (newDocumentFrame.getWidth()/2);
-            newDocumentFrame.setLocation(x, y);
        }else{
            System.out.println("Ya hay una ventana abierta");
        }
@@ -395,7 +387,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         int returnValue = fileChooser.showOpenDialog(null);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
-            // TODO: Hacer logica de insert aqui
+            ctrlInterficie.createDocumento(selectedFile);
             System.out.print(selectedFile.toString());
         }
     }//GEN-LAST:event_CargarDocActionPerformed
@@ -403,20 +395,41 @@ public class FramePrincipal extends javax.swing.JFrame {
     private void jTree1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTree1MouseClicked
         // TODO change for panel
         DefaultMutableTreeNode selected = (DefaultMutableTreeNode) jTree1.getSelectionPath().getLastPathComponent();
-        String doc = null;
+        String titulo = null;
         String alia = null;
         PanelItems.removeAll();
         PanelInfoDoc infoDoc = new PanelInfoDoc(this);
         PanelInfoAlia infoAlia = new PanelInfoAlia(this);
         //System.out.print(selected.getUserObject().toString());
         if (selected.getChildCount()== 0 && "Documentos".equals(selected.getParent().toString())) {
-            doc = selected.getUserObject().toString();
-            infoDoc.setText("autor",doc,"contenido");
+            titulo = selected.getUserObject().toString();
+            String autor = null;
+            System.out.println("aqui");
+             
+            ArrayList<String[]> docs = new ArrayList<String[]>();
+            docs = ctrlInterficie.getAllDocs();
+            System.out.println("despues de interfaz");
+            boolean trobat = false;
+            int cont = docs.size();
+            System.out.println("despues de cont");
+            for (int i = 0; !trobat && i < cont; ++i) {
+                System.out.println("bucle");
+                String[] doc = docs.get(i);
+                if (doc[1].equals(titulo)) {
+                    trobat = true;
+                    autor = doc[0];
+                }
+            }
+            
+            String contenido = ctrlInterficie.busquedaPorAutorTitulo(autor, titulo);
+            
+            infoDoc.setText(autor,titulo,contenido);
             PanelItems.add(infoDoc);
              
         } else if (selected.getChildCount()== 0 && "Alias".equals(selected.getParent().toString())) {
             alia = selected.getUserObject().toString();
-            infoAlia.setText(alia,"expreiosn");
+            String expresion = getExpresion(alia);
+            infoAlia.setText(alia, expresion);
             System.out.print(alia);
             PanelItems.add(infoAlia);
         }
@@ -426,6 +439,9 @@ public class FramePrincipal extends javax.swing.JFrame {
         SwingUtilities.updateComponentTreeUI(this);
     }//GEN-LAST:event_jTree1MouseClicked
 
+    public String getExpresion(String alia) {
+        return ctrlInterficie.getExpresion(alia);
+    }
     //** TODO:review
     /*
     public void openAñadirAliaExp() {
@@ -433,62 +449,126 @@ public class FramePrincipal extends javax.swing.JFrame {
         this.setEnabled(false);
     }*/
     
-    public boolean añadirAlia(String a,String expresion) {
-        DefaultMutableTreeNode alia = new DefaultMutableTreeNode(a);
+    public boolean añadirAlia(String ali, String expresion) {
+        DefaultMutableTreeNode alia = new DefaultMutableTreeNode(ali);
         DefaultTreeModel modelo = (DefaultTreeModel)jTree1.getModel();
-        DefaultMutableTreeNode c = (DefaultMutableTreeNode) jTree1.getModel().getRoot();
-        if (c.getChildCount() == 1 && c.getChildAt(0).toString() == "Documentos") {
-            c.add(new DefaultMutableTreeNode("Alias"));
+        DefaultMutableTreeNode root = (DefaultMutableTreeNode) jTree1.getModel().getRoot();
+        if (root.getChildCount() == 1 && "Documentos".equals(root.getChildAt(0).toString())) {
+            root.add(new DefaultMutableTreeNode("Alias"));
         }
-        else if (c.getChildCount() == 1 && c.getChildAt(0).toString() == "Alias") {
-            c.add(new DefaultMutableTreeNode("Documentos"));
+        else if (root.getChildCount() == 0) {
+            root.add(new DefaultMutableTreeNode("Alias"));
         }
-        DefaultMutableTreeNode d = (DefaultMutableTreeNode) c.getChildAt(1);
+        int index = 0;
+        for (int i = 0; i < root.getChildCount(); ++i) {
+            if ("Alias".equals(root.getChildAt(i).toString())) index = i;
+        }
         
-        if (d.getIndex(alia) != -1) {
+        DefaultMutableTreeNode alias = (DefaultMutableTreeNode) root.getChildAt(index);
+        
+        boolean trobat = false;
+        for (int i = 0; i < alias.getChildCount(); ++i) {
+            if (alias.getChildAt(i).toString().equals(ali)) trobat = true;
+        }
+        if (trobat) {
             return false;
         }
         else {
-                d.add(alia);
+                alias.add(alia);
+            try {
+                addExpresion(ali, expresion);
+            } catch (Exception ex) {
+                Logger.getLogger(FramePrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         modelo.reload();
         return true;
     }
     
-    public boolean añadirDocumento(String doc) {
-        DefaultMutableTreeNode documento = new DefaultMutableTreeNode(doc);
+    public boolean añadirDocumento(String titulo, String autor, String cont) {
+        DefaultMutableTreeNode documento = new DefaultMutableTreeNode(titulo);
         DefaultTreeModel modelo = (DefaultTreeModel)jTree1.getModel();
-        DefaultMutableTreeNode c = (DefaultMutableTreeNode) jTree1.getModel().getRoot();
-        DefaultMutableTreeNode d = (DefaultMutableTreeNode) c.getChildAt(0);
-        if (d.getIndex(documento) != -1) {
+        DefaultMutableTreeNode root = (DefaultMutableTreeNode) jTree1.getModel().getRoot();
+        
+        if (root.getChildCount() == 1 && "Alias".equals(root.getChildAt(0).toString())) {
+            root.add(new DefaultMutableTreeNode("Documentos"));
+        }
+        else if (root.getChildCount() == 0) {
+            root.add(new DefaultMutableTreeNode("Documentos"));
+        }
+        int index = 0;
+        for (int i = 0; i < root.getChildCount(); ++i) {
+            if ("Documentos".equals(root.getChildAt(i).toString())) index = i;
+        }
+        
+        DefaultMutableTreeNode docs = (DefaultMutableTreeNode) root.getChildAt(index);
+        boolean trobat = false;
+        for (int i = 0; i < docs.getChildCount(); ++i) {
+            if (docs.getChildAt(i).toString().equals(titulo)) trobat = true;
+        }
+        if (trobat) {
             return false;
         }
         else {
-                d.add(documento);
+                docs.add(documento);
                 modelo.reload();
-                ctrlInterficie.createDocumento("alia","gafg","gsfdgsdf");
+                ctrlInterficie.createDocumento(autor,titulo,cont);
         }
         return true;
     }
-    
-    
-    public void eliminarA(String a, int idx) {
-        DefaultMutableTreeNode alia = null;
+    public void removeDocumento(String autor, String titulo) {
+        ctrlInterficie.removeDocument(autor, titulo);
+    }
+    public void eliminarDoc(String titulo, String autor) {
+        DefaultMutableTreeNode doc = null;
         DefaultTreeModel modelo = (DefaultTreeModel)jTree1.getModel();
-        DefaultMutableTreeNode c = (DefaultMutableTreeNode) jTree1.getModel().getRoot();
-        DefaultMutableTreeNode d = (DefaultMutableTreeNode) c.getChildAt(1);
-        Enumeration<TreeNode> e = d.children();
-        while (e.hasMoreElements()) {
-            DefaultMutableTreeNode ali = (DefaultMutableTreeNode) e.nextElement();
-            String g = ali.toString();
-            if (g.equals(a)) alia = ali;
-            System.out.println(g);
+        DefaultMutableTreeNode root = (DefaultMutableTreeNode) jTree1.getModel().getRoot();
+        DefaultMutableTreeNode docs = (DefaultMutableTreeNode) root.getChildAt(1);
+        Enumeration<TreeNode> cont = docs.children();
+        while (cont.hasMoreElements()) {
+            DefaultMutableTreeNode aut = (DefaultMutableTreeNode) cont.nextElement();
+            
+            if (aut.toString().equals(autor)) doc = aut;
         }
-        d.remove(alia);
-        if (d.getChildCount() == 0) c.remove(d);
+        docs.remove(doc);
+        removeDocumento(autor, titulo);
+        if (docs.getChildCount() == 0) root.remove(docs);
 
         modelo.reload();
     }
+    
+    public String getContent(String autor, String titulo) {
+        return ctrlInterficie.busquedaPorAutorTitulo(autor, titulo);
+    }
+    public void modificarDoc(String titulo, String autor, String cont) {
+        ctrlInterficie.modifyDocument(autor, titulo, cont);
+    }
+    
+    public void removeExpresion(String a) {
+        ctrlInterficie.removeExpresion(a);
+    }
+    public void eliminarAlia(String a) {
+        DefaultMutableTreeNode alia = null;
+        DefaultTreeModel modelo = (DefaultTreeModel)jTree1.getModel();
+        DefaultMutableTreeNode root = (DefaultMutableTreeNode) jTree1.getModel().getRoot();
+        DefaultMutableTreeNode alias = (DefaultMutableTreeNode) root.getChildAt(1);
+        Enumeration<TreeNode> cont = alias.children();
+        while (cont.hasMoreElements()) {
+            DefaultMutableTreeNode ali = (DefaultMutableTreeNode) cont.nextElement();
+            
+            if (ali.toString().equals(a)) alia = ali;
+        }
+        alias.remove(alia);
+        removeExpresion(a);
+        if (alias.getChildCount() == 0) root.remove(alias);
+
+        modelo.reload();
+    }
+    
+    public void modificarExpresion(String alia, String expresion) {
+        ctrlInterficie.updateExpresion(alia, expresion);
+    }
+    
     
     public void buscarPorAlia(String alia) {
         ArrayList<String[]> documents = ctrlInterficie.busquedaPorExpresion(alia);
@@ -544,5 +624,6 @@ public class FramePrincipal extends javax.swing.JFrame {
     private javax.swing.JTree jTree1;
     // End of variables declaration//GEN-END:variables
 
+    
 
 }
