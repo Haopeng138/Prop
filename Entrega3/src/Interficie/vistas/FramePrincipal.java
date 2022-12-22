@@ -174,8 +174,9 @@ public class FramePrincipal extends javax.swing.JFrame {
   
     }
     
-    public void contentlist(String content){
+    public void contentlist(String autor, String titulo){
         PanelItems.removeAll();
+        String content = getContenidoPorAutorTitulo(autor, titulo);
         JPanel tmpPanel = new JPanel();
         tmpPanel.setLayout(new BoxLayout(tmpPanel, BoxLayout.Y_AXIS));
         tmpPanel.add(new ItemContenido(this,content));
@@ -191,7 +192,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         JPanel tmpPanel = new JPanel();
         tmpPanel.setLayout(new BoxLayout(tmpPanel, BoxLayout.Y_AXIS));
         for(int i = 0; i< titles.size(); i++ ){
-            tmpPanel.add(new ItemTitulo(this,titles.get(i)));
+            tmpPanel.add(new ItemTitulo(this,titles.get(i), autor));
         }
         JScrollPane pane = new JScrollPane(tmpPanel);
         PanelItems.add(pane);
@@ -716,7 +717,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     public void addExpresion(String alia,String expresion) throws Exception {
         ctrlInterficie.addExpresion(alia,expresion);
     }
-    
+   
     public ArrayList<String> buscarPorPrefijo(String prefijo) {
         return ctrlInterficie.busquedaPorPrefijo(prefijo);
     }
