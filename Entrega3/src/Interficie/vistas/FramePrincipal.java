@@ -24,6 +24,9 @@ import java.awt.CardLayout;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -37,6 +40,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     private VentAñadirAliaPrin añadirAliaPrinFrame;
     private VentEliminarAliaPrin eliminarAliaPrinFrame;
     private VentModificarAliaPrin modificarAliaPrinFrame;
+    private String autorList;
 
     
     public FramePrincipal(ControladorInterficie ctrInterficie) {
@@ -48,7 +52,7 @@ public class FramePrincipal extends javax.swing.JFrame {
                 ctrlInterficie.persit();
                 System.out.println("Se ha hecho persistencia");
                 System.exit(0);
-               
+
             }
         });
         initComponents();
@@ -56,8 +60,13 @@ public class FramePrincipal extends javax.swing.JFrame {
     
     public ArrayList<String> getAlias(){
         ArrayList<String> result = new ArrayList<>();
+        int index = -1;
         DefaultMutableTreeNode principalDirectory = (DefaultMutableTreeNode) jTree1.getModel().getRoot();
-        DefaultMutableTreeNode aliasDirectory = (DefaultMutableTreeNode) principalDirectory.getChildAt(1);
+        for (int i = 0; i < principalDirectory.getChildCount(); ++i) {
+            if ("Alias".equals(principalDirectory.getChildAt(i).toString())) index = i;
+        }
+        if (index == -1) return null;
+        DefaultMutableTreeNode aliasDirectory = (DefaultMutableTreeNode) principalDirectory.getChildAt(index);
         for(int i = 0; i< aliasDirectory.getChildCount();i++){
             result.add(aliasDirectory.getChildAt(i).toString());
         }
@@ -66,8 +75,13 @@ public class FramePrincipal extends javax.swing.JFrame {
     
     public ArrayList<String> getDocumentos(){
         ArrayList<String> result = new ArrayList<>();
+        int index = -1;
         DefaultMutableTreeNode principalDirectory = (DefaultMutableTreeNode) jTree1.getModel().getRoot();
-        DefaultMutableTreeNode docDirectory = (DefaultMutableTreeNode) principalDirectory.getChildAt(0);
+        for (int i = 0; i < principalDirectory.getChildCount(); ++i) {
+            if ("Documentos".equals(principalDirectory.getChildAt(i).toString())) index = i;
+        }
+        if (index == -1) return null;
+        DefaultMutableTreeNode docDirectory = (DefaultMutableTreeNode) principalDirectory.getChildAt(index);
         for(int i = 0; i< docDirectory.getChildCount();i++){
             result.add(docDirectory.getChildAt(i).toString());
         }
@@ -99,7 +113,8 @@ public class FramePrincipal extends javax.swing.JFrame {
         SwingUtilities.updateComponentTreeUI(this);
     }
     
-    public void titlelist(ArrayList<String> titles){
+    public void titlelist(ArrayList<String> titles, String autor){
+        autorList = autor;
         PanelItems.removeAll();
         JPanel tmpPanel = new JPanel();
         tmpPanel.setLayout(new BoxLayout(tmpPanel, BoxLayout.Y_AXIS));
@@ -110,8 +125,12 @@ public class FramePrincipal extends javax.swing.JFrame {
         PanelItems.add(pane);
         PanelItems.setVisible(true);
         SwingUtilities.updateComponentTreeUI(this);
+
     }
     
+    public String getAutorList() {
+        return autorList;
+    }
     /**
      *
      * @param documents
@@ -193,19 +212,9 @@ public class FramePrincipal extends javax.swing.JFrame {
         javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Documentos");
         javax.swing.tree.DefaultMutableTreeNode treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("D1");
         treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("D2");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("D3");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("D4");
-        treeNode2.add(treeNode3);
         treeNode1.add(treeNode2);
         treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Alias");
         treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("A1");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("A2");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("A3");
         treeNode2.add(treeNode3);
         treeNode1.add(treeNode2);
         jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
@@ -216,9 +225,11 @@ public class FramePrincipal extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTree1);
 
-        PanelItems.setLayout(new javax.swing.BoxLayout(PanelItems, javax.swing.BoxLayout.Y_AXIS));
-
         jLabel1.setText("Selecciona el tipo de búsqueda:");
+
+        PanelBusquedas.setLayout(new java.awt.CardLayout());
+
+        PanelItems.setLayout(new javax.swing.BoxLayout(PanelItems, javax.swing.BoxLayout.Y_AXIS));
 
         FileMenu.setText("File");
 
@@ -285,26 +296,27 @@ public class FramePrincipal extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(PanelBusquedas, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE)
-                    .addComponent(PanelItems, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(PanelBusquedas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(PanelItems, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(SizeMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(PanelBusquedas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
-                        .addGap(3, 3, 3))
-                    .addComponent(PanelItems, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel1))
+                            .addComponent(PanelBusquedas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(PanelItems, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(SizeMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -347,9 +359,6 @@ public class FramePrincipal extends javax.swing.JFrame {
         if (añadirAliaPrinFrame == null){
             añadirAliaPrinFrame = new VentAñadirAliaPrin(this);
             añadirAliaPrinFrame.show();
-            int x = (this.getWidth()/2) - (añadirAliaPrinFrame.getWidth()/2);
-            int y = (this.getHeight()/2) - (añadirAliaPrinFrame.getHeight()/2);
-            añadirAliaPrinFrame.setLocation(x, y);
         }
         /*
         if (modificarAliaPrinFrame.isVisible()) modificarAliaPrinFrame.setVisible(false);
@@ -358,23 +367,27 @@ public class FramePrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_NuevaAliaActionPerformed
 
     private void ModificarAliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarAliaActionPerformed
-    
-        if (modificarAliaPrinFrame == null){
+
+
+       ArrayList<String> alias = getAlias();
+        if (modificarAliaPrinFrame == null && alias != null){
             modificarAliaPrinFrame = new VentModificarAliaPrin(this);
             modificarAliaPrinFrame.show();
-            int x = (this.getWidth()/2) - (modificarAliaPrinFrame.getWidth()/2);
-            int y = (this.getHeight()/2) - (modificarAliaPrinFrame.getWidth()/2);
-            modificarAliaPrinFrame.setLocation(x, y);
+        }
+        else if (alias == null) {
+            JOptionPane.showMessageDialog(null, "No hay alias");
         }
     }//GEN-LAST:event_ModificarAliaActionPerformed
 
     private void EliminarAliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarAliaActionPerformed
-        if (eliminarAliaPrinFrame == null){
+
+        ArrayList<String> alias = getAlias();
+        if (eliminarAliaPrinFrame == null && alias != null){
             eliminarAliaPrinFrame = new VentEliminarAliaPrin(this);
             eliminarAliaPrinFrame.show();
-            int x = (this.getWidth()/2) - (eliminarAliaPrinFrame.getWidth()/2);
-            int y = (this.getHeight()/2) - (eliminarAliaPrinFrame.getWidth()/2);
-            eliminarAliaPrinFrame.setLocation(x, y);
+        }
+        else if (alias != null) {
+            JOptionPane.showMessageDialog(null, "No hay alias");
         }
     }//GEN-LAST:event_EliminarAliaActionPerformed
 
@@ -383,9 +396,6 @@ public class FramePrincipal extends javax.swing.JFrame {
          if(newDocumentFrame == null){
             newDocumentFrame = new VentNuevoDocumentoFrame(this);
             newDocumentFrame.show();
-            int x = (this.getWidth()/2) - (newDocumentFrame.getWidth()/2);
-            int y = (this.getHeight()/2) - (newDocumentFrame.getWidth()/2);
-            newDocumentFrame.setLocation(x, y);
        }else{
            System.out.println("Ya hay una ventana abierta");
        }
@@ -403,7 +413,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         int returnValue = fileChooser.showOpenDialog(null);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
-            // TODO: Hacer logica de insert aqui
+            ctrlInterficie.createDocumento(selectedFile);
             System.out.print(selectedFile.toString());
         }
     }//GEN-LAST:event_CargarDocActionPerformed
@@ -411,25 +421,29 @@ public class FramePrincipal extends javax.swing.JFrame {
     private void jTree1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTree1MouseClicked
         // TODO change for panel
         DefaultMutableTreeNode selected = (DefaultMutableTreeNode) jTree1.getSelectionPath().getLastPathComponent();
-        String doc = null;
+        String docHeader = null;
         String alia = null;
         PanelItems.removeAll();
         PanelInfoDoc infoDoc = new PanelInfoDoc(this);
         PanelInfoAlia infoAlia = new PanelInfoAlia(this);
         //System.out.print(selected.getUserObject().toString());
         if (selected.getChildCount()== 0 && "Documentos".equals(selected.getParent().toString())) {
-            doc = selected.getUserObject().toString();
+            docHeader = selected.getUserObject().toString();
+            String[] doc = docHeader.split("-");
+            String autor = doc[0];
+            String titulo = doc[1];
+            System.out.println(autor + " " + titulo);
 
-            String[] header = doc.split("\\|");
-            String autor = header[1];
-            String titulo = header[0];
-            String contenido = getContenidoPorAutorTitulo(autor,titulo);
+
+            String contenido = ctrlInterficie.busquedaPorAutorTitulo(autor, titulo);
+
             infoDoc.setText(autor,titulo,contenido);
             PanelItems.add(infoDoc);
              
         } else if (selected.getChildCount()== 0 && "Alias".equals(selected.getParent().toString())) {
             alia = selected.getUserObject().toString();
-            infoAlia.setText(alia,"expreiosn");
+            String expresion = getExpresion(alia);
+            infoAlia.setText(alia, expresion);
             System.out.print(alia);
             PanelItems.add(infoAlia);
         }
@@ -439,6 +453,9 @@ public class FramePrincipal extends javax.swing.JFrame {
         SwingUtilities.updateComponentTreeUI(this);
     }//GEN-LAST:event_jTree1MouseClicked
 
+    public String getExpresion(String alia) {
+        return ctrlInterficie.getExpresion(alia);
+    }
     //** TODO:review
     /*
     public void openAñadirAliaExp() {
@@ -446,77 +463,139 @@ public class FramePrincipal extends javax.swing.JFrame {
         this.setEnabled(false);
     }*/
     
-    public boolean añadirAlia(String a,String expresion) {
-        DefaultMutableTreeNode alia = new DefaultMutableTreeNode(a);
+    public boolean añadirAlia(String ali, String expresion) {
+        DefaultMutableTreeNode alia = new DefaultMutableTreeNode(ali);
         DefaultTreeModel modelo = (DefaultTreeModel)jTree1.getModel();
-        DefaultMutableTreeNode c = (DefaultMutableTreeNode) jTree1.getModel().getRoot();
-        if (c.getChildCount() == 1 && c.getChildAt(0).toString() == "Documentos") {
-            c.add(new DefaultMutableTreeNode("Alias"));
+        DefaultMutableTreeNode root = (DefaultMutableTreeNode) jTree1.getModel().getRoot();
+        if (root.getChildCount() == 1 && "Documentos".equals(root.getChildAt(0).toString())) {
+            root.add(new DefaultMutableTreeNode("Alias"));
         }
-        else if (c.getChildCount() == 1 && c.getChildAt(0).toString() == "Alias") {
-            c.add(new DefaultMutableTreeNode("Documentos"));
+        else if (root.getChildCount() == 0) {
+            root.add(new DefaultMutableTreeNode("Alias"));
         }
-        DefaultMutableTreeNode d = (DefaultMutableTreeNode) c.getChildAt(1);
+        int index = 0;
+        for (int i = 0; i < root.getChildCount(); ++i) {
+            if ("Alias".equals(root.getChildAt(i).toString())) index = i;
+        }
         
-        if (d.getIndex(alia) != -1) {
+        DefaultMutableTreeNode alias = (DefaultMutableTreeNode) root.getChildAt(index);
+
+        boolean trobat = false;
+        for (int i = 0; i < alias.getChildCount(); ++i) {
+            if (alias.getChildAt(i).toString().equals(ali)) trobat = true;
+        }
+        if (trobat) {
             return false;
         }
         else {
-                d.add(alia);
+                alias.add(alia);
+            try {
+                addExpresion(ali, expresion);
+            } catch (Exception ex) {
+                Logger.getLogger(FramePrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         modelo.reload();
         return true;
     }
-    public void cargarDocumento(String autor,String titulo){
-        DefaultMutableTreeNode documento = new DefaultMutableTreeNode(titulo+"|"+autor);
-        DefaultTreeModel modelo = (DefaultTreeModel)jTree1.getModel();
-        DefaultMutableTreeNode c = (DefaultMutableTreeNode) jTree1.getModel().getRoot();
-        DefaultMutableTreeNode d = (DefaultMutableTreeNode) c.getChildAt(0);
-        if (d.getIndex(documento) != -1) {
-            
-        }
-        else {
-            d.add(documento);
-            modelo.reload();   
-        }
-     
-    }
     
-    public boolean añadirDocumento(String titulo,String autor,String contenido) {
-        DefaultMutableTreeNode documento = new DefaultMutableTreeNode(titulo+"|"+autor);
+    public boolean añadirDocumento(String titulo, String autor, String cont) {
+        String docHeader = autor+"-"+titulo;
+
+        DefaultMutableTreeNode documento = new DefaultMutableTreeNode(docHeader);
         DefaultTreeModel modelo = (DefaultTreeModel)jTree1.getModel();
-        DefaultMutableTreeNode c = (DefaultMutableTreeNode) jTree1.getModel().getRoot();
-        DefaultMutableTreeNode d = (DefaultMutableTreeNode) c.getChildAt(0);
-        if (d.getIndex(documento) != -1) {
+        DefaultMutableTreeNode root = (DefaultMutableTreeNode) jTree1.getModel().getRoot();
+
+        if (root.getChildCount() == 1 && "Alias".equals(root.getChildAt(0).toString())) {
+            root.add(new DefaultMutableTreeNode("Documentos"));
+        }
+        else if (root.getChildCount() == 0) {
+            root.add(new DefaultMutableTreeNode("Documentos"));
+        }
+        int index = 0;
+        for (int i = 0; i < root.getChildCount(); ++i) {
+            if ("Documentos".equals(root.getChildAt(i).toString())) index = i;
+        }
+
+        DefaultMutableTreeNode docs = (DefaultMutableTreeNode) root.getChildAt(index);
+        boolean trobat = false;
+        for (int i = 0; i < docs.getChildCount(); ++i) {
+            if (docs.getChildAt(i).toString().equals(titulo)) trobat = true;
+        }
+        if (trobat) {
             return false;
         }
         else {
-                d.add(documento);
+                docs.add(documento);
                 modelo.reload();
-                ctrlInterficie.createDocumento(titulo,autor,contenido);
+                ctrlInterficie.createDocumento(autor,titulo,cont);
         }
         return true;
     }
-    
-    
-    public void eliminarA(String a, int idx) {
+    public void removeDocumento(String autor, String titulo) {
+        ctrlInterficie.removeDocument(autor, titulo);
+    }
+    public void eliminarDoc(String titulo, String autor) {
+        String docHeader = autor+"-"+titulo;
+        DefaultMutableTreeNode doc = null;
+        DefaultTreeModel modelo = (DefaultTreeModel)jTree1.getModel();
+        DefaultMutableTreeNode root = (DefaultMutableTreeNode) jTree1.getModel().getRoot();
+        int index = 0;
+        for (int i = 0; i < root.getChildCount(); ++i) {
+            if ("Documentos".equals(root.getChildAt(i).toString())) index = i;
+        }
+        DefaultMutableTreeNode docs = (DefaultMutableTreeNode) root.getChildAt(index);
+        Enumeration<TreeNode> cont = docs.children();
+        while (cont.hasMoreElements()) {
+            DefaultMutableTreeNode aut = (DefaultMutableTreeNode) cont.nextElement();
+
+            if (aut.toString().equals(docHeader)) doc = aut;
+        }
+        docs.remove(doc);
+        removeDocumento(autor, titulo);
+        if (docs.getChildCount() == 0) root.remove(docs);
+
+        modelo.reload();
+    }
+
+    public String getContent(String autor, String titulo) {
+        return ctrlInterficie.busquedaPorAutorTitulo(autor, titulo);
+    }
+    public void modificarDoc(String titulo, String autor, String cont) {
+        ctrlInterficie.modifyDocument(autor, titulo, cont);
+    }
+
+    public void removeExpresion(String a) {
+        ctrlInterficie.removeExpresion(a);
+    }
+    public void eliminarAlia(String a) {
         DefaultMutableTreeNode alia = null;
         DefaultTreeModel modelo = (DefaultTreeModel)jTree1.getModel();
-        DefaultMutableTreeNode c = (DefaultMutableTreeNode) jTree1.getModel().getRoot();
-        DefaultMutableTreeNode d = (DefaultMutableTreeNode) c.getChildAt(1);
-        Enumeration<TreeNode> e = d.children();
-        while (e.hasMoreElements()) {
-            DefaultMutableTreeNode ali = (DefaultMutableTreeNode) e.nextElement();
-            String g = ali.toString();
-            if (g.equals(a)) alia = ali;
-            System.out.println(g);
+        DefaultMutableTreeNode root = (DefaultMutableTreeNode) jTree1.getModel().getRoot();
+        int index = 0;
+        for (int i = 0; i < root.getChildCount(); ++i) {
+            if ("Alias".equals(root.getChildAt(i).toString())) index = i;
+
         }
-        d.remove(alia);
-        if (d.getChildCount() == 0) c.remove(d);
+        DefaultMutableTreeNode alias = (DefaultMutableTreeNode) root.getChildAt(index);
+        Enumeration<TreeNode> cont = alias.children();
+        while (cont.hasMoreElements()) {
+            DefaultMutableTreeNode ali = (DefaultMutableTreeNode) cont.nextElement();
+
+            if (ali.toString().equals(a)) alia = ali;
+        }
+        alias.remove(alia);
+        removeExpresion(a);
+        if (alias.getChildCount() == 0) root.remove(alias);
 
         modelo.reload();
     }
     
+    public void modificarExpresion(String alia, String expresion) {
+        ctrlInterficie.updateExpresion(alia, expresion);
+    }
+
+
     public void buscarPorAlia(String alia) {
         ArrayList<String[]> documents = ctrlInterficie.busquedaPorExpresion(alia);
         JOptionPane.showMessageDialog(null,"No se ha encontrado documentos,revisa la expresion");
@@ -552,6 +631,12 @@ public class FramePrincipal extends javax.swing.JFrame {
     public void addExpresion(String alia,String expresion) throws Exception {
         ctrlInterficie.addExpresion(alia,expresion);
     }
+
+    public ArrayList<String> getTitulos(String autor) {
+        if (ctrlInterficie.busquedaPorPrefijo(autor).isEmpty()) return null;
+        return ctrlInterficie.getTitles(autor);
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu AliasMenu;
     private javax.swing.JMenuItem CargarDoc;
@@ -570,6 +655,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTree jTree1;
     // End of variables declaration//GEN-END:variables
+
 
 
 }

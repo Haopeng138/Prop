@@ -7,9 +7,11 @@ package Interficie.vistas.Busquedas;
 import Interficie.vistas.FramePrincipal;
 import java.util.ArrayList;
 import java.util.Arrays;
+import javax.swing.JOptionPane;
 
 public class ListarPorPrefijo extends javax.swing.JPanel {
     private final FramePrincipal framePrincipal;
+    private boolean first = true;
     /**
      * Creates new form ListarPorTitulo
      * @param framePrincipal
@@ -46,7 +48,13 @@ public class ListarPorPrefijo extends javax.swing.JPanel {
             }
         });
 
+        NombreAutor.setForeground(new java.awt.Color(102, 102, 102));
         NombreAutor.setText("Introduce un prefijo");
+        NombreAutor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NombreAutorActionPerformed(evt);
+            }
+        });
 
         tipoOrdenacion.setText("Ordenar por:");
 
@@ -66,7 +74,7 @@ public class ListarPorPrefijo extends javax.swing.JPanel {
                         .addComponent(criterioOrdenar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(ButtonBuscar))
-                    .addComponent(NombreAutor, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE))
+                    .addComponent(NombreAutor, javax.swing.GroupLayout.DEFAULT_SIZE, 673, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -76,13 +84,13 @@ public class ListarPorPrefijo extends javax.swing.JPanel {
                 .addComponent(TipoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(NombreAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ButtonBuscar)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(criterioOrdenar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(tipoOrdenacion)))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {ButtonBuscar, NombreAutor});
@@ -96,6 +104,15 @@ public class ListarPorPrefijo extends javax.swing.JPanel {
         ArrayList<String> authors = new ArrayList<>(Arrays.asList("Buenos Aires", "Córdoba", "La Plata"));
         framePrincipal.autorlist(authors);
     }//GEN-LAST:event_ButtonBuscarActionPerformed
+
+    private void NombreAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreAutorActionPerformed
+        // TODO add your handling code here:
+        String autor = NombreAutor.getText();
+        if ("".equals(autor) || "Introduce un nombre de autor".equals(autor)) JOptionPane.showMessageDialog(null, "Introduce un nombre de autor!!!");
+        else {
+            
+        }
+    }//GEN-LAST:event_NombreAutorActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

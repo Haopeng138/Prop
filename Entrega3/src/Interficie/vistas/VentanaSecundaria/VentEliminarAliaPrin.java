@@ -8,6 +8,7 @@ import Interficie.vistas.FramePrincipal;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
 public class VentEliminarAliaPrin extends javax.swing.JFrame {
@@ -86,6 +87,12 @@ public class VentEliminarAliaPrin extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
+        ComboAlias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboAliasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -143,18 +150,22 @@ public class VentEliminarAliaPrin extends javax.swing.JFrame {
 
     private void ButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonEliminarActionPerformed
        
-        
-        framePrincipal.eliminarA((String)ComboAlias.getSelectedItem().toString(),1);
+        String alia = (String)ComboAlias.getSelectedItem().toString();
+        int reply = JOptionPane.showConfirmDialog(null, "Seguro que quieres eliminar?", "", JOptionPane.YES_NO_OPTION);
+        if (reply == JOptionPane.YES_OPTION) {
+            framePrincipal.eliminarAlia(alia);
+        } 
         framePrincipal.closeEliminarAlia();
-        //ComboAlias.remove(ComboAlias.getSelectedIndex());
-      
-        //Prueba1.mA.eliminarA((String)jComboBox1.getSelectedItem());
-        
-        //Prueba1.framePrincipal.setVisible(true);
-        //Prueba1.framePrincipal.setEnabled(true);
         this.dispose();
 
     }//GEN-LAST:event_ButtonEliminarActionPerformed
+
+    private void ComboAliasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboAliasActionPerformed
+        // TODO add your handling code here:
+        String alia = (String)ComboAlias.getSelectedItem().toString();
+        String expresion = framePrincipal.getExpresion(alia);
+        jTextArea1.setText(expresion);
+    }//GEN-LAST:event_ComboAliasActionPerformed
 
     
 

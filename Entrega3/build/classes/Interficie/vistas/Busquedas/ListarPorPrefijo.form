@@ -27,7 +27,7 @@
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="ButtonBuscar" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="NombreAutor" pref="540" max="32767" attributes="0"/>
+                  <Component id="NombreAutor" pref="673" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
@@ -40,7 +40,7 @@
               <Component id="TipoBusqueda" min="-2" pref="30" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="NombreAutor" linkSize="1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="ButtonBuscar" linkSize="1" min="-2" max="-2" attributes="0"/>
                   <Group type="103" alignment="0" groupAlignment="3" attributes="0">
@@ -48,7 +48,7 @@
                       <Component id="tipoOrdenacion" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -72,8 +72,14 @@
     </Component>
     <Component class="javax.swing.JTextField" name="NombreAutor">
       <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="66" green="66" red="66" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Introduce un prefijo"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NombreAutorActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="tipoOrdenacion">
       <Properties>

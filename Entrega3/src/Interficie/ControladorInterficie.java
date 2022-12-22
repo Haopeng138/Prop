@@ -3,6 +3,7 @@ package Interficie;
 import Dominio.ControladorDominio;
 import Dominio.Expresion.ExpresionException;
 import Interficie.vistas.FramePrincipal;
+import java.io.File;
 import java.util.ArrayList;
 
 
@@ -27,7 +28,6 @@ public class ControladorInterficie {
 
     }
 
-
     public void updateExpresion(String alias, String expresion) {
 
     }
@@ -36,6 +36,19 @@ public class ControladorInterficie {
         ctrl_dominio.createDocumento(autor, titulo, contenido);
     }
     
+    public void createDocumento(File documento) {
+        ctrl_dominio.createDocumento(documento);
+    }
+
+    public ArrayList<String[]> getAllDocs() {
+        return ctrl_dominio.getAllDocuments();
+
+    }
+
+    public ArrayList<String> getTitles(String autor) {
+        return ctrl_dominio.getTitles(autor);
+    }
+
     public ArrayList<String[]> busquedaPorExpresion(String alia){
         return ctrl_dominio.busquedaPorExpresion(alia);
     }    
@@ -47,6 +60,7 @@ public class ControladorInterficie {
         return ctrl_dominio.getContent(autor, titulo);
     }
     
+
     public void removeDocument(String autor,String titulo){
         ctrl_dominio.removeDocumento(autor, titulo);
     }
@@ -65,5 +79,21 @@ public class ControladorInterficie {
     }
     public void persit(){
         ctrl_dominio.persist();
+    }
+
+    public void removeExpresion(String alia) {
+        ctrl_dominio.removeExpresion(alia);
+    }
+
+    public void updateExpresion(String alia, String expresion) {
+        ctrl_dominio.updateExpresion(alia, expresion);
+    }
+
+    public String getExpresion(String alia) {
+        return ctrl_dominio.getExpresion(alia);
+    }
+
+    public ArrayList<String> busquedaPorPrefijo(String prefijo) {
+        return ctrl_dominio.obtenerAutoresPrefijo(prefijo);
     }
 }
