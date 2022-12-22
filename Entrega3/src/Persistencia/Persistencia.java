@@ -21,7 +21,6 @@ public class Persistencia {
         persistDocumentos(documentos, directory);
 
         persistExpresiones(expresiones, directory);
-
     }
 
     /**

@@ -19,6 +19,7 @@ public class ControladorInterficie {
         ArrayList<String[]> documents = ctrl_dominio.getAllDocuments();
         for(String[] doc:documents){
             this.framePrincipal.cargarDocumento(doc[0], doc[1]);
+            System.out.println(doc[0]);
         }
         this.framePrincipal.setVisible(true);
     }
