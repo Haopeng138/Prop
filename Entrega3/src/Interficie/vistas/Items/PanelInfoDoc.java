@@ -205,9 +205,10 @@ public class PanelInfoDoc extends javax.swing.JPanel {
 
     private void ButtonExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonExportarActionPerformed
         // TODO add your handling code here:
-        VentSelectFormato selectForm = new VentSelectFormato(this.framePrincipal,NombreAutor.getText(),Titulo.getText());
+        System.out.println("Abriendo ventana");
+        VentSelectFormato selectForm = new VentSelectFormato(this.framePrincipal);
+        selectForm.set(NombreAutor.getText(),Titulo.getText());
         selectForm.setVisible(true);
-        
         //Center the frame
         selectForm.setLocationRelativeTo(null);
     }//GEN-LAST:event_ButtonExportarActionPerformed

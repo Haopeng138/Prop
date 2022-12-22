@@ -4,7 +4,6 @@
  */
 package Interficie.vistas;
 
-import Dominio.Expresion.ExpresionException;
 import Interficie.ControladorInterficie;
 import Interficie.vistas.VentanaSecundaria.VentAñadirAliaPrin;
 import Interficie.vistas.VentanaSecundaria.VentEliminarAliaPrin;
@@ -53,7 +52,8 @@ public class FramePrincipal extends javax.swing.JFrame {
     private VentModificarAliaPrin modificarAliaPrinFrame;
     private String autorList;
 
-
+    
+    
     //Métodos de ordenación
     //Ordenación de los títulos por tamaño descendente del contenido
     public ArrayList<String> ordenaDecreContent (String nameAutor) {
@@ -62,7 +62,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         HashMap<String,Integer> TitCont = new HashMap<>();
         LinkedHashMap<String, Integer> sortedMap = new LinkedHashMap<>();
         ArrayList<Integer> list = new ArrayList<>();
-        
+
         for (int i = 0; i < titulos.size(); ++i) {
             String cont = getContenidoPorAutorTitulo(nameAutor, titulos.get(i));
             TitCont.put(titulos.get(i), cont.length());
@@ -70,10 +70,10 @@ public class FramePrincipal extends javax.swing.JFrame {
         for (Map.Entry<String, Integer> entry : TitCont.entrySet()) {
             list.add(entry.getValue());
         }
-        
+
         Collections.sort(list);
         Collections.reverse(list);
-       
+
         ArrayList<String> titOrdenado = new ArrayList<>();
         for (int size : list) {
             for (Entry<String, Integer> entry : TitCont.entrySet()) {
@@ -82,11 +82,9 @@ public class FramePrincipal extends javax.swing.JFrame {
                 }
             }
         }
-        //System.out.println("Sort Decreixent per TAMANY CONTINGUT: ");
-        //for (int i = 0; i < titOrdenado.size(); ++i) System.out.println(titOrdenado.get(i));//para mostrar los titulos ordenados por criteri
         return titOrdenado;
     }
-    
+
     //Ordenación de los nombres de autor por la relevancia descendente(por números de documentos)
     public ArrayList<String> ordenaRelevanciaAutor (String prefijo) {
         ArrayList<String> autores = buscarPorPrefijo(prefijo);
@@ -115,12 +113,19 @@ public class FramePrincipal extends javax.swing.JFrame {
         }
         return autOrdenado;
     }
-
-
-
+    
     public FramePrincipal(ControladorInterficie ctrInterficie) {
         this.ctrlInterficie = ctrInterficie;
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                ctrlInterficie.persit();
+                System.out.println("Se ha hecho persistencia");
+                System.exit(0);
+
+            }
+        });
         initComponents();
     }
     
@@ -192,7 +197,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         PanelItems.add(pane);
         PanelItems.setVisible(true);
         SwingUtilities.updateComponentTreeUI(this);
-        
+
     }
     
     public String getAutorList() {
@@ -441,8 +446,8 @@ public class FramePrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_NuevaAliaActionPerformed
 
     private void ModificarAliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarAliaActionPerformed
-       
-        
+
+
        ArrayList<String> alias = getAlias();
         if (modificarAliaPrinFrame == null && alias != null){
             modificarAliaPrinFrame = new VentModificarAliaPrin(this);
@@ -454,7 +459,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_ModificarAliaActionPerformed
 
     private void EliminarAliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarAliaActionPerformed
-        
+
         ArrayList<String> alias = getAlias();
         if (eliminarAliaPrinFrame == null && alias != null){
             eliminarAliaPrinFrame = new VentEliminarAliaPrin(this);
@@ -513,9 +518,8 @@ public class FramePrincipal extends javax.swing.JFrame {
             String titulo = doc[1];
             System.out.println(autor + " " + titulo);
 
-            
+
             String contenido = ctrlInterficie.busquedaPorAutorTitulo(autor, titulo);
-            
             infoDoc.setText(autor,titulo,contenido);
             PanelItems.add(infoDoc);
              
@@ -564,7 +568,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         }
         
         DefaultMutableTreeNode alias = (DefaultMutableTreeNode) root.getChildAt(index);
-        
+
         boolean trobat = false;
         for (int i = 0; i < alias.getChildCount(); ++i) {
             if (alias.getChildAt(i).toString().equals(ali)) trobat = true;
@@ -584,13 +588,15 @@ public class FramePrincipal extends javax.swing.JFrame {
         return true;
     }
     
+
+
     public boolean añadirDocumento(String titulo, String autor, String cont) {
         String docHeader = autor+"-"+titulo;
-        
+
         DefaultMutableTreeNode documento = new DefaultMutableTreeNode(docHeader);
         DefaultTreeModel modelo = (DefaultTreeModel)jTree1.getModel();
         DefaultMutableTreeNode root = (DefaultMutableTreeNode) jTree1.getModel().getRoot();
-        
+
         if (root.getChildCount() == 1 && "Alias".equals(root.getChildAt(0).toString())) {
             root.add(new DefaultMutableTreeNode("Documentos"));
         }
@@ -601,7 +607,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         for (int i = 0; i < root.getChildCount(); ++i) {
             if ("Documentos".equals(root.getChildAt(i).toString())) index = i;
         }
-        
+
         DefaultMutableTreeNode docs = (DefaultMutableTreeNode) root.getChildAt(index);
         boolean trobat = false;
         for (int i = 0; i < docs.getChildCount(); ++i) {
@@ -667,7 +673,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         Enumeration<TreeNode> cont = docs.children();
         while (cont.hasMoreElements()) {
             DefaultMutableTreeNode aut = (DefaultMutableTreeNode) cont.nextElement();
-            
+
             if (aut.toString().equals(docHeader)) doc = aut;
         }
         docs.remove(doc);
@@ -676,14 +682,14 @@ public class FramePrincipal extends javax.swing.JFrame {
 
         modelo.reload();
     }
-    
+
     public String getContent(String autor, String titulo) {
         return ctrlInterficie.busquedaPorAutorTitulo(autor, titulo);
     }
     public void modificarDoc(String titulo, String autor, String cont) {
         ctrlInterficie.modifyDocument(autor, titulo, cont);
     }
-    
+
     public void removeExpresion(String a) {
         ctrlInterficie.removeExpresion(a);
     }
@@ -694,13 +700,13 @@ public class FramePrincipal extends javax.swing.JFrame {
         int index = 0;
         for (int i = 0; i < root.getChildCount(); ++i) {
             if ("Alias".equals(root.getChildAt(i).toString())) index = i;
-            
+
         }
         DefaultMutableTreeNode alias = (DefaultMutableTreeNode) root.getChildAt(index);
         Enumeration<TreeNode> cont = alias.children();
         while (cont.hasMoreElements()) {
             DefaultMutableTreeNode ali = (DefaultMutableTreeNode) cont.nextElement();
-            
+
             if (ali.toString().equals(a)) alia = ali;
         }
         alias.remove(alia);
@@ -713,8 +719,8 @@ public class FramePrincipal extends javax.swing.JFrame {
     public void modificarExpresion(String alia, String expresion) {
         ctrlInterficie.updateExpresion(alia, expresion);
     }
-    
-    
+
+
     public void buscarPorAlia(String alia) {
         ArrayList<String[]> documents = ctrlInterficie.busquedaPorExpresion(alia);
         JOptionPane.showMessageDialog(null,"No se ha encontrado documentos,revisa la expresion");
@@ -750,11 +756,11 @@ public class FramePrincipal extends javax.swing.JFrame {
     public void addExpresion(String alia,String expresion) throws Exception {
         ctrlInterficie.addExpresion(alia,expresion);
     }
-   
+
     public ArrayList<String> buscarPorPrefijo(String prefijo) {
         return ctrlInterficie.busquedaPorPrefijo(prefijo);
     }
-    
+
     public ArrayList<String> getTitulos(String autor) {
         ArrayList<String> autores = buscarPorPrefijo(autor);
         if (autores.isEmpty() || ! autores.contains(autor)) return null;
@@ -790,6 +796,6 @@ public class FramePrincipal extends javax.swing.JFrame {
     private javax.swing.JTree jTree1;
     // End of variables declaration//GEN-END:variables
 
-    
+
 
 }
