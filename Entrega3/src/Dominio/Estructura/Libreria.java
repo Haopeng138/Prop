@@ -80,11 +80,11 @@ public class Libreria {
     }
 
     /**
-     * @param a El nombre del autor del que crear el documento
-     * @param t El titulo del documento a crear
+     * @param a         El nombre del autor del que crear el documento
+     * @param t         El titulo del documento a crear
      * @param contenido El contenido del documento a crear
      */
-    public void createDocumento(String a, String t, String contenido) {
+    public boolean createDocumento(String a, String t, String contenido) {
         if (a == "") {
             System.out.println("El autor no puede ser vacio");
         }
@@ -97,10 +97,14 @@ public class Libreria {
         if (!autores.has(autor)) {
             autores.add(autor);
         }
-        autores.addTitleToAutor(new DocumentHeader(autor, titulo));
+        if (autores.addTitleToAutor(new DocumentHeader(autor, titulo))) {
+            Documento documento = new Documento(a, t, contenido);
+            documentos.add(documento);
+            return true;
+        } else {
+            return false;
+        }
 
-        Documento documento = new Documento(a, t, contenido);
-        documentos.add(documento);
     }
 
     /**
@@ -138,19 +142,19 @@ public class Libreria {
      * @param t El titulo del documento a borrar
      */
     public void removeDocumento(String a, String t) {
-        DocumentHeader header = new DocumentHeader(a, t);
         try {
-            int idx = autores.getDocumentIdx(header);
             autores.removeTitle(a, t);
-            documentos.remove(idx);
+            // documentos.remove(idx); NO!!! esto descuadraria los indices.
+            // Se elimina porque no hay modo de encontrarlo, y cuando se cierra
+            // la aplicacion, no será persistido
         } catch (Exception e) {
             System.out.println("No existe el documento");
         }
     }
 
     /**
-     * @param a El autor del documento a modificar
-     * @param t El titulo del documento a modificar
+     * @param a         El autor del documento a modificar
+     * @param t         El titulo del documento a modificar
      * @param contenido El nuevo contenido
      */
     public void modifyDocumento(String a, String t, String contenido) {
@@ -158,7 +162,6 @@ public class Libreria {
         try {
             int idx = autores.getDocumentIdx(header);
             documentos.modifyContent(idx, contenido);
-            // Documentos needs to modify from idx!
         } catch (Exception e) {
             System.out.println("No existe el documento");
         }
@@ -211,7 +214,7 @@ public class Libreria {
 
     /**
      * @param documentHeader El header de un documento
-     * @param word Una palabra
+     * @param word           Una palabra
      * @return Si el documento tiene la palabra
      */
     public Boolean tienePalabra(DocumentHeader documentHeader, String word) {
@@ -227,7 +230,7 @@ public class Libreria {
 
     /**
      * @param documentHeader El header del documento
-     * @param toMatch Una String
+     * @param toMatch        Una String
      * @return Si el documento contiene esta string
      */
     public Boolean tieneString(DocumentHeader documentHeader, String toMatch) {
@@ -242,7 +245,7 @@ public class Libreria {
     }
 
     /**
-     * @param header El header del documento
+     * @param header    El header del documento
      * @param toCompare El header de otro documento
      * @return La similitud entre ambos documentos
      */

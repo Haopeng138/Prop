@@ -10,7 +10,7 @@ public class ControladorBusqueda {
 
     /**
      * @param autores Los autores ordenados
-     * @param prefix El prefijo con el que buscar
+     * @param prefix  El prefijo con el que buscar
      * @return Los autores que empiezan por el prefijo
      */
     public static ArrayList<Autor> buscarPorPrefijo(TreeSet<Autor> autores, String prefix) {
@@ -19,7 +19,7 @@ public class ControladorBusqueda {
 
     /**
      * @param expresion La expresion con la que buscar
-     * @param libreria La libreria de documentos
+     * @param libreria  La libreria de documentos
      * @return Los documentos que cumplen la expresion
      */
     public static ArrayList<DocumentHeader> buscarPorExpresion(String expresion, Libreria libreria) {
@@ -34,8 +34,8 @@ public class ControladorBusqueda {
     }
 
     /**
-     * @param header El header del documento que comparar
-     * @param K El numero de documentos a devolver
+     * @param header   El header del documento que comparar
+     * @param K        El numero de documentos a devolver
      * @param libreria La libreria de documentos
      * @return Los k documentos mas similares
      */

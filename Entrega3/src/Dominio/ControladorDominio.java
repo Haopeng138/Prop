@@ -81,14 +81,30 @@ public class ControladorDominio {
         }
     }
 
-    public void createDocumento(String a, String t, String contenido) {
-        libreria.createDocumento(a, t, contenido);
+    /**
+     * @param a         El autor del documento
+     * @param t         El titulo del documento
+     * @param contenido El contenido del documento
+     * @return True si se ha creado, False si ya existia un documento con el mismo
+     *         autor y titulo
+     */
+    public boolean createDocumento(String a, String t, String contenido) {
+        return libreria.createDocumento(a, t, contenido);
     }
 
+    /**
+     * @param a         El autor del documento
+     * @param t         El titulo del documento
+     * @param contenido El contenido del documento
+     */
     public void modifyDocumento(String a, String t, String contenido) {
         libreria.modifyDocumento(a, t, contenido);
     }
 
+    /**
+     * @param a El autor del documento
+     * @param t El titulo del documento
+     */
     public void removeDocumento(String a, String t) {
         libreria.removeDocumento(a, t);
     }
