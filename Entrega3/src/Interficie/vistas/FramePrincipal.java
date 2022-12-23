@@ -125,7 +125,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         return autOrdenado;
     }
 
-    public ArrayList<String[]> ordenaSimilitudAutor(ArrayList<String[]> documents) {
+    public ArrayList<String[]> ordenaPorAutor(ArrayList<String[]> documents) {
         HashMap<String,String> autTit = new LinkedHashMap<>();
 
         for (int i = 0; i < documents.size(); ++i) {
@@ -145,7 +145,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         return docsOrdenats;
     }
     
-    public ArrayList<String[]> ordenaSimilitudTitulo (ArrayList<String[]> documents) {
+    public ArrayList<String[]> ordenaPorTitulo (ArrayList<String[]> documents) {
         HashMap<String,String> autTit = new HashMap<>();
         LinkedHashMap<String, String> sortedMap = new LinkedHashMap<>();
         ArrayList<String> list = new ArrayList<>();
@@ -490,7 +490,6 @@ public class FramePrincipal extends javax.swing.JFrame {
             PanelItems.setVisible(false);
             isPanelPrefijo = false;
             isPanelAutor = false;
-            System.out.println("hola");
         }
 
         if ("Listar por expresión booleana".equals((String) SizeMenuBusqueda.getSelectedValue())) {
@@ -582,7 +581,6 @@ public class FramePrincipal extends javax.swing.JFrame {
         PanelItems.removeAll();
         PanelInfoDoc infoDoc = new PanelInfoDoc(this);
         PanelInfoAlia infoAlia = new PanelInfoAlia(this);
-        // System.out.print(selected.getUserObject().toString());
         if (selected != null && selected.getChildCount() == 0 && "Documentos".equals(selected.getParent().toString())) {
             docHeader = selected.getUserObject().toString();
             String[] doc = docHeader.split("-");
@@ -798,14 +796,17 @@ public class FramePrincipal extends javax.swing.JFrame {
         ctrlInterficie.updateExpresion(alia, expresion);
     }
 
-    public void buscarPorAlia(String alia) {
+    public void buscarPorAlia(String alia, String criterioSelect) {
         ArrayList<String[]> documents = ctrlInterficie.busquedaPorExpresion(alia);
         if (documents != null) {
-            documentlist(documents);
+            ArrayList<String[]> docsOrdenats = new ArrayList<String[]>();
+            if (criterioSelect == "autor A-Z") {
+                docsOrdenats = ordenaPorAutor(documents);
+            } else docsOrdenats = ordenaPorTitulo(documents);
+            documentlist(docsOrdenats);
         } else {
-            JOptionPane.showMessageDialog(null, "No se ha encontrado documentos,revisa la expresion");
+            JOptionPane.showMessageDialog(null, "No se ha encontrado documentos, revisa la expresión");
         }
-
     }
 
     public void buscarPorSimilitud(String autor, String titulo, int k, String criterioSelect) {
@@ -813,9 +814,9 @@ public class FramePrincipal extends javax.swing.JFrame {
         if (documents != null) {
             ArrayList<String[]> docsOrdenats = new ArrayList<String[]>();
             if (criterioSelect == "autor A-Z") {
-                docsOrdenats = ordenaSimilitudAutor(documents);
+                docsOrdenats = ordenaPorAutor(documents);
             } else if (criterioSelect == "título A-Z") {
-                docsOrdenats = ordenaSimilitudTitulo(documents);
+                docsOrdenats = ordenaPorTitulo(documents);
             } else docsOrdenats = documents;
             documentlist(docsOrdenats);
         } else {

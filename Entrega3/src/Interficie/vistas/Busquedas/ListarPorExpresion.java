@@ -33,6 +33,9 @@ public class ListarPorExpresion extends javax.swing.JPanel {
         }
         
     }
+    
+    private String criterioSelect;
+    
     private boolean firstA = true;
     private boolean firstE = true;
 
@@ -122,6 +125,11 @@ public class ListarPorExpresion extends javax.swing.JPanel {
         tipoOrdenacion.setText("Ordenar por:");
 
         criterioOrdenar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "autor A-Z", "título A-Z" }));
+        criterioOrdenar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                criterioOrdenarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -240,18 +248,19 @@ public class ListarPorExpresion extends javax.swing.JPanel {
     private void ButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBuscarActionPerformed
         // TODO add your handling code here:
         String alia=null;
+        criterioSelect = criterioOrdenar.getSelectedItem().toString();
         if(AliasExist.getSelectedItem().toString().equals("Selecciona una alia existente")){
             if (!NombreAlia.getText().equals("Introduce una alia")
                     && !NombreAlia.getText().equals("")
                     && !Expresion.getText().equals("Introduce una expresion")
                     && !Expresion.getText().equals("")) {
-                //
+                
                 String expresion = Expresion.getText();
                 alia = NombreAlia.getText();
                 try {
                     this.framePrincipal.addExpresion(alia, expresion);
                     System.out.println(alia);
-                    this.framePrincipal.buscarPorAlia(alia);
+                    this.framePrincipal.buscarPorAlia(alia,criterioSelect);
                 } catch (Exception e) {
                     System.out.println("entro en excep");
                     if (e.getMessage().equals("Error añadiendo alia")) {
@@ -267,11 +276,44 @@ public class ListarPorExpresion extends javax.swing.JPanel {
 
         }else{
             alia = AliasExist.getSelectedItem().toString();
-            this.framePrincipal.buscarPorAlia(alia);
+            this.framePrincipal.buscarPorAlia(alia, criterioSelect);
         }
-
-
     }//GEN-LAST:event_ButtonBuscarActionPerformed
+
+    private void criterioOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criterioOrdenarActionPerformed
+        // TODO add your handling code here:
+        String alia=null;
+        criterioSelect = criterioOrdenar.getSelectedItem().toString();
+        if(AliasExist.getSelectedItem().toString().equals("Selecciona una alia existente")){
+            if (!NombreAlia.getText().equals("Introduce una alia")
+                    && !NombreAlia.getText().equals("")
+                    && !Expresion.getText().equals("Introduce una expresion")
+                    && !Expresion.getText().equals("")) {
+                
+                String expresion = Expresion.getText();
+                alia = NombreAlia.getText();
+                try {
+                    this.framePrincipal.addExpresion(alia, expresion);
+                    System.out.println(alia);
+                    this.framePrincipal.buscarPorAlia(alia,criterioSelect);
+                } catch (Exception e) {
+                    System.out.println("entro en excep");
+                    if (e.getMessage().equals("Error añadiendo alia")) {
+                        JOptionPane.showMessageDialog(null, e.getMessage());
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Error no clasificado");
+                    }
+
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Introduce alia y expresion");
+            }
+
+        }else{
+            alia = AliasExist.getSelectedItem().toString();
+            this.framePrincipal.buscarPorAlia(alia, criterioSelect);
+        }
+    }//GEN-LAST:event_criterioOrdenarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
