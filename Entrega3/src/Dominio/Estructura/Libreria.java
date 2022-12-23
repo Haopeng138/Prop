@@ -26,7 +26,8 @@ public class Libreria {
      * @param documentos Los documentos que añade a la librería
      */
     public Libreria(Documento[] documentos) {
-
+        autores = new Autores();
+        this.documentos = new Documentos();
         for (Documento documento : documentos) {
             String autor = documento.getAutor();
             if (!autores.has(autor)) {
