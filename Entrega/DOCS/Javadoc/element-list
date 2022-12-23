@@ -1,0 +1,12 @@
+unnamed package
+Dominio
+Dominio.Estructura
+Dominio.Expresion
+Dominio.Logica
+Dominio.Utils
+Interficie
+Interficie.vistas
+Interficie.vistas.Busquedas
+Interficie.vistas.Items
+Interficie.vistas.VentanaSecundaria
+Persistencia

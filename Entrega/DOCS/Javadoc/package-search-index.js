@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"Dominio"},{"l":"Dominio.Estructura"},{"l":"Dominio.Expresion"},{"l":"Dominio.Logica"},{"l":"Dominio.Utils"},{"l":"Interficie"},{"l":"Interficie.vistas"},{"l":"Interficie.vistas.Busquedas"},{"l":"Interficie.vistas.Items"},{"l":"Interficie.vistas.VentanaSecundaria"},{"l":"Persistencia"}]
