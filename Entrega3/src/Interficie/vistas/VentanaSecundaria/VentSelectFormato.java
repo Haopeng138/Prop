@@ -24,13 +24,9 @@ public class VentSelectFormato extends javax.swing.JFrame {
      * Creates new form VentSelectFormato
      * @param framePrincipal
      */
-    public VentSelectFormato(FramePrincipal framePrincipal,String autor,String titulo) {
+    public VentSelectFormato(FramePrincipal framePrincipal) {
         this.framePrincipal = framePrincipal;
-        formatoTXT.setSelected(true);
-        this.autor = autor;
-        this.titulo = titulo;
         initComponents();
-        this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -38,6 +34,14 @@ public class VentSelectFormato extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void set(String autor,String titulo){
+        this.autor = autor;
+        this.titulo = titulo;
+    }
+
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -176,8 +180,10 @@ public class VentSelectFormato extends javax.swing.JFrame {
             File file = new File(path.getText());
             if(formatoTXT.isSelected()){
                 this.framePrincipal.export(autor, titulo,file, "txt");
+                dispose();
             }else if (formatoXML.isSelected()){
                 this.framePrincipal.export(autor, titulo,file, "xml");
+                dispose();
             }else{
                 JOptionPane.showMessageDialog(null, "No has seleccionado ningún formato");
             }
