@@ -85,6 +85,11 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
                 NumeroKMousePressed(evt);
             }
         });
+        NumeroK.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                NumeroKKeyTyped(evt);
+            }
+        });
 
         NombreAutor.setForeground(new java.awt.Color(102, 102, 102));
         NombreAutor.setText("Introduce un nombre de autor");
@@ -157,12 +162,12 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
         if(NombreAutor.getText().equals("Introduce un nombre de autor") || "".equals(NombreAutor.getText())){
             error += "No se ha introducido autor \n";
         }
-        if(Titulo.getText().equals("Introduce un titulo") || "".equals(Titulo.getText())){
+        if (Titulo.getText().equals("Introduce un titulo") || "".equals(Titulo.getText())){
             error += "No se ha introducido titulo \n";
         }
-        if(NumeroK.getText().equals("Introduce un titulo") || "".equals(NumeroK.getText()) || !verificarK(NumeroK.getText())){
-           error += "No se ha introducido numero correctamente \n";
-        }
+        if(NumeroK.getText().equals("Introduce un titulo") || "".equals(NumeroK.getText()) || !verificarK(NumeroK.getText()) || Integer.parseInt(NumeroK.getText()) == 0){
+           error += "No se ha introducido número correctamente \n";
+        } 
 
         if("".equals(error)){
             autor = NombreAutor.getText();
@@ -255,6 +260,14 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null,error);
         }
     }//GEN-LAST:event_criterioOrdenarActionPerformed
+
+    private void NumeroKKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NumeroKKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_NumeroKKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

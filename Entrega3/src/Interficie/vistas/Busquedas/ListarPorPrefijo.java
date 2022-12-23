@@ -122,11 +122,14 @@ public class ListarPorPrefijo extends javax.swing.JPanel {
             if ("".equals(prefijo)) prefijo = "";
             ArrayList<String> autores = framePrincipal.buscarPorPrefijo(prefijo);
             criterioSelect = criterioOrdenar.getSelectedItem().toString();
-            if("relevancia".equals(criterioSelect)){
-                autores = framePrincipal.ordenaRelevanciaAutor(prefijo);
+            if (! autores.isEmpty()) {
+                if("relevancia".equals(criterioSelect)){
+                    autores = framePrincipal.ordenaRelevanciaAutor(prefijo);
+                }
+                else Collections.sort(autores);
+                framePrincipal.autorlist(autores);
             }
-            else Collections.sort(autores);
-            framePrincipal.autorlist(autores);
+            else JOptionPane.showMessageDialog(null, "No existe ningun autor con este prefijo");
         }
     }//GEN-LAST:event_ButtonBuscarActionPerformed
 

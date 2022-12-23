@@ -557,8 +557,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         PanelItems.removeAll();
         PanelInfoDoc infoDoc = new PanelInfoDoc(this);
         PanelInfoAlia infoAlia = new PanelInfoAlia(this);
-        //System.out.print(selected.getUserObject().toString());
-        if (selected.getChildCount()== 0 && "Documentos".equals(selected.getParent().toString())) {
+        if (selected != null && selected.getChildCount()== 0 && "Documentos".equals(selected.getParent().toString())) {
             docHeader = selected.getUserObject().toString();
             String[] doc = docHeader.split("-");
             String autor = doc[0];
@@ -571,7 +570,7 @@ public class FramePrincipal extends javax.swing.JFrame {
             infoDoc.setText(autor,titulo,contenido);
             PanelItems.add(infoDoc);
              
-        } else if (selected.getChildCount()== 0 && "Alias".equals(selected.getParent().toString())) {
+        } else if ( selected != null && selected.getChildCount()== 0 && "Alias".equals(selected.getParent().toString())) {
             alia = selected.getUserObject().toString();
             String expresion = getExpresion(alia);
             infoAlia.setText(alia, expresion);
