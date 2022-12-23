@@ -88,6 +88,7 @@
       </Properties>
       <Events>
         <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="TituloMousePressed"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TituloKeyPressed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="NumeroK">
@@ -99,6 +100,8 @@
       </Properties>
       <Events>
         <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="NumeroKMousePressed"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="NumeroKKeyPressed"/>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="NumeroKKeyTyped"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="NombreAutor">
@@ -110,6 +113,7 @@
       </Properties>
       <Events>
         <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="NombreAutorMousePressed"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="NombreAutorKeyPressed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="tipoOrdenacion">

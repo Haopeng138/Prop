@@ -208,7 +208,6 @@ public class PanelInfoDoc extends javax.swing.JPanel {
         VentSelectFormato selectForm = new VentSelectFormato(this.framePrincipal);
         selectForm.setVisible(true);
         
-        //Center the frame
         selectForm.setLocationRelativeTo(null);
     }//GEN-LAST:event_ButtonExportarActionPerformed
 

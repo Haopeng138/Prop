@@ -80,6 +80,11 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
                 TituloMousePressed(evt);
             }
         });
+        Titulo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TituloKeyPressed(evt);
+            }
+        });
 
         NumeroK.setForeground(new java.awt.Color(102, 102, 102));
         NumeroK.setText("Introduce un número");
@@ -88,12 +93,25 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
                 NumeroKMousePressed(evt);
             }
         });
+        NumeroK.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                NumeroKKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                NumeroKKeyTyped(evt);
+            }
+        });
 
         NombreAutor.setForeground(new java.awt.Color(102, 102, 102));
         NombreAutor.setText("Introduce un nombre de autor");
         NombreAutor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 NombreAutorMousePressed(evt);
+            }
+        });
+        NombreAutor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                NombreAutorKeyPressed(evt);
             }
         });
 
