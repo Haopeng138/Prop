@@ -130,10 +130,9 @@ public class ListarPorExpresion extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TipoBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, 742, Short.MAX_VALUE)
+                    .addComponent(TipoBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, 677, Short.MAX_VALUE)
                     .addComponent(NombreAlia)
-                    .addComponent(AliasExist, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Expresion, javax.swing.GroupLayout.DEFAULT_SIZE, 742, Short.MAX_VALUE)
+                    .addComponent(Expresion, javax.swing.GroupLayout.DEFAULT_SIZE, 677, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(TextAlias)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -144,7 +143,8 @@ public class ListarPorExpresion extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(ButtonGuardar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ButtonBuscar)))
+                        .addComponent(ButtonBuscar))
+                    .addComponent(AliasExist, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 

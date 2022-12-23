@@ -12,7 +12,6 @@ import javax.swing.JOptionPane;
 public class ListarPorSimilitud extends javax.swing.JPanel {
     private final FramePrincipal framePrincipal;
     private String criterioSelect;
-
     /**
      * Creates new form ListarPorSimilitud
      * @param framePrincipal
@@ -21,18 +20,17 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
         initComponents();
         this.framePrincipal = framePrincipal;
     }
-
-    private boolean verificarK(String K) {
+    
+    private boolean verificarK(String K){
         boolean isNumber = false;
-        try {
+        try{
             int n = Integer.parseInt(K);
             isNumber = true;
-        } catch (NumberFormatException e) {
+        }catch(NumberFormatException e){
             e.printStackTrace();
         }
         return isNumber;
     }
-
     private boolean firstA = true;
     private boolean firstT = true;
     private boolean firstK = true;
@@ -187,6 +185,14 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
                 || !verificarK(NumeroK.getText())) {
             error += "No se ha introducido numero correctamente \n";
         }
+        if(NumeroK.getText().equals("Introduce un titulo")
+                || "".equals(NumeroK.getText())
+                || !verificarK(NumeroK.getText())
+                || Integer.parseInt(NumeroK.getText()) == 0
+                ||  Integer.parseInt(NumeroK.getText()) >= this.framePrincipal.getDocSize()){
+           error += "No se ha introducido número correctamente \n";
+        }
+
 
         if ("".equals(error)) {
             autor = NombreAutor.getText();
@@ -197,20 +203,21 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
         } else {
             JOptionPane.showMessageDialog(null, error);
         }
+        
+        
+    }//GEN-LAST:event_ButtonBuscarActionPerformed
 
-    }// GEN-LAST:event_ButtonBuscarActionPerformed
-
-    private void NombreAutorMousePressed(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_NombreAutorMousePressed
+    private void NombreAutorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NombreAutorMousePressed
         // TODO add your handling code here:
-        if (firstA) {
-            firstA = false;
-            NombreAutor.setEnabled(true);
-            NombreAutor.setText("");
-            NombreAutor.setForeground(new Color(0, 0, 0));
-        }
-    }// GEN-LAST:event_NombreAutorMousePressed
+         if (firstA) {
+              firstA = false;
+              NombreAutor.setEnabled(true);
+              NombreAutor.setText("");
+              NombreAutor.setForeground(new Color(0, 0, 0));
+          }
+    }//GEN-LAST:event_NombreAutorMousePressed
 
-    private void TituloMousePressed(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_TituloMousePressed
+    private void TituloMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TituloMousePressed
         // TODO add your handling code here:
         if (firstT) {
             firstT = false;
@@ -218,9 +225,9 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
             Titulo.setText("");
             Titulo.setForeground(new Color(0, 0, 0));
         }
-    }// GEN-LAST:event_TituloMousePressed
+    }//GEN-LAST:event_TituloMousePressed
 
-    private void NumeroKMousePressed(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_NumeroKMousePressed
+    private void NumeroKMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NumeroKMousePressed
         // TODO add your handling code here:
         if (firstK) {
             firstK = false;
@@ -228,57 +235,56 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
             NumeroK.setText("");
             NumeroK.setForeground(new Color(0, 0, 0));
         }
-    }// GEN-LAST:event_NumeroKMousePressed
+    }//GEN-LAST:event_NumeroKMousePressed
 
-    private void formMousePressed(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_formMousePressed
+    private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
         // TODO add your handling code here:
-        if ("".equals(NombreAutor.getText())) {
+         if ("".equals(NombreAutor.getText())) {
             NombreAutor.setText("Introduce un nombre de autor");
             NombreAutor.setForeground(new Color(102, 102, 102));
             firstA = true;
             NombreAutor.setEnabled(false);
         }
-
+        
         if ("".equals(Titulo.getText())) {
             Titulo.setText("Introduce un titulo");
             Titulo.setForeground(new Color(102, 102, 102));
             firstT = true;
             Titulo.setEnabled(false);
         }
-
+        
         if ("".equals(NumeroK.getText())) {
             NumeroK.setText("Introduce el numero de documento [0-100]");
             NumeroK.setForeground(new Color(102, 102, 102));
             firstK = true;
             NumeroK.setEnabled(false);
         }
-    }// GEN-LAST:event_formMousePressed
+    }//GEN-LAST:event_formMousePressed
 
-    private void criterioOrdenarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_criterioOrdenarActionPerformed
+    private void criterioOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criterioOrdenarActionPerformed
         // TODO add your handling code here:
         String error = "";
         int k = 0;
-        if (NombreAutor.getText().equals("Introduce un nombre de autor") || "".equals(NombreAutor.getText())) {
+        if(NombreAutor.getText().equals("Introduce un nombre de autor") || "".equals(NombreAutor.getText())){
             error += "No se ha introducido autor \n";
         }
-        if (Titulo.getText().equals("Introduce un titulo") || "".equals(Titulo.getText())) {
+        if(Titulo.getText().equals("Introduce un titulo") || "".equals(Titulo.getText())){
             error += "No se ha introducido titulo \n";
         }
-        if (NumeroK.getText().equals("Introduce un titulo") || "".equals(NumeroK.getText())
-                || !verificarK(NumeroK.getText())) {
-            error += "No se ha introducido numero correctamente \n";
+        if(NumeroK.getText().equals("Introduce un titulo") || "".equals(NumeroK.getText()) || !verificarK(NumeroK.getText())){
+           error += "No se ha introducido numero correctamente \n";
         }
 
-        if ("".equals(error)) {
+        if("".equals(error)){
             String autor = NombreAutor.getText();
             String titulo = NombreAutor.getText();
-            k = Integer.parseInt(NumeroK.getText());
+            k = Integer.parseInt(NumeroK.getText()) ;
             criterioSelect = criterioOrdenar.getSelectedItem().toString();
-            framePrincipal.buscarPorSimilitud(autor, titulo, k, criterioSelect);
-        } else {
-            JOptionPane.showMessageDialog(null, error);
+            framePrincipal.buscarPorSimilitud(autor,titulo,k,criterioSelect);
+        }else{
+            JOptionPane.showMessageDialog(null,error);
         }
-    }// GEN-LAST:event_criterioOrdenarActionPerformed
+    }//GEN-LAST:event_criterioOrdenarActionPerformed
 
     private void NumeroKKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NumeroKKeyTyped
         // TODO add your handling code here:

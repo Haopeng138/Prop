@@ -51,7 +51,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     private int indexPanel = -1;
     private boolean isPanelAutor = false;
     private boolean isPanelPrefijo = false;
-    
+
     public FramePrincipal(ControladorInterficie ctrInterficie) {
         this.ctrlInterficie = ctrInterficie;
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -188,6 +188,10 @@ public class FramePrincipal extends javax.swing.JFrame {
         return result;
     }
     
+    public int getDocSize(){
+        return ctrlInterficie.getDocSize();
+    }
+    
     public ArrayList<String> getDocumentos(){
         ArrayList<String> result = new ArrayList<>();
         int index = -1;
@@ -310,6 +314,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         ModificarAlia = new javax.swing.JMenuItem();
         EliminarAlia = new javax.swing.JMenuItem();
         HelpMenu = new javax.swing.JMenu();
+        Manual = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -393,6 +398,15 @@ public class FramePrincipal extends javax.swing.JFrame {
         MenuBarPrincipal.add(AliasMenu);
 
         HelpMenu.setText("Help");
+
+        Manual.setText("Manual");
+        Manual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ManualActionPerformed(evt);
+            }
+        });
+        HelpMenu.add(Manual);
+
         MenuBarPrincipal.add(HelpMenu);
 
         setJMenuBar(MenuBarPrincipal);
@@ -591,6 +605,11 @@ public class FramePrincipal extends javax.swing.JFrame {
         PanelItems.setVisible(true);
         SwingUtilities.updateComponentTreeUI(this);
     }                                   
+
+    private void ManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManualActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_ManualActionPerformed
 
     public String getExpresion(String alia) {
         return ctrlInterficie.getExpresion(alia);
@@ -875,6 +894,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem EliminarAlia;
     private javax.swing.JMenu FileMenu;
     private javax.swing.JMenu HelpMenu;
+    private javax.swing.JMenuItem Manual;
     private javax.swing.JMenuBar MenuBarPrincipal;
     private javax.swing.JMenuItem ModificarAlia;
     private javax.swing.JMenuItem NuevaAlia;
