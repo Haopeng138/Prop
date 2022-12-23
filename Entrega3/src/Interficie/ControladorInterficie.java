@@ -13,6 +13,7 @@ import java.util.Scanner;
 public class ControladorInterficie {
     private ControladorDominio ctrl_dominio;
     private FramePrincipal framePrincipal;
+    private int doc_size =0;
     public ControladorInterficie() {
         this.ctrl_dominio = new ControladorDominio();
     };
@@ -24,6 +25,7 @@ public class ControladorInterficie {
         for(String[] doc:documents){
             if(this.framePrincipal.cargarDocument(doc[0],doc[1])){
                 System.out.println(doc[0]);
+                doc_size++;
             }
            
         }
@@ -35,7 +37,13 @@ public class ControladorInterficie {
         }
         this.framePrincipal.setVisible(true);
     }
+    public void getDocument(){
 
+    }
+    
+    public int getDocSize(){
+        return doc_size;
+    }
 
     private String getExtension(String fileName){
         String extension = "";
@@ -48,6 +56,7 @@ public class ControladorInterficie {
 
     public void createDocumento(String autor,String titulo,String contenido){
         ctrl_dominio.createDocumento(autor, titulo, contenido);
+        doc_size++;
 
     }
     
@@ -62,6 +71,7 @@ public class ControladorInterficie {
             tmp = getAutorTituloFromXML(documento);
         }
         this.framePrincipal.cargarDocument(tmp[0],tmp[1]);
+        doc_size++;
     }
 
     public ArrayList<String[]> getAllDocs() {
@@ -74,6 +84,7 @@ public class ControladorInterficie {
     }
 
     public ArrayList<String[]> busquedaPorExpresion(String alia){
+        
         return ctrl_dominio.busquedaPorExpresion(alia);
     }    
     public ArrayList<String[]> busquedaPorSimilitud(String autor,String titulo,int k){
@@ -87,6 +98,7 @@ public class ControladorInterficie {
 
     public void removeDocument(String autor,String titulo){
         ctrl_dominio.removeDocumento(autor, titulo);
+        doc_size--;
     }
     
     public void modifyDocument(String autor,String titulo,String contenido){
@@ -157,4 +169,9 @@ public class ControladorInterficie {
     public void exportXml(String autor,String titulo,File path){
         ctrl_dominio.exportXml(autor, titulo, path);
     }
+    
+    
+    
+    
+    
 }

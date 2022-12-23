@@ -7,6 +7,7 @@ package Interficie.vistas.Items;
 
 import Interficie.vistas.FramePrincipal;
 import Interficie.vistas.VentanaSecundaria.VentSelectFormato;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -70,6 +71,11 @@ public class PanelInfoDoc extends javax.swing.JPanel {
 
         Contenido.setColumns(20);
         Contenido.setRows(5);
+        Contenido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                ContenidoKeyPressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(Contenido);
 
         ButtonCancelar.setText("Cancelar");
@@ -205,12 +211,19 @@ public class PanelInfoDoc extends javax.swing.JPanel {
 
     private void ButtonExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonExportarActionPerformed
         // TODO add your handling code here:
-        VentSelectFormato selectForm = new VentSelectFormato(this.framePrincipal,NombreAutor.getText(),Titulo.getText());
+        VentSelectFormato selectForm = new VentSelectFormato(this.framePrincipal);
+        selectForm.set(NombreAutor.getText(),Titulo.getText());
         selectForm.setVisible(true);
-        
-        //Center the frame
         selectForm.setLocationRelativeTo(null);
+
     }//GEN-LAST:event_ButtonExportarActionPerformed
+
+    private void ContenidoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ContenidoKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            ButtonGuardar.doClick();
+        }
+    }//GEN-LAST:event_ContenidoKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

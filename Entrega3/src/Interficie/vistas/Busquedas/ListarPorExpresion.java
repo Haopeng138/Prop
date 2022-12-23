@@ -5,16 +5,17 @@
 package Interficie.vistas.Busquedas;
 
 
-
+import Interficie.vistas.VentanaSecundaria.VentAñadirAliaExpre;
 import Interficie.vistas.FramePrincipal;
 
 import javax.swing.*;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 public class ListarPorExpresion extends javax.swing.JPanel {
      private final FramePrincipal framePrincipal;
-  
+     private VentAñadirAliaExpre ventAñadirAliaExpre;
     /**
      * Creates new form ListarPorExpresion
      * @param framePrincipal
@@ -33,13 +34,18 @@ public class ListarPorExpresion extends javax.swing.JPanel {
         }
         
     }
+
+    private String criterioSelect;
     private boolean firstA = true;
     private boolean firstE = true;
+    private boolean firstSearch = true;
 
     public String getExpresion(){
         return Expresion.getText();
     }
-
+    public void closeAñadirAliaExpre(){
+        ventAñadirAliaExpre = null;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -91,6 +97,11 @@ public class ListarPorExpresion extends javax.swing.JPanel {
                 ExpresionMousePressed(evt);
             }
         });
+        Expresion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                ExpresionKeyPressed(evt);
+            }
+        });
 
         NombreAlia.setForeground(new java.awt.Color(102, 102, 102));
         NombreAlia.setText("Introduce una alia");
@@ -99,12 +110,22 @@ public class ListarPorExpresion extends javax.swing.JPanel {
                 NombreAliaMousePressed(evt);
             }
         });
+        NombreAlia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                NombreAliaKeyPressed(evt);
+            }
+        });
 
         TextAlias.setText("Busca una alia existente:");
 
         tipoOrdenacion.setText("Ordenar por:");
 
         criterioOrdenar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "autor A-Z", "título A-Z" }));
+        criterioOrdenar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                criterioOrdenarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -113,10 +134,9 @@ public class ListarPorExpresion extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TipoBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, 742, Short.MAX_VALUE)
+                    .addComponent(TipoBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, 677, Short.MAX_VALUE)
                     .addComponent(NombreAlia)
-                    .addComponent(AliasExist, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Expresion, javax.swing.GroupLayout.DEFAULT_SIZE, 742, Short.MAX_VALUE)
+                    .addComponent(Expresion, javax.swing.GroupLayout.DEFAULT_SIZE, 677, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(TextAlias)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -125,7 +145,8 @@ public class ListarPorExpresion extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(criterioOrdenar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(ButtonBuscar)))
+                        .addComponent(ButtonBuscar))
+                    .addComponent(AliasExist, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -203,38 +224,89 @@ public class ListarPorExpresion extends javax.swing.JPanel {
     private void ButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBuscarActionPerformed
         // TODO add your handling code here:
         String alia=null;
+        criterioSelect = criterioOrdenar.getSelectedItem().toString();
         if(AliasExist.getSelectedItem().toString().equals("Selecciona una alia existente")){
             if (!NombreAlia.getText().equals("Introduce una alia")
                     && !NombreAlia.getText().equals("")
                     && !Expresion.getText().equals("Introduce una expresion")
                     && !Expresion.getText().equals("")) {
-                //
+
                 String expresion = Expresion.getText();
                 alia = NombreAlia.getText();
-                try {
-                    this.framePrincipal.addExpresion(alia, expresion);
+                if(this.framePrincipal.añadirAlia(alia, expresion)){
+                        firstSearch = false;
                     System.out.println(alia);
-                    this.framePrincipal.buscarPorAlia(alia);
-                } catch (Exception e) {
-                    System.out.println("entro en excep");
-                    if (e.getMessage().equals("Error añadiendo alia")) {
-                        JOptionPane.showMessageDialog(null, e.getMessage());
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Error no clasificado");
-                    }
-
+                    this.framePrincipal.buscarPorAlia(alia,criterioSelect);
+                }else{
+                   
+                   JOptionPane.showMessageDialog(null, "Error en añadiendo alia!!!");
+                    
                 }
+      
             }else{
                 JOptionPane.showMessageDialog(null, "Introduce alia y expresion");
             }
 
         }else{
             alia = AliasExist.getSelectedItem().toString();
-            this.framePrincipal.buscarPorAlia(alia);
+            this.framePrincipal.buscarPorAlia(alia, criterioSelect);
         }
 
 
     }//GEN-LAST:event_ButtonBuscarActionPerformed
+
+    private void criterioOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criterioOrdenarActionPerformed
+        // TODO add your handling code here:
+        String alia=null;
+        criterioSelect = criterioOrdenar.getSelectedItem().toString();
+        if (! firstSearch) {
+            if(AliasExist.getSelectedItem().toString().equals("Selecciona una alia existente")){
+                if (!NombreAlia.getText().equals("Introduce una alia")
+                        && !NombreAlia.getText().equals("")
+                        && !Expresion.getText().equals("Introduce una expresion")
+                        && !Expresion.getText().equals("")) {
+
+                    String expresion = Expresion.getText();
+                    alia = NombreAlia.getText();
+                    try {
+                        this.framePrincipal.addExpresion(alia, expresion);
+                        System.out.println(alia);
+                        this.framePrincipal.buscarPorAlia(alia,criterioSelect);
+                    } catch (Exception e) {
+                        System.out.println("entro en excep");
+                        if (e.getMessage().equals("Error añadiendo alia")) {
+                            JOptionPane.showMessageDialog(null, e.getMessage());
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Error no clasificado");
+                        }
+
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(null, "Introduce alia y expresion");
+                }
+
+            }
+            else{
+                alia = AliasExist.getSelectedItem().toString();
+                this.framePrincipal.buscarPorAlia(alia, criterioSelect);
+            }
+        }
+    }//GEN-LAST:event_criterioOrdenarActionPerformed
+
+    private void NombreAliaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NombreAliaKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            ButtonBuscar.doClick();
+        }
+    }//GEN-LAST:event_NombreAliaKeyPressed
+
+    private void ExpresionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ExpresionKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            ButtonBuscar.doClick();
+        }
+    }//GEN-LAST:event_ExpresionKeyPressed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

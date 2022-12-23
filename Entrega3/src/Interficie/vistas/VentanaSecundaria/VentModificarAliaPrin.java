@@ -5,6 +5,7 @@
 package Interficie.vistas.VentanaSecundaria;
 
 import Interficie.vistas.FramePrincipal;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
@@ -93,6 +94,11 @@ public class VentModificarAliaPrin extends javax.swing.JFrame {
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
+        jTextArea1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextArea1KeyPressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTextArea1);
 
         ComboAlias.addActionListener(new java.awt.event.ActionListener() {
@@ -182,6 +188,13 @@ public class VentModificarAliaPrin extends javax.swing.JFrame {
         String expresion = framePrincipal.getExpresion(alia);
         jTextArea1.setText(expresion);
     }//GEN-LAST:event_ComboAliasActionPerformed
+
+    private void jTextArea1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextArea1KeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            ButtonModificar.doClick();
+        }
+    }//GEN-LAST:event_jTextArea1KeyPressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonCancelar1;
