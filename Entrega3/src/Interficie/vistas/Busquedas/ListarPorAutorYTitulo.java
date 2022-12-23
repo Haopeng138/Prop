@@ -175,7 +175,11 @@ public class ListarPorAutorYTitulo extends javax.swing.JPanel {
         else if ("".equals(Titulo.getText()) || "Introduce un título".equals(Titulo.getText())) {
             JOptionPane.showMessageDialog(null, "Introduce un título!!!");
         }
-        else framePrincipal.contentlist(autor, titulo);
+        else {
+            String content = framePrincipal.getContenidoPorAutorTitulo(autor, titulo);
+            if (content == null) JOptionPane.showMessageDialog(null, "No existe el documento!!!");
+            else framePrincipal.contentlist(autor, titulo);
+        }
         
     }//GEN-LAST:event_ButtonBuscarActionPerformed
 

@@ -5,6 +5,7 @@
 package Interficie.vistas.VentanaSecundaria;
 
 import Interficie.vistas.FramePrincipal;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
@@ -74,6 +75,11 @@ public class VentInfoDoc extends javax.swing.JFrame {
 
         Content.setColumns(20);
         Content.setRows(5);
+        Content.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                ContentKeyPressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(Content);
 
         NombreAutor.setEditable(false);
@@ -185,6 +191,13 @@ public class VentInfoDoc extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No has cambiado el contenido!!!");
         }
     }//GEN-LAST:event_ButtonGuardarActionPerformed
+
+    private void ContentKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ContentKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            ButtonGuardar.doClick();
+        }
+    }//GEN-LAST:event_ContentKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

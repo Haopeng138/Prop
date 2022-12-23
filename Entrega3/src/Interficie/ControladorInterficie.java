@@ -13,6 +13,7 @@ import java.util.Scanner;
 public class ControladorInterficie {
     private ControladorDominio ctrl_dominio;
     private FramePrincipal framePrincipal;
+    private int doc_size =0;
     public ControladorInterficie() {
         this.ctrl_dominio = new ControladorDominio();
     };
@@ -24,6 +25,7 @@ public class ControladorInterficie {
         for(String[] doc:documents){
             if(this.framePrincipal.cargarDocument(doc[0],doc[1])){
                 System.out.println(doc[0]);
+                doc_size++;
             }
            
         }
@@ -38,6 +40,10 @@ public class ControladorInterficie {
     public void getDocument(){
 
     }
+    
+    public int getDocSize(){
+        return doc_size;
+    }
 
     private String getExtension(String fileName){
         String extension = "";
@@ -50,6 +56,7 @@ public class ControladorInterficie {
 
     public void createDocumento(String autor,String titulo,String contenido){
         ctrl_dominio.createDocumento(autor, titulo, contenido);
+        doc_size++;
 
     }
     
@@ -64,6 +71,7 @@ public class ControladorInterficie {
             tmp = getAutorTituloFromXML(documento);
         }
         this.framePrincipal.cargarDocument(tmp[0],tmp[1]);
+        doc_size++;
     }
 
     public ArrayList<String[]> getAllDocs() {

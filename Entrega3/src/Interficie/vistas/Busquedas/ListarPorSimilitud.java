@@ -159,15 +159,21 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
         String autor;
         String titulo;
         int k = 0;
+        
         if(NombreAutor.getText().equals("Introduce un nombre de autor") || "".equals(NombreAutor.getText())){
             error += "No se ha introducido autor \n";
         }
         if (Titulo.getText().equals("Introduce un titulo") || "".equals(Titulo.getText())){
             error += "No se ha introducido titulo \n";
         }
-        if(NumeroK.getText().equals("Introduce un titulo") || "".equals(NumeroK.getText()) || !verificarK(NumeroK.getText()) || Integer.parseInt(NumeroK.getText()) == 0){
+        if(NumeroK.getText().equals("Introduce un titulo") 
+                || "".equals(NumeroK.getText()) 
+                || !verificarK(NumeroK.getText()) 
+                || Integer.parseInt(NumeroK.getText()) == 0
+                ||  Integer.parseInt(NumeroK.getText()) >= this.framePrincipal.getDocSize()){
            error += "No se ha introducido número correctamente \n";
-        } 
+        }
+        
 
         if("".equals(error)){
             autor = NombreAutor.getText();
@@ -249,6 +255,7 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
         if(NumeroK.getText().equals("Introduce un titulo") || "".equals(NumeroK.getText()) || !verificarK(NumeroK.getText())){
            error += "No se ha introducido numero correctamente \n";
         }
+        
 
         if("".equals(error)){
             String autor = NombreAutor.getText();
