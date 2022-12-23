@@ -7,6 +7,12 @@ public class Expresion {
 
     private String expresion;
 
+    /**
+     * Constructora de la clase dada una expresión booleaana
+     *
+     * @param expresion Una expresión booleana
+     * @throws ExpresionException Si la expresión booleana es incorrecta
+     */
     public Expresion(String expresion) throws ExpresionException {
         if (areBracketsBalanced(expresion)) {
             this.expresion = expresion;
@@ -16,12 +22,17 @@ public class Expresion {
 
     }
 
+    /**
+     * Método que devuelve la expresión
+     *
+     * @return La expresión booleana
+     */
     public String getExpresion() {
         return expresion;
     }
 
     /**
-     * Metodo para modificar una expresion
+     * Método para modificar una expresion
      * 
      * @param expresion Una expresión
      * @throws ExpresionException Expresion Invalida: compruebe los parentesis

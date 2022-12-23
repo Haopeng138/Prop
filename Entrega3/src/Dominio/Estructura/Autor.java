@@ -13,7 +13,7 @@ public class Autor implements Comparable<Autor> {
 
     /**
      * Constructor por defecto de la clase
-     * 
+     *
      * @param name Nombre del autor
      */
     public Autor(String name) {
@@ -29,7 +29,7 @@ public class Autor implements Comparable<Autor> {
 
     /**
      * Modifica el nombre del autor
-     * 
+     *
      * @param name Nombre al cual quieres modificar
      */
     public void setName(String name) {
@@ -43,28 +43,28 @@ public class Autor implements Comparable<Autor> {
 
     /**
      * Compara con el nombre del autor lexicograficamente
-     * 
-     * @param a Autor a ser comparado
+     *
+     * @param aut Autor a ser comparado
      * @return
      */
     @Override
-    public int compareTo(Autor a) {
-        return name.compareTo(a.getName());
+    public int compareTo(Autor aut) {
+        return name.compareTo(aut.getName());
     }
 
     /**
      * Compara que coincida el nombre del autor
-     * 
-     * @param o Autor a ser comparado
+     *
+     * @param obj Autor a ser comparado
      * @return
      */
     @Override
-    public boolean equals(Object o) {
-        if (this == o)
+    public boolean equals(Object obj) {
+        if (this == obj)
             return true;
-        if (o == null || getClass() != o.getClass())
+        if (obj == null || getClass() != obj.getClass())
             return false;
-        Autor that = (Autor) o;
+        Autor that = (Autor) obj;
         return name == that.getName();
     }
 }
