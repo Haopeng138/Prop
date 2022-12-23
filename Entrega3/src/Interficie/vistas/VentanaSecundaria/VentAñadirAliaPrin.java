@@ -170,7 +170,7 @@ public class VentAñadirAliaPrin extends javax.swing.JFrame {
                      this.dispose();
                      framePrincipal.closeAñadirAlia();
                }
-               else JOptionPane.showMessageDialog(null, "Alia ya existe!!!");
+           
   
              
         }

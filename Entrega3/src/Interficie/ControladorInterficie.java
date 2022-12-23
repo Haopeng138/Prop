@@ -84,6 +84,7 @@ public class ControladorInterficie {
     }
 
     public ArrayList<String[]> busquedaPorExpresion(String alia){
+        
         return ctrl_dominio.busquedaPorExpresion(alia);
     }    
     public ArrayList<String[]> busquedaPorSimilitud(String autor,String titulo,int k){
