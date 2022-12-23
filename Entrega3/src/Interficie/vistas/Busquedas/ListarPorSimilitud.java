@@ -8,13 +8,13 @@ import Interficie.vistas.FramePrincipal;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
+
 public class ListarPorSimilitud extends javax.swing.JPanel {
     private final FramePrincipal framePrincipal;
     private String criterioSelect;
 
     /**
      * Creates new form ListarPorSimilitud
-     * 
      * @param framePrincipal
      */
     public ListarPorSimilitud(FramePrincipal framePrincipal) {
@@ -86,6 +86,11 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
         NumeroK.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 NumeroKMousePressed(evt);
+            }
+        });
+        NumeroK.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                NumeroKKeyTyped(evt);
             }
         });
 
@@ -182,9 +187,7 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
                 || !verificarK(NumeroK.getText())) {
             error += "No se ha introducido numero correctamente \n";
         }
-        if (Integer.parseInt(NumeroK.getText()) <= 0) {
-            error += "El numero debe ser positivo! \n";
-        }
+
         if ("".equals(error)) {
             autor = NombreAutor.getText();
             titulo = Titulo.getText();
@@ -276,6 +279,15 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, error);
         }
     }// GEN-LAST:event_criterioOrdenarActionPerformed
+
+    private void NumeroKKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NumeroKKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_NumeroKKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonBuscar;

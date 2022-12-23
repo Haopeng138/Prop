@@ -42,7 +42,7 @@ import javax.swing.tree.TreeNode;
 
 public class FramePrincipal extends javax.swing.JFrame {
     private ControladorInterficie ctrlInterficie;
-    // Ventanas
+    //Ventanas
     private VentNuevoDocumentoFrame newDocumentFrame;
     private VentAñadirAliaPrin añadirAliaPrinFrame;
     private VentEliminarAliaPrin eliminarAliaPrinFrame;
@@ -51,7 +51,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     private int indexPanel = -1;
     private boolean isPanelAutor = false;
     private boolean isPanelPrefijo = false;
-
+    
     public FramePrincipal(ControladorInterficie ctrInterficie) {
         this.ctrlInterficie = ctrInterficie;
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -67,8 +67,8 @@ public class FramePrincipal extends javax.swing.JFrame {
 
         initComponents();
     }
-
-    public ArrayList<String> ordenaDecreContent(String nameAutor) {
+    
+    public ArrayList<String> ordenaDecreContent (String nameAutor) {
         ArrayList<String> titulos = getTitulos(nameAutor);
         if (titulos == null) return null;
         
@@ -128,7 +128,7 @@ public class FramePrincipal extends javax.swing.JFrame {
 
     public ArrayList<String[]> ordenaSimilitudAutor(ArrayList<String[]> documents) {
         HashMap<String,String> autTit = new LinkedHashMap<>();
-        
+
         for (int i = 0; i < documents.size(); ++i) {
             String autor = documents.get(i)[0];
             String titulo = documents.get(i)[1];
@@ -136,7 +136,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         }
         TreeMap<String, String> sorted = new TreeMap<>();
         sorted.putAll(autTit);
-        
+
         ArrayList<String[]> docsOrdenats = new ArrayList<>();
         for (String autor : sorted.keySet()) {
             String tit = sorted.get(autor);
@@ -179,12 +179,11 @@ public class FramePrincipal extends javax.swing.JFrame {
         int index = -1;
         DefaultMutableTreeNode principalDirectory = (DefaultMutableTreeNode) jTree1.getModel().getRoot();
         for (int i = 0; i < principalDirectory.getChildCount(); ++i) {
-            if ("Alias".equals(principalDirectory.getChildAt(i).toString()))
-                index = i;
+            if ("Alias".equals(principalDirectory.getChildAt(i).toString())) index = i;
         }
         if (index == -1) return null;
         DefaultMutableTreeNode aliasDirectory = (DefaultMutableTreeNode) principalDirectory.getChildAt(index);
-        for (int i = 0; i < aliasDirectory.getChildCount(); i++) {
+        for(int i = 0; i< aliasDirectory.getChildCount();++i){
             result.add(aliasDirectory.getChildAt(i).toString());
         }
         return result;
@@ -195,8 +194,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         int index = -1;
         DefaultMutableTreeNode principalDirectory = (DefaultMutableTreeNode) jTree1.getModel().getRoot();
         for (int i = 0; i < principalDirectory.getChildCount(); ++i) {
-            if ("Documentos".equals(principalDirectory.getChildAt(i).toString()))
-                index = i;
+            if ("Documentos".equals(principalDirectory.getChildAt(i).toString())) index = i;
         }
         if (index == -1) return null;
         DefaultMutableTreeNode docDirectory = (DefaultMutableTreeNode) principalDirectory.getChildAt(index);
@@ -210,8 +208,8 @@ public class FramePrincipal extends javax.swing.JFrame {
         PanelItems.removeAll();
         JPanel tmpPanel = new JPanel();
         tmpPanel.setLayout(new BoxLayout(tmpPanel, BoxLayout.Y_AXIS));
-        for (int i = 0; i < authors.size(); i++) {
-            tmpPanel.add(new ItemAutor(this, authors.get(i)));
+        for(int i = 0; i< authors.size(); i++ ){
+            tmpPanel.add(new ItemAutor(this,authors.get(i)));
         }
         JScrollPane pane = new JScrollPane(tmpPanel);
         PanelItems.add(pane);
@@ -234,14 +232,14 @@ public class FramePrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No existe el documento buscado!");
         }
     }
-
-    public void titlelist(ArrayList<String> titles, String autor) {
+    
+    public void titlelist(ArrayList<String> titles, String autor){
         autorList = autor;
         PanelItems.removeAll();
         JPanel tmpPanel = new JPanel();
         tmpPanel.setLayout(new BoxLayout(tmpPanel, BoxLayout.Y_AXIS));
-        for (int i = 0; i < titles.size(); i++) {
-            tmpPanel.add(new ItemTitulo(this, titles.get(i), autor));
+        for(int i = 0; i< titles.size(); i++ ){
+            tmpPanel.add(new ItemTitulo(this,titles.get(i), autor));
         }
         JScrollPane pane = new JScrollPane(tmpPanel);
         PanelItems.add(pane);
@@ -587,19 +585,20 @@ public class FramePrincipal extends javax.swing.JFrame {
         PanelInfoDoc infoDoc = new PanelInfoDoc(this);
         PanelInfoAlia infoAlia = new PanelInfoAlia(this);
         // System.out.print(selected.getUserObject().toString());
-        if (selected.getChildCount() == 0 && "Documentos".equals(selected.getParent().toString())) {
+        if (selected != null && selected.getChildCount() == 0 && "Documentos".equals(selected.getParent().toString())) {
             docHeader = selected.getUserObject().toString();
             String[] doc = docHeader.split("-");
             String autor = doc[0];
             String titulo = doc[1];
             System.out.println(autor + " " + titulo);
 
+            
             String contenido = ctrlInterficie.busquedaPorAutorTitulo(autor, titulo);
 
             infoDoc.setText(autor, titulo, contenido);
             PanelItems.add(infoDoc);
 
-        } else if (selected.getChildCount() == 0 && "Alias".equals(selected.getParent().toString())) {
+        } else if (selected != null && selected.getChildCount() == 0 && "Alias".equals(selected.getParent().toString())) {
             alia = selected.getUserObject().toString();
             String expresion = getExpresion(alia);
             infoAlia.setText(alia, expresion);
@@ -746,6 +745,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         Enumeration<TreeNode> cont = docs.children();
         while (cont.hasMoreElements()) {
             DefaultMutableTreeNode aut = (DefaultMutableTreeNode) cont.nextElement();
+            
             if (aut.toString().equals(docHeader)) doc = aut;
         }
         docs.remove(doc);
@@ -776,7 +776,6 @@ public class FramePrincipal extends javax.swing.JFrame {
         for (int i = 0; i < root.getChildCount(); ++i) {
             if ("Alias".equals(root.getChildAt(i).toString()))
                 index = i;
-
         }
         DefaultMutableTreeNode alias = (DefaultMutableTreeNode) root.getChildAt(index);
         Enumeration<TreeNode> cont = alias.children();
@@ -796,7 +795,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     public void modificarExpresion(String alia, String expresion) {
         ctrlInterficie.updateExpresion(alia, expresion);
     }
-        
+
     public void buscarPorAlia(String alia) {
         ArrayList<String[]> documents = ctrlInterficie.busquedaPorExpresion(alia);
         if (documents != null) {
@@ -905,5 +904,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTree jTree1;
     // End of variables declaration//GEN-END:variables
+
+    
 
 }

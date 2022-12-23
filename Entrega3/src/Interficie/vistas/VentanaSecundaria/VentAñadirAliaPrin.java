@@ -5,6 +5,7 @@
 package Interficie.vistas.VentanaSecundaria;
 
 import Interficie.vistas.FramePrincipal;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.logging.Level;
@@ -73,7 +74,18 @@ public class VentAñadirAliaPrin extends javax.swing.JFrame {
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
+        jTextArea1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextArea1KeyPressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTextArea1);
+
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField1KeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -160,6 +172,20 @@ public class VentAñadirAliaPrin extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_ButtonAñadirActionPerformed
+
+    private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            ButtonAñadir.doClick();
+        }
+    }//GEN-LAST:event_jTextField1KeyPressed
+
+    private void jTextArea1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextArea1KeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            ButtonAñadir.doClick();
+        }
+    }//GEN-LAST:event_jTextArea1KeyPressed
 
     public void clear() {
         jTextField1.setText("");
