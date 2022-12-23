@@ -5,7 +5,6 @@
 package Interficie.vistas.Busquedas;
 
 
-import Interficie.vistas.VentanaSecundaria.VentAñadirAliaExpre;
 import Interficie.vistas.FramePrincipal;
 
 import javax.swing.*;
@@ -15,7 +14,6 @@ import java.util.ArrayList;
 
 public class ListarPorExpresion extends javax.swing.JPanel {
      private final FramePrincipal framePrincipal;
-     private VentAñadirAliaExpre ventAñadirAliaExpre;
     /**
      * Creates new form ListarPorExpresion
      * @param framePrincipal
@@ -43,10 +41,7 @@ public class ListarPorExpresion extends javax.swing.JPanel {
     public String getExpresion(){
         return Expresion.getText();
     }
-    public void closeAñadirAliaExpre(){
-        ventAñadirAliaExpre = null;
-    }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
