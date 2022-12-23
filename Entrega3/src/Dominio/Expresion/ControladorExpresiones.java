@@ -7,29 +7,35 @@ public class ControladorExpresiones {
     HashMap<String, Expresion> expresiones;
 
     /**
-     * Constructora vacia
+     * Constructora vacía
      */
     public ControladorExpresiones() {
         this.expresiones = new HashMap<String, Expresion>();
     }
 
     /**
-     * @param expresiones Constructora a partir de expresiones
+     * Constructora dado un conjunto de expresiones
+     *
+     * @param expresiones Un conjunto de expresiones
      */
     public ControladorExpresiones(HashMap<String, Expresion> expresiones) {
         this.expresiones = expresiones;
     }
 
     /**
-     * @return Las expresiones que hay
+     * Método que devuelve el conjunto de expresiones que hay en el sistema
+     *
+     * @return El conjunto de expresiones que hay en el sistema
      */
     public HashMap<String, Expresion> getExpresiones() {
         return expresiones;
     }
 
     /**
-     * @param alias El alias de una expresion
-     * @return La expresion
+     * Método que devuelve la expresión booleana dada su alia
+     *
+     * @param alias El alias de una expresión
+     * @return La expresión booleana
      */
     public Expresion get(String alias) {
         if (!expresiones.containsKey(alias)) {
@@ -40,6 +46,8 @@ public class ControladorExpresiones {
     }
 
     /**
+     * Método que añade
+     *
      * @param alias     El alias de la expresion a añadir
      * @param expresion La expresion
      * @throws ExpresionException Si la expresion es incorrecta

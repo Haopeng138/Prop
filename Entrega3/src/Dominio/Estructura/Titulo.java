@@ -7,26 +7,37 @@ public class Titulo {
     }
 
     /**
-     * @param name El nombre del titulo
+     * Método constructor de la clase
+     *
+     * @param name El nombre del título
      */
     public Titulo(String name) {
         this.name = name;
     }
 
     /**
-     * @param name El nombre del titulo
+     * Método que modifica el título
+     *
+     * @param name El título nuevo
      */
     public void setName(String name) {
         this.name = name;
     }
 
     /**
-     * @return
+     * Método que devuelve el título
+     *
+     * @return El título
      */
     public String getName() {
         return name;
     }
 
+    /**
+     * Método que devuelve el título
+     *
+     * @return El título en String
+     */
     public String toString() {
         return name;
     }
@@ -37,12 +48,12 @@ public class Titulo {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o)
+    public boolean equals(Object obj) {
+        if (this == obj)
             return true;
-        if (o == null || getClass() != o.getClass())
+        if (obj == null || getClass() != obj.getClass())
             return false;
-        Titulo that = (Titulo) o;
+        Titulo that = (Titulo) obj;
         return name.equals(that.getName());
     }
 }
