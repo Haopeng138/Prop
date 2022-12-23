@@ -22,11 +22,19 @@ public class Documentos {
      */
     private ArrayList<Documento> documentos;
 
-    // similitud entre documentos
+    /**
+     * ArrayList donde guarda la Similitud entre documentos
+     */
     private ArrayList<ArrayList<InfoModificado>> frecResult = new ArrayList<ArrayList<InfoModificado>>();
-    // frecuencia de cada palabra de un documento
+
+    /**
+     * ArrayList donde guarda la frecuencia de cada palabra de un documento
+     */
     private ArrayList<HashMap<String, Double>> tf = new ArrayList<>();
-    // número de documentos en qué parece la palabra
+
+    /**
+     * HashMap donde guarda el número de documentos en qué parece la palabra
+     */
     private HashMap<String, Double> contidf = new HashMap<>();
 
     Set<String> stopwords = new HashSet<String>(Arrays.asList("cuales","mismo","del","expresó","fin","unos","grandes","toda","posible","buen","usted","dicen","menos","pasada","mientras","misma","aseguró","les","propia","dejó","mayor","bueno","vamos","al","hubo","muchos","estos","manera","podrían","junto","cual","está","mucho","estamos","estoy","fueron","ningunos","hicieron","buena","siempre","quien","ello","primer","quién","tampoco","actualmente","último","estuvo","otras","anterior","llevar","sea","habían","después","podrán","propio","sus","por","se","hoy","sólo","mismas","ellas","si","propios","cosas","consideró","muchas","a","nunca","pasado","ser","cualquier","quienes","su","alguna","e","gran","diferente","encuentra","o","dijeron","todo","alguno","ella","lleva","están","existen","y","igual","todos","da","algo","siendo","de","nuestro","lugar","serán","parte","dio","ellos","cinco","primeros","tercera","han","apenas","nuestra","un","poco","solamente","hay","cómo","sino","él","dijo","el","mismos","en","poca","debe","va","cuatro","es","donde","sobre","tendrán","algunos","ex","pueden","mediante","será","buenas","conocer","última","había","unas","nuevas","últimos","que","tenemos","tenido","hacia","pero","ayer","nuevos","seis","hacerlo","comentó","también","tuvo","ahora","adelante","señaló","nos","aún","tiene","durante","otro","algún","sin","sí","respecto","más","otra","dentro","sola","una","solo","nueva","últimas","tienen","éste","lado","nuevo","partir","uno","ha","así","buenos","embargo","ésta","he","porque","entonces","segunda","realizar","siete","quiere","tras","ya","cerca","demás","haciendo","haber","segundo","yo","tener","casi","mejor","decir","nosotros","hemos","pueda","bien","habrá","como","van","realizado","tenga","siguiente","pocas","hace","diferentes","alrededor","llegó","estaban","varias","esos","explicó","nada","qué","pues","dos","añadió","incluso","solas","tanto","algunas","según","esas","hacer","los","cuanto","hacen","sido","era","tengo","informó","antes","hasta","poner","tendrá","agregó","tenía","cuando","pudo","aquí","hecho","éstos","existe","estará","varios","principalmente","próximos","debido","esa","ante","cada","la","ese","pocos","creo","fue","le","través","eso","con","lo","otros","podemos","esto","dice","propias","dan","ambos","son","dar","pesar","me","ninguno","tres","mi","entre","tal","las","tan","aproximadamente","ver","desde","sigue","ahí","cierto","nosotras","vez","todas","este","queremos","indicó","esta","eran","éstas","dicho","mencionó","todavía","ni","nuestras","ejemplo","no","primero","mucha","hizo","trata","nuestros","dieron","sean","además","podría","luego","momento","muy","total","primera","para","nadie","cuenta","ningún","deben","contra","próximo","afirmó","puede","dado","ocho","bajo","podrá","ninguna","veces","aunque","parece","realizó","sería","fuera","haya","considera","estar","manifestó","ningunas","solos","estas","estaba","quedó"));
@@ -39,40 +47,45 @@ public class Documentos {
     }
 
     /**
-     * Metodo para añadir un documento al conjunto de documento
+     * Método para añadir un documento al conjunto de documento
      * 
-     * @param d Un documento
+     * @param doc Un Documento
      */
-    public void add(Documento d) {
-        documentos.add(d);
+    public void add(Documento doc) {
+        documentos.add(doc);
         int mida = documentos.size();
         frecResult.add(new ArrayList<InfoModificado>(mida - 1));
         for (int i = 0; i < mida; i++) {
             frecResult.get(mida - 1).add(new InfoModificado());
         }
         tf.add(new HashMap<>());
-        inicializarTF(d);
-        actualizarIDF(d);
+        inicializarTF(doc);
+        actualizarIDF(doc);
     }
 
     /**
-     * Metodo para eliminar un documento del conjunto de documento
+     * Método para eliminar un documento del conjunto de documento
      * 
      * @param idx Índice de un documento
      */
     public void remove(int idx) {
         eliminarDocIDF(documentos.get(idx));
         documentos.remove(documentos.get(idx));
-
     }
 
-    public void modifyContent(int idx, String contenido) {
+    /**
+     * Método para modificar el contenido de un documento dado su índice
+     *
+     * @param idx Índice de un documento
+     * @param cont El nuevo contenido
+     */
+    public void modifyContent(int idx, String cont) {
 
-        Documento d = documentos.get(idx);
+        Documento doc = documentos.get(idx);
 
-        d.setContenido(contenido);
+        doc.setContenido(cont);
         modificarTF(idx);
-        actualizarIDF(d);
+        actualizarIDF(doc);
         for (int j = 0; j < frecResult.get(idx).size(); ++j) {
             if (frecResult.get(idx).get(j).modif)
                 frecResult.get(idx).get(j).modif = false;
@@ -87,8 +100,7 @@ public class Documentos {
      * Método para obtener el contenido de un documento dado el autor y el título
      * 
      * @param idx Índice del documento
-     * @return Contenido del documento con el índice idx, si
-     *         existe este documento
+     * @return El contenido del documento con el índice idx, si existe este documento
      *         Null, en el caso contrario
      */
     public String getContent(int idx) {
@@ -98,28 +110,28 @@ public class Documentos {
     /**
      * Método para verificar la existencia de una key en el contidf
      * 
-     * @param p Una palabra
-     * @return True, si la palabra "p" es una key del contidf (ya tiene asignada una
+     * @param pal Una palabra
+     * @return True, si la palabra "pal" es una key del contidf (ya tiene asignada una
      *         frecuencia)
      *         false, en el caso contrario
      */
-    private Boolean existeEnContidf(String p) {
-        return contidf.containsKey(p);
+    private Boolean existeEnContidf(String pal) {
+        return contidf.containsKey(pal);
     }
 
     /**
      * Método para calcular la frecuencia de una palabra en un determinado documento
      * (TF)
      * 
-     * @param doc Contenido del documento en forma de ArrayList
-     * @param p   Una palabra
-     * @return Frecuencia de la palabra "p" en el documento "doc"
+     * @param doc El contenido del documento en forma de ArrayList
+     * @param pal   Una palabra
+     * @return Frecuencia de la palabra "pal" en el documento "doc"
      */
-    private Double tf(ArrayList<String> doc, String p) {
+    private Double tf(ArrayList<String> doc, String pal) {
         Double cont = 0.0;
         for (int i = 0; i < doc.size(); ++i) {
             String palabra = doc.get(i);
-            if (p.equalsIgnoreCase(palabra))
+            if (pal.equalsIgnoreCase(palabra))
                 ++cont;
         }
         return cont / doc.size();
@@ -128,16 +140,16 @@ public class Documentos {
     /**
      * Método para inicializar el tf de un documento
      * 
-     * @param d Un documento
+     * @param doc Un Documento
      */
-    private void inicializarTF(Documento d) {
+    private void inicializarTF(Documento doc) {
         int mida = tf.size() - 1;
-        ArrayList<String> docD = d.stringToArrayList();
+        ArrayList<String> docD = doc.stringToArrayList();
         for (int j = 0; j < docD.size(); ++j) {
             if (! stopwords.contains(docD.get(j))) {
                 if (!tf.get(mida).containsKey(docD.get(j))) {
-                    Double a = tf(docD, docD.get(j));
-                    tf.get(mida).put(docD.get(j), a);
+                    Double frec = tf(docD, docD.get(j));
+                    tf.get(mida).put(docD.get(j), frec);
                 }
             }
         }
@@ -147,10 +159,10 @@ public class Documentos {
      * Método para actualizar el contidf cada vez que haya una modificación del
      * contenido de un documento o cuando añade un nuevo documento
      * 
-     * @param d Un documento
+     * @param doc Un Documento
      */
-    private void actualizarIDF(Documento d) {
-        ArrayList<String> docD = d.stringToArrayList();
+    private void actualizarIDF(Documento doc) {
+        ArrayList<String> docD = doc.stringToArrayList();
         HashMap<String, Boolean> noVisitat = new HashMap<>();
         for (int i = 0; i < docD.size(); ++i) {
             if (!noVisitat.containsKey(docD.get(i)))
@@ -165,9 +177,9 @@ public class Documentos {
             } else {
                 String palabra = docD.get(j);
                 if (!noVisitat.get(palabra)) {
-                    Double b = contidf.get(palabra);
-                    ++b;
-                    contidf.put(palabra, b);
+                    Double veces = contidf.get(palabra);
+                    ++veces;
+                    contidf.put(palabra, veces);
                     noVisitat.put(palabra, true);
                 }
             }
@@ -177,10 +189,10 @@ public class Documentos {
     /**
      * Método para actualizar el contidf cuando elimina un documento
      * 
-     * @param d Un documento
+     * @param doc Un documento
      */
-    private void eliminarDocIDF(Documento d) {
-        ArrayList<String> docD = d.stringToArrayList();
+    private void eliminarDocIDF(Documento doc) {
+        ArrayList<String> docD = doc.stringToArrayList();
         HashMap<String, Boolean> noVisitat = new HashMap<>();
         for (int i = 0; i < docD.size(); ++i) {
             if (!noVisitat.containsKey(docD.get(i)))
@@ -191,9 +203,9 @@ public class Documentos {
             if (existeEnContidf(docD.get(j))) {
                 String palabra = docD.get(j);
                 if (!noVisitat.get(palabra)) {
-                    Double b = contidf.get(palabra);
-                    --b;
-                    contidf.put(palabra, b);
+                    Double veces = contidf.get(palabra);
+                    --veces;
+                    contidf.put(palabra, veces);
                     noVisitat.put(palabra, true);
                 }
             }
@@ -208,14 +220,14 @@ public class Documentos {
      */
     private void modificarTF(int idx) {
 
-        Documento d = documentos.get(idx);
+        Documento doc = documentos.get(idx);
         tf.get(idx).clear();
-        ArrayList<String> docD = d.stringToArrayList();
+        ArrayList<String> docD = doc.stringToArrayList();
         for (int j = 0; j < docD.size(); ++j) {
             if (! stopwords.contains(docD.get(j))) {
                 if (!tf.get(idx).containsKey(docD.get(j))) {
-                    Double a = tf(docD, docD.get(j));
-                    tf.get(idx).put(docD.get(j), a);
+                    Double frec = tf(docD, docD.get(j));
+                    tf.get(idx).put(docD.get(j), frec);
                 }
             }
         }
@@ -283,9 +295,10 @@ public class Documentos {
     }
 
     /**
-     * Metodo que devuelve si el documento tiene este texto
-     * @param idx indice del documento
-     * @param texto texto que se quiere buscar
+     * Método que devuelve si el documento tiene este texto
+     *
+     * @param idx Índice del documento
+     * @param texto Texto que se quiere buscar
      * @return true si tiene, false en caso contrario
      */
     public Boolean tieneString(int idx, String texto) {
@@ -293,27 +306,30 @@ public class Documentos {
     }
 
     /**
-     * Metodo que
-     * @param idx indice del documento
-     * @param palabra pala que se quiere buscar
-     * @return
+     * Método que verifica la existencia de una palabra en un documento dado su índice
+     *
+     * @param idx Índice del documento
+     * @param pal Palabra que se quiere buscar
+     * @return true si contiene, false en el caso contrario
      */
-    public boolean tienePalabra(int idx, String palabra) {
-        return tf.get(idx).get(palabra) != null;
+    public boolean tienePalabra(int idx, String pal) {
+        return tf.get(idx).get(pal) != null;
     }
 
     /**
-     * Metodo que devuelve el documento dado su indice
-     * @param idx indice del documento
-     * @return
+     * Método que devuelve el documento dado su índice
+     *
+     * @param idx Índice del documento
+     * @return El contenido del documento con el índice idx
      */
     public Documento getDocumento(int idx) {
         return documentos.get(idx);
     }
 
     /**
-     * Metodo que devuelve el conjunto de documentos
-     * @return  el conjunto de documentos
+     * Método que devuelve el conjunto de documentos
+     *
+     * @return  El conjunto de documentos
      */
     public ArrayList<Documento> getDocumentos() {
         return documentos;

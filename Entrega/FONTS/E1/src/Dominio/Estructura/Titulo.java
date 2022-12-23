@@ -7,7 +7,9 @@ public class Titulo {
     }
 
     /**
-     * @param name El nombre del titulo
+     * Método constructor de la clase
+     *
+     * @param name El nombre del título
      */
     public Titulo(String name) {
         this.name = name;

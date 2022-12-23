@@ -13,7 +13,7 @@ public class Autor implements Comparable<Autor> {
 
     /**
      * Constructor por defecto de la clase
-     *
+     * 
      * @param name Nombre del autor
      */
     public Autor(String name) {
@@ -29,7 +29,7 @@ public class Autor implements Comparable<Autor> {
 
     /**
      * Modifica el nombre del autor
-     *
+     * 
      * @param name Nombre al cual quieres modificar
      */
     public void setName(String name) {

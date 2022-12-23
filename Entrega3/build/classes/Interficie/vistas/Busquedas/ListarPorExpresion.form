@@ -34,9 +34,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="criterioOrdenar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="ButtonGuardar" linkSize="4" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="ButtonBuscar" linkSize="4" min="-2" max="-2" attributes="0"/>
+                      <Component id="ButtonBuscar" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="AliasExist" alignment="0" max="32767" attributes="0"/>
               </Group>
@@ -59,8 +57,7 @@
               <Component id="Expresion" linkSize="3" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="ButtonGuardar" linkSize="5" min="-2" max="-2" attributes="0"/>
-                  <Component id="ButtonBuscar" linkSize="5" min="-2" max="-2" attributes="0"/>
+                  <Component id="ButtonBuscar" min="-2" max="-2" attributes="0"/>
                   <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                       <Component id="criterioOrdenar" linkSize="6" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tipoOrdenacion" linkSize="6" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -113,6 +110,7 @@
       </Properties>
       <Events>
         <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ExpresionMousePressed"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="ExpresionKeyPressed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="NombreAlia">
@@ -124,23 +122,13 @@
       </Properties>
       <Events>
         <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="NombreAliaMousePressed"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="NombreAliaKeyPressed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="TextAlias">
       <Properties>
         <Property name="text" type="java.lang.String" value="Busca una alia existente:"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="ButtonGuardar">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Guardar"/>
-        <Property name="horizontalTextPosition" type="int" value="0"/>
-        <Property name="verticalTextPosition" type="int" value="3"/>
-      </Properties>
-      <Events>
-        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ButtonGuardarMousePressed"/>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ButtonGuardarActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="tipoOrdenacion">
       <Properties>

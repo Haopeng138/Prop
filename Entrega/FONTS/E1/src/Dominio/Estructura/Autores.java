@@ -24,53 +24,59 @@ public class Autores {
     }
 
     /**
-     * Metodo que nos indica si el autor existe en nuestro conjunto de autores
+     * Método que nos indica si el autor existe en nuestro conjunto de autores
      * 
-     * @param a Un autor
-     * @return True si existe , False en caso contrario
+     * @param aut Un Autor
+     * @return True si existe, False en caso contrario
      */
-    public Boolean has(Autor a) {
-        return autores.get(a) != null;
-    }
-
-    public Boolean has(String a) {
-        return autores.get(new Autor(a)) != null;
+    public Boolean has(Autor aut) {
+        return autores.get(aut) != null;
     }
 
     /**
-     * Metodo que añade un autor al conjunto de autores
-     * 
-     * @param a autor
+     * Método que nos indica si el autor existe en nuestro conjunto de autores dado su nombre
+     *
+     * @param aut Un nombre de autor
+     * @return True si existe, False en caso contrario
      */
-    public void add(Autor a) {
-        if (!this.has(a)) {
-            autores.put(a, new HashMap<Titulo, Integer>());
+    public Boolean has(String aut) {
+        return autores.get(new Autor(aut)) != null;
+    }
+
+    /**
+     * Método que añade un autor al conjunto de autores
+     * 
+     * @param aut Un Autor
+     */
+    public void add(Autor aut) {
+        if (!this.has(aut)) {
+            autores.put(aut, new HashMap<Titulo, Integer>());
         } else
-            System.out.format("El autor: %s, ya existe!\n", a);
+            System.out.format("El autor: %s, ya existe!\n", aut);
     }
 
     /**
-     * Metodo que añade un autor al conjunto de autores
+     * Método que añade un autor al conjunto de autores
      * 
-     * @param a nombre del autor
+     * @param aut Un nombre del autor
      */
-    public void add(String a) {
-        if (!this.has(a)) {
-            autores.put(new Autor(a), new HashMap<Titulo, Integer>());
+    public void add(String aut) {
+        if (!this.has(aut)) {
+            autores.put(new Autor(aut), new HashMap<Titulo, Integer>());
         } else
-            System.out.format("El autor: %s, ya existe!\n", a);
+            System.out.format("El autor: %s, ya existe!\n", aut);
     }
 
     /**
-     * Metodo que añade un titulo al conjunto de titulos de un autor
+     * Método que añade un título al conjunto de títulos de un autor
      * 
-     * @param header El header de un documento autor y titulo
+     * @param header El header de un documento, autor y título
      *
      */
     public void addTitleToAutor(DocumentHeader header) {
         HashMap<Titulo, Integer> titulos = autores.get(header.getAutor());
         if (titulos.get(header.getTitulo()) != null) {
-            System.out.format("Ya existe el documento con titulo: %s para el autor %s", header.getTitulo().getName(),
+            System.out.format("Ya existe el documento con título: %s para el autor %s", header.getTitulo().getName(),
                     header.getAutor().getName());
             return;
         }
@@ -80,30 +86,35 @@ public class Autores {
     }
 
     /**
-     * Metodo que devuelve todos los titulos que tiene un autor
+     * Método que devuelve todos los títulos que tiene un autor
      *
-     * @param a Un autor
-     * @return un conjunto de autor
+     * @param aut Un nombre de autor
+     * @return Un conjunto de autor
      */
-    public ArrayList<Titulo> getTitles(String a) {
-        return new ArrayList<Titulo>(autores.get(new Autor(a)).keySet());
+    public ArrayList<Titulo> getTitles(String aut) {
+        return new ArrayList<Titulo>(autores.get(new Autor(aut)).keySet());
     }
 
     /**
-     * Metodo que elimina un autor de nuestro conjunto de autores
+     * Método que elimina un autor de nuestro conjunto de autores
      *
-     * @param a Autor
+     * @param aut Autor
      */
-    public void remove(Autor a) {
-        autores.remove(a);
-    }
-
-    public void remove(String a) {
-        autores.remove(new Autor(a));
+    public void remove(Autor aut) {
+        autores.remove(aut);
     }
 
     /**
-     * Metodo que devuelve el conjunto de autores
+     * Método que elimina un autor de nuestro conjunto de autores dado su nombre
+     *
+     * @param aut Un nombre de autor
+     */
+    public void remove(String aut) {
+        autores.remove(new Autor(aut));
+    }
+
+    /**
+     * Método que devuelve el conjunto de autores
      *
      * @return Un conjunto de autores
      */
@@ -112,7 +123,7 @@ public class Autores {
     }
 
     /**
-     * Metodo que devuelve el conjunto de autores ordenados
+     * Método que devuelve el conjunto de autores ordenados alfabéticamente
      *
      * @return Un conjunto de autores ordenados
      */
@@ -121,27 +132,29 @@ public class Autores {
     }
 
     /**
-     * Metodo que devuelve el numero de autores en el sistema
+     * Método que devuelve el número de autores en el sistema
      *
-     * @return El numero de autores en el sistema
+     * @return El número de autores en el sistema
      */
     public int getNumAutor() {
         return autores.size();
     }
 
     /**
-     * @param autor El autor al que consultar
-     * @return El numero de documentos que tiene el autor
+     * Método que devuelve el número de documentos de un autor
+     *
+     * @param aut El autor al que consultar
+     * @return El número de documentos que tiene el autor
      */
-    public int getNumDocumentos(Autor autor) {
-        return autores.get(autor).size();
+    public int getNumDocumentos(Autor aut) {
+        return autores.get(aut).size();
     }
 
     /**
-     * Metodo que devuelve el indice del documento
+     * Método que devuelve el índice del documento
      *
      * @param header El header del documento
-     * @return Posicion en la que se indexa el documento
+     * @return Posición en la que se indexa el documento
      * @throws Exception Si no se encuentra el documento
      */
     public Integer getDocumentIdx(DocumentHeader header) throws Exception {
@@ -157,9 +170,9 @@ public class Autores {
     }
 
     /**
-     * Metodo que devuelve el indice del documento
+     * Método que devuelve el índice del documento
      *
-     * @return La lista de autores y titulos
+     * @return La lista de autores y títulos
      */
     public TreeMap<Autor, HashSet<Titulo>> getIdx() {
         TreeMap<Autor, HashSet<Titulo>> entries = new TreeMap<Autor, HashSet<Titulo>>();
@@ -168,15 +181,15 @@ public class Autores {
     }
 
     /**
-     * Metodo que borra un documento
+     * Método que borra un documento
      *
-     * @param a Autor
-     * @param t Titulo
+     * @param aut Un nombre de autor
+     * @param tit Titulo
      */
-    public void removeTitle(String a, String t) {
-        Autor autor = new Autor(a);
+    public void removeTitle(String aut, String tit) {
+        Autor autor = new Autor(aut);
         HashMap<Titulo, Integer> titulos = autores.get(autor);
-        titulos.remove(new Titulo(t));
+        titulos.remove(new Titulo(tit));
         if (!titulos.isEmpty()) {
             autores.put(autor, titulos);
         } else {
@@ -185,9 +198,9 @@ public class Autores {
     }
 
     /**
-     * Metodo que borra un documento
+     * Método que borra un documento
      *
-     * @param header pareja autor titulo
+     * @param header La pareja de autor y título
      */
     public void removeTitle(DocumentHeader header) {
         HashMap<Titulo, Integer> titulos = autores.get(header.getAutor());
@@ -198,5 +211,4 @@ public class Autores {
             autores.remove(header.getAutor());
         }
     }
-
 }
