@@ -7,7 +7,6 @@ package Interficie.vistas.Items;
 import Interficie.vistas.FramePrincipal;
 import Interficie.vistas.VentanaSecundaria.VentTitulos;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  *

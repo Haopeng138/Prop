@@ -61,7 +61,6 @@ public class IOHelper {
         try {
             createFromXML(new File("C:\\Users\\mique\\Desktop\\file.xml"));
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
