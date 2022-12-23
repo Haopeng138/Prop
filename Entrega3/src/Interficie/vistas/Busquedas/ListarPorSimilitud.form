@@ -81,39 +81,26 @@
     </Component>
     <Component class="javax.swing.JTextField" name="Titulo">
       <Properties>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="66" green="66" red="66" type="rgb"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Introduce un t&#xed;tulo"/>
       </Properties>
       <Events>
         <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="TituloMousePressed"/>
-        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TituloKeyPressed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="NumeroK">
       <Properties>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="66" green="66" red="66" type="rgb"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Introduce un n&#xfa;mero"/>
       </Properties>
       <Events>
         <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="NumeroKMousePressed"/>
-        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="NumeroKKeyPressed"/>
-        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="NumeroKKeyTyped"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="NombreAutor">
       <Properties>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="66" green="66" red="66" type="rgb"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Introduce un nombre de autor"/>
       </Properties>
       <Events>
         <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="NombreAutorMousePressed"/>
-        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="NombreAutorKeyPressed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="tipoOrdenacion">

@@ -21,11 +21,9 @@ public class BusquedaPorExpresion {
     private Libreria libreria;
 
     /**
-     * Método de devuelve la lista de documentos que cumplen la expresión booleana
-     *
-     * @param expresion La expresión con la que buscar
-     * @param libreria  La librería de documentos
-     * @return Los documentos que cumplen la expresión
+     * @param expresion La expresion con la que buscar
+     * @param libreria  La libreria de documentos
+     * @return Los documentos que cumplen la expresion
      * @throws Exception
      */
     public ArrayList<DocumentHeader> buscar(String expresion, Libreria libreria) throws Exception {
@@ -34,15 +32,13 @@ public class BusquedaPorExpresion {
         BinaryTree<ParseNode> bTree = parse(expresion);
         TreeMap<Autor, HashSet<Titulo>> indiceResuelto = buscarRec(bTree, indice);
         ArrayList<DocumentHeader> documentHeaders = new ArrayList<DocumentHeader>();
-        indiceResuelto.forEach((aut, sTit) -> sTit.forEach((tit) -> documentHeaders.add(new DocumentHeader(aut, tit))));
+        indiceResuelto.forEach((a, sT) -> sT.forEach((t) -> documentHeaders.add(new DocumentHeader(a, t))));
         return documentHeaders;
     }
 
     /**
-     * Método que convierte la expresión booleana en un árbol de búsqueda
-     *
-     * @param expr La expresión con la que hacer la búsqueda
-     * @return Un árbol de búsqueda
+     * @param expr La expresion con la que hacer la busqueda
+     * @return Un arbol de busqueda
      * @throws Exception
      */
     private BinaryTree<ParseNode> parse(String expr) throws Exception {
@@ -115,12 +111,6 @@ public class BusquedaPorExpresion {
         return root;
     }
 
-    /**
-     * Método que convierte un String en un String[]
-     *
-     * @param words
-     * @return
-     */
     private String[] getWords(String words) {
         return words.split(" ");
     }

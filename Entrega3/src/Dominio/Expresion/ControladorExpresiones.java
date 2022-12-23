@@ -7,35 +7,29 @@ public class ControladorExpresiones {
     HashMap<String, Expresion> expresiones;
 
     /**
-     * Constructora vacía
+     * Constructora vacia
      */
     public ControladorExpresiones() {
         this.expresiones = new HashMap<String, Expresion>();
     }
 
     /**
-     * Constructora dado un conjunto de expresiones
-     *
-     * @param expresiones Un conjunto de expresiones
+     * @param expresiones Constructora a partir de expresiones
      */
     public ControladorExpresiones(HashMap<String, Expresion> expresiones) {
         this.expresiones = expresiones;
     }
 
     /**
-     * Método que devuelve el conjunto de expresiones que hay en el sistema
-     *
-     * @return El conjunto de expresiones que hay en el sistema
+     * @return Las expresiones que hay
      */
     public HashMap<String, Expresion> getExpresiones() {
         return expresiones;
     }
 
     /**
-     * Método que devuelve la expresión booleana dada su alia
-     *
-     * @param alias El alias de una expresión
-     * @return La expresión booleana
+     * @param alias El alias de una expresion
+     * @return La expresion
      */
     public Expresion get(String alias) {
         if (!expresiones.containsKey(alias)) {
@@ -46,22 +40,19 @@ public class ControladorExpresiones {
     }
 
     /**
-     * Método que añade una expresión boolean junto su alia
-     *
-     * @param alias     El alias de la expresión a añadir
-     * @param expresion La expresión booleana
-     * @throws ExpresionException Si la expresión booleana es incorrecta
+     * @param alias     El alias de la expresion a añadir
+     * @param expresion La expresion
+     * @throws ExpresionException Si la expresion es incorrecta
      */
     public void add(String alias, String expresion) throws ExpresionException {
+        // this could be surrounded in a try catch, to check if expresion is valid
         expresiones.put(alias, new Expresion(expresion));
     }
 
     /**
-     * Método que verifica si ha modificado correctamente la expresión
-     *
-     * @param alias El alias de la expresión a modificar
-     * @param expr La nueva expresión
-     * @return True si se ha modificado la expresión, false en el caso contrario
+     * @param alias El alias de la expresion a modificar
+     * @param expr La nueva expresion
+     * @return Si se ha modificado la expresion
      */
     public Boolean updateExpresion(String alias, String expr) {
         if (!expresiones.containsKey(alias)) {
@@ -78,10 +69,8 @@ public class ControladorExpresiones {
     }
 
     /**
-     * Método que verifica si ha borrado correctamente la expresión
-     *
-     * @param alias El alias de la expresión a borrar
-     * @return True si se ha borrado la expresión, false en el caso contrario
+     * @param alias El alias de la expresion a borrar
+     * @return Si se ha borrado la expresion
      */
     public Boolean remove(String alias) {
         if (!expresiones.containsKey(alias)) {
@@ -92,10 +81,8 @@ public class ControladorExpresiones {
     }
 
     /**
-     * Método que devuelve la expresión como String
-     *
-     * @param alias El alias de la expresión
-     * @return La expresión como String
+     * @param alias El alias de la expresion
+     * @return La expresion como string
      */
     public String getAsString(String alias) {
         if (!expresiones.containsKey(alias)) {

@@ -5,7 +5,6 @@
 package Interficie.vistas.VentanaSecundaria;
 
 import Interficie.vistas.FramePrincipal;
-import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
@@ -25,9 +24,14 @@ public class VentSelectFormato extends javax.swing.JFrame {
      * Creates new form VentSelectFormato
      * @param framePrincipal
      */
-    public VentSelectFormato(FramePrincipal framePrincipal) {
+    public VentSelectFormato(FramePrincipal framePrincipal,String autor,String titulo) {
         this.framePrincipal = framePrincipal;
         initComponents();
+        formatoTXT.setSelected(true);
+        this.autor = autor;
+        this.titulo = titulo;
+   
+        this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -35,14 +39,6 @@ public class VentSelectFormato extends javax.swing.JFrame {
             }
         });
     }
-    
-    public void set(String autor,String titulo){
-        this.autor = autor;
-        this.titulo = titulo;
-    }
-
-
-
 
     /**
      * This method is called from within the constructor to initialize the form.

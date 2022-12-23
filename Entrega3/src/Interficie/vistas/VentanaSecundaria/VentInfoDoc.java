@@ -5,11 +5,8 @@
 package Interficie.vistas.VentanaSecundaria;
 
 import Interficie.vistas.FramePrincipal;
-import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.ArrayList;
-import java.util.Arrays;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
@@ -75,11 +72,6 @@ public class VentInfoDoc extends javax.swing.JFrame {
 
         Content.setColumns(20);
         Content.setRows(5);
-        Content.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                ContentKeyPressed(evt);
-            }
-        });
         jScrollPane1.setViewportView(Content);
 
         NombreAutor.setEditable(false);
@@ -163,11 +155,9 @@ public class VentInfoDoc extends javax.swing.JFrame {
 
     private void ButtonExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonExportarActionPerformed
         // TODO add your handling code here:
-        VentSelectFormato selectForm = new VentSelectFormato(this.framePrincipal);
-        selectForm.set(NombreAutor.getText(),Titulo.getText());
+        VentSelectFormato selectForm = new VentSelectFormato(this.framePrincipal,NombreAutor.getText(),Titulo.getText());
         selectForm.setVisible(true);
         selectForm.setLocationRelativeTo(null);
-
     }//GEN-LAST:event_ButtonExportarActionPerformed
 
     private void ButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSalirActionPerformed
@@ -179,27 +169,13 @@ public class VentInfoDoc extends javax.swing.JFrame {
         // TODO add your handling code here:
         String content = Content.getText();
         if (!contentIniciar.equals(content)){
-            int reply = JOptionPane.showConfirmDialog(null, "Seguro que quieres guardar?", "", JOptionPane.YES_NO_OPTION);
-            if (reply == JOptionPane.YES_OPTION) {
-                String autor = NombreAutor.getText();
-                String titulo = Titulo.getText();
-                this.framePrincipal.modifyDocument(autor,titulo,content);
-                this.framePrincipal.reload("autor");
-                //this.setVisible(false);
-            }
-            
-            
+            String autor = NombreAutor.getText();
+            String titulo = Titulo.getText();
+            this.framePrincipal.modifyDocument(autor,titulo,content);
         }else{
             JOptionPane.showMessageDialog(null, "No has cambiado el contenido!!!");
         }
     }//GEN-LAST:event_ButtonGuardarActionPerformed
-
-    private void ContentKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ContentKeyPressed
-        // TODO add your handling code here:
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            ButtonGuardar.doClick();
-        }
-    }//GEN-LAST:event_ContentKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

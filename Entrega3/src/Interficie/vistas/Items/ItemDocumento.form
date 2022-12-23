@@ -19,17 +19,17 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Component id="AutorLabel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-              <Component id="NombreAutor" pref="149" max="32767" attributes="0"/>
-              <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-              <Component id="TituloLabel" min="-2" pref="35" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-              <Component id="Titulo" pref="177" max="32767" attributes="0"/>
-              <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="NombreAutor" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="TituloLabel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="Titulo" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="204" max="32767" attributes="0"/>
               <Component id="ButtonVer" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="ButtonEliminar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -38,12 +38,12 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="AutorLabel" linkSize="1" alignment="3" min="-2" pref="17" max="-2" attributes="0"/>
-                  <Component id="NombreAutor" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="Titulo" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="TituloLabel" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="ButtonEliminar" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="ButtonVer" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="AutorLabel" alignment="3" min="-2" pref="17" max="-2" attributes="0"/>
+                  <Component id="NombreAutor" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="Titulo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="TituloLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="ButtonEliminar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="ButtonVer" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -64,7 +64,7 @@
         <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
           <ComponentRef name="Titulo"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="T&#xed;tulo:"/>
+        <Property name="text" type="java.lang.String" value="Titulo:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="ButtonEliminar">

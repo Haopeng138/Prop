@@ -30,7 +30,7 @@ public class Driver_Documentos {
                 case 0:
                     break;
                 case 1:
-                    System.out.println(" Introduce autor, titulo y contenido del documento ");
+                    System.out.println(" Introduce autor , titulo y contenido del documento ");
                     System.out.println("Autor:");
                     autor = scan.nextLine();
                     System.out.println("Titulo:");

@@ -5,7 +5,6 @@
 package Interficie.vistas.VentanaSecundaria;
 
 import Interficie.vistas.FramePrincipal;
-import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
@@ -75,11 +74,6 @@ public class VentNuevoDocumentoFrame extends javax.swing.JFrame {
                 NombreAutorActionPerformed(evt);
             }
         });
-        NombreAutor.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                NombreAutorKeyPressed(evt);
-            }
-        });
 
         etiqTitulo.setText("Título:");
 
@@ -88,19 +82,9 @@ public class VentNuevoDocumentoFrame extends javax.swing.JFrame {
                 TituloActionPerformed(evt);
             }
         });
-        Titulo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TituloKeyPressed(evt);
-            }
-        });
 
         Contenido.setColumns(20);
         Contenido.setRows(5);
-        Contenido.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                ContenidoKeyPressed(evt);
-            }
-        });
         jScrollPane1.setViewportView(Contenido);
 
         Cancel.setText("Cancelar");
@@ -220,27 +204,6 @@ public class VentNuevoDocumentoFrame extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_ButtonGuardarActionPerformed
-
-    private void NombreAutorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NombreAutorKeyPressed
-        // TODO add your handling code here:
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            ButtonGuardar.doClick();
-        }
-    }//GEN-LAST:event_NombreAutorKeyPressed
-
-    private void TituloKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TituloKeyPressed
-        // TODO add your handling code here:
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            ButtonGuardar.doClick();
-        }
-    }//GEN-LAST:event_TituloKeyPressed
-
-    private void ContenidoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ContenidoKeyPressed
-        // TODO add your handling code here:
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            ButtonGuardar.doClick();
-        }
-    }//GEN-LAST:event_ContenidoKeyPressed
 
 
 

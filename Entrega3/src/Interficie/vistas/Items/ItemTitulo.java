@@ -42,7 +42,7 @@ public class ItemTitulo extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         ButtonVer = new javax.swing.JButton();
 
-        jLabel1.setText("Título:");
+        jLabel1.setText("Titulo:");
 
         jLabel2.setText("jLabel2");
 
@@ -68,8 +68,8 @@ public class ItemTitulo extends javax.swing.JPanel {
                 .addGap(29, 29, 29)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(ButtonVer)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
@@ -86,9 +86,6 @@ public class ItemTitulo extends javax.swing.JPanel {
                     .addComponent(ButtonVer))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {ButtonVer, jButton1, jLabel1, jLabel2});
-
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -96,9 +93,8 @@ public class ItemTitulo extends javax.swing.JPanel {
         ArrayList<String> titulos = framePrincipal.getTitulos(autor);
         framePrincipal.eliminarDoc(jLabel2.getText(), autor);
        
-        if (titulos.size() == 1) framePrincipal.reload("prefijo");
+        if (titulos.size() == 1) framePrincipal.reload();
         this.setVisible(false);
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void ButtonVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonVerActionPerformed

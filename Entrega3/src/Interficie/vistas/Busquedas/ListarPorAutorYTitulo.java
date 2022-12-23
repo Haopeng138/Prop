@@ -6,7 +6,6 @@ package Interficie.vistas.Busquedas;
 
 import Interficie.vistas.FramePrincipal;
 import java.awt.Color;
-import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 public class ListarPorAutorYTitulo extends javax.swing.JPanel {
@@ -67,22 +66,12 @@ public class ListarPorAutorYTitulo extends javax.swing.JPanel {
                 NombreAutorActionPerformed(evt);
             }
         });
-        NombreAutor.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                NombreAutorKeyPressed(evt);
-            }
-        });
 
         Titulo.setForeground(new java.awt.Color(102, 102, 102));
         Titulo.setText("Introduce un título");
         Titulo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 TituloMousePressed(evt);
-            }
-        });
-        Titulo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TituloKeyPressed(evt);
             }
         });
 
@@ -137,7 +126,7 @@ public class ListarPorAutorYTitulo extends javax.swing.JPanel {
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
        
         if ("".equals(NombreAutor.getText())) {
-            NombreAutor.setText("Introduce un nombre de autor");
+            NombreAutor.setText("Introduce un autor");
             NombreAutor.setForeground(new Color(102, 102, 102));
             firstA = true;
             NombreAutor.setEnabled(false);
@@ -165,37 +154,19 @@ public class ListarPorAutorYTitulo extends javax.swing.JPanel {
         // TODO add your handling code here:
         String autor = NombreAutor.getText();
         String titulo = Titulo.getText();
-        if (("".equals(NombreAutor.getText()) && "".equals(Titulo.getText())) || "Introduce un nombre de autor".equals(NombreAutor.getText()) && "Introduce un título".equals(Titulo.getText())) {
+        if ("".equals(NombreAutor.getText()) && "".equals(Titulo.getText())) {
             JOptionPane.showMessageDialog(null, "Introduce un autor!!!\nIntroduce un título!!!");
         }
-        else if ("".equals(NombreAutor.getText()) || "Introduce un nombre de autor".equals(NombreAutor.getText())) {
+        else if ("".equals(NombreAutor.getText())) {
             JOptionPane.showMessageDialog(null, "Introduce un autor!!!");
         }
         
-        else if ("".equals(Titulo.getText()) || "Introduce un título".equals(Titulo.getText())) {
+        else if ("".equals(Titulo.getText())) {
             JOptionPane.showMessageDialog(null, "Introduce un título!!!");
         }
-        else {
-            String content = framePrincipal.getContenidoPorAutorTitulo(autor, titulo);
-            if (content == null) JOptionPane.showMessageDialog(null, "No existe el documento!!!");
-            else framePrincipal.contentlist(autor, titulo);
-        }
+        else framePrincipal.contentlist(autor, titulo);
         
     }//GEN-LAST:event_ButtonBuscarActionPerformed
-
-    private void NombreAutorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NombreAutorKeyPressed
-        // TODO add your handling code here:
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            ButtonBuscar.doClick();
-        }
-    }//GEN-LAST:event_NombreAutorKeyPressed
-
-    private void TituloKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TituloKeyPressed
-        // TODO add your handling code here:
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            ButtonBuscar.doClick();
-        }
-    }//GEN-LAST:event_TituloKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
