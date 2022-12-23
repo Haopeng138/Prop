@@ -138,6 +138,35 @@ public class FramePrincipal extends javax.swing.JFrame {
         return docsOrdenats;
     }
     
+    public ArrayList<String[]> ordenaSimilitudTitulo (ArrayList<String[]> documents) {
+        HashMap<String,String> autTit = new HashMap<>();
+        LinkedHashMap<String, String> sortedMap = new LinkedHashMap<>();
+        ArrayList<String> list = new ArrayList<>();
+        
+        for (int i = 0; i < documents.size(); ++i) {
+            String autor = documents.get(i)[0];
+            String titulo = documents.get(i)[1];
+            autTit.put(autor, titulo);
+        }
+        for (Map.Entry<String, String> entry : autTit.entrySet()) {
+            list.add(entry.getValue());
+        }
+        
+        Collections.sort(list);
+       
+        ArrayList<String[]> docsOrdenats = new ArrayList<>();
+        for (String tit : list) {
+            for (Entry<String, String> entry : autTit.entrySet()) {
+                if (entry.getValue().equals(tit)) {
+                    String[] doc = {entry.getKey(), entry.getValue()};
+                    docsOrdenats.add(doc);
+                }
+            }
+        }
+        return docsOrdenats;
+    }
+
+    
     public ArrayList<String> getAlias(){
         ArrayList<String> result = new ArrayList<>();
         int index = -1;

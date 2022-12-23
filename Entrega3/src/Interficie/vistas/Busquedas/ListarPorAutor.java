@@ -145,11 +145,10 @@ public class ListarPorAutor extends javax.swing.JPanel {
     private void ButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBuscarActionPerformed
         // TODO change titles  arrays
         String autor = NombreAutor.getText();
-
-
         if ("".equals(autor) || "Introduce un nombre de autor".equals(autor)) {
             framePrincipal.closePanelItems();
             JOptionPane.showMessageDialog(null, "Introduce un nombre de autor!!!");
+            firstSearch = true;
         }
         else {
             ArrayList<String> titulos = framePrincipal.getTitulos(autor);
@@ -178,8 +177,11 @@ public class ListarPorAutor extends javax.swing.JPanel {
 
         if (! firstSearch && ! ("Introduce un nombre de autor".equals(NombreAutor.getText()) ||"".equals(NombreAutor.getText()))) {
             String autor = NombreAutor.getText();
-            ArrayList<String> titulos = new ArrayList<> ();
-            if (titulos == null) JOptionPane.showMessageDialog(null, "No existe este autor");
+            ArrayList<String> titulos = framePrincipal.getTitulos(autor);
+            if (titulos == null) {
+                framePrincipal.closePanelItems();
+                JOptionPane.showMessageDialog(null, "No existe este autor");
+            }
             else {
                 criterioSelect = criterioOrdenar.getSelectedItem().toString();
                 if("tamaño descendente".equals(criterioSelect)){
