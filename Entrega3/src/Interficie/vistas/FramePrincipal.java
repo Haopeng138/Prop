@@ -48,7 +48,8 @@ public class FramePrincipal extends javax.swing.JFrame {
     private VentEliminarAliaPrin eliminarAliaPrinFrame;
     private VentModificarAliaPrin modificarAliaPrinFrame;
     private String autorList;
-    private int indexPanelPrefijo = -1; 
+    private int indexPanel = -1; 
+    private boolean isPanelAutor = false;
     private boolean isPanelPrefijo = false;
     
     public FramePrincipal(ControladorInterficie ctrInterficie) {
@@ -107,7 +108,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         ArrayList<String> autOrdenado = new ArrayList<>();
         for (int size : list) {
             for (Entry<String, Integer> entry : autNumTit.entrySet()) {
-                if (entry.getValue().equals(size)) {
+                if (entry.getValue().equals(size) && !autOrdenado.contains(entry.getKey())) {
                     autOrdenado.add(entry.getKey());
                 }
             }
@@ -364,8 +365,8 @@ public class FramePrincipal extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(jLabel1))
-                            .addComponent(PanelBusquedas, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(PanelBusquedas, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(PanelItems, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(28, 28, 28)
@@ -386,37 +387,47 @@ public class FramePrincipal extends javax.swing.JFrame {
         if ("Listar por autor".equals((String)SizeMenuBusqueda.getSelectedValue()) ) {    
             PanelBusquedas.add(new ListarPorAutor(this), "listarAutor");
             card.show(PanelBusquedas, "listarAutor");
-   
-            ++indexPanelPrefijo;
+            isPanelPrefijo = false;
+            PanelItems.setVisible(false);
+            ++indexPanel;
+            isPanelAutor = true;
            
         }
         
         if ("Listar por autor y título".equals((String)SizeMenuBusqueda.getSelectedValue()) ) {
             PanelBusquedas.add(new ListarPorAutorYTitulo(this), "listarAutorTitulo");
             card.show(PanelBusquedas, "listarAutorTitulo");
-            ++indexPanelPrefijo;
+            ++indexPanel;
+            PanelItems.setVisible(false);
             isPanelPrefijo = false;
+            isPanelAutor = false;
         }
         
         if ("Listar por prefijo".equals((String)SizeMenuBusqueda.getSelectedValue()) ) {
             PanelBusquedas.add(new ListarPorPrefijo(this), "listarPrefijo");
             card.show(PanelBusquedas, "listarPrefijo");
-            ++indexPanelPrefijo;
+            ++indexPanel;
+            PanelItems.setVisible(false);
             isPanelPrefijo = true;
+            isPanelAutor = false;
         }
         
         if ("Listar por similitud".equals((String)SizeMenuBusqueda.getSelectedValue()) ) {
             PanelBusquedas.add(new ListarPorSimilitud(this), "listarSimilitud");
             card.show(PanelBusquedas, "listarSimilitud");
-            ++indexPanelPrefijo;
+            ++indexPanel;
+            PanelItems.setVisible(false);
             isPanelPrefijo = false;
+            isPanelAutor = false;
         }
         
         if ("Listar por expresión booleana".equals((String)SizeMenuBusqueda.getSelectedValue()) ) {
             PanelBusquedas.add(new ListarPorExpresion(this), "listarExpresion");
             card.show(PanelBusquedas, "listarExpresion");
-            ++indexPanelPrefijo;
+            ++indexPanel;
+            isPanelAutor = false;
             isPanelPrefijo = false;
+            PanelItems.setVisible(false);
         }
     }//GEN-LAST:event_SizeMenuBusquedaMouseClicked
 
@@ -589,7 +600,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         DefaultMutableTreeNode docs = (DefaultMutableTreeNode) root.getChildAt(index);
         boolean trobat = false;
         for (int i = 0; i < docs.getChildCount(); ++i) {
-            if (docs.getChildAt(i).toString().equals(titulo)) trobat = true;
+            if (docs.getChildAt(i).toString().equals(docHeader)) trobat = true;
         }
         if (trobat) {
             return false;
@@ -753,25 +764,36 @@ public class FramePrincipal extends javax.swing.JFrame {
         }
     }
     
-    public void reload() {
+    public void reload(String index) {
         if (isPanelPrefijo) {
-            ListarPorPrefijo panel =(ListarPorPrefijo)PanelBusquedas.getComponent(indexPanelPrefijo);
-        
-            JScrollPane panelItems = (JScrollPane) PanelItems.getComponent(0);
-            JViewport view = (JViewport) panelItems.getComponent(0);
-        
-            JPanel panelTit = (JPanel) view.getComponent(0);
-            BoxLayout box = (BoxLayout)panelTit.getLayout();
-            panelTit = (JPanel) box.getTarget();
-            for (int i = 0; i < panelTit.getComponentCount(); ++i) {
-                ItemAutor autor = (ItemAutor) panelTit.getComponent(i);
-                autor.closeItemTitulo();
+            ListarPorPrefijo panel =(ListarPorPrefijo)PanelBusquedas.getComponent(indexPanel);
+            if ("prefijo".equals(index)) {
+                JScrollPane panelItems = (JScrollPane) PanelItems.getComponent(0);
+                JViewport view = (JViewport) panelItems.getComponent(0);
+
+                JPanel panelTit = (JPanel) view.getComponent(0);
+                BoxLayout box = (BoxLayout)panelTit.getLayout();
+                panelTit = (JPanel) box.getTarget();
+                for (int i = 0; i < panelTit.getComponentCount(); ++i) {
+                    ItemAutor autor = (ItemAutor) panelTit.getComponent(i);
+                    autor.closeItemTitulo();
+                }
+                panel.reload();
             }
-            panel.reload();
+           
         }
         
-        
+        if (isPanelAutor && "autor".equals(index)) {
+            ListarPorAutor panel =(ListarPorAutor)PanelBusquedas.getComponent(indexPanel);
+            panel.reload();
+        }
     }
+    
+    public void closePanelItems() {
+        PanelItems.setVisible(false);
+    }
+    
+    
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

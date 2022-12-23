@@ -7,6 +7,8 @@ package Interficie.vistas.VentanaSecundaria;
 import Interficie.vistas.FramePrincipal;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.Arrays;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
@@ -169,9 +171,16 @@ public class VentInfoDoc extends javax.swing.JFrame {
         // TODO add your handling code here:
         String content = Content.getText();
         if (!contentIniciar.equals(content)){
-            String autor = NombreAutor.getText();
-            String titulo = Titulo.getText();
-            this.framePrincipal.modifyDocument(autor,titulo,content);
+            int reply = JOptionPane.showConfirmDialog(null, "Seguro que quieres guardar?", "", JOptionPane.YES_NO_OPTION);
+            if (reply == JOptionPane.YES_OPTION) {
+                String autor = NombreAutor.getText();
+                String titulo = Titulo.getText();
+                this.framePrincipal.modifyDocument(autor,titulo,content);
+                this.framePrincipal.reload("autor");
+                //this.setVisible(false);
+            }
+            
+            
         }else{
             JOptionPane.showMessageDialog(null, "No has cambiado el contenido!!!");
         }

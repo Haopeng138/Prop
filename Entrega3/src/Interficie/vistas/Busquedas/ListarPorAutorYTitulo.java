@@ -126,7 +126,7 @@ public class ListarPorAutorYTitulo extends javax.swing.JPanel {
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
        
         if ("".equals(NombreAutor.getText())) {
-            NombreAutor.setText("Introduce un autor");
+            NombreAutor.setText("Introduce un nombre de autor");
             NombreAutor.setForeground(new Color(102, 102, 102));
             firstA = true;
             NombreAutor.setEnabled(false);
@@ -154,14 +154,14 @@ public class ListarPorAutorYTitulo extends javax.swing.JPanel {
         // TODO add your handling code here:
         String autor = NombreAutor.getText();
         String titulo = Titulo.getText();
-        if ("".equals(NombreAutor.getText()) && "".equals(Titulo.getText())) {
+        if (("".equals(NombreAutor.getText()) && "".equals(Titulo.getText())) || "Introduce un nombre de autor".equals(NombreAutor.getText()) && "Introduce un título".equals(Titulo.getText())) {
             JOptionPane.showMessageDialog(null, "Introduce un autor!!!\nIntroduce un título!!!");
         }
-        else if ("".equals(NombreAutor.getText())) {
+        else if ("".equals(NombreAutor.getText()) || "Introduce un nombre de autor".equals(NombreAutor.getText())) {
             JOptionPane.showMessageDialog(null, "Introduce un autor!!!");
         }
         
-        else if ("".equals(Titulo.getText())) {
+        else if ("".equals(Titulo.getText()) || "Introduce un título".equals(Titulo.getText())) {
             JOptionPane.showMessageDialog(null, "Introduce un título!!!");
         }
         else framePrincipal.contentlist(autor, titulo);

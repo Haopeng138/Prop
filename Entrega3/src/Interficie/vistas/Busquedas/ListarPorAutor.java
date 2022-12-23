@@ -25,7 +25,9 @@ public class ListarPorAutor extends javax.swing.JPanel {
         this.framePrincipal = framePrincipal;
     }
 
+    
     private boolean first = true;
+    private boolean firstSearch = true;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -64,11 +66,6 @@ public class ListarPorAutor extends javax.swing.JPanel {
         NombreAutor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 NombreAutorMousePressed(evt);
-            }
-        });
-        NombreAutor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NombreAutorActionPerformed(evt);
             }
         });
         NombreAutor.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -149,12 +146,27 @@ public class ListarPorAutor extends javax.swing.JPanel {
         // TODO change titles  arrays
         String autor = NombreAutor.getText();
        
-        if ("".equals(autor) || "Introduce un nombre de autor".equals(autor)) JOptionPane.showMessageDialog(null, "Introduce un nombre de autor!!!");
+        if ("".equals(autor) || "Introduce un nombre de autor".equals(autor)) {
+            framePrincipal.closePanelItems();
+            JOptionPane.showMessageDialog(null, "Introduce un nombre de autor!!!");
+            
+        }
         else {
+            firstSearch = false;
             ArrayList<String> titulos = framePrincipal.getTitulos(autor);
-            if (titulos == null) JOptionPane.showMessageDialog(null, "No existe este autor");
+            if (titulos == null) {
+                framePrincipal.closePanelItems();
+                JOptionPane.showMessageDialog(null, "No existe este autor");
+            }
             else {
-                Collections.sort(titulos);
+                if("tamaño descendente".equals(criterioOrdenar.getSelectedItem().toString())){
+                titulos = framePrincipal.ordenaDecreContent(autor);
+                }
+            
+                else {
+                    titulos = framePrincipal.getTitulos(autor);
+                    Collections.sort(titulos);
+                }
                 framePrincipal.titlelist(titulos, autor);
             }
         }
@@ -163,22 +175,25 @@ public class ListarPorAutor extends javax.swing.JPanel {
 
     private void criterioOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criterioOrdenarActionPerformed
         // TODO add your handling code here:
-        String autor = NombreAutor.getText();
-        ArrayList<String> titulos = new ArrayList<> ();
-        if("tamaño descendente".equals(criterioOrdenar.getSelectedItem().toString())){
-            titulos = framePrincipal.ordenaDecreContent(autor);
+        
+        if (! firstSearch && ! ("Introduce un nombre de autor".equals(NombreAutor.getText()) ||"".equals(NombreAutor.getText()))) {
+            String autor = NombreAutor.getText();
+            ArrayList<String> titulos = new ArrayList<> ();
+            if (titulos == null) JOptionPane.showMessageDialog(null, "No existe este autor");
+            else {
+                if("tamaño descendente".equals(criterioOrdenar.getSelectedItem().toString())){
+                titulos = framePrincipal.ordenaDecreContent(autor);
+                }
+            
+                else {
+                    titulos = framePrincipal.getTitulos(autor);
+                    Collections.sort(titulos);
+                }
+                framePrincipal.titlelist(titulos, autor);
+            }
         }
-        else {
-            titulos = framePrincipal.getTitulos(autor);
-            Collections.sort(titulos);
-        }
-        if (titulos == null) JOptionPane.showMessageDialog(null, "No existe este autor");
-        else framePrincipal.titlelist(titulos, autor);
+        
     }//GEN-LAST:event_criterioOrdenarActionPerformed
-
-    private void NombreAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreAutorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NombreAutorActionPerformed
 
     private void NombreAutorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NombreAutorKeyPressed
         // TODO add your handling code here:
@@ -187,6 +202,11 @@ public class ListarPorAutor extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_NombreAutorKeyPressed
 
+    public void reload() {
+        ButtonBuscar.doClick();
+            
+            
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonBuscar;

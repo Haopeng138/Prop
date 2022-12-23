@@ -81,6 +81,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="Titulo">
       <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="66" green="66" red="66" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Introduce un t&#xed;tulo"/>
       </Properties>
       <Events>
@@ -89,6 +92,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="NumeroK">
       <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="66" green="66" red="66" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Introduce un n&#xfa;mero"/>
       </Properties>
       <Events>
@@ -98,6 +104,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="NombreAutor">
       <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="66" green="66" red="66" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Introduce un nombre de autor"/>
       </Properties>
       <Events>
