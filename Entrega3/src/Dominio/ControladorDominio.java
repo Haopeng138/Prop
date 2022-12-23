@@ -197,6 +197,9 @@ public class ControladorDominio {
      * @return un conjunto de documentos
      */
     public ArrayList<String[]> busquedaPorSimilitud(String a, String t, int k) {
+        if (libreria.getDocumento(a, t) == null) {
+            return null;
+        }
         ArrayList<DocumentHeader> headers = ControladorBusqueda.buscarPorSimilitud(new DocumentHeader(a, t), k,
                 libreria);
         return buildAgnosticHeaders(headers);
