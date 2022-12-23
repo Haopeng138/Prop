@@ -206,8 +206,6 @@ public class ListarPorAutor extends javax.swing.JPanel {
 
     public void reload() {
         ButtonBuscar.doClick();
-
-
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -6,6 +6,7 @@ package Interficie.vistas.Busquedas;
 
 import Interficie.vistas.FramePrincipal;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -57,6 +58,11 @@ public class ListarPorPrefijo extends javax.swing.JPanel {
         NombreAutor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 NombreAutorMousePressed(evt);
+            }
+        });
+        NombreAutor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                NombreAutorKeyPressed(evt);
             }
         });
 
@@ -153,6 +159,13 @@ public class ListarPorPrefijo extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_criterioOrdenarActionPerformed
+
+    private void NombreAutorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NombreAutorKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            ButtonBuscar.doClick();
+        }
+    }//GEN-LAST:event_NombreAutorKeyPressed
      
     public void reload(){
         String prefijo = NombreAutor.getText();
