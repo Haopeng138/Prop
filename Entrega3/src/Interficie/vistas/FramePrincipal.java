@@ -90,7 +90,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         ArrayList<String> titOrdenado = new ArrayList<>();
         for (int size : list) {
             for (Entry<String, Integer> entry : TitCont.entrySet()) {
-                if (entry.getValue().equals(size)) {
+                if (entry.getValue().equals(size) && !titOrdenado.contains(entry.getKey())) {
                     titOrdenado.add(entry.getKey());
                 }
             }
@@ -165,8 +165,8 @@ public class FramePrincipal extends javax.swing.JFrame {
         ArrayList<String[]> docsOrdenats = new ArrayList<>();
         for (String tit : list) {
             for (Entry<String, String> entry : autTit.entrySet()) {
-                if (entry.getValue().equals(tit)) {
-                    String[] doc = { entry.getKey(), entry.getValue() };
+                String[] doc = { entry.getKey(), entry.getValue() };
+                if (entry.getValue().equals(tit) && !docsOrdenats.contains(doc)) {
                     docsOrdenats.add(doc);
                 }
             }
@@ -503,9 +503,9 @@ public class FramePrincipal extends javax.swing.JFrame {
             isPanelPrefijo = false;
             PanelItems.setVisible(false);
         }
-    }//GEN-LAST:event_SizeMenuBusquedaMouseClicked
+    }                                             
 
-    private void NuevaAliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevaAliaActionPerformed
+    private void NuevaAliaActionPerformed(java.awt.event.ActionEvent evt) {                                          
        
         if (añadirAliaPrinFrame == null){
             añadirAliaPrinFrame = new VentAñadirAliaPrin(this);
@@ -530,7 +530,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         else if (alias == null) {
             JOptionPane.showMessageDialog(null, "No hay alias");
         }
-    }//GEN-LAST:event_ModificarAliaActionPerformed
+    }                                             
 
     private void EliminarAliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarAliaActionPerformed
         
@@ -544,7 +544,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_EliminarAliaActionPerformed
 
-    private void NuevoDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevoDocActionPerformed
+    private void NuevoDocActionPerformed(java.awt.event.ActionEvent evt) {                                         
         
          if(newDocumentFrame == null) {
             newDocumentFrame = new VentNuevoDocumentoFrame(this);
@@ -574,7 +574,7 @@ public class FramePrincipal extends javax.swing.JFrame {
 
             System.out.print(selectedFile.toString());
         }
-    }//GEN-LAST:event_CargarDocActionPerformed
+    }                                         
 
     private void jTree1MouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jTree1MouseClicked
         // TODO change for panel
@@ -607,7 +607,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         }
         PanelItems.setVisible(true);
         SwingUtilities.updateComponentTreeUI(this);
-    }//GEN-LAST:event_jTree1MouseClicked
+    }                                   
 
     public String getExpresion(String alia) {
         return ctrlInterficie.getExpresion(alia);
@@ -680,7 +680,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         DefaultMutableTreeNode docs = (DefaultMutableTreeNode) root.getChildAt(index);
         boolean trobat = false;
         for (int i = 0; i < docs.getChildCount(); ++i) {
-            if (docs.getChildAt(i).toString().equals(titulo))
+            if (docs.getChildAt(i).toString().equals(docHeader))
                 trobat = true;
         }
         if (trobat) {

@@ -165,6 +165,7 @@ public class ListarPorAutor extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "No existe este autor");
             }
             else {
+                firstSearch = false;
                 criterioSelect = criterioOrdenar.getSelectedItem().toString();
                 if ("tamaño descendente".equals(criterioSelect)) {
                     titulos = framePrincipal.ordenaDecreContent(autor);
@@ -200,14 +201,14 @@ public class ListarPorAutor extends javax.swing.JPanel {
                 framePrincipal.titlelist(titulos, autor);
             }
         }
-    }//GEN-LAST:event_criterioOrdenarActionPerformed
+    }                                               
 
     private void NombreAutorKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_NombreAutorKeyPressed
         // TODO add your handling code here:
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             ButtonBuscar.doClick();
         }
-    }//GEN-LAST:event_NombreAutorKeyPressed
+    }                                      
 
     public void reload() {
         ButtonBuscar.doClick();
