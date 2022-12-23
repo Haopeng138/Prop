@@ -539,15 +539,10 @@ public class FramePrincipal extends javax.swing.JFrame {
         int returnValue = fileChooser.showOpenDialog(null);
 
         if (returnValue == JFileChooser.APPROVE_OPTION) {
-
-            File selectedFile = fileChooser.getSelectedFile();
-
+            File selectedFile =  fileChooser.getSelectedFile();
             try{
-
                 ctrlInterficie.createDocumento(selectedFile);
-
             }catch (Exception e){
-
                 if(e.getMessage().equals("No se ha creado")){
                     JOptionPane.showMessageDialog(null,"No se ha cargado el documento,");
                 }
