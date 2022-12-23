@@ -53,7 +53,17 @@ public class FramePrincipal extends javax.swing.JFrame {
     
     public FramePrincipal(ControladorInterficie ctrInterficie) {
         this.ctrlInterficie = ctrInterficie;
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                ctrlInterficie.persit();
+                System.out.println("Se ha hecho persistencia");
+                System.exit(0);
+
+            }
+        });
+
         initComponents();
     }
     
