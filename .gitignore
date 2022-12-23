@@ -3,3 +3,4 @@
 *.class
 /Interficie/target/
 /Entrega/FONTS/E1/src/Interficie/target/
+**/persistence
