@@ -17,10 +17,20 @@ public class DocumentHeader {
         titulo = new Titulo(t);
     }
 
+    /**
+     * Método de obtener el autor
+     *
+     * @return
+     */
     public Autor getAutor() {
         return autor;
     }
 
+    /**
+     * Método de obtener el título
+     *
+     * @return el título de documento
+     */
     public Titulo getTitulo() {
         return titulo;
     }

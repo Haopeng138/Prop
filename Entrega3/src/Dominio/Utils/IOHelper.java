@@ -10,8 +10,13 @@ import Dominio.Estructura.Documento;
 
 public class IOHelper {
 
+
     /**
-     * @param documento El documento a importar
+     * Método para crear un documento
+     *
+     * @param documento El documento que queremos importar
+     * @return el documento en forma de la clase Documento
+     * @throws Exception si el formato de documento es incorrecto
      */
     public static Documento create(File documento) throws Exception {
         String extension = "";
@@ -28,7 +33,11 @@ public class IOHelper {
     }
 
     /**
-     * @param documento El documento en formato XML a importar
+     * Método para crear un documento de formato xml
+     *
+     * @param documento El documento que queremos crear
+     * @return El documento en forma de la clase Documento
+     * @throws Exception si falta algún campo de documento
      */
     private static Documento createFromXML(File documento) throws Exception {
         String content = Files.readString(documento.toPath());
@@ -61,13 +70,16 @@ public class IOHelper {
         try {
             createFromXML(new File("C:\\Users\\mique\\Desktop\\file.xml"));
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
 
     /**
-     * @param documento El documento en formato txt a importar
+     * Método de crear un documento del formato txt
+     *
+     * @param documento El documento que queremos crear
+     * @return El documento en forma de la clase Documento
+     * @throws IOException si falta algún campo del documento
      */
     private static Documento createFromTxT(File documento) throws IOException {
         try (Scanner file = new Scanner(documento)) {
@@ -77,15 +89,17 @@ public class IOHelper {
             while (file.hasNextLine()) {
                 contenido += file.nextLine() + "\n";
             }
-
             return new Documento(autor, titulo, contenido);
         }
     }
 
     /**
-     * @param doc  El documento a exportar
-     * @param path El path al que exportarlo
-     * @param name El nombre que dar al documento
+     * Método de exportar un documento en el formato de xml o txt
+     *
+     * @param doc   El documento que queremos exportar
+     * @param path  El directori donde exportarlo
+     * @param name  El nombre del fichero
+     * @throws Exception si el formato es inválido
      */
     public static void export(Documento doc, File path, String name) throws Exception {
         String extension = "";
@@ -104,9 +118,12 @@ public class IOHelper {
     }
 
     /**
-     * @param doc  El documento a exportar
-     * @param path El path al que exportarlo
-     * @param name El nombre que dar al documento
+     * Método para exportar el documento en formato txt
+     *
+     * @param doc   El documento que queremos exportar
+     * @param path  El directorio donde exportarlo
+     * @param name  El nombre del fichero
+     * @throws IOException si falta algún campo de documento
      */
     private static void exportToTxT(Documento doc, File path, String name) throws IOException {
         File file = new File(path, name);
@@ -118,20 +135,20 @@ public class IOHelper {
     }
 
     /**
-     * @param doc  El documento a exportar
-     * @param path El path al que exportarlo
-     * @param name El nombre que dar al documento
+     * Método de exportar el documento en formato xml
+     *
+     * @param doc   El documento que queremos exportar
+     * @param path  El directorio donde exportarlo
+     * @param name  El nombre del fichero
+     * @throws IOException si falta algún campo de documento
      */
     private static void exportToXML(Documento doc, File path, String name) throws IOException {
         File file = new File(path, name);
         try (FileWriter myWriter = new FileWriter(file)) {
-            myWriter.write("<?xml version=\"1.0\"?>" + '\n');
-            myWriter.write("<Documento>" + '\n');
             myWriter.write("<Autor>" + doc.getAutor() + "</Autor>" + '\n');
             myWriter.write("<Titulo>" + doc.getTitulo() + "<Titulo>" + '\n');
-            myWriter.write("<Contenido>" + doc.getContenido() + "<Contenido>"+'\n');
-            myWriter.write("</Documento>");
+            myWriter.write("<Contenido>" + doc.getContenido() + "<Contenido>");
         }
-
     }
 }
+

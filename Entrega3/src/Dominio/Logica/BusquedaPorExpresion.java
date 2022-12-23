@@ -21,9 +21,11 @@ public class BusquedaPorExpresion {
     private Libreria libreria;
 
     /**
-     * @param expresion La expresion con la que buscar
-     * @param libreria  La libreria de documentos
-     * @return Los documentos que cumplen la expresion
+     * Método de devuelve la lista de documentos que cumplen la expresión booleana
+     *
+     * @param expresion La expresión con la que buscar
+     * @param libreria  La librería de documentos
+     * @return Los documentos que cumplen la expresión
      * @throws Exception
      */
     public ArrayList<DocumentHeader> buscar(String expresion, Libreria libreria) throws Exception {
@@ -32,14 +34,16 @@ public class BusquedaPorExpresion {
         BinaryTree<ParseNode> bTree = parse(expresion);
         TreeMap<Autor, HashSet<Titulo>> indiceResuelto = buscarRec(bTree, indice);
         ArrayList<DocumentHeader> documentHeaders = new ArrayList<DocumentHeader>();
-        indiceResuelto.forEach((a, sT) -> sT.forEach((t) -> documentHeaders.add(new DocumentHeader(a, t))));
+        indiceResuelto.forEach((aut, sTit) -> sTit.forEach((tit) -> documentHeaders.add(new DocumentHeader(aut, tit))));
         return documentHeaders;
     }
 
     /**
-     * @param expr La expresion con la que hacer la busqueda
-     * @return Un arbol de busqueda
-     * @throws Exception
+     * Método que convierte la expresión booleana en un árbol de búsqueda
+     *
+     * @param expr La expresión con la que hacer la búsqueda
+     * @return Un árbol de búsqueda
+     * @throws Exception Si la expresión está sintácticamente incorrecta
      */
     private BinaryTree<ParseNode> parse(String expr) throws Exception {
         int ptr = 0;
@@ -111,10 +115,24 @@ public class BusquedaPorExpresion {
         return root;
     }
 
+    /**
+     * Método que convierte un String en un String[]
+     *
+     * @param words El String a convertir
+     * @return Un String[] donde ha separado la words por " "
+     */
     private String[] getWords(String words) {
         return words.split(" ");
     }
 
+    /**
+     * Método que encuentra la posición del símbolo que cierra
+     *
+     * @param expr La expresión booleana
+     * @param c El símbolo
+     * @return La posición del símbolo de la expresión que cierra
+     * @throws Exception Si la expresión está sintácticamente incorrecta
+     */
     private int findNext(String expr, char c) throws Exception {
         int nextPtr = 0;
         char match = Matches.match(c);
@@ -138,6 +156,13 @@ public class BusquedaPorExpresion {
         return nextPtr;
     }
 
+    /**
+     * Método que encuentra la posición del símbolo que cierra
+     *
+     * @param expr La expresión booleana
+     * @param c El símbolo
+     * @return La posición del símbolo de la expresión que cierra
+     */
     private int findNextOrEnd(String expr, char c) {
         try {
             int nextPtr = findNext(expr, c);
@@ -167,10 +192,10 @@ public class BusquedaPorExpresion {
     }
 
     /**
-     * Metodo que buscar documentos que cumple la expresión
+     * Método que buscar documentos que cumple la expresión
      * 
-     * @param bTree  La expresion parseada a un BinaryTree
-     * @param indice Indice por el que buscar documentos
+     * @param bTree    La expresión parseada a un BinaryTree
+     * @param indice   Índice por el que buscar documentos
      * @return Conjunto de documentos que cumple la expresión
      * @throws Exception
      */
@@ -185,30 +210,27 @@ public class BusquedaPorExpresion {
                 OPERATOR op = (OPERATOR) nodeVal.val;
                 switch (op) {
                     case AND: {
-                        // We return the documents that fulfill both conditions
                         TreeMap<Autor, HashSet<Titulo>> hm1 = buscarRec(bTree.left, indice);
                         return buscarRec(bTree.right, hm1);
                     }
                     case OR: {
-                        // We return the documents that fulfill one of the conditions
                         TreeMap<Autor, HashSet<Titulo>> copy = new TreeMap<Autor, HashSet<Titulo>>(indice);
                         TreeMap<Autor, HashSet<Titulo>> hm1 = buscarRec(bTree.left, indice);
-                        // We remove the author title pairs that have already been found
+
                         hm1.forEach((a, sT) -> copy.merge(a, sT, (sT1, sT2) -> sT1.removeAll(sT2) ? sT1 : sT1));
-                        // We remove the authors that have no documents that we are keeping
+
                         copy.entrySet().removeIf(e -> e.getValue().isEmpty());
                         TreeMap<Autor, HashSet<Titulo>> hm2 = buscarRec(bTree.right, copy);
-                        // We add both searches
+
                         hm2.forEach((k, v) -> hm1.merge(k, v, (v1, v2) -> v1.addAll(v2) ? v1 : v1));
                         return hm1;
                     }
                     case NOT: {
-                        // We return the documents that do not fulfill the condition
                         TreeMap<Autor, HashSet<Titulo>> unwanted = buscarRec(bTree.left, indice);
                         TreeMap<Autor, HashSet<Titulo>> copy = new TreeMap<Autor, HashSet<Titulo>>(indice);
-                        // We remove the author title pairs that have already been found
+
                         unwanted.forEach((a, sT) -> copy.merge(a, sT, (sT1, sT2) -> sT1.removeAll(sT2) ? sT1 : sT1));
-                        // We remove the authors that have no documents that we are keeping
+
                         copy.entrySet().removeIf(e -> e.getValue().isEmpty());
                         return copy;
                     }
@@ -219,7 +241,7 @@ public class BusquedaPorExpresion {
             case CONTAIN: {
                 String[] wordArray = (String[]) nodeVal.val;
                 ArrayList<String> words = new ArrayList<String>(Arrays.asList(wordArray));
-                // we filter out the documents that don't contain the words specified
+
                 return new TreeMap<Autor, HashSet<Titulo>>(indice.entrySet().stream()
                         .filter(a -> !a.getValue().stream()
                                 .filter(t -> words.stream()
@@ -230,7 +252,7 @@ public class BusquedaPorExpresion {
             }
             case MATCH: {
                 String toMatch = (String) nodeVal.val;
-                // we filter out the documents that don't contain the string specified
+
                 return new TreeMap<Autor, HashSet<Titulo>>(indice.entrySet().stream()
                         .filter(a_sT -> !a_sT.getValue().stream()
                                 .filter(t -> libreria.tieneString(new DocumentHeader(a_sT.getKey(), t), toMatch))

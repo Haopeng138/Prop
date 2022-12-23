@@ -28,7 +28,7 @@ public class Driver_Documento {
                     break;
                 case 1:
                     String autor,titulo,contenido;
-                    System.out.println(" Introduce autor , titulo y contenido del documento ");
+                    System.out.println(" Introduce autor, titulo y contenido del documento ");
                     System.out.println("Autor:");
                     autor = scan.nextLine();
                     System.out.println("Titulo:");

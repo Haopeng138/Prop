@@ -5,7 +5,6 @@
 package Interficie.vistas.Items;
 
 import Interficie.vistas.FramePrincipal;
-import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 public class PanelInfoAlia extends javax.swing.JPanel {
@@ -62,11 +61,6 @@ public class PanelInfoAlia extends javax.swing.JPanel {
 
         expresionName.setColumns(20);
         expresionName.setRows(5);
-        expresionName.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                expresionNameKeyPressed(evt);
-            }
-        });
         jScrollPane1.setViewportView(expresionName);
 
         aliaName.setEditable(false);
@@ -158,13 +152,6 @@ public class PanelInfoAlia extends javax.swing.JPanel {
         }
         
     }//GEN-LAST:event_ButtonModificarActionPerformed
-
-    private void expresionNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_expresionNameKeyPressed
-        // TODO add your handling code here:
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            ButtonModificar.doClick();
-        }
-    }//GEN-LAST:event_expresionNameKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

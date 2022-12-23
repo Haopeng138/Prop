@@ -42,7 +42,7 @@ public class ItemTitulo extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         ButtonVer = new javax.swing.JButton();
 
-        jLabel1.setText("Título:");
+        jLabel1.setText("Titulo:");
 
         jLabel2.setText("jLabel2");
 
@@ -68,8 +68,8 @@ public class ItemTitulo extends javax.swing.JPanel {
                 .addGap(29, 29, 29)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ButtonVer)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
@@ -98,7 +98,6 @@ public class ItemTitulo extends javax.swing.JPanel {
        
         if (titulos.size() == 1) framePrincipal.reload("prefijo");
         this.setVisible(false);
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void ButtonVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonVerActionPerformed

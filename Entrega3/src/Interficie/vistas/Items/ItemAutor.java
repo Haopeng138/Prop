@@ -7,6 +7,7 @@ package Interficie.vistas.Items;
 import Interficie.vistas.FramePrincipal;
 import Interficie.vistas.VentanaSecundaria.VentTitulos;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  *
@@ -25,7 +26,6 @@ public class ItemAutor extends javax.swing.JPanel {
         initComponents();
         NombreAutor.setText(Autor);
         this.framePrincipal = framePrincipal;
-        this.titulosframe = null;
     }
     
     /**
@@ -60,7 +60,7 @@ public class ItemAutor extends javax.swing.JPanel {
                 .addGap(19, 19, 19)
                 .addComponent(AutorLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(NombreAutor, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                .addComponent(NombreAutor, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ButtonVerObras)
                 .addContainerGap())
@@ -84,13 +84,12 @@ public class ItemAutor extends javax.swing.JPanel {
         // TODO add your handling code here:
         ArrayList<String> titulos = framePrincipal.getTitulos(NombreAutor.getText());
         
-            
+        if (titulosframe == null ){
             titulosframe = new VentTitulos(this.framePrincipal,NombreAutor.getText(),titulos);
             titulosframe.setVisible(true);
             //Center the frame
             titulosframe.setLocationRelativeTo(null);
-            
-        
+        }
         
         
     }//GEN-LAST:event_ButtonVerObrasActionPerformed
@@ -102,7 +101,6 @@ public class ItemAutor extends javax.swing.JPanel {
             titulosframe = null;
         }
     }
-
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

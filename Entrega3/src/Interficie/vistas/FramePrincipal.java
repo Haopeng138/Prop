@@ -525,20 +525,34 @@ public class FramePrincipal extends javax.swing.JFrame {
     private void CargarDocActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_CargarDocActionPerformed
 
         JFileChooser fileChooser = new JFileChooser();
+
         fileChooser.setAcceptAllFileFilterUsed(false);
+
         FileNameExtensionFilter restrict = new FileNameExtensionFilter(".txt files", "txt");
+
         FileNameExtensionFilter restrict2 = new FileNameExtensionFilter(" .xml files", "xml");
+
         fileChooser.setFileFilter(restrict);
+
         fileChooser.setFileFilter(restrict2); 
+
         int returnValue = fileChooser.showOpenDialog(null);
+
         if (returnValue == JFileChooser.APPROVE_OPTION) {
+
             File selectedFile = fileChooser.getSelectedFile();
-            try {
+
+            try{
+
                 ctrlInterficie.createDocumento(selectedFile);
-            } catch (Exception e) {
+
+            }catch (Exception e){
+
+                if(e.getMessage().equals("No se ha creado")){
+                    JOptionPane.showMessageDialog(null,"No se ha cargado el documento,");
+                }
                 e.printStackTrace();
             }
-
             System.out.print(selectedFile.toString());
         }
     }                                         

@@ -274,12 +274,10 @@ public class ListarPorExpresion extends javax.swing.JPanel {
                         } else {
                             JOptionPane.showMessageDialog(null, "Error no clasificado");
                         }
-
                     }
                 }else{
                     JOptionPane.showMessageDialog(null, "Introduce alia y expresion");
                 }
-
             }
             else{
                 alia = AliasExist.getSelectedItem().toString();

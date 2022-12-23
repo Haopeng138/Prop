@@ -61,17 +61,43 @@ public class ControladorInterficie {
     }
     
     public void createDocumento(File documento) throws Exception {
-        System.out.println(getExtension(documento.toString()));
-        ctrl_dominio.createDocumento(documento);
-        String[] tmp;
 
-        if(getExtension(documento.toString()).equals("txt")){
-            tmp = getAutorTituloFromTxt(documento);
-        }else {
-            tmp = getAutorTituloFromXML(documento);
+        System.out.println(getExtension(documento.toString()));
+
+        boolean create = false;
+
+        try{
+
+            ctrl_dominio.createDocumento(documento);
+
+            create = true;
+
+        }catch(Exception e){
+
+            
         }
-        this.framePrincipal.cargarDocument(tmp[0],tmp[1]);
-        doc_size++;
+
+        if(create){
+
+            String[] tmp;
+
+            if(getExtension(documento.toString()).equals("txt")){
+
+                tmp = getAutorTituloFromTxt(documento);
+
+            }else {
+
+                tmp = getAutorTituloFromXML(documento);
+
+            }
+
+            this.framePrincipal.cargarDocument(tmp[0],tmp[1]);
+
+        }else{
+
+            throw new Exception("No se ha creado");
+
+        }
     }
 
     public ArrayList<String[]> getAllDocs() {

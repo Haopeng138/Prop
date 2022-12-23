@@ -170,7 +170,6 @@ public class VentSelectFormato extends javax.swing.JFrame {
         fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         int returnValue = fileChooser.showOpenDialog(null);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
-            // TODO: Hacer logica de insert aqui
             path.setText(fileChooser.getSelectedFile().toString());
         }
     }//GEN-LAST:event_ButtonBrowseActionPerformed
