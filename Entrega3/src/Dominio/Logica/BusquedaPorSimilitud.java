@@ -22,16 +22,18 @@ public class BusquedaPorSimilitud {
         TreeMap<Autor, HashSet<Titulo>> index = libreria.getIdx();
         ArrayList<Similitud> res = new ArrayList<Similitud>();
         index.forEach((a, sT) -> sT.forEach(t -> {
-            DocumentHeader toCompare = new DocumentHeader(a, t);
-            double similitud = libreria.computeSimilarity(header, toCompare);
-            res.add(new Similitud(toCompare, similitud));
+            if (!a.getName().equals(header.getAutor().getName()) && !(t.getName().equals(header.getTitulo().getName()))) {
+                DocumentHeader toCompare = new DocumentHeader(a, t);
+                double similitud = libreria.computeSimilarity(header, toCompare);
+                res.add(new Similitud(toCompare, similitud));
+            }
         }));
 
         Collections.sort(res, (h1, h2) -> -Double.compare(h1.similitud, h2.similitud));
 
         ArrayList<DocumentHeader> resultado = new ArrayList<DocumentHeader>();
 
-        for (int i = 1; i < K + 1 && i < res.size(); i++) {
+        for (int i = 0; i < K && i < res.size(); i++) {
             resultado.add(res.get(i).header);
         }
 

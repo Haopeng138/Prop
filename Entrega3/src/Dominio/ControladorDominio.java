@@ -70,39 +70,39 @@ public class ControladorDominio {
         }
     }
 
-    public ArrayList<String[]> getAllDocuments(){
+    public ArrayList<String[]> getAllDocuments() {
         DocumentHeader[] documentHeaders = libreria.getDocumentHeaders();
-        ArrayList<DocumentHeader> headers = new ArrayList<> (Arrays.asList(documentHeaders));
+        ArrayList<DocumentHeader> headers = new ArrayList<>(Arrays.asList(documentHeaders));
         return buildAgnosticHeaders(headers);
     }
 
-    public ArrayList<String[]> getAllExpresions(){
-        HashMap<String,Expresion> expresiones = cExpresiones.getExpresiones();
+    public ArrayList<String[]> getAllExpresions() {
+        HashMap<String, Expresion> expresiones = cExpresiones.getExpresiones();
         ArrayList<String[]> expresions = new ArrayList<>();
         for (String i : expresiones.keySet()) {
             String alia = i;
             String expresion = expresiones.get(i).getExpresion();
-            String[] aliaexp = {alia,expresion};
+            String[] aliaexp = { alia, expresion };
             expresions.add(aliaexp);
         }
         return expresions;
     }
-
-
 
     //// PUNTO 1
 
     /**
      * @param documento El documento a importar
      */
-    public void createDocumento(File documento) {
+    public String[] createDocumento(File documento) {
         Documento doc;
         try {
             doc = IOHelper.create(documento);
             createDocumento(doc.getAutor(), doc.getTitulo(), doc.getContenido());
+            return new String[] { doc.getAutor(), doc.getTitulo() };
         } catch (Exception e) {
             System.out.println("Error importing Document");
             e.printStackTrace();
+            return null;
         }
     }
 
@@ -136,11 +136,12 @@ public class ControladorDominio {
 
     public void exportTxt(String autor, String titulo, File path) {
         Documento doc = libreria.getDocumento(autor, titulo);
-        exportDocumento(doc, path, titulo+".txt");
+        exportDocumento(doc, path, titulo + ".txt");
     }
+
     public void exportXml(String autor, String titulo, File path) {
         Documento doc = libreria.getDocumento(autor, titulo);
-        exportDocumento(doc, path, titulo+".xml");
+        exportDocumento(doc, path, titulo + ".xml");
     }
 
     /**
@@ -159,7 +160,7 @@ public class ControladorDominio {
     ////
 
     //// PUNTO 2
-    
+
     /**
      * @param a El nombre de un autor
      * @return Listado de titulos del autor
@@ -196,6 +197,9 @@ public class ControladorDominio {
      * @return un conjunto de documentos
      */
     public ArrayList<String[]> busquedaPorSimilitud(String a, String t, int k) {
+        if (libreria.getDocumento(a, t) == null) {
+            return null;
+        }
         ArrayList<DocumentHeader> headers = ControladorBusqueda.buscarPorSimilitud(new DocumentHeader(a, t), k,
                 libreria);
         return buildAgnosticHeaders(headers);
@@ -205,7 +209,7 @@ public class ControladorDominio {
      * @param alias Alias de una expresión
      * @return un conjunto de documentos
      */
-    public ArrayList<String[]> busquedaPorExpresion(String alias){
+    public ArrayList<String[]> busquedaPorExpresion(String alias) {
         try {
             ArrayList<DocumentHeader> headers = ControladorBusqueda.buscarPorExpresion(cExpresiones.getAsString(alias),
                     libreria);
