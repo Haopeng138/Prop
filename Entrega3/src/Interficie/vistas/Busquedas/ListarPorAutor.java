@@ -152,13 +152,14 @@ public class ListarPorAutor extends javax.swing.JPanel {
             
         }
         else {
-            firstSearch = false;
+            
             ArrayList<String> titulos = framePrincipal.getTitulos(autor);
             if (titulos == null) {
                 framePrincipal.closePanelItems();
                 JOptionPane.showMessageDialog(null, "No existe este autor");
             }
             else {
+                firstSearch = false;
                 if("tamaño descendente".equals(criterioOrdenar.getSelectedItem().toString())){
                 titulos = framePrincipal.ordenaDecreContent(autor);
                 }
