@@ -224,13 +224,17 @@ public class FramePrincipal extends javax.swing.JFrame {
     public void contentlist(String autor, String titulo) {
         PanelItems.removeAll();
         String content = getContenidoPorAutorTitulo(autor, titulo);
-        JPanel tmpPanel = new JPanel();
-        tmpPanel.setLayout(new BoxLayout(tmpPanel, BoxLayout.Y_AXIS));
-        tmpPanel.add(new ItemContenido(this, content));
-        JScrollPane pane = new JScrollPane(tmpPanel);
-        PanelItems.add(pane);
-        PanelItems.setVisible(true);
-        SwingUtilities.updateComponentTreeUI(this);
+        if (content != null) {
+            JPanel tmpPanel = new JPanel();
+            tmpPanel.setLayout(new BoxLayout(tmpPanel, BoxLayout.Y_AXIS));
+            tmpPanel.add(new ItemContenido(this, content));
+            JScrollPane pane = new JScrollPane(tmpPanel);
+            PanelItems.add(pane);
+            PanelItems.setVisible(true);
+            SwingUtilities.updateComponentTreeUI(this);
+        } else {
+            JOptionPane.showMessageDialog(null, "No existe el documento buscado!");
+        }
     }
 
     public void titlelist(ArrayList<String> titles, String autor) {
@@ -806,7 +810,7 @@ public class FramePrincipal extends javax.swing.JFrame {
                 docsOrdenats = documents;
             documentlist(docsOrdenats);
         } else {
-            JOptionPane.showMessageDialog(null, "No se ha encontrado documentos,revisa la expresion");
+            JOptionPane.showMessageDialog(null, "No existe el documento!");
         }
     }
 
