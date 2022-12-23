@@ -164,7 +164,7 @@ public class ListarPorAutor extends javax.swing.JPanel {
     private void criterioOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criterioOrdenarActionPerformed
         // TODO add your handling code here:
         String autor = NombreAutor.getText();
-        ArrayList<String> titulos = new ArrayList<> ();
+        ArrayList<String> titulos = framePrincipal.getTitulos(autor);
         if (titulos == null) JOptionPane.showMessageDialog(null, "No existe este autor");
         else {
             criterioSelect = criterioOrdenar.getSelectedItem().toString();
