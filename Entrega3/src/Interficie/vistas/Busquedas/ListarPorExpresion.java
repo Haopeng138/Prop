@@ -10,6 +10,7 @@ import Interficie.vistas.FramePrincipal;
 
 import javax.swing.*;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 public class ListarPorExpresion extends javax.swing.JPanel {
@@ -35,6 +36,7 @@ public class ListarPorExpresion extends javax.swing.JPanel {
     }
     private boolean firstA = true;
     private boolean firstE = true;
+    private boolean firstSearch = true;
 
     public String getExpresion(){
         return Expresion.getText();
@@ -94,12 +96,22 @@ public class ListarPorExpresion extends javax.swing.JPanel {
                 ExpresionMousePressed(evt);
             }
         });
+        Expresion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                ExpresionKeyPressed(evt);
+            }
+        });
 
         NombreAlia.setForeground(new java.awt.Color(102, 102, 102));
         NombreAlia.setText("Introduce una alia");
         NombreAlia.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 NombreAliaMousePressed(evt);
+            }
+        });
+        NombreAlia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                NombreAliaKeyPressed(evt);
             }
         });
 
@@ -122,6 +134,11 @@ public class ListarPorExpresion extends javax.swing.JPanel {
         tipoOrdenacion.setText("Ordenar por:");
 
         criterioOrdenar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "autor A-Z", "título A-Z" }));
+        criterioOrdenar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                criterioOrdenarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -250,6 +267,7 @@ public class ListarPorExpresion extends javax.swing.JPanel {
                 alia = NombreAlia.getText();
                 try {
                     this.framePrincipal.addExpresion(alia, expresion);
+                    firstSearch = false;
                     System.out.println(alia);
                     this.framePrincipal.buscarPorAlia(alia);
                 } catch (Exception e) {
@@ -272,6 +290,24 @@ public class ListarPorExpresion extends javax.swing.JPanel {
 
 
     }//GEN-LAST:event_ButtonBuscarActionPerformed
+
+    private void NombreAliaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NombreAliaKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            ButtonBuscar.doClick();
+        }
+    }//GEN-LAST:event_NombreAliaKeyPressed
+
+    private void ExpresionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ExpresionKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            ButtonBuscar.doClick();
+        }
+    }//GEN-LAST:event_ExpresionKeyPressed
+
+    private void criterioOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criterioOrdenarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_criterioOrdenarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

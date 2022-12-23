@@ -157,17 +157,21 @@ public class VentAñadirAliaPrin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Introduce una alia!!!");
         }
         else {
+            boolean create = false;
              try {
+                 create = framePrincipal.añadirAlia(jTextField1.getText(),jTextArea1.getText());
                  
-                 if (framePrincipal.añadirAlia(jTextField1.getText(),jTextArea1.getText())) {
-                     this.dispose();
-                     framePrincipal.closeAñadirAlia();
-                 }
-                 else {
-                     JOptionPane.showMessageDialog(null, "Alia ya existe!!!");
-                 }} catch (Exception ex) {
+             } catch (Exception ex) {
+                 create = false;
                  Logger.getLogger(VentAñadirAliaPrin.class.getName()).log(Level.SEVERE, null, ex);
              }
+             
+               if (create) {
+                     this.dispose();
+                     framePrincipal.closeAñadirAlia();
+               }
+               else JOptionPane.showMessageDialog(null, "Alia ya existe!!!");
+  
              
         }
 

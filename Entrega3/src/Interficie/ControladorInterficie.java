@@ -97,6 +97,7 @@ public class ControladorInterficie {
 
     public void removeDocument(String autor,String titulo){
         ctrl_dominio.removeDocumento(autor, titulo);
+        doc_size--;
     }
     
     public void modifyDocument(String autor,String titulo,String contenido){
@@ -167,4 +168,9 @@ public class ControladorInterficie {
     public void exportXml(String autor,String titulo,File path){
         ctrl_dominio.exportXml(autor, titulo, path);
     }
+    
+    
+    
+    
+    
 }

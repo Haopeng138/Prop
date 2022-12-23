@@ -768,9 +768,11 @@ public class FramePrincipal extends javax.swing.JFrame {
             if (aut.toString().equals(docHeader)) doc = aut;
         }
         docs.remove(doc);
+        
         removeDocumento(autor, titulo);
         if (docs.getChildCount() == 0)
             root.remove(docs);
+        
 
         modelo.reload();
     }
@@ -853,7 +855,13 @@ public class FramePrincipal extends javax.swing.JFrame {
     }
 
     public void addExpresion(String alia, String expresion) throws Exception {
-        ctrlInterficie.addExpresion(alia, expresion);
+        try {
+            ctrlInterficie.addExpresion(alia, expresion);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Expresión booleana incorrecta");
+            throw new Exception("Expresion incorrecta");
+        }
+        
     }
 
     public ArrayList<String> buscarPorPrefijo(String prefijo) {
