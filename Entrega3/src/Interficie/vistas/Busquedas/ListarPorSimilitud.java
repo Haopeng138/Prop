@@ -275,7 +275,7 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
         if (NombreAutor.getText().equals("Introduce un nombre de autor") || "".equals(NombreAutor.getText())) {
             error += "No se ha introducido autor \n";
         }
-        if (Titulo.getText().equals("Introduce un titulo") || "".equals(Titulo.getText())) {
+        if (Titulo.getText().equals("Introduce un tÍtulo") || "".equals(Titulo.getText())) {
             error += "No se ha introducido titulo \n";
         }
         if(NumeroK.getText().equals("Introduce un número")
