@@ -6,6 +6,7 @@ package Interficie.vistas.Busquedas;
 
 import Interficie.vistas.FramePrincipal;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 public class ListarPorAutorYTitulo extends javax.swing.JPanel {
     private final FramePrincipal framePrincipal;
@@ -124,7 +125,12 @@ public class ListarPorAutorYTitulo extends javax.swing.JPanel {
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
        
-        
+        if ("".equals(NombreAutor.getText())) {
+            NombreAutor.setText("Introduce un autor");
+            NombreAutor.setForeground(new Color(102, 102, 102));
+            firstA = true;
+            NombreAutor.setEnabled(false);
+        }
         
         if ("".equals(Titulo.getText())) {
             Titulo.setText("Introduce un título");
@@ -146,8 +152,19 @@ public class ListarPorAutorYTitulo extends javax.swing.JPanel {
 
     private void ButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBuscarActionPerformed
         // TODO add your handling code here:
-        String contenido = "Un contenido";
-        framePrincipal.contentlist(contenido);
+        String autor = NombreAutor.getText();
+        String titulo = Titulo.getText();
+        if ("".equals(NombreAutor.getText()) && "".equals(Titulo.getText())) {
+            JOptionPane.showMessageDialog(null, "Introduce un autor!!!\nIntroduce un título!!!");
+        }
+        else if ("".equals(NombreAutor.getText())) {
+            JOptionPane.showMessageDialog(null, "Introduce un autor!!!");
+        }
+        
+        else if ("".equals(Titulo.getText())) {
+            JOptionPane.showMessageDialog(null, "Introduce un título!!!");
+        }
+        else framePrincipal.contentlist(autor, titulo);
         
     }//GEN-LAST:event_ButtonBuscarActionPerformed
 

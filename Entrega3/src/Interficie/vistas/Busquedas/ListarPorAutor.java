@@ -6,8 +6,10 @@ package Interficie.vistas.Busquedas;
 
 import Interficie.vistas.FramePrincipal;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import javax.swing.JOptionPane;
 
 public class ListarPorAutor extends javax.swing.JPanel {
@@ -16,6 +18,8 @@ public class ListarPorAutor extends javax.swing.JPanel {
      * Creates new form ListarAutor
      * @param framePrincipal
      */
+    
+    
     public ListarPorAutor(FramePrincipal framePrincipal) {
         initComponents();
         this.framePrincipal = framePrincipal;
@@ -62,10 +66,25 @@ public class ListarPorAutor extends javax.swing.JPanel {
                 NombreAutorMousePressed(evt);
             }
         });
+        NombreAutor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NombreAutorActionPerformed(evt);
+            }
+        });
+        NombreAutor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                NombreAutorKeyPressed(evt);
+            }
+        });
 
         tipoOrdenacion.setText("Ordenar por:");
 
         criterioOrdenar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "título A-Z", "tamaño descendente" }));
+        criterioOrdenar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                criterioOrdenarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -129,15 +148,44 @@ public class ListarPorAutor extends javax.swing.JPanel {
     private void ButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBuscarActionPerformed
         // TODO change titles  arrays
         String autor = NombreAutor.getText();
+       
         if ("".equals(autor) || "Introduce un nombre de autor".equals(autor)) JOptionPane.showMessageDialog(null, "Introduce un nombre de autor!!!");
         else {
             ArrayList<String> titulos = framePrincipal.getTitulos(autor);
-            System.out.println(titulos);
             if (titulos == null) JOptionPane.showMessageDialog(null, "No existe este autor");
-            else framePrincipal.titlelist(titulos, autor);
+            else {
+                Collections.sort(titulos);
+                framePrincipal.titlelist(titulos, autor);
+            }
         }
         
     }//GEN-LAST:event_ButtonBuscarActionPerformed
+
+    private void criterioOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criterioOrdenarActionPerformed
+        // TODO add your handling code here:
+        String autor = NombreAutor.getText();
+        ArrayList<String> titulos = new ArrayList<> ();
+        if("tamaño descendente".equals(criterioOrdenar.getSelectedItem().toString())){
+            titulos = framePrincipal.ordenaDecreContent(autor);
+        }
+        else {
+            titulos = framePrincipal.getTitulos(autor);
+            Collections.sort(titulos);
+        }
+        if (titulos == null) JOptionPane.showMessageDialog(null, "No existe este autor");
+        else framePrincipal.titlelist(titulos, autor);
+    }//GEN-LAST:event_criterioOrdenarActionPerformed
+
+    private void NombreAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreAutorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NombreAutorActionPerformed
+
+    private void NombreAutorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NombreAutorKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            ButtonBuscar.doClick();
+        }
+    }//GEN-LAST:event_NombreAutorKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

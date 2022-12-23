@@ -6,6 +6,7 @@ package Interficie.vistas.Items;
 
 import Interficie.vistas.FramePrincipal;
 import Interficie.vistas.VentanaSecundaria.VentInfoDoc;
+import java.util.ArrayList;
 
 /**
  *
@@ -18,9 +19,11 @@ public class ItemTitulo extends javax.swing.JPanel {
      * @param framePrincipal
      * @param titulo
      */
-    public ItemTitulo(FramePrincipal framePrincipal,String titulo) {
+    private String autor;
+    public ItemTitulo(FramePrincipal framePrincipal,String titulo, String autor) {
         
         initComponents();
+        this.autor = autor;
         jLabel2.setText(titulo);
         this.framePrincipal = framePrincipal;
     }
@@ -87,14 +90,16 @@ public class ItemTitulo extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String autor = framePrincipal.getAutorList();
+        ArrayList<String> titulos = framePrincipal.getTitulos(autor);
         framePrincipal.eliminarDoc(jLabel2.getText(), autor);
+       
+        if (titulos.size() == 1) framePrincipal.reload();
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void ButtonVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonVerActionPerformed
         // TODO add your handling code here:
-        String autor = framePrincipal.getAutorList();
+        
         VentInfoDoc infoDoc = new VentInfoDoc(this.framePrincipal, autor,jLabel2.getText());
         infoDoc.setVisible(true);
         //Center the frame

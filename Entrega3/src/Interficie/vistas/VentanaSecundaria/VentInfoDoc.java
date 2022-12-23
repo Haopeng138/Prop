@@ -7,6 +7,7 @@ package Interficie.vistas.VentanaSecundaria;
 import Interficie.vistas.FramePrincipal;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
 /**
@@ -58,7 +59,6 @@ public class VentInfoDoc extends javax.swing.JFrame {
         ButtonSalir = new javax.swing.JButton();
         ButtonGuardar = new javax.swing.JButton();
         ButtonExportar = new javax.swing.JButton();
-        ButtonEliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -97,13 +97,6 @@ public class VentInfoDoc extends javax.swing.JFrame {
             }
         });
 
-        ButtonEliminar.setText("Eliminar");
-        ButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonEliminarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -122,9 +115,7 @@ public class VentInfoDoc extends javax.swing.JFrame {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
                             .addComponent(Titulo, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(ButtonEliminar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(ButtonExportar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(ButtonGuardar)
@@ -151,8 +142,7 @@ public class VentInfoDoc extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(ButtonExportar)
                             .addComponent(ButtonGuardar)
-                            .addComponent(ButtonSalir)
-                            .addComponent(ButtonEliminar))
+                            .addComponent(ButtonSalir))
                         .addGap(12, 12, 12))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
@@ -176,13 +166,6 @@ public class VentInfoDoc extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_ButtonSalirActionPerformed
 
-    private void ButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonEliminarActionPerformed
-        // TODO add your handling code here:
-        String autor = NombreAutor.getText();
-        String titulo = Titulo.getText();
-        this.framePrincipal.removeDocument(autor, titulo);
-    }//GEN-LAST:event_ButtonEliminarActionPerformed
-
     private void ButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonGuardarActionPerformed
         // TODO add your handling code here:
         String content = Content.getText();
@@ -191,13 +174,12 @@ public class VentInfoDoc extends javax.swing.JFrame {
             String titulo = Titulo.getText();
             this.framePrincipal.modifyDocument(autor,titulo,content);
         }else{
-            //TODO: same content logic
+            JOptionPane.showMessageDialog(null, "No has cambiado el contenido!!!");
         }
     }//GEN-LAST:event_ButtonGuardarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ButtonEliminar;
     private javax.swing.JButton ButtonExportar;
     private javax.swing.JButton ButtonGuardar;
     private javax.swing.JButton ButtonSalir;
