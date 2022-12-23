@@ -125,9 +125,13 @@ public class IOHelper {
     private static void exportToXML(Documento doc, File path, String name) throws IOException {
         File file = new File(path, name);
         try (FileWriter myWriter = new FileWriter(file)) {
+            myWriter.write("<?xml version=\"1.0\"?>" + '\n');
+            myWriter.write("<Documento>" + '\n');
             myWriter.write("<Autor>" + doc.getAutor() + "</Autor>" + '\n');
             myWriter.write("<Titulo>" + doc.getTitulo() + "<Titulo>" + '\n');
-            myWriter.write("<Contenido>" + doc.getContenido() + "<Contenido>");
+            myWriter.write("<Contenido>" + doc.getContenido() + "<Contenido>"+'\n');
+            myWriter.write("</Documento>");
         }
+
     }
 }

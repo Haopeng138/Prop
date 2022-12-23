@@ -5,7 +5,7 @@
 package Interficie.vistas.Busquedas;
 
 
-import Interficie.vistas.VentanaSecundaria.VentAñadirAliaExpre;
+
 import Interficie.vistas.FramePrincipal;
 
 import javax.swing.*;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class ListarPorExpresion extends javax.swing.JPanel {
      private final FramePrincipal framePrincipal;
-     private VentAñadirAliaExpre ventAñadirAliaExpre;
+  
     /**
      * Creates new form ListarPorExpresion
      * @param framePrincipal
@@ -39,9 +39,7 @@ public class ListarPorExpresion extends javax.swing.JPanel {
     public String getExpresion(){
         return Expresion.getText();
     }
-    public void closeAñadirAliaExpre(){
-        ventAñadirAliaExpre = null;
-    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -58,7 +56,6 @@ public class ListarPorExpresion extends javax.swing.JPanel {
         Expresion = new javax.swing.JTextField();
         NombreAlia = new javax.swing.JTextField();
         TextAlias = new javax.swing.JLabel();
-        ButtonGuardar = new javax.swing.JButton();
         tipoOrdenacion = new javax.swing.JLabel();
         criterioOrdenar = new javax.swing.JComboBox<>();
 
@@ -105,20 +102,6 @@ public class ListarPorExpresion extends javax.swing.JPanel {
 
         TextAlias.setText("Busca una alia existente:");
 
-        ButtonGuardar.setText("Guardar");
-        ButtonGuardar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        ButtonGuardar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        ButtonGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                ButtonGuardarMousePressed(evt);
-            }
-        });
-        ButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonGuardarActionPerformed(evt);
-            }
-        });
-
         tipoOrdenacion.setText("Ordenar por:");
 
         criterioOrdenar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "autor A-Z", "título A-Z" }));
@@ -142,14 +125,9 @@ public class ListarPorExpresion extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(criterioOrdenar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(ButtonGuardar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(ButtonBuscar)))
                 .addContainerGap())
         );
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {ButtonBuscar, ButtonGuardar});
-
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -165,7 +143,6 @@ public class ListarPorExpresion extends javax.swing.JPanel {
                 .addComponent(Expresion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ButtonGuardar)
                     .addComponent(ButtonBuscar)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(criterioOrdenar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -174,8 +151,6 @@ public class ListarPorExpresion extends javax.swing.JPanel {
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {AliasExist, Expresion, NombreAlia});
-
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {ButtonBuscar, ButtonGuardar});
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {criterioOrdenar, tipoOrdenacion});
 
@@ -225,18 +200,6 @@ public class ListarPorExpresion extends javax.swing.JPanel {
         
     }//GEN-LAST:event_formMousePressed
 
-    private void ButtonGuardarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonGuardarMousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ButtonGuardarMousePressed
-
-    private void ButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonGuardarActionPerformed
-        // TODO add your handling code here:
-        ventAñadirAliaExpre = new VentAñadirAliaExpre(this.framePrincipal,this); 
-        ventAñadirAliaExpre.setVisible(true);
-        ventAñadirAliaExpre.setLocationRelativeTo(null);
-        
-    }//GEN-LAST:event_ButtonGuardarActionPerformed
-
     private void ButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBuscarActionPerformed
         // TODO add your handling code here:
         String alia=null;
@@ -277,7 +240,6 @@ public class ListarPorExpresion extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> AliasExist;
     private javax.swing.JButton ButtonBuscar;
-    private javax.swing.JButton ButtonGuardar;
     private javax.swing.JTextField Expresion;
     private javax.swing.JTextField NombreAlia;
     private javax.swing.JLabel TextAlias;
