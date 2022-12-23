@@ -789,7 +789,6 @@ public class FramePrincipal extends javax.swing.JFrame {
 
     public void buscarPorAlia(String alia) {
         ArrayList<String[]> documents = ctrlInterficie.busquedaPorExpresion(alia);
-        JOptionPane.showMessageDialog(null, "No se ha encontrado documentos,revisa la expresion");
         if (documents != null) {
             documentlist(documents);
         } else {
