@@ -64,7 +64,6 @@ public class FramePrincipal extends javax.swing.JFrame {
 
             }
         });
-
         initComponents();
     }
     
@@ -126,7 +125,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         return autOrdenado;
     }
 
-    public ArrayList<String[]> ordenaSimilitudAutor(ArrayList<String[]> documents) {
+    public ArrayList<String[]> ordenaPorAutor(ArrayList<String[]> documents) {
         HashMap<String,String> autTit = new LinkedHashMap<>();
 
         for (int i = 0; i < documents.size(); ++i) {
@@ -146,7 +145,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         return docsOrdenats;
     }
     
-    public ArrayList<String[]> ordenaSimilitudTitulo (ArrayList<String[]> documents) {
+    public ArrayList<String[]> ordenaPorTitulo (ArrayList<String[]> documents) {
         HashMap<String,String> autTit = new HashMap<>();
         LinkedHashMap<String, String> sortedMap = new LinkedHashMap<>();
         ArrayList<String> list = new ArrayList<>();
@@ -249,7 +248,6 @@ public class FramePrincipal extends javax.swing.JFrame {
         PanelItems.add(pane);
         PanelItems.setVisible(true);
         SwingUtilities.updateComponentTreeUI(this);
-        
     }
     
     public String getAutorList() {
@@ -297,14 +295,14 @@ public class FramePrincipal extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         SizeMenu = new javax.swing.JScrollPane();
         SizeMenuBusqueda = new javax.swing.JList<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTree1 = new javax.swing.JTree();
-        etiqSelectBusq = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         PanelBusquedas = new javax.swing.JPanel();
         PanelItems = new javax.swing.JPanel();
         MenuBarPrincipal = new javax.swing.JMenuBar();
@@ -321,16 +319,9 @@ public class FramePrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         SizeMenuBusqueda.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Listar por autor", "Listar por autor y título", "Listar por prefijo",
-                    "Listar por similitud", "Listar por expresión booleana" };
-
-            public int getSize() {
-                return strings.length;
-            }
-
-            public String getElementAt(int i) {
-                return strings[i];
-            }
+            String[] strings = { "Listar por autor", "Listar por autor y título", "Listar por prefijo", "Listar por similitud", "Listar por expresión booleana" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
         });
         SizeMenuBusqueda.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -352,7 +343,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTree1);
 
-        etiqSelectBusq.setText("Selecciona el tipo de búsqueda:");
+        jLabel1.setText("Selecciona el tipo de búsqueda:");
 
         PanelBusquedas.setLayout(new java.awt.CardLayout());
 
@@ -423,46 +414,38 @@ public class FramePrincipal extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jScrollPane1)
-                                        .addComponent(SizeMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 200,
-                                                Short.MAX_VALUE)
-                                        .addComponent(etiqSelectBusq, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(PanelBusquedas, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(PanelItems, javax.swing.GroupLayout.DEFAULT_SIZE, 451,
-                                                Short.MAX_VALUE))
-                                .addContainerGap()));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane1)
+                    .addComponent(SizeMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(PanelBusquedas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(PanelItems, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE))
+                .addContainerGap())
+        );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addGap(28, 28, 28)
-                                                .addComponent(SizeMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 199,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 215,
-                                                        Short.MAX_VALUE))
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(layout.createSequentialGroup()
-                                                                .addContainerGap()
-                                                                .addComponent(etiqSelectBusq))
-                                                        .addComponent(PanelBusquedas,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE, 175,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(PanelItems, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addContainerGap()));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel1))
+                            .addComponent(PanelBusquedas, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(PanelItems, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(SizeMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
 
         pack();
         setLocationRelativeTo(null);
@@ -598,7 +581,6 @@ public class FramePrincipal extends javax.swing.JFrame {
         PanelItems.removeAll();
         PanelInfoDoc infoDoc = new PanelInfoDoc(this);
         PanelInfoAlia infoAlia = new PanelInfoAlia(this);
-        // System.out.print(selected.getUserObject().toString());
         if (selected != null && selected.getChildCount() == 0 && "Documentos".equals(selected.getParent().toString())) {
             docHeader = selected.getUserObject().toString();
             String[] doc = docHeader.split("-");
@@ -606,7 +588,6 @@ public class FramePrincipal extends javax.swing.JFrame {
             String titulo = doc[1];
             System.out.println(autor + " " + titulo);
 
-            
             String contenido = ctrlInterficie.busquedaPorAutorTitulo(autor, titulo);
 
             infoDoc.setText(autor, titulo, contenido);
@@ -817,14 +798,17 @@ public class FramePrincipal extends javax.swing.JFrame {
         ctrlInterficie.updateExpresion(alia, expresion);
     }
 
-    public void buscarPorAlia(String alia) {
+    public void buscarPorAlia(String alia, String criterioSelect) {
         ArrayList<String[]> documents = ctrlInterficie.busquedaPorExpresion(alia);
         if (documents != null) {
-            documentlist(documents);
+            ArrayList<String[]> docsOrdenats = new ArrayList<String[]>();
+            if (criterioSelect == "autor A-Z") {
+                docsOrdenats = ordenaPorAutor(documents);
+            } else docsOrdenats = ordenaPorTitulo(documents);
+            documentlist(docsOrdenats);
         } else {
-            JOptionPane.showMessageDialog(null, "No se ha encontrado documentos,revisa la expresion");
+            JOptionPane.showMessageDialog(null, "No se ha encontrado documentos, revisa la expresión");
         }
-
     }
 
     public void buscarPorSimilitud(String autor, String titulo, int k, String criterioSelect) {
@@ -832,9 +816,9 @@ public class FramePrincipal extends javax.swing.JFrame {
         if (documents != null) {
             ArrayList<String[]> docsOrdenats = new ArrayList<String[]>();
             if (criterioSelect == "autor A-Z") {
-                docsOrdenats = ordenaSimilitudAutor(documents);
+                docsOrdenats = ordenaPorAutor(documents);
             } else if (criterioSelect == "título A-Z") {
-                docsOrdenats = ordenaSimilitudTitulo(documents);
+                docsOrdenats = ordenaPorTitulo(documents);
             } else docsOrdenats = documents;
             documentlist(docsOrdenats);
         } else {
@@ -928,7 +912,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel PanelItems;
     private javax.swing.JScrollPane SizeMenu;
     private javax.swing.JList<String> SizeMenuBusqueda;
-    private javax.swing.JLabel etiqSelectBusq;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTree jTree1;
     // End of variables declaration//GEN-END:variables

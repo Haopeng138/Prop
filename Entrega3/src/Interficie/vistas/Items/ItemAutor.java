@@ -59,9 +59,9 @@ public class ItemAutor extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(AutorLabel)
-                .addGap(18, 18, 18)
-                .addComponent(NombreAutor)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(NombreAutor, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ButtonVerObras)
                 .addContainerGap())
         );
@@ -75,6 +75,9 @@ public class ItemAutor extends javax.swing.JPanel {
                     .addComponent(ButtonVerObras))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {AutorLabel, ButtonVerObras, NombreAutor});
+
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonVerObrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonVerObrasActionPerformed

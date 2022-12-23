@@ -169,7 +169,7 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
 
     }// </editor-fold>//GEN-END:initComponents
 
-                                             
+
 
     private void NombreAutorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NombreAutorMousePressed
         // TODO add your handling code here:
@@ -244,6 +244,7 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
                 ||  Integer.parseInt(NumeroK.getText()) >= this.framePrincipal.getDocSize()){
            error += "No se ha introducido número correctamente \n";
         }
+
         if ("".equals(error)) {
             if (!firstSearch) {
                 autor = NombreAutor.getText();
@@ -277,7 +278,6 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
         if (Titulo.getText().equals("Introduce un titulo") || "".equals(Titulo.getText())) {
             error += "No se ha introducido titulo \n";
         }
-        
         if(NumeroK.getText().equals("Introduce un número")
                 || "".equals(NumeroK.getText())
                 || !verificarK(NumeroK.getText())
@@ -286,12 +286,10 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
            error += "No se ha introducido número correctamente \n";
         }
 
-
         if ("".equals(error)) {
             autor = NombreAutor.getText();
             titulo = Titulo.getText();
             k = Integer.parseInt(NumeroK.getText());
-            firstSearch = false;
             criterioSelect = criterioOrdenar.getSelectedItem().toString();
             framePrincipal.buscarPorSimilitud(autor, titulo, k, criterioSelect);
         } else {
