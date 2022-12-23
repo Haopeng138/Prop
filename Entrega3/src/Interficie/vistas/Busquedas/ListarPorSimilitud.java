@@ -70,6 +70,7 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
             }
         });
 
+        Titulo.setForeground(new java.awt.Color(102, 102, 102));
         Titulo.setText("Introduce un título");
         Titulo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -77,6 +78,7 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
             }
         });
 
+        NumeroK.setForeground(new java.awt.Color(102, 102, 102));
         NumeroK.setText("Introduce un número");
         NumeroK.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -84,6 +86,7 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
             }
         });
 
+        NombreAutor.setForeground(new java.awt.Color(102, 102, 102));
         NombreAutor.setText("Introduce un nombre de autor");
         NombreAutor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {

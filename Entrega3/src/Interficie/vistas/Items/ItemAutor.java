@@ -26,6 +26,7 @@ public class ItemAutor extends javax.swing.JPanel {
         initComponents();
         NombreAutor.setText(Autor);
         this.framePrincipal = framePrincipal;
+        this.titulosframe = null;
     }
     
     /**
@@ -81,12 +82,13 @@ public class ItemAutor extends javax.swing.JPanel {
         // TODO add your handling code here:
         ArrayList<String> titulos = framePrincipal.getTitulos(NombreAutor.getText());
         
-        if (titulosframe == null ){
+            
             titulosframe = new VentTitulos(this.framePrincipal,NombreAutor.getText(),titulos);
             titulosframe.setVisible(true);
             //Center the frame
             titulosframe.setLocationRelativeTo(null);
-        }
+            
+        
         
         
     }//GEN-LAST:event_ButtonVerObrasActionPerformed
@@ -98,6 +100,7 @@ public class ItemAutor extends javax.swing.JPanel {
             titulosframe = null;
         }
     }
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

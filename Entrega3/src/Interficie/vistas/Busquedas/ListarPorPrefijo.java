@@ -15,6 +15,7 @@ public class ListarPorPrefijo extends javax.swing.JPanel {
     private final FramePrincipal framePrincipal;
     private String criterioSelect;
     private boolean first = true;
+    private boolean firstSearch = true;
     /**
      * Creates new form ListarPorTitulo
      * @param framePrincipal
@@ -135,17 +136,21 @@ public class ListarPorPrefijo extends javax.swing.JPanel {
 
     private void criterioOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criterioOrdenarActionPerformed
         // TODO add your handling code here:
-        String prefijo = NombreAutor.getText();
-        if ("".equals(prefijo)) prefijo = "";
-        ArrayList<String> autores = framePrincipal.buscarPorPrefijo(prefijo);
-        if (autores.isEmpty()) JOptionPane.showMessageDialog(null, "No existe ningun autor con este prefijo");
-        else {
-                criterioSelect = criterioOrdenar.getSelectedItem().toString();
-                if("relevancia".equals(criterioSelect)){
-                    autores = framePrincipal.ordenaRelevanciaAutor(prefijo);
+        if (! firstSearch) {
+            String prefijo = NombreAutor.getText();
+            if ("Introduce un prefijo".equals(prefijo)) JOptionPane.showMessageDialog(null, "Introduce un prefijo!!!");
+            else {
+                if ("".equals(prefijo)) prefijo = "";
+                ArrayList<String> autores = framePrincipal.buscarPorPrefijo(prefijo);
+                if (autores.isEmpty()) JOptionPane.showMessageDialog(null, "No existe ningun autor con este prefijo");
+                else {
+                    if("relevancia".equals(criterioOrdenar.getSelectedItem().toString())){
+                        autores = framePrincipal.ordenaRelevanciaAutor(prefijo);
+                    }
+                    else Collections.sort(autores);
+                    framePrincipal.autorlist(autores);
                 }
-                else Collections.sort(autores);
-                framePrincipal.autorlist(autores);
+            }
         }
     }//GEN-LAST:event_criterioOrdenarActionPerformed
      
@@ -161,6 +166,7 @@ public class ListarPorPrefijo extends javax.swing.JPanel {
         framePrincipal.autorlist(autores);
     }
    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonBuscar;
     private javax.swing.JTextField NombreAutor;

@@ -25,6 +25,7 @@ public class ListarPorAutor extends javax.swing.JPanel {
     
     private String criterioSelect;
     private boolean first = true;
+    private boolean firstSearch = true;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -142,10 +143,17 @@ public class ListarPorAutor extends javax.swing.JPanel {
     private void ButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBuscarActionPerformed
         // TODO change titles  arrays
         String autor = NombreAutor.getText();
-        if ("".equals(autor) || "Introduce un nombre de autor".equals(autor)) JOptionPane.showMessageDialog(null, "Introduce un nombre de autor!!!");
+        if ("".equals(autor) || "Introduce un nombre de autor".equals(autor)) {
+            framePrincipal.closePanelItems();
+            JOptionPane.showMessageDialog(null, "Introduce un nombre de autor!!!");
+            firstSearch = true;
+        }
         else {
             ArrayList<String> titulos = framePrincipal.getTitulos(autor);
-            if (titulos == null) JOptionPane.showMessageDialog(null, "No existe este autor");
+            if (titulos == null) {
+                framePrincipal.closePanelItems();
+                JOptionPane.showMessageDialog(null, "No existe este autor");
+            }
             else {
                 criterioSelect = criterioOrdenar.getSelectedItem().toString();
                 if("tamaño descendente".equals(criterioSelect)){
@@ -163,19 +171,25 @@ public class ListarPorAutor extends javax.swing.JPanel {
 
     private void criterioOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criterioOrdenarActionPerformed
         // TODO add your handling code here:
-        String autor = NombreAutor.getText();
-        ArrayList<String> titulos = framePrincipal.getTitulos(autor);
-        if (titulos == null) JOptionPane.showMessageDialog(null, "No existe este autor");
-        else {
-            criterioSelect = criterioOrdenar.getSelectedItem().toString();
-            if("tamaño descendente".equals(criterioSelect)){
-                titulos = framePrincipal.ordenaDecreContent(autor);
+
+        if (! firstSearch && ! ("Introduce un nombre de autor".equals(NombreAutor.getText()) ||"".equals(NombreAutor.getText()))) {
+            String autor = NombreAutor.getText();
+            ArrayList<String> titulos = framePrincipal.getTitulos(autor);
+            if (titulos == null) {
+                framePrincipal.closePanelItems();
+                JOptionPane.showMessageDialog(null, "No existe este autor");
             }
             else {
-                titulos = framePrincipal.getTitulos(autor);
-                Collections.sort(titulos);
+                criterioSelect = criterioOrdenar.getSelectedItem().toString();
+                if("tamaño descendente".equals(criterioSelect)){
+                    titulos = framePrincipal.ordenaDecreContent(autor);
+                }
+                else {
+                    titulos = framePrincipal.getTitulos(autor);
+                    Collections.sort(titulos);
+                }
+                framePrincipal.titlelist(titulos, autor);
             }
-            framePrincipal.titlelist(titulos, autor);
         }
     }//GEN-LAST:event_criterioOrdenarActionPerformed
 
@@ -186,6 +200,9 @@ public class ListarPorAutor extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_NombreAutorKeyPressed
 
+    public void reload() {
+        ButtonBuscar.doClick();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonBuscar;

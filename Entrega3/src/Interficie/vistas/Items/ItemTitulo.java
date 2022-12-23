@@ -93,8 +93,9 @@ public class ItemTitulo extends javax.swing.JPanel {
         ArrayList<String> titulos = framePrincipal.getTitulos(autor);
         framePrincipal.eliminarDoc(jLabel2.getText(), autor);
        
-        if (titulos.size() == 1) framePrincipal.reload();
+        if (titulos.size() == 1) framePrincipal.reload("prefijo");
         this.setVisible(false);
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void ButtonVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonVerActionPerformed
