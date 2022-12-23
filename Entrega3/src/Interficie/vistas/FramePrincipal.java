@@ -32,6 +32,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
@@ -48,7 +49,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     private VentEliminarAliaPrin eliminarAliaPrinFrame;
     private VentModificarAliaPrin modificarAliaPrinFrame;
     private String autorList;
-    private int indexPanel = -1; 
+    private int indexPanel = -1;
     private boolean isPanelAutor = false;
     private boolean isPanelPrefijo = false;
     
@@ -116,7 +117,26 @@ public class FramePrincipal extends javax.swing.JFrame {
         return autOrdenado;
     }
 
+    public ArrayList<String[]> ordenaSimilitudAutor(ArrayList<String[]> documents) {
+        //doc[0] --> doc[0][0] = autor, doc[0][1] = titulo
+        HashMap<String,String> autTit = new LinkedHashMap<>();
 
+        for (int i = 0; i < documents.size(); ++i) {
+            String autor = documents.get(i)[0];
+            String titulo = documents.get(i)[1];
+            autTit.put(autor, titulo);
+        }
+        TreeMap<String, String> sorted = new TreeMap<>();
+        sorted.putAll(autTit);
+
+        ArrayList<String[]> docsOrdenats = new ArrayList<>();
+        for (String autor : sorted.keySet()) {
+            String tit = sorted.get(autor);
+            String[] doc = {autor, tit};
+            docsOrdenats.add(doc);
+        }
+        return docsOrdenats;
+    }
     
     public ArrayList<String> getAlias(){
         ArrayList<String> result = new ArrayList<>();
@@ -353,7 +373,7 @@ public class FramePrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(PanelBusquedas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(PanelItems, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE))
+                    .addComponent(PanelItems, javax.swing.GroupLayout.DEFAULT_SIZE, 451, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -365,8 +385,8 @@ public class FramePrincipal extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(jLabel1))
-                            .addComponent(PanelBusquedas, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(PanelBusquedas, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(PanelItems, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(28, 28, 28)
@@ -721,10 +741,18 @@ public class FramePrincipal extends javax.swing.JFrame {
 
     }
     
-    public void buscarPorSimilitud(String autor,String titulo,int k){
+    public void buscarPorSimilitud(String autor,String titulo,int k, String criterioSelect){
         ArrayList<String[]> documents = ctrlInterficie.busquedaPorSimilitud(autor,titulo,k);
         if(documents != null){
-            documentlist(documents);
+            ArrayList<String[]> docsOrdenats = new ArrayList<String[]> ();
+            if (criterioSelect == "autor A-Z") {
+                docsOrdenats = ordenaSimilitudAutor(documents);
+            }
+            else if (criterioSelect == "título A-Z") {
+                docsOrdenats = ordenaSimilitudTitulo(documents);
+            }
+            else docsOrdenats = documents;
+            documentlist(docsOrdenats);
         }else {
             JOptionPane.showMessageDialog(null, "No se ha encontrado documentos,revisa la expresion");
         }
@@ -780,20 +808,18 @@ public class FramePrincipal extends javax.swing.JFrame {
                 }
                 panel.reload();
             }
-           
+
         }
-        
+
         if (isPanelAutor && "autor".equals(index)) {
             ListarPorAutor panel =(ListarPorAutor)PanelBusquedas.getComponent(indexPanel);
             panel.reload();
         }
     }
-    
+
     public void closePanelItems() {
         PanelItems.setVisible(false);
     }
-    
-    
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

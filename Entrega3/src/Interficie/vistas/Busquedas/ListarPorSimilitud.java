@@ -9,9 +9,9 @@ import java.awt.Color;
 import javax.swing.JOptionPane;
 
 
-
 public class ListarPorSimilitud extends javax.swing.JPanel {
     private final FramePrincipal framePrincipal;
+    private String criterioSelect;
     /**
      * Creates new form ListarPorSimilitud
      * @param framePrincipal
@@ -85,11 +85,6 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
                 NumeroKMousePressed(evt);
             }
         });
-        NumeroK.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NumeroKActionPerformed(evt);
-            }
-        });
 
         NombreAutor.setForeground(new java.awt.Color(102, 102, 102));
         NombreAutor.setText("Introduce un nombre de autor");
@@ -102,6 +97,11 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
         tipoOrdenacion.setText("Ordenar por:");
 
         criterioOrdenar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "similaridad descendente", "autor A-Z", "título A-Z" }));
+        criterioOrdenar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                criterioOrdenarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -111,8 +111,8 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(NumeroK)
-                    .addComponent(NombreAutor, javax.swing.GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE)
-                    .addComponent(Titulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE)
+                    .addComponent(NombreAutor, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
+                    .addComponent(Titulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(tipoOrdenacion, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -139,7 +139,7 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(criterioOrdenar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(tipoOrdenacion)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {ButtonBuscar, NombreAutor, NumeroK});
@@ -168,7 +168,8 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
             autor = NombreAutor.getText();
             titulo = NombreAutor.getText();
             k = Integer.parseInt(NumeroK.getText()) ;
-            framePrincipal.buscarPorSimilitud(autor,titulo,k);
+            criterioSelect = criterioOrdenar.getSelectedItem().toString();
+            framePrincipal.buscarPorSimilitud(autor,titulo,k,criterioSelect);
         }else{
             JOptionPane.showMessageDialog(null,error);
         }
@@ -230,9 +231,30 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_formMousePressed
 
-    private void NumeroKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NumeroKActionPerformed
+    private void criterioOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criterioOrdenarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_NumeroKActionPerformed
+        String error = "";
+        int k = 0;
+        if(NombreAutor.getText().equals("Introduce un nombre de autor") || "".equals(NombreAutor.getText())){
+            error += "No se ha introducido autor \n";
+        }
+        if(Titulo.getText().equals("Introduce un titulo") || "".equals(Titulo.getText())){
+            error += "No se ha introducido titulo \n";
+        }
+        if(NumeroK.getText().equals("Introduce un titulo") || "".equals(NumeroK.getText()) || !verificarK(NumeroK.getText())){
+           error += "No se ha introducido numero correctamente \n";
+        }
+
+        if("".equals(error)){
+            String autor = NombreAutor.getText();
+            String titulo = NombreAutor.getText();
+            k = Integer.parseInt(NumeroK.getText()) ;
+            criterioSelect = criterioOrdenar.getSelectedItem().toString();
+            framePrincipal.buscarPorSimilitud(autor,titulo,k,criterioSelect);
+        }else{
+            JOptionPane.showMessageDialog(null,error);
+        }
+    }//GEN-LAST:event_criterioOrdenarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
