@@ -18,13 +18,12 @@ public class ListarPorAutor extends javax.swing.JPanel {
      * Creates new form ListarAutor
      * @param framePrincipal
      */
-    
-    
     public ListarPorAutor(FramePrincipal framePrincipal) {
         initComponents();
         this.framePrincipal = framePrincipal;
     }
-
+    
+    private String criterioSelect;
     private boolean first = true;
     /**
      * This method is called from within the constructor to initialize the form.
@@ -66,11 +65,6 @@ public class ListarPorAutor extends javax.swing.JPanel {
                 NombreAutorMousePressed(evt);
             }
         });
-        NombreAutor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NombreAutorActionPerformed(evt);
-            }
-        });
         NombreAutor.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 NombreAutorKeyPressed(evt);
@@ -97,7 +91,7 @@ public class ListarPorAutor extends javax.swing.JPanel {
                         .addComponent(tipoOrdenacion, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(criterioOrdenar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 309, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                         .addComponent(ButtonBuscar))
                     .addComponent(NombreAutor, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(TipoBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -116,7 +110,7 @@ public class ListarPorAutor extends javax.swing.JPanel {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(criterioOrdenar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(tipoOrdenacion)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {ButtonBuscar, NombreAutor});
@@ -148,13 +142,19 @@ public class ListarPorAutor extends javax.swing.JPanel {
     private void ButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBuscarActionPerformed
         // TODO change titles  arrays
         String autor = NombreAutor.getText();
-       
         if ("".equals(autor) || "Introduce un nombre de autor".equals(autor)) JOptionPane.showMessageDialog(null, "Introduce un nombre de autor!!!");
         else {
             ArrayList<String> titulos = framePrincipal.getTitulos(autor);
             if (titulos == null) JOptionPane.showMessageDialog(null, "No existe este autor");
             else {
-                Collections.sort(titulos);
+                criterioSelect = criterioOrdenar.getSelectedItem().toString();
+                if("tamaño descendente".equals(criterioSelect)){
+                    titulos = framePrincipal.ordenaDecreContent(autor);
+                }
+                else {
+                    titulos = framePrincipal.getTitulos(autor);
+                    Collections.sort(titulos);
+                }
                 framePrincipal.titlelist(titulos, autor);
             }
         }
@@ -165,20 +165,19 @@ public class ListarPorAutor extends javax.swing.JPanel {
         // TODO add your handling code here:
         String autor = NombreAutor.getText();
         ArrayList<String> titulos = new ArrayList<> ();
-        if("tamaño descendente".equals(criterioOrdenar.getSelectedItem().toString())){
-            titulos = framePrincipal.ordenaDecreContent(autor);
-        }
-        else {
-            titulos = framePrincipal.getTitulos(autor);
-            Collections.sort(titulos);
-        }
         if (titulos == null) JOptionPane.showMessageDialog(null, "No existe este autor");
-        else framePrincipal.titlelist(titulos, autor);
+        else {
+            criterioSelect = criterioOrdenar.getSelectedItem().toString();
+            if("tamaño descendente".equals(criterioSelect)){
+                titulos = framePrincipal.ordenaDecreContent(autor);
+            }
+            else {
+                titulos = framePrincipal.getTitulos(autor);
+                Collections.sort(titulos);
+            }
+            framePrincipal.titlelist(titulos, autor);
+        }
     }//GEN-LAST:event_criterioOrdenarActionPerformed
-
-    private void NombreAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreAutorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NombreAutorActionPerformed
 
     private void NombreAutorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NombreAutorKeyPressed
         // TODO add your handling code here:

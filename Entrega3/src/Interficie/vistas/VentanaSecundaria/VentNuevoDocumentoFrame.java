@@ -35,11 +35,9 @@ public class VentNuevoDocumentoFrame extends javax.swing.JFrame {
     
     public void clear() {
         NombreAutor.setText("");
-        jTextArea1.setText("");
+        Contenido.setText("");
         Titulo.setText("");
     }
-
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -51,14 +49,14 @@ public class VentNuevoDocumentoFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         ButtonGuardar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        etiqAutor = new javax.swing.JLabel();
         NombreAutor = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        etiqTitulo = new javax.swing.JLabel();
         Titulo = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        Contenido = new javax.swing.JTextArea();
         Cancel = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        etiqContenido = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -69,7 +67,7 @@ public class VentNuevoDocumentoFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Autor: ");
+        etiqAutor.setText("Autor: ");
 
         NombreAutor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,7 +75,7 @@ public class VentNuevoDocumentoFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Título:");
+        etiqTitulo.setText("Título:");
 
         Titulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,9 +83,9 @@ public class VentNuevoDocumentoFrame extends javax.swing.JFrame {
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        Contenido.setColumns(20);
+        Contenido.setRows(5);
+        jScrollPane1.setViewportView(Contenido);
 
         Cancel.setText("Cancelar");
         Cancel.addActionListener(new java.awt.event.ActionListener() {
@@ -96,56 +94,56 @@ public class VentNuevoDocumentoFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("Contenido:");
+        etiqContenido.setText("Contenido:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(216, Short.MAX_VALUE)
-                .addComponent(ButtonGuardar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Cancel)
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(NombreAutor, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
-                        .addComponent(Titulo))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(etiqTitulo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(etiqAutor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(etiqContenido))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(NombreAutor)
+                            .addComponent(Titulo)
+                            .addComponent(jScrollPane1)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(ButtonGuardar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Cancel)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(etiqAutor)
                     .addComponent(NombreAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(etiqTitulo)
                     .addComponent(Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(etiqContenido)
+                    .addComponent(jScrollPane1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ButtonGuardar)
                     .addComponent(Cancel))
                 .addContainerGap())
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {NombreAutor, etiqAutor, etiqContenido, etiqTitulo});
 
         pack();
         setLocationRelativeTo(null);
@@ -167,12 +165,12 @@ public class VentNuevoDocumentoFrame extends javax.swing.JFrame {
 
     private void ButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonGuardarActionPerformed
 
-        if ("".equals(jTextArea1.getText()) && "".equals(Titulo.getText()) && "".equals(NombreAutor.getText())) {
+        if ("".equals(Contenido.getText()) && "".equals(Titulo.getText()) && "".equals(NombreAutor.getText())) {
 
             JOptionPane.showMessageDialog(null, "Introduce un título!!!\nIntroduce un autor!!!\nIntroduce un contenido!!!");
         }
 
-        else if ("".equals(jTextArea1.getText())) {
+        else if ("".equals(Contenido.getText())) {
             JOptionPane.showMessageDialog(null, "Introduce un contenido!!!");
         }
 
@@ -188,16 +186,16 @@ public class VentNuevoDocumentoFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Introduce un autor!!!\nIntroduce un título!!!");
         }
         
-        else if ("".equals(NombreAutor.getText()) && "".equals(jTextArea1.getText())) {
+        else if ("".equals(NombreAutor.getText()) && "".equals(Contenido.getText())) {
             JOptionPane.showMessageDialog(null, "Introduce un autor!!!\nIntroduce un contenido!!!");
         }
-        else if ("".equals(Titulo.getText()) && "".equals(jTextArea1.getText())) {
+        else if ("".equals(Titulo.getText()) && "".equals(Contenido.getText())) {
             JOptionPane.showMessageDialog(null, "Introduce un título!!!\nIntroduce un contenido!!!");
         }
 
         else {
 
-            if (framePrincipal.añadirDocumento(Titulo.getText(), NombreAutor.getText(), jTextArea1.getText())) {
+            if (framePrincipal.añadirDocumento(Titulo.getText(), NombreAutor.getText(), Contenido.getText())) {
                 this.dispose();
                 framePrincipal.closeNewDocument();
             }
@@ -212,12 +210,12 @@ public class VentNuevoDocumentoFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonGuardar;
     private javax.swing.JButton Cancel;
+    private javax.swing.JTextArea Contenido;
     private javax.swing.JTextField NombreAutor;
     private javax.swing.JTextField Titulo;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel etiqAutor;
+    private javax.swing.JLabel etiqContenido;
+    private javax.swing.JLabel etiqTitulo;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }

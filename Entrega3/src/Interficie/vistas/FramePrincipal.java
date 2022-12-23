@@ -32,6 +32,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
@@ -62,7 +63,6 @@ public class FramePrincipal extends javax.swing.JFrame {
         if (titulos == null) return null;
         
         HashMap<String,Integer> TitCont = new HashMap<>();
-        LinkedHashMap<String, Integer> sortedMap = new LinkedHashMap<>();
         ArrayList<Integer> list = new ArrayList<>();
         
         for (int i = 0; i < titulos.size(); ++i) {
@@ -115,7 +115,54 @@ public class FramePrincipal extends javax.swing.JFrame {
         return autOrdenado;
     }
 
-
+    public ArrayList<String[]> ordenaSimilitudAutor(ArrayList<String[]> documents) {
+        //doc[0] --> doc[0][0] = autor, doc[0][1] = titulo
+        HashMap<String,String> autTit = new LinkedHashMap<>();
+        
+        for (int i = 0; i < documents.size(); ++i) {
+            String autor = documents.get(i)[0];
+            String titulo = documents.get(i)[1];
+            autTit.put(autor, titulo);
+        }
+        TreeMap<String, String> sorted = new TreeMap<>();
+        sorted.putAll(autTit);
+        
+        ArrayList<String[]> docsOrdenats = new ArrayList<>();
+        for (String autor : sorted.keySet()) {
+            String tit = sorted.get(autor);
+            String[] doc = {autor, tit};
+            docsOrdenats.add(doc);
+        }
+        return docsOrdenats;
+    }
+    
+    public ArrayList<String[]> ordenaSimilitudTitulo (ArrayList<String[]> documents) {
+        HashMap<String,String> autTit = new HashMap<>();
+        LinkedHashMap<String, String> sortedMap = new LinkedHashMap<>();
+        ArrayList<String> list = new ArrayList<>();
+        
+        for (int i = 0; i < documents.size(); ++i) {
+            String autor = documents.get(i)[0];
+            String titulo = documents.get(i)[1];
+            autTit.put(autor, titulo);
+        }
+        for (Map.Entry<String, String> entry : autTit.entrySet()) {
+            list.add(entry.getValue());
+        }
+        
+        Collections.sort(list);
+       
+        ArrayList<String[]> docsOrdenats = new ArrayList<>();
+        for (String tit : list) {
+            for (Entry<String, String> entry : autTit.entrySet()) {
+                if (entry.getValue().equals(tit)) {
+                    String[] doc = {entry.getKey(), entry.getValue()};
+                    docsOrdenats.add(doc);
+                }
+            }
+        }
+        return docsOrdenats;
+    }
     
     public ArrayList<String> getAlias(){
         ArrayList<String> result = new ArrayList<>();
@@ -240,7 +287,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         SizeMenuBusqueda = new javax.swing.JList<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTree1 = new javax.swing.JTree();
-        jLabel1 = new javax.swing.JLabel();
+        etiqSelectBusq = new javax.swing.JLabel();
         PanelBusquedas = new javax.swing.JPanel();
         PanelItems = new javax.swing.JPanel();
         MenuBarPrincipal = new javax.swing.JMenuBar();
@@ -280,7 +327,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTree1);
 
-        jLabel1.setText("Selecciona el tipo de búsqueda:");
+        etiqSelectBusq.setText("Selecciona el tipo de búsqueda:");
 
         PanelBusquedas.setLayout(new java.awt.CardLayout());
 
@@ -348,11 +395,11 @@ public class FramePrincipal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jScrollPane1)
                     .addComponent(SizeMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(etiqSelectBusq, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(PanelBusquedas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(PanelItems, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE))
+                    .addComponent(PanelItems, javax.swing.GroupLayout.DEFAULT_SIZE, 451, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -360,18 +407,18 @@ public class FramePrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel1))
-                            .addComponent(PanelBusquedas, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(PanelItems, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addComponent(SizeMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(etiqSelectBusq))
+                            .addComponent(PanelBusquedas, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(PanelItems, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -505,7 +552,6 @@ public class FramePrincipal extends javax.swing.JFrame {
             String titulo = doc[1];
             System.out.println(autor + " " + titulo);
 
-            
             String contenido = ctrlInterficie.busquedaPorAutorTitulo(autor, titulo);
             
             infoDoc.setText(autor,titulo,contenido);
@@ -697,8 +743,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     public void modificarExpresion(String alia, String expresion) {
         ctrlInterficie.updateExpresion(alia, expresion);
     }
-    
-    
+        
     public void buscarPorAlia(String alia) {
         ArrayList<String[]> documents = ctrlInterficie.busquedaPorExpresion(alia);
         JOptionPane.showMessageDialog(null,"No se ha encontrado documentos,revisa la expresion");
@@ -710,10 +755,18 @@ public class FramePrincipal extends javax.swing.JFrame {
 
     }
     
-    public void buscarPorSimilitud(String autor,String titulo,int k){
+    public void buscarPorSimilitud(String autor,String titulo,int k, String criterioSelect){
         ArrayList<String[]> documents = ctrlInterficie.busquedaPorSimilitud(autor,titulo,k);
         if(documents != null){
-            documentlist(documents);
+            ArrayList<String[]> docsOrdenats = new ArrayList<String[]> ();
+            if (criterioSelect == "autor A-Z") {
+                docsOrdenats = ordenaSimilitudAutor(documents);
+            }
+            else if (criterioSelect == "título A-Z") {
+                docsOrdenats = ordenaSimilitudTitulo(documents);
+            }
+            else docsOrdenats = documents;
+            documentlist(docsOrdenats);
         }else {
             JOptionPane.showMessageDialog(null, "No se ha encontrado documentos,revisa la expresion");
         }
@@ -769,8 +822,6 @@ public class FramePrincipal extends javax.swing.JFrame {
             }
             panel.reload();
         }
-        
-        
     }
 
 
@@ -788,7 +839,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel PanelItems;
     private javax.swing.JScrollPane SizeMenu;
     private javax.swing.JList<String> SizeMenuBusqueda;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel etiqSelectBusq;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTree jTree1;
     // End of variables declaration//GEN-END:variables
