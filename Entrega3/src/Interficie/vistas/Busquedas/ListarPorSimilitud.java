@@ -6,12 +6,14 @@ package Interficie.vistas.Busquedas;
 
 import Interficie.vistas.FramePrincipal;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 
 public class ListarPorSimilitud extends javax.swing.JPanel {
     private final FramePrincipal framePrincipal;
     private String criterioSelect;
+    private boolean firstSearch = true;
     /**
      * Creates new form ListarPorSimilitud
      * @param framePrincipal
@@ -78,6 +80,11 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
                 TituloMousePressed(evt);
             }
         });
+        Titulo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TituloKeyPressed(evt);
+            }
+        });
 
         NumeroK.setForeground(new java.awt.Color(102, 102, 102));
         NumeroK.setText("Introduce un número");
@@ -87,6 +94,9 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
             }
         });
         NumeroK.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                NumeroKKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 NumeroKKeyTyped(evt);
             }
@@ -97,6 +107,11 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
         NombreAutor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 NombreAutorMousePressed(evt);
+            }
+        });
+        NombreAutor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                NombreAutorKeyPressed(evt);
             }
         });
 
@@ -154,7 +169,7 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
 
     }// </editor-fold>//GEN-END:initComponents
 
-                            
+
 
     private void NombreAutorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NombreAutorMousePressed
         // TODO add your handling code here:
@@ -231,11 +246,13 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
         }
 
         if ("".equals(error)) {
-            autor = NombreAutor.getText();
-            titulo = Titulo.getText();
-            k = Integer.parseInt(NumeroK.getText());
-            criterioSelect = criterioOrdenar.getSelectedItem().toString();
-            framePrincipal.buscarPorSimilitud(autor, titulo, k, criterioSelect);
+            if (!firstSearch) {
+                autor = NombreAutor.getText();
+                titulo = Titulo.getText();
+                k = Integer.parseInt(NumeroK.getText());
+                criterioSelect = criterioOrdenar.getSelectedItem().toString();
+                framePrincipal.buscarPorSimilitud(autor, titulo, k, criterioSelect);
+            }
         } else {
             JOptionPane.showMessageDialog(null, error);
         }
@@ -268,7 +285,7 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
                 ||  Integer.parseInt(NumeroK.getText()) >= this.framePrincipal.getDocSize()){
            error += "No se ha introducido número correctamente \n";
         }
-        
+
         if ("".equals(error)) {
             autor = NombreAutor.getText();
             titulo = Titulo.getText();
@@ -279,6 +296,27 @@ public class ListarPorSimilitud extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, error);
         }
     }//GEN-LAST:event_ButtonBuscarActionPerformed
+
+    private void NombreAutorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NombreAutorKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            ButtonBuscar.doClick();
+        }
+    }//GEN-LAST:event_NombreAutorKeyPressed
+
+    private void TituloKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TituloKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            ButtonBuscar.doClick();
+        }
+    }//GEN-LAST:event_TituloKeyPressed
+
+    private void NumeroKKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NumeroKKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            ButtonBuscar.doClick();
+        }
+    }//GEN-LAST:event_NumeroKKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

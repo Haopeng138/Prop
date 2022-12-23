@@ -72,7 +72,6 @@ public class FramePrincipal extends javax.swing.JFrame {
         if (titulos == null) return null;
         
         HashMap<String,Integer> TitCont = new HashMap<>();
-        LinkedHashMap<String, Integer> sortedMap = new LinkedHashMap<>();
         ArrayList<Integer> list = new ArrayList<>();
         
         for (int i = 0; i < titulos.size(); ++i) {
@@ -643,19 +642,22 @@ public class FramePrincipal extends javax.swing.JFrame {
             if (alias.getChildAt(i).toString().equals(ali))
                 trobat = true;
         }
+        boolean create = false;
         if (trobat) {
             return false;
         }
         else {
-                alias.add(alia);
+            
             try {
-                addExpresion(ali, expresion);
+                create = addExpresion(ali, expresion);
+                if (create) alias.add(alia);
+                
             } catch (Exception ex) {
                 Logger.getLogger(FramePrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         modelo.reload();
-        return true;
+        return create;
     }
     
     public boolean añadirDocumento(String titulo, String autor, String cont) {
@@ -749,9 +751,11 @@ public class FramePrincipal extends javax.swing.JFrame {
             if (aut.toString().equals(docHeader)) doc = aut;
         }
         docs.remove(doc);
+        
         removeDocumento(autor, titulo);
         if (docs.getChildCount() == 0)
             root.remove(docs);
+        
 
         modelo.reload();
     }
@@ -836,8 +840,17 @@ public class FramePrincipal extends javax.swing.JFrame {
         ctrlInterficie.modifyDocument(autor, titulo, contenido);
     }
 
-    public void addExpresion(String alia, String expresion) throws Exception {
-        ctrlInterficie.addExpresion(alia, expresion);
+    public boolean addExpresion(String alia, String expresion)  {
+        boolean added = false;
+        try {
+            ctrlInterficie.addExpresion(alia, expresion);
+            added = true;
+        }
+        catch(Exception e){     
+        }
+        
+        return added;
+        
     }
 
     public ArrayList<String> buscarPorPrefijo(String prefijo) {
