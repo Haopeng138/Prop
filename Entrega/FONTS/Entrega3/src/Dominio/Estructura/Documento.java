@@ -16,58 +16,58 @@ public class Documento {
 
     /**
      * Método de creación de un documento
-     *
-     * @param aut   Un nombre del autor
-     * @param tit   Un título
-     * @param cont  Un contenido
+     * 
+     * @param autor     Nombre del autor
+     * @param titulo    Nombre del título
+     * @param contenido Contenido del documento
      */
 
-    public Documento(String aut, String tit, String cont) {
-        this.autor = new Autor(aut);
-        this.titulo = new Titulo(tit);
-        this.contenido = cont;
+    public Documento(String autor, String titulo, String contenido) {
+        this.autor = new Autor(autor);
+        this.titulo = new Titulo(titulo);
+        this.contenido = contenido;
     }
 
     /**
      * Método para actualizar el nombre del autor
-     *
-     * @param aut Un nombre nuevo del autor
+     * 
+     * @param autor Nombre nuevo del autor
      */
-    public void setAutor(String aut) {
-        this.autor.setName(aut);
+    public void setAutor(String autor) {
+        this.autor.setName(autor);
     }
 
     /**
-     * Método para actualizar el título
-     *
-     * @param tit Un título nuevo
+     * Método para actualizar el nombre del título
+     * 
+     * @param titulo Nombre nuevo del título
      */
-    public void setTitulo(String tit) {
-        this.titulo.setName(tit);
+    public void setTitulo(String titulo) {
+        this.titulo.setName(titulo);
     }
 
     /**
      * Método para actualizar el contenido
-     *
-     * @param cont Un contenido nuevo
+     * 
+     * @param contenido Contenido nuevo
      */
-    public void setContenido(String cont) {
-        this.contenido = cont;
+    public void setContenido(String contenido) {
+        this.contenido = contenido;
     }
 
     /**
      * Método para devolver el nombre del autor
-     *
-     * @return El nombre de autor
+     * 
+     * @return Nombre de autor
      */
     public String getAutor() {
         return autor.getName();
     }
 
     /**
-     * Método para devolver el título
-     *
-     * @return El título
+     * Método para devolver el nombre del título
+     * 
+     * @return Nombre de título
      */
     public String getTitulo() {
         return titulo.getName();
@@ -75,8 +75,8 @@ public class Documento {
 
     /**
      * Método para devolver el contenido
-     *
-     * @return El contenido
+     * 
+     * @return Contenido
      */
     public String getContenido() {
         return contenido;
@@ -85,7 +85,7 @@ public class Documento {
     /**
      * Método para convertir un String en un ArrayList
      *
-     * @return El contenido del documento en ArrayList
+     * @return Contenido del documento en ArrayList
      */
     public ArrayList<String> stringToArrayList() {
         // ArrayList<String> separator = new ArrayList<>(Arrays.asList(".", ";", ",", "
@@ -97,21 +97,22 @@ public class Documento {
 
     /**
      * Método para verificar la existencia de un String en el contenido
-     *
-     * @param conjPalabras Un conjunto de palabras
-     * @return True, si el conjunto "conjPalabras" está en el contenido
+     * 
+     * @param conjuntoPalabras Un conjunto de palabras
+     * @return True, si el conjunto "conjuntoPalabras" está en el contenido
      *         False, en el caso contrario
      */
-    public Boolean existeString(String conjPalabras) {
-        int midaString = conjPalabras.length();
+    // Búsqueda de un string en el contenido
+    public Boolean existeString(String conjuntoPalabras) {
+        int midaString = conjuntoPalabras.length();
         int i = 0;
         int j = 0;
         while (i < contenido.length() && j < midaString) {
-            if (conjPalabras.charAt(j) == contenido.charAt(i)) {
+            if (conjuntoPalabras.charAt(j) == contenido.charAt(i)) {
                 ++i;
                 ++j;
             } else {
-                if (i + 1 < contenido.length() && conjPalabras.charAt(j) != contenido.charAt(i + 1)) {
+                if (i + 1 < contenido.length() && conjuntoPalabras.charAt(j) != contenido.charAt(i + 1)) {
                     ++i;
                     j = 0;
                 } else {
