@@ -95,14 +95,19 @@ public class BusquedaPorExpresion {
                     break;
                 }
                 case ' ': {
-                    break;
-                }
-                default: {
                     int nextPtr = ptr + 1 + findNextOrEnd(expr.substring(ptr + 1), ' ');
                     currNode.val = new ParseNode(NODE_TYPE.CONTAIN, getWords(expr.substring(ptr, nextPtr)));
                     currNode.left = null;
                     currNode.right = null;
                     ptr = nextPtr;
+                    break;
+                }
+                default: {
+                    /* int nextPtr = ptr + 1 + findNextOrEnd(expr.substring(ptr + 1), ' ');
+                    currNode.val = new ParseNode(NODE_TYPE.CONTAIN, getWords(expr.substring(ptr, nextPtr)));
+                    currNode.left = null;
+                    currNode.right = null;
+                    ptr = nextPtr;*/
                     break;
                 }
             }

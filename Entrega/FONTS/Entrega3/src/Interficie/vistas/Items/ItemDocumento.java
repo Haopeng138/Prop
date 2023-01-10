@@ -118,7 +118,7 @@ public class ItemDocumento extends javax.swing.JPanel {
         
         String autor = NombreAutor.getText();
         String titulo = Titulo.getText();
-        this.framePrincipal.removeDocument(autor,titulo);
+        this.framePrincipal.eliminarDoc(titulo,autor);
     }//GEN-LAST:event_ButtonEliminarActionPerformed
 
 
