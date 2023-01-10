@@ -36,7 +36,7 @@ public class IOHelper {
         int endAutor = content.indexOf("</Autor>");
         String autor = "";
         if (startAutor != -1 && endAutor != -1) {
-            autor = content.substring(startAutor + 8, endAutor).trim();
+            autor = content.substring(startAutor + 7, endAutor).trim();
         }
         int startTitulo = content.indexOf("<Titulo>");
         int endTitulo = content.indexOf("</Titulo>");
@@ -125,9 +125,13 @@ public class IOHelper {
     private static void exportToXML(Documento doc, File path, String name) throws IOException {
         File file = new File(path, name);
         try (FileWriter myWriter = new FileWriter(file)) {
+            myWriter.write("<?xml version=\"1.0\"?>" + '\n');
+            myWriter.write("<Documento>" + '\n');
             myWriter.write("<Autor>" + doc.getAutor() + "</Autor>" + '\n');
-            myWriter.write("<Titulo>" + doc.getTitulo() + "<Titulo>" + '\n');
-            myWriter.write("<Contenido>" + doc.getContenido() + "<Contenido>");
+            myWriter.write("<Titulo>" + doc.getTitulo() + "</Titulo>" + '\n');
+            myWriter.write("<Contenido>" + doc.getContenido() + "</Contenido>" + '\n');
+            myWriter.write("</Documento>");
+
         }
     }
 }

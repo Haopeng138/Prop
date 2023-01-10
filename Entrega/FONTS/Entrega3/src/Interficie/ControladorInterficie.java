@@ -165,7 +165,7 @@ public class ControladorInterficie {
         int endAutor = content.indexOf("</Autor>");
         String autor = "";
         if (startAutor != -1 && endAutor != -1) {
-            autor = content.substring(startAutor + 8, endAutor).trim();
+            autor = content.substring(startAutor + 7, endAutor).trim();
         }
         int startTitulo = content.indexOf("<Titulo>");
         int endTitulo = content.indexOf("</Titulo>");
